@@ -249,3 +249,7 @@ TaxiCenter::~TaxiCenter() {
 
 }
 
+void TaxiCenter::setSocket(const Socket &sock) {
+    this->socket = sock;
+}
+

@@ -19,7 +19,7 @@ public:
     Driver();
 
     ~Driver();
-
+    void manage();
     void setTaxi(Taxi *t);
 
     void setTrip(Point start, Point end);

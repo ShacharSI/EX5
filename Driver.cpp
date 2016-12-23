@@ -196,4 +196,8 @@ void Driver::setRouthToDes(std::list<Searchable *> list) {
     this->getTaxi()->setRouthFromClientToDes(list);
 }
 
+void Driver::manage() {
+
+}
+
 

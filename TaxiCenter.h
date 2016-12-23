@@ -11,6 +11,7 @@
 #include "Trip.h"
 #include "Map.h"
 #include "Driver.h"
+#include "Socket.h"
 #include <stdexcept>
 
 /**
@@ -51,7 +52,11 @@ public:
 
 private:
     void removeDriver(Driver* d, list <Driver*> l);
+    Socket socket;
+public:
+    void setSocket(const Socket &socket);
 
+private:
     Map map;
     Trip currentTrip;
 

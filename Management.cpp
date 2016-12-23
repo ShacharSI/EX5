@@ -1,6 +1,7 @@
 #include "Management.h"
 #include "LuxTaxiFactory.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 /**
  * the constructor
@@ -33,27 +34,27 @@ void Management::manage() {
         switch (userChoice) {
             //create driver
             case 1: {
-                getline(cin,userInput);
-                Driver* d = this->parseDriver(userInput);
+                getline(cin, userInput);
+                Driver *d = this->parseDriver(userInput);
                 this->taxiCenter.addDriverToCenter(d);
                 break;
             }
-            //create trip
+                //create trip
             case 2: {
-                getline(cin,userInput);
+                getline(cin, userInput);
                 Trip t = this->parseTrip(userInput);
                 this->taxiCenter.addTrip(t);
                 break;
             }
-            //create taxi
+                //create taxi
             case 3: {
-                getline(cin,userInput);
+                getline(cin, userInput);
                 Taxi *taxi = this->parseTaxi(userInput);
-                taxi->setLocation(Point(0,0));
+                taxi->setLocation(Point(0, 0));
                 this->taxiCenter.addTaxi(taxi);
                 break;
             }
-            //print the wanted taxi's location
+                //print the wanted taxi's location
             case 4: {
                 cin >> userInput;
                 c = userInput.c_str();
@@ -62,7 +63,7 @@ void Management::manage() {
                 cout << p;
                 break;
             }
-            //move all taxi's
+                //move all taxi's
             case 6: {
                 this->taxiCenter.moveAll();
                 break;
@@ -94,7 +95,7 @@ Taxi *Management::parseTaxi(string s) {
         i++;
     }
     //save the val in an array
-    const char* c = strArray[0].c_str();
+    const char *c = strArray[0].c_str();
     int id = atoi(c);
     c = strArray[1].c_str();
     int tarrif = atoi(c);
@@ -130,36 +131,55 @@ Point Management::parseLocation(int id) {
 /**
  * getting the user's string and creating a driver from it
  */
-Driver* Management::parseDriver(string s) {
+list<Driver *> Management::parseDriver(string s) {
     string streamCut;
-    stringstream tempStr(s);
     string strArray[5];
-    int i =0;
-    //parse string
-    while (std::getline(tempStr,streamCut,',')){
-        string strAfterFirstCut = streamCut;
-        strArray[i] = strAfterFirstCut;
-        i++;
-    }
-    //save the val in an array
-    const char* c = strArray[1].c_str();
-    int age = atoi(c);
-    c = strArray[0].c_str();
-    int id  = atoi(c);
-    c = strArray[3].c_str();
-    int exp = atoi(c);
-    c = strArray[4].c_str();
-    int vehicle_id = atoi(c);
-    Driver::martialStatus m = Driver::parseMartialStatus(strArray[2]);
-    //create the driver
-    Driver* d =new Driver(id,age,m,exp,vehicle_id);
-    //make sure the info is good
-    try {
-        d->validate();
-    } catch (const std::invalid_argument &iaExc) {
+    std::list<Driver *> list;
+    string input = "1";
+    //cin >> input;
+    const char *ch = input.c_str();
+    int numOfDrivers = atoi(ch);
+    //todo create new proccess???
+    for (int j = 0; j < numOfDrivers; ++j) {
+        pid_t pid = fork();
+        if (pid <0){
+            perror("error creating process");
+        }
+        if (pid == 0) {
+            cin >> input;
+            stringstream tempStr(input);
+            int i = 0;
+            //parse string
+            while (std::getline(tempStr, streamCut, ',')) {
+                string strAfterFirstCut = streamCut;
+                strArray[i] = strAfterFirstCut;
+                i++;
+            }
+            //save the val in an array
+            const char *c = strArray[1].c_str();
+            int age = atoi(c);
+            c = strArray[0].c_str();
+            int id = atoi(c);
+            c = strArray[3].c_str();
+            int exp = atoi(c);
+            c = strArray[4].c_str();
+            int vehicle_id = atoi(c);
+            Driver::martialStatus m = Driver::parseMartialStatus(strArray[2]);
+            //create the driver
+            Driver *d = new Driver(id, age, m, exp, vehicle_id);
+            //make sure the info is good
+            try {
+                d->validate();
+            } catch (const std::invalid_argument &iaExc) {
 
+            }
+            d->manage();
+            //todo save the driver in list
+        } else if (pid > 0){
+            continue;
+        }
     }
-    return d;
+
 
 }
 
@@ -167,25 +187,25 @@ Driver* Management::parseDriver(string s) {
  * getting the user's string and creating a trip from it
  */
 Trip Management::parseTrip(string s) {
+
     string streamCut;
     stringstream tempStr(s);
     int tripInfo[6];
-    double tarrif =0;
+    double tarrif = 0;
     int i = 0;
     //parse the info
     while (std::getline(tempStr, streamCut, ',')) {
-        const char* c = streamCut.c_str();
+        const char *c = streamCut.c_str();
         if (i < 6) {
             tripInfo[i] = atoi(c);
-        }
-        else{
+        } else {
             tarrif = atof(c);
         }
 
         i++;
     }
     //create the trip
-    Trip t(tripInfo[0], tripInfo[1], tripInfo[2], tripInfo[3], tripInfo[4], tripInfo[5],tarrif);
+    Trip t(tripInfo[0], tripInfo[1], tripInfo[2], tripInfo[3], tripInfo[4], tripInfo[5], tarrif);
     //make sure the info is good
     try {
         t.validate();
@@ -200,7 +220,7 @@ Trip Management::parseTrip(string s) {
 void Management::getObstacles() {
     string input;
     cin >> input;
-    const char* c =input.c_str();
+    const char *c = input.c_str();
     int numOfObstacle = atoi(c);
     if (numOfObstacle > 0) {
         this->lg.setObstacle(numOfObstacle);
@@ -232,13 +252,13 @@ void Management::setLogicAndMap() {
  * @return - a vector with the map sizes given by the user
  */
 vector<int> Management::getSizes() {
-    string input ;
-    getline(cin,input);
+    string input;
+    getline(cin, input);
     string streamCut;
     stringstream tempStr(input);
     vector<int> sizes;
-    while (std::getline(tempStr,streamCut, ' ')) {
-        const char* c = streamCut.c_str();
+    while (std::getline(tempStr, streamCut, ' ')) {
+        const char *c = streamCut.c_str();
         sizes.push_back(atoi(c));
     }
 
