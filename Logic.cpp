@@ -48,7 +48,7 @@ void Logic::setObstacle(int numObstacle) {
 
 
 /**
- * implement of the validation interface
+ * implements the validation interface
  * checks that the is with correct arguments
  */
 void Logic::validate() {
