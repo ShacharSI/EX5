@@ -131,7 +131,7 @@ Point Management::parseLocation(int id) {
 /**
  * getting the user's string and creating a driver from it
  */
-list<Driver *> Management::parseDriver(string s) {
+Driver * Management::parseDriver(string s) {
     string streamCut;
     string strArray[5];
     std::list<Driver *> list;
@@ -180,7 +180,7 @@ list<Driver *> Management::parseDriver(string s) {
         }
     }
 
-
+    return  NULL;
 }
 
 /**

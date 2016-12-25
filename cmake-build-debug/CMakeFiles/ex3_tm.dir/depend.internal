@@ -61,8 +61,6 @@ CMakeFiles/ex3_tm.dir/Driver.cpp.o
  /home/haim/ClionProjects/ex3_tm/Taxi.h
  /home/haim/ClionProjects/ex3_tm/Trip.h
  /home/haim/ClionProjects/ex3_tm/Validate_Interface.h
-CMakeFiles/ex3_tm.dir/Driver_Main.cpp.o
- /home/haim/ClionProjects/ex3_tm/Driver_Main.cpp
 CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o
  ../lib/googletest-master/googletest/include/gtest/gtest-death-test.h
  ../lib/googletest-master/googletest/include/gtest/gtest-message.h

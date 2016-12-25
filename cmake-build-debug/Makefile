@@ -1056,33 +1056,6 @@ Trip_Test.cpp.s:
 	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Trip_Test.cpp.s
 .PHONY : Trip_Test.cpp.s
 
-UdpSocekt.o: UdpSocekt.cpp.o
-
-.PHONY : UdpSocekt.o
-
-# target to build an object file
-UdpSocekt.cpp.o:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/UdpSocekt.cpp.o
-.PHONY : UdpSocekt.cpp.o
-
-UdpSocekt.i: UdpSocekt.cpp.i
-
-.PHONY : UdpSocekt.i
-
-# target to preprocess a source file
-UdpSocekt.cpp.i:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/UdpSocekt.cpp.i
-.PHONY : UdpSocekt.cpp.i
-
-UdpSocekt.s: UdpSocekt.cpp.s
-
-.PHONY : UdpSocekt.s
-
-# target to generate assembly for a file
-UdpSocekt.cpp.s:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/UdpSocekt.cpp.s
-.PHONY : UdpSocekt.cpp.s
-
 Validate_Interface.o: Validate_Interface.cpp.o
 
 .PHONY : Validate_Interface.o
@@ -1274,9 +1247,6 @@ help:
 	@echo "... Trip_Test.o"
 	@echo "... Trip_Test.i"
 	@echo "... Trip_Test.s"
-	@echo "... UdpSocekt.o"
-	@echo "... UdpSocekt.i"
-	@echo "... UdpSocekt.s"
 	@echo "... Validate_Interface.o"
 	@echo "... Validate_Interface.i"
 	@echo "... Validate_Interface.s"

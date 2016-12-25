@@ -35,7 +35,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/haim/ClionProjects/ex3_tm/Taxi_Center_Test.cpp" "/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o"
   "/home/haim/ClionProjects/ex3_tm/Trip.cpp" "/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/ex3_tm.dir/Trip.cpp.o"
   "/home/haim/ClionProjects/ex3_tm/Trip_Test.cpp" "/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o"
-  "/home/haim/ClionProjects/ex3_tm/UdpSocekt.cpp" "/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/ex3_tm.dir/UdpSocekt.cpp.o"
   "/home/haim/ClionProjects/ex3_tm/Validate_Interface.cpp" "/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o"
   "/home/haim/ClionProjects/ex3_tm/VirtualTaxiFactory.cpp" "/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o"
   "/home/haim/ClionProjects/ex3_tm/main.cpp" "/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/ex3_tm.dir/main.cpp.o"

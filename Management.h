@@ -27,7 +27,7 @@ public:
     Management();
     void manage();
     Taxi* parseTaxi(string s);
-    list<Driver*> parseDriver(string s);
+    Driver* parseDriver(string s);
     Trip parseTrip(string s);
     Point parseLocation(int id);
 };

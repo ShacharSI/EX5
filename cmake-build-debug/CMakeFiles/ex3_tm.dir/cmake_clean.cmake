@@ -33,7 +33,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o"
   "CMakeFiles/ex3_tm.dir/Management_Test.cpp.o"
   "CMakeFiles/ex3_tm.dir/Socket.cpp.o"
-  "CMakeFiles/ex3_tm.dir/UdpSocekt.cpp.o"
   "ex3_tm.pdb"
   "ex3_tm"
 )

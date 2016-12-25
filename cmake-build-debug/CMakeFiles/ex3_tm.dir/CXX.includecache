@@ -318,8 +318,6 @@ Map.h
 Taxi.h
 /home/haim/ClionProjects/ex3_tm/Taxi.h
 
-/home/haim/ClionProjects/ex3_tm/Driver_Main.cpp
-
 /home/haim/ClionProjects/ex3_tm/Driver_Test.cpp
 gtest/gtest.h
 -
@@ -564,12 +562,6 @@ Taxi.h
 Driver.h
 /home/haim/ClionProjects/ex3_tm/Driver.h
 stdexcept
--
-fstream
--
-boost/archive/text_oarchive.hpp
--
-boost/archive/text_iarchive.hpp
 -
 
 /home/haim/ClionProjects/ex3_tm/Taxi.h

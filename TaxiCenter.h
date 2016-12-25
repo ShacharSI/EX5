@@ -52,7 +52,6 @@ public:
 
 private:
     void removeDriver(Driver* d, list <Driver*> l);
-    Socket socket;
 public:
     void setSocket(const Socket &socket);
 
