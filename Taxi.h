@@ -55,21 +55,16 @@ public:
 
     vector<Passenger> getPassengers();
 
-    void setRouthFromClientToDes(list<Searchable *> routhFromClientToDes);
-
-    void setRouthFromLocationToClient(list<Searchable *> routhFromLocationToClient);
+    void setRouth(list<Searchable *> routhFromClientToDes);
 
     Map getMap();
 
     void setMap(Map m);
 
-    list<Searchable *> getRouthFromClientToDes();
-
-    list<Searchable *> getRouthFromLocationToClient();
+    list<Searchable *> getRouth();
 
 protected:
-    list<Searchable *> routhFromLocationToClient;
-    list<Searchable *> routhFromClientToDes;
+    list<Searchable *> routh;
     Map map;
     int carId;
     manufacturer mnfctr;

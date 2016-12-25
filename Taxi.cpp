@@ -3,6 +3,7 @@
 //
 
 #include "Taxi.h"
+#include <boost/foreach.hpp>
 #include "Driver.h"
 #include <stdexcept>
 
@@ -36,9 +37,7 @@ Taxi::Taxi(int id, Taxi::manufacturer mntrf, Taxi::color color,int taarif) {
     this->mnfctr = mntrf;
     this->searchAlgo = new Bfs;
     std::list<Searchable*> l1;
-    std::list<Searchable*> l2;
-    this->routhFromClientToDes = l1;
-    this->routhFromLocationToClient=l2;
+    this->routh = l1;
     this->searchAlgo =NULL;
 
 }
@@ -78,13 +77,10 @@ vector<Passenger> Taxi::getPassengers() {
     return vector<Passenger>();
 }
 
-void Taxi::setRouthFromClientToDes(std::list < Searchable*> routhFromClient) {
-    //routhFromClient.pop_front(); // pop because the first point is the current location and was printed in routh to clinet
-    this->routhFromClientToDes = routhFromClient;
-}
 
-void Taxi::setRouthFromLocationToClient(std::list < Searchable * > routhToLocation) {
-    this->routhFromLocationToClient = routhToLocation;
+void Taxi::setRouth(std::list < Searchable * > routhToLocation) {
+    this->routh = routhToLocation;
+
 }
 
 Map Taxi::getMap() {
@@ -95,12 +91,8 @@ void Taxi::setMap(Map m) {
     this->map = m;
 }
 
-list<Searchable *> Taxi::getRouthFromClientToDes() {
-    return this->routhFromClientToDes;
-}
-
-list<Searchable *> Taxi::getRouthFromLocationToClient()  {
-    return this->routhFromClientToDes;
+list<Searchable *> Taxi::getRouth() {
+    return this->routh;
 }
 
 Taxi::manufacturer Taxi::parseMnfctr(string s) {

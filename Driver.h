@@ -19,10 +19,10 @@ public:
     Driver();
 
     ~Driver();
-    void manage();
-    void setTaxi(Taxi *t);
 
-    void setTrip(Point start, Point end);
+    void manage();
+
+    void setTaxi(Taxi *t);
 
     int getId();
 
@@ -40,9 +40,9 @@ public:
 
     double getSatis();
 
-    void setRouthToDes(std::list<Searchable *> list);
+    list<Searchable*> calculateBfs(Point start,Point end);
 
-    void setRouthToClient(std::list<Searchable *> list);
+    void setRouth(std::list<Searchable *> list);
 
     void validate();
 

@@ -1,15 +1,16 @@
 #include "TaxiCenter.h"
+#include <boost/foreach.hpp>
 
 /**
  * getting a call from a client
- * also checking that he gave right coordinates
+ * if there is no free driver return false
  */
-bool TaxiCenter::setTrip(Trip t)  {
+bool TaxiCenter::sendTrip(Trip t) {
     this->currentTrip = t;
     if (this->notActiveDriver.size() > 0) {
-        Driver* d = this->getClosetTaxi(t.getStartP());
-        if(d!= NULL){
-            this->sendTaxiToLocation(d, t);
+        Driver *d = this->getClosetTaxi(t);
+        if (d != NULL) {
+            this->sendTaxiToLocation(d);
             return true;
         }
     } else {
@@ -18,32 +19,40 @@ bool TaxiCenter::setTrip(Trip t)  {
 
 }
 
-Driver* TaxiCenter::getClosetTaxi(Point p) {
-    Driver* closest = NULL;
-    for (int i = 0; i < this->notActiveDriver.size(); i++) {
-        Driver* d = this->notActiveDriver.front();
-        if (d->getLocation().equals(p)) {
+Driver *TaxiCenter::getClosetTaxi(Trip t) {
+    if(this->notActiveDriver.size() == 0){
+        return NULL;
+    }
+    Point start = t.getStartP();
+    Driver *closest = this->notActiveDriver.front();
+    std::list<Searchable *> route = closest->calculateBfs(closest->getLocation(), start);
+    long size = this->notActiveDriver.size();
+    for (int i = 0; i < size; i++) {
+        Driver *d = this->notActiveDriver.front();
+        std::list<Searchable *> tempRoute = d->calculateBfs(d->getLocation(), start);
+        if (tempRoute.size() < route.size()){
             closest = d;
+            route = tempRoute;
             break;
         }
         this->notActiveDriver.pop_front();
         this->notActiveDriver.push_back(closest);
     }
-    if(closest!=NULL) {
-        //std::list<Searchable *> routh = closest->getTaxi()->calculateBfs(closest->getLocation(), p);
-        //closest->setRouthToClient(routh);
-    }
+    std::list<Searchable *> route2 = closest->calculateBfs(t.getStartP(),t.getEndP());
+    BOOST_FOREACH(auto &listElement, route2) {
+        route.push_back( listElement ); }
+    closest->setRouth(route);
     return closest;
 }
 
-void TaxiCenter::sendTaxiToLocation(Driver* d, Trip t) {
+void TaxiCenter::sendTaxiToLocation(Driver *d) {
     /**
      * if the driver is in the taxi center then attach him a taxi and send him
      * if he is not then send him with the taxi that was already attached to him before
      * and sending them the call. and removing from inActive to active
      */
     for (int i = 0; i < notActiveDriver.size(); i++) {
-        Driver* d1 = notActiveDriver.front();
+        Driver *d1 = notActiveDriver.front();
         if (d == d1) {
             notActiveDriver.pop_front();
             activeDrivers.push_back(d1);
@@ -52,7 +61,6 @@ void TaxiCenter::sendTaxiToLocation(Driver* d, Trip t) {
         notActiveDriver.pop_front();
         notActiveDriver.push_back(d1);
     }
-    d->setTrip(t.getStartP(), t.getEndP());
     return;
 }
 
@@ -68,6 +76,7 @@ TaxiCenter::TaxiCenter() {
  */
 TaxiCenter::TaxiCenter(Map mp) {
     this->map = mp;
+    this->setSocket();
 }
 
 /**
@@ -75,7 +84,7 @@ TaxiCenter::TaxiCenter(Map mp) {
  */
 Point TaxiCenter::giveLocation(int id) throw(invalid_argument) {
     for (int i = 0; i < this->notActiveDriver.size(); i++) {
-        Driver* d = this->notActiveDriver.front();
+        Driver *d = this->notActiveDriver.front();
         if (d->getVehicle_id() == id) {
             return d->getTaxi()->getLocation();
         }
@@ -84,7 +93,7 @@ Point TaxiCenter::giveLocation(int id) throw(invalid_argument) {
     }
 
     for (int i = 0; i < this->activeDrivers.size(); i++) {
-        Driver* d = this->activeDrivers.front();
+        Driver *d = this->activeDrivers.front();
         if (d->getVehicle_id() == id) {
             return d->getTaxi()->getLocation();
         }
@@ -101,24 +110,24 @@ void TaxiCenter::deleteMap() {
     this->map.freeAll();
 }
 
-void TaxiCenter::addDriverToCenter(Driver* d) {
+void TaxiCenter::addDriverToCenter(Driver *d) {
     this->notActiveDriver.push_back(d);
 }
 
-list <Driver*>& TaxiCenter::getActiveDriver() {
+list<Driver *> &TaxiCenter::getActiveDriver() {
     return this->activeDrivers;
 }
 
 
-list <Driver*> TaxiCenter::getNotActiveDriver() {
+list<Driver *> TaxiCenter::getNotActiveDriver() {
     return this->notActiveDriver;
 }
 
-void TaxiCenter::setActiveDriver(Driver* d) {
+void TaxiCenter::setActiveDriver(Driver *d) {
     this->activeDrivers.push_back(d);
 }
 
-void TaxiCenter::setNotActiveDriver(Driver* d) {
+void TaxiCenter::setNotActiveDriver(Driver *d) {
     this->notActiveDriver.push_back(d);
 }
 
@@ -135,7 +144,7 @@ void TaxiCenter::addTrip(Trip t) {
     this->trips.push(t);
 }
 
-void TaxiCenter::attachTaxiToDriver(Driver* d) {
+void TaxiCenter::attachTaxiToDriver(Driver *d) {
     for (int i = 0; i < this->notActiveTaxis.size(); i++) {
         Taxi *t = this->notActiveTaxis.back();
         if (t->getCarId() == d->getVehicle_id()) {
@@ -148,12 +157,8 @@ void TaxiCenter::attachTaxiToDriver(Driver* d) {
     }
 }
 
-list<Taxi*> TaxiCenter::getNotActiveTaxis() {
+list<Taxi *> TaxiCenter::getNotActiveTaxis() {
     return this->notActiveTaxis;
-}
-
-void TaxiCenter::removeDriver(Driver* d, list <Driver*> nonActives) {
-
 }
 
 void TaxiCenter::addTaxi(Taxi *t) {
@@ -164,7 +169,7 @@ void TaxiCenter::addTaxi(Taxi *t) {
 void TaxiCenter::moveAll() {
     setAllTrips();
     for (int i = 0; i < this->activeDrivers.size(); i++) {
-        Driver* d = this->activeDrivers.front();
+        Driver *d = this->activeDrivers.front();
         d->move();
         /*if (d->getTaxi()->getRouthFromClientToDes().size() == 0) {
             this->activeDrivers.pop_front();
@@ -173,22 +178,21 @@ void TaxiCenter::moveAll() {
         this->activeDrivers.pop_front();
         this->activeDrivers.push_back(d);
     }
-    int size = this->activeDrivers.size();
+    long size = this->activeDrivers.size();
     for (int i = 0; i < size; i++) {
-        Driver* d = this->activeDrivers.front();
-        d->inactivate(this->notActiveDriver,this->activeDrivers);
+        Driver *d = this->activeDrivers.front();
+        d->inactivate(this->notActiveDriver, this->activeDrivers);
     }
-
 }
 
-bool TaxiCenter::checkTaxiAttachment(Driver* driver) {
-    return (driver->getTaxi() == NULL) ;
+bool TaxiCenter::checkTaxiAttachment(Driver *driver) {
+    return (driver->getTaxi() == NULL);
 }
 
 void TaxiCenter::setAllTrips() {
-    for(int j=0;j<this->notActiveDriver.size();j++){
-        Driver* d = this->notActiveDriver.front();
-        if(this->checkTaxiAttachment(d)){
+    for (int j = 0; j < this->notActiveDriver.size(); j++) {
+        Driver *d = this->notActiveDriver.front();
+        if (this->checkTaxiAttachment(d)) {
             this->attachTaxiToDriver(d);
         }
         this->notActiveDriver.pop_front();
@@ -198,13 +202,13 @@ void TaxiCenter::setAllTrips() {
     for (int i = 0; i < size; i++) {
         Trip temp = this->trips.back();
         this->trips.pop();
-        if (!setTrip(temp)) {
+        if (!sendTrip(temp)) {
             this->trips.push(temp);
         }
     }
 }
 
-void TaxiCenter::activateClosest(std::list < Driver* > list, Driver* driver) { //todo ??? what it is doing??
+void TaxiCenter::activateClosest(std::list<Driver *> list, Driver *driver) { //todo ??? what it is doing??
     std::list<Driver *> tempList;
     Driver *temp = list.front();
     if (list.front() == driver) {
@@ -228,28 +232,31 @@ void TaxiCenter::activateClosest(std::list < Driver* > list, Driver* driver) { /
 }
 
 TaxiCenter::~TaxiCenter() {
-    int size = this->notActiveTaxis.size();
-    for(int i =0;i<size;i++){
-        Taxi* t = notActiveTaxis.front();
+    long size = this->notActiveTaxis.size();
+    for (int i = 0; i < size; i++) {
+        Taxi *t = notActiveTaxis.front();
         notActiveDriver.pop_front();
         delete t;
     }
     size = this->notActiveDriver.size();
-    for(int i =0;i<size;i++){
-        Driver* d = notActiveDriver.front();
+    for (int i = 0; i < size; i++) {
+        Driver *d = notActiveDriver.front();
         notActiveDriver.pop_front();
         delete d;
     }
     size = this->activeDrivers.size();
-    for(int i =0;i<size;i++){
-        Driver* d = activeDrivers.front();
+    for (int i = 0; i < size; i++) {
+        Driver *d = activeDrivers.front();
         activeDrivers.pop_front();
         delete d;
     }
+}
+
+void TaxiCenter::setSocket() {
+    const int portNum = 5006;
+    this->socket = new Udp(true, portNum);
 
 }
 
-void TaxiCenter::setSocket(const Socket &sock) {
-   // this->socket = sock;
-}
-
+//send taxi to driver.setTaxi in the client
+//send route to driver.manage in the client

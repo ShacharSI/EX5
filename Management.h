@@ -23,7 +23,6 @@ private:
 public:
     void getObstacles();
     void getMap();
-    void SendCall();
     Management();
     void manage();
     Taxi* parseTaxi(string s);

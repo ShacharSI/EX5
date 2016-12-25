@@ -11,13 +11,6 @@ Management::Management() {
 }
 
 /**
- * send a call from a client to the taxi center
- */
-void Management::SendCall() {
-    return;
-}
-
-/**
  * the function that runs the all game
  * takes the user's input and doing the matching mission
  */

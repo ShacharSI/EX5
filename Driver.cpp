@@ -108,13 +108,6 @@ void Driver::move() {
 }
 
 /**
- * @param list - the routh from driver's loction to client
- */
-void Driver::setRouthToClient(std::list<Searchable *> list) {
-    this->getTaxi()->setRouthFromLocationToClient(list);
-}
-
-/**
  * @return - the drivers vehicle id
  */
 int Driver::getVehicle_id() {
@@ -138,30 +131,6 @@ Driver::martialStatus Driver::parseMartialStatus(string martialStatus) {
         default:
             break;
     }
-}
-
-/**
- * getting a trip and setting the routh from client to destination
- */
-void Driver::setTrip(Point start, Point end) {
-    Searchable *star = NULL;
-    Searchable *en = NULL;
-    std::list<Searchable *> routh;
-    std::list<Searchable *> l = this->taxi->getMap().getL();
-    for (int i = 0; i < l.size(); i++) {
-        Searchable *temp = l.front();
-        if (temp->getPoint().equals(start)) {
-            star = temp;
-        }
-        if (temp->getPoint().equals(end)) {
-            en = temp;
-        }
-        l.pop_front();
-        l.push_back(temp);
-    }
-    routh.push_front(star);
-    routh.push_front(en);
-    this->taxi->setRouthFromClientToDes(routh);
 }
 
 /**
@@ -190,14 +159,18 @@ void Driver::inactivate(std::list<Driver *> &inActDrivers, list<Driver *> &actDr
 }
 
 /**
- * @param list - set the routh to the client
+ * @param list - set the routh
  */
-void Driver::setRouthToDes(std::list<Searchable *> list) {
-    this->getTaxi()->setRouthFromClientToDes(list);
+void Driver::setRouth(std::list<Searchable *> list) {
+    this->getTaxi()->setRouth(list);
 }
 
 void Driver::manage() {
 
+}
+
+list <Searchable*> Driver::calculateBfs(Point start,Point end) {
+    return this->taxi->calculateBfs(start,end);
 }
 
 

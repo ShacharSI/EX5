@@ -11,7 +11,7 @@
 #include "Trip.h"
 #include "Map.h"
 #include "Driver.h"
-#include "Socket.h"
+#include "Udp.h"
 #include <stdexcept>
 
 /**
@@ -28,7 +28,7 @@ public:
     ~TaxiCenter();
     TaxiCenter(Map m);
 
-    bool setTrip(Trip t) ;
+    bool sendTrip(Trip t) ;
 
     Point giveLocation(int id) throw(invalid_argument) ;
 
@@ -50,23 +50,21 @@ public:
 
     void moveAll();
 
-private:
-    void removeDriver(Driver* d, list <Driver*> l);
-public:
-    void setSocket(const Socket &socket);
+    void setSocket();
 
 private:
     Map map;
     Trip currentTrip;
 
-    void sendTaxiToLocation(Driver* d, Trip t);
+    void sendTaxiToLocation(Driver* d);
 
-    Driver* getClosetTaxi(Point p);
+    Driver* getClosetTaxi(Trip p);
 
     list<Taxi *> notActiveTaxis;
     list <Driver*> activeDrivers;
     list <Driver*> notActiveDriver;
     queue<Trip> trips;
+    Socket* socket;
 
     void attachTaxiToDriver(Driver* d);
 
