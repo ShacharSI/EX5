@@ -7,7 +7,7 @@
 
 /**
  * a class that is in charge of finding the
- * shrtest routh between 2 points
+ * shrtest rou between 2 points
  */
 class Bfs: public Algorithm {
 
