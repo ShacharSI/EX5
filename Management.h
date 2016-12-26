@@ -29,6 +29,7 @@ public:
     Driver* parseDriver(string s);
     Trip parseTrip(string s);
     Point parseLocation(int id);
+    Socket* socket;
 };
 
 

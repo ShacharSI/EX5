@@ -2,7 +2,7 @@
 #include "LuxTaxiFactory.h"
 #include <stdlib.h>
 #include <unistd.h>
-
+#define BUFFERSIZE 4096
 /**
  * the constructor
  */
@@ -28,7 +28,7 @@ void Management::manage() {
             //create driver
             case 1: {
                 getline(cin, userInput);
-                Driver *d = this->parseDriver(userInput);
+                this->parseDriver(userInput);
                 this->taxiCenter.addDriverToCenter(d);
                 break;
             }
@@ -124,19 +124,29 @@ Point Management::parseLocation(int id) {
 /**
  * getting the user's string and creating a driver from it
  */
-Driver * Management::parseDriver(string s) {
-    string streamCut;
-    std::list<Driver *> list;
+void Management::parseDriver(string s) {
+    ssize_t n;
+    Taxi* t = NULL;
+    Driver* d = NULL;
+    int vehicle_id;
+    string serilazeData;
+
+    char* buffer = (char*)malloc(BUFFERSIZE*sizeof(char));
     string input = "1";
     //cin >> input;
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
-    //todo create new proccess???
-    for (int j = 0; j < numOfDrivers; ++j) {
 
+    for (int j = 0; j < numOfDrivers; ++j) {
+        n = this->socket->reciveData(buffer,BUFFERSIZE);
+        //todo serilize vehicle id
+        t = this->taxiCenter.assignTaxi(vehicle_id);
+        //todo serilize taxi
+        n = this->socket->sendData(serilazeData);
+        this->taxiCenter.addDriverToCenter(d);
     }
 
-    return  NULL;
+
 }
 
 /**

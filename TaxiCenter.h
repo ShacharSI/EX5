@@ -50,7 +50,7 @@ public:
     void addTaxi(Taxi *t);
 
     void moveAll();
-
+    Taxi* assignTaxi(int vehicle_id);
     void setSocket();
 
 private:
