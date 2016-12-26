@@ -29,7 +29,7 @@ public:
     ~TaxiCenter();
     TaxiCenter(Map m,Socket* s);
 
-    bool sendTrip(Trip t) ;
+    list<Searchable*> sendTrip(Trip t,Driver d) ;
 
     Point giveLocation(int id) throw(invalid_argument) ;
 
@@ -50,8 +50,8 @@ public:
     void addTaxi(Taxi *t);
 
     void moveAll(Socket* s);
-    Taxi* assignTaxi(int vehicle_id);
-    void setSocket();
+
+    Taxi* attachTaxiToDriver(int vhecleId);
 
 private:
     Map map;
@@ -59,7 +59,7 @@ private:
 
     void sendTaxiToLocation(Driver* d);
 
-    Driver* getClosetTaxi(Trip p);
+    list<Searchable*> getClosetTaxi(Trip p,Driver d);
 
     list<Taxi *> notActiveTaxis;
     list <Driver*> activeDrivers;
@@ -67,7 +67,7 @@ private:
     queue<Trip> trips;
     Socket* socket;
 
-    void attachTaxiToDriver(Driver* d);
+
 
     bool checkTaxiAttachment(Driver* driver);
 

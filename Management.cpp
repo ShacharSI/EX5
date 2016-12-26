@@ -2,11 +2,13 @@
 #include "LuxTaxiFactory.h"
 #include <stdlib.h>
 #include <unistd.h>
+
 #define BUFFERSIZE 4096
+
 /**
  * the constructor
  */
-Management::Management(Socket* s) {
+Management::Management(Socket *s) {
     this->clock = 0;
     this->socket = s;
 }
@@ -16,6 +18,7 @@ Management::Management(Socket* s) {
  * takes the user's input and doing the matching mission
  */
 void Management::manage() {
+    char *buffer = (char *) malloc(4096 * sizeof(char));
     string userInput;
     string usrChoiceStr;
     int userChoice;
@@ -57,7 +60,7 @@ void Management::manage() {
                 break;
             }
                 //move all taxi's
-            case 6: {
+            case 9: {
                 this->setClock();
                 this->taxiCenter.moveAll(this->socket);
                 break;
@@ -72,7 +75,12 @@ void Management::manage() {
     }
     this->taxiCenter.deleteMap();
     this->socket->sendData("EndCommunication");
-    this->socket->reciveData(//receive conformation);
+    this->socket->reciveData(buffer, 4096);
+
+    if (strcmp(buffer, "Finished") == 0) {
+        //todo close and delete  all !!
+    }
+    free(buffer);
     return;
 }
 
@@ -130,26 +138,33 @@ Point Management::parseLocation(int id) {
  */
 void Management::parseDriver(string s) {
     ssize_t n;
-    Taxi* t = NULL;
-    Driver* d = NULL;
+    Taxi *t = NULL;
+    Driver *d = NULL;
     int vehicle_id;
     string serilazeData;
 
-    char* buffer = (char*)malloc(BUFFERSIZE*sizeof(char));
+    char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
     string input = "1";
     //cin >> input;
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
 
     for (int j = 0; j < numOfDrivers; ++j) {
-        n = this->socket->reciveData(buffer,BUFFERSIZE);
-        //todo serilize vehicle id
-        t = this->taxiCenter.assignTaxi(vehicle_id);
-        //todo serilize taxi
+        n = this->socket->reciveData(buffer, BUFFERSIZE);
+        if (n < 0) {
+            perror("error receiving");
+        }
+
+        //todo serialize vehicle id
+        t = this->taxiCenter.attachTaxiToDriver(vehicle_id);
+        //todo serialize taxi and send back
         n = this->socket->sendData(serilazeData);
+
+        d->setTaxi(t);
         this->taxiCenter.addDriverToCenter(d);
     }
 
+    free(buffer);
 
 }
 
@@ -160,13 +175,13 @@ Trip Management::parseTrip(string s) {
 
     string streamCut;
     stringstream tempStr(s);
-    int tripInfo[6];
+    int tripInfo[7];
     double tarrif = 0;
     int i = 0;
     //parse the info
     while (std::getline(tempStr, streamCut, ',')) {
         const char *c = streamCut.c_str();
-        if (i < 6) {
+        if (i != 5) {
             tripInfo[i] = atoi(c);
         } else {
             tarrif = atof(c);
@@ -215,8 +230,8 @@ void Management::setLogicAndMap() {
 
     }
     getObstacles();
-    Socket* s = new Udp(true,5006);
-    this->taxiCenter = TaxiCenter(this->lg.createNewMap("Square"),this->socket);
+    Socket *s = new Udp(true, 5006);
+    this->taxiCenter = TaxiCenter(this->lg.createNewMap("Square"), this->socket);
 }
 
 /**
@@ -237,7 +252,7 @@ vector<int> Management::getSizes() {
 }
 
 void Management::setClock() {
-   this->clock +=1;
+    this->clock += 1;
 }
 
 void Management::assignTrip() {

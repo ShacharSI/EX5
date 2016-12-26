@@ -6,38 +6,43 @@
  * getting a call from a client
  * if there is no free driver return false
  */
-bool TaxiCenter::sendTrip(Trip t) {
+list<Searchable *> TaxiCenter::sendTrip(Trip t, Driver driver) {
     this->currentTrip = t;
+    std::list<Searchable *> list;
     if (this->notActiveDriver.size() > 0) {
-        Driver *d = this->getClosetTaxi(t);
-        if (d != NULL) {
-            this->sendTaxiToLocation(d);
-            return true;
-        }
-    } else {
-        return false;
+        list = this->getClosetTaxi(t, driver);
     }
-
+    return list;
 }
 
-Driver *TaxiCenter::getClosetTaxi(Trip t) {
+list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver d) {
     Driver *closest = NULL;
     std::list<Searchable *> routh;
+    Point start = t.getStartP();
+    for (int i = 0; i < this->notActiveDriver.size(); ++i) {
+        closest = this->notActiveDriver.front();
+        if (closest->getId() == d.getId()) {
+            break;
+        }
+        this->notActiveDriver.pop_front();
+        this->notActiveDriver.push_back(closest);
+    }
+
     if (this->notActiveDriver.size() == 0) {
         return NULL;
     }
-
-    Point start = t.getStartP();
-    if (this->notActiveDriver.size() > 0) {
-        closest = this->notActiveDriver.front();
-        routh = closest->calculateBfs(closest->getLocation(), start);
-        std::list<Searchable *> route2 = closest->calculateBfs(t.getStartP(), t.getEndP());
-        BOOST_FOREACH(auto &listElement, route2) {
-                        routh.push_back(listElement);
-                    }
-        closest->setRouth(routh);
+    if(!(t.getStartP().equals(d.getLocation()))){
+        return NULL;
     }
-    return closest;
+    routh = closest->calculateBfs(closest->getLocation(), start);
+    std::list<Searchable *> route2 = closest->calculateBfs(t.getStartP(), t.getEndP());
+    BOOST_FOREACH(auto &listElement, route2) {
+                    routh.push_back(listElement);
+                }
+    closest->setRouth(routh);
+
+    this->sendTaxiToLocation(closest);
+    return routh;
 }
 
 void TaxiCenter::sendTaxiToLocation(Driver *d) {
@@ -139,17 +144,17 @@ void TaxiCenter::addTrip(Trip t) {
     this->trips.push(t);
 }
 
-void TaxiCenter::attachTaxiToDriver(Driver *d) {
+Taxi *TaxiCenter::attachTaxiToDriver(int vhecleId) {
     for (int i = 0; i < this->notActiveTaxis.size(); i++) {
         Taxi *t = this->notActiveTaxis.back();
-        if (t->getCarId() == d->getVehicle_id()) {
-            d->setTaxi(t);
+        if (t->getCarId() == vhecleId) {
             this->notActiveTaxis.pop_back();
-            return;
+            return t;
         }
         this->notActiveTaxis.pop_back();
         this->notActiveTaxis.push_front(t);
     }
+    return NULL;
 }
 
 list<Taxi *> TaxiCenter::getNotActiveTaxis() {
@@ -162,7 +167,7 @@ void TaxiCenter::addTaxi(Taxi *t) {
 }
 
 void TaxiCenter::moveAll(Socket *s) {
-    //setAllTrips();
+
     char *buffer = (char *) malloc(4096 * sizeof(char));
     for (int i = 0; i < this->activeDrivers.size(); i++) {
         Driver *d = this->activeDrivers.front();
@@ -172,9 +177,9 @@ void TaxiCenter::moveAll(Socket *s) {
             continue;
         }
         ssize_t n = this->socket->reciveData(buffer, 4096);
-        if(strcmp(buffer,"sendMeGo") == 0){
+        if (strcmp(buffer, "sendMeGo") == 0) {
             d->move();
-            n = this->socket->sendData("9");
+            n = this->socket->sendData("9")
             this->activeDrivers.pop_front();
             this->activeDrivers.push_back(d);
         }
@@ -242,22 +247,27 @@ TaxiCenter::~TaxiCenter() {
 
 void TaxiCenter::assignTrip(unsigned int time) {
     long size = this->trips.size();
+    std::list<Searchable *> list;
+    string serializeObj;
     char *buffer = (char *) malloc(4096 * sizeof(char));
     for (int i = 0; i < size; i++) {
         Trip temp = this->trips.back();
         if (temp.getTime() == time) {
+            //getting the driver
             ssize_t n = this->socket->reciveData(buffer, 4096);
             if (n < 0) {
                 perror("Error in receive");
             }
-            if (strcmp(buffer, "sendMeTrip")==0) {
-                n = this->socket->sendData(""); //todo serilaze and send trip
-                this->sendTrip(temp);
-                if (n < 0) {
-                    perror("Error in Sendto");
-                }
-                this->trips.pop();
+            Driver d;
+            //todo deserialize the driver
+
+            list = this->sendTrip(temp, d);
+
+            n = this->socket->sendData(serializeObj); //todo serialize and send routh
+            if (n < 0) {
+                perror("Error in Sendto");
             }
+            this->trips.pop();
             break;
         } else {
             this->trips.pop();
@@ -266,7 +276,3 @@ void TaxiCenter::assignTrip(unsigned int time) {
     }
     free(buffer);
 }
-
-
-//send taxi to driver.setTaxi in the client
-//send route to driver.manage in the client
