@@ -126,7 +126,6 @@ Point Management::parseLocation(int id) {
  */
 Driver * Management::parseDriver(string s) {
     string streamCut;
-
     std::list<Driver *> list;
     string input = "1";
     //cin >> input;
@@ -134,16 +133,7 @@ Driver * Management::parseDriver(string s) {
     int numOfDrivers = atoi(ch);
     //todo create new proccess???
     for (int j = 0; j < numOfDrivers; ++j) {
-        pid_t pid = fork();
-        if (pid <0){
-            perror("error creating process");
-        }
-        if (pid == 0) {
 
-            //todo save the driver in list
-        } else if (pid > 0){
-            continue;
-        }
     }
 
     return  NULL;
@@ -211,7 +201,8 @@ void Management::setLogicAndMap() {
 
     }
     getObstacles();
-    this->taxiCenter = TaxiCenter(this->lg.createNewMap("Square"));
+    Socket* s = new Udp(true,5006);
+    this->taxiCenter = TaxiCenter(this->lg.createNewMap("Square"),s);
 }
 
 /**
