@@ -6,8 +6,9 @@
 /**
  * the constructor
  */
-Management::Management() {
-
+Management::Management(Socket* s) {
+    this->clock = 0;
+    this->socket = s;
 }
 
 /**
@@ -21,7 +22,7 @@ void Management::manage() {
     cin >> usrChoiceStr;
     const char *c = usrChoiceStr.c_str();
     userChoice = atoi(c);
-    //performe the mission
+    //preform the mission
     while (userChoice != 7) {
         cin.ignore();
         switch (userChoice) {
@@ -29,7 +30,6 @@ void Management::manage() {
             case 1: {
                 getline(cin, userInput);
                 this->parseDriver(userInput);
-                this->taxiCenter.addDriverToCenter(d);
                 break;
             }
                 //create trip
@@ -58,17 +58,21 @@ void Management::manage() {
             }
                 //move all taxi's
             case 6: {
-                this->taxiCenter.moveAll();
+                this->setClock();
+                this->taxiCenter.moveAll(this->socket);
                 break;
             }
             default:
                 break;
         }
+        this->assignTrip();
         cin >> usrChoiceStr;
         c = usrChoiceStr.c_str();
         userChoice = atoi(c);
     }
     this->taxiCenter.deleteMap();
+    this->socket->sendData("EndCommunication");
+    this->socket->reciveData(//receive conformation);
     return;
 }
 
@@ -171,7 +175,7 @@ Trip Management::parseTrip(string s) {
         i++;
     }
     //create the trip
-    Trip t(tripInfo[0], tripInfo[1], tripInfo[2], tripInfo[3], tripInfo[4], tripInfo[5], tarrif);
+    Trip t(tripInfo[0], tripInfo[1], tripInfo[2], tripInfo[3], tripInfo[4], tripInfo[5], tarrif,
     //make sure the info is good
     try {
         t.validate();
@@ -212,7 +216,7 @@ void Management::setLogicAndMap() {
     }
     getObstacles();
     Socket* s = new Udp(true,5006);
-    this->taxiCenter = TaxiCenter(this->lg.createNewMap("Square"),s);
+    this->taxiCenter = TaxiCenter(this->lg.createNewMap("Square"),this->socket);
 }
 
 /**
@@ -230,4 +234,12 @@ vector<int> Management::getSizes() {
     }
 
     return sizes;
+}
+
+void Management::setClock() {
+   this->clock +=1;
+}
+
+void Management::assignTrip() {
+    taxiCenter.assignTrip();
 }

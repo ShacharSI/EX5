@@ -23,22 +23,15 @@ LuxuryTaxi::LuxuryTaxi(int idNum, manufacturer mnfctr, color clr, int taarif) :
  */
 void LuxuryTaxi::move() {
 
-    if (this->routhFromLocationToClient.size() > 0) {
-        this->location = this->routhFromLocationToClient.front()->getPoint();
-        this->routhFromLocationToClient.pop_front();
-        if (this->routhFromLocationToClient.size() > 0) {
-            this->location = this->routhFromLocationToClient.front()->getPoint();
-            this->routhFromLocationToClient.pop_front();
-        }
-        return;
-    }
-    if (this->routhFromClientToDes.size() > 0) {
-        this->location = this->routhFromClientToDes.front()->getPoint();
-        this->routhFromClientToDes.pop_front();
-        if (this->routhFromClientToDes.size() > 0) {
-            this->location = this->routhFromClientToDes.front()->getPoint();
-            this->routhFromClientToDes.pop_front();
+    if (this->routh.size() > 0) {
+        this->location = this->routh.front()->getPoint();
+        this->routh.pop_front();
+        if (this->routh.size() > 0) {
+            this->location = this->routh.front()->getPoint();
+            this->routh.pop_front();
         }
     }
+    Point p = this->routh.front()->getPoint();
+    this->location = p;
 }
 

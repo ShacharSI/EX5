@@ -23,32 +23,20 @@ bool TaxiCenter::sendTrip(Trip t) {
 Driver *TaxiCenter::getClosetTaxi(Trip t) {
     Driver *closest = NULL;
     std::list<Searchable *> routh;
-    if(this->notActiveDriver.size() == 0){
+    if (this->notActiveDriver.size() == 0) {
         return NULL;
     }
 
     Point start = t.getStartP();
-    if(this->notActiveDriver.size()>0){
+    if (this->notActiveDriver.size() > 0) {
         closest = this->notActiveDriver.front();
         routh = closest->calculateBfs(closest->getLocation(), start);
+        std::list<Searchable *> route2 = closest->calculateBfs(t.getStartP(), t.getEndP());
+        BOOST_FOREACH(auto &listElement, route2) {
+                        routh.push_back(listElement);
+                    }
+        closest->setRouth(routh);
     }
-
-    long size = this->notActiveDriver.size();
-    for (int i = 0; i < size; i++) {
-        Driver *d = this->notActiveDriver.front();
-        std::list<Searchable *> tempRoute = d->calculateBfs(d->getLocation(), start);
-        if (d->getLocation().equals(t.getStartP())){
-            closest = d;
-            routh = tempRoute;
-            break;
-        }
-        this->notActiveDriver.pop_front();
-        this->notActiveDriver.push_back(closest);
-    }
-    std::list<Searchable *> route2 = closest->calculateBfs(t.getStartP(),t.getEndP());
-    BOOST_FOREACH(auto &listElement, route2) {
-                    routh.push_back( listElement ); }
-    closest->setRouth(routh);
     return closest;
 }
 
@@ -81,7 +69,7 @@ TaxiCenter::TaxiCenter() {
 /**
  * the constructor
  */
-TaxiCenter::TaxiCenter(Map mp,Socket* soc) {
+TaxiCenter::TaxiCenter(Map mp, Socket *soc) {
     this->map = mp;
     this->socket = soc;
 }
@@ -173,23 +161,30 @@ void TaxiCenter::addTaxi(Taxi *t) {
     this->notActiveTaxis.push_back(t);
 }
 
-void TaxiCenter::moveAll() {
-    setAllTrips();
+void TaxiCenter::moveAll(Socket *s) {
+    //setAllTrips();
+    char *buffer = (char *) malloc(4096 * sizeof(char));
     for (int i = 0; i < this->activeDrivers.size(); i++) {
         Driver *d = this->activeDrivers.front();
-        d->move();
-        /*if (d->getTaxi()->getRouthFromClientToDes().size() == 0) {
+        if (d->getTaxi()->getRouth().size() == 0) {
             this->activeDrivers.pop_front();
+            this->activeDrivers.push_back(d);
             continue;
-        }*/
-        this->activeDrivers.pop_front();
-        this->activeDrivers.push_back(d);
+        }
+        ssize_t n = this->socket->reciveData(buffer, 4096);
+        if(strcmp(buffer,"sendMeGo") == 0){
+            d->move();
+            n = this->socket->sendData("9");
+            this->activeDrivers.pop_front();
+            this->activeDrivers.push_back(d);
+        }
     }
     long size = this->activeDrivers.size();
     for (int i = 0; i < size; i++) {
         Driver *d = this->activeDrivers.front();
         d->inactivate(this->notActiveDriver, this->activeDrivers);
     }
+    free(buffer);
 }
 
 bool TaxiCenter::checkTaxiAttachment(Driver *driver) {
@@ -197,22 +192,8 @@ bool TaxiCenter::checkTaxiAttachment(Driver *driver) {
 }
 
 void TaxiCenter::setAllTrips() {
-    for (int j = 0; j < this->notActiveDriver.size(); j++) {
-        Driver *d = this->notActiveDriver.front();
-        if (this->checkTaxiAttachment(d)) {
-            this->attachTaxiToDriver(d);
-        }
-        this->notActiveDriver.pop_front();
-        this->notActiveDriver.push_back(d);
-    }
-    long size = this->trips.size();
-    for (int i = 0; i < size; i++) {
-        Trip temp = this->trips.back();
-        this->trips.pop();
-        if (!sendTrip(temp)) {
-            this->trips.push(temp);
-        }
-    }
+
+
 }
 
 void TaxiCenter::activateClosest(std::list<Driver *> list, Driver *driver) { //todo ??? what it is doing??
@@ -257,6 +238,33 @@ TaxiCenter::~TaxiCenter() {
         activeDrivers.pop_front();
         delete d;
     }
+}
+
+void TaxiCenter::assignTrip(unsigned int time) {
+    long size = this->trips.size();
+    char *buffer = (char *) malloc(4096 * sizeof(char));
+    for (int i = 0; i < size; i++) {
+        Trip temp = this->trips.back();
+        if (temp.getTime() == time) {
+            ssize_t n = this->socket->reciveData(buffer, 4096);
+            if (n < 0) {
+                perror("Error in receive");
+            }
+            if (strcmp(buffer, "sendMeTrip")==0) {
+                n = this->socket->sendData(""); //todo serilaze and send trip
+                this->sendTrip(temp);
+                if (n < 0) {
+                    perror("Error in Sendto");
+                }
+                this->trips.pop();
+            }
+            break;
+        } else {
+            this->trips.pop();
+            this->trips.push(temp);
+        }
+    }
+    free(buffer);
 }
 
 

@@ -14,6 +14,7 @@
  */
 class Trip: public Vallidate_Interface {
 private:
+    unsigned int time;
     int id;
     int distance;
     double taarif;
@@ -22,6 +23,7 @@ private:
     Point startP;
     Point endP;
 public:
+    unsigned int getTime();
     void validate();
     int getId();
     double getTaarif() ;
@@ -30,7 +32,7 @@ public:
     Point getEndP() ;
     int getPassedMeter();
     Trip();
-    Trip(int id, int startX,int startY,int endX, int endY,int psgNum, double tarrif);
+    Trip(int id, int startX,int startY,int endX, int endY,int psgNum, double tarrif, unsigned int time);
 
 };
 

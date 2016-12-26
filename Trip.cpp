@@ -16,7 +16,7 @@ Trip::Trip() {
 /**
  * the constructor
  */
-Trip::Trip(int id, int startX,int startY,int endX, int endY,int psgNum, double tarrif) {
+Trip::Trip(int id, int startX,int startY,int endX, int endY,int psgNum, double tarrif, unsigned int time) {
     this->endP = Point(endX,endY);
     this->id = id;
     this->passengersNum = psgNum;
@@ -76,4 +76,8 @@ Point Trip::getStartP()  {
  */
 Point Trip::getEndP()  {
     return endP;
+}
+
+unsigned int Trip::getTime() {
+    return this->time;
 }

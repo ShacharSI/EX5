@@ -44,12 +44,12 @@ public:
     void setNotActiveDriver(Driver* d);
 
     list<Taxi *> getNotActiveTaxis();
-
+    void assignTrip(unsigned int time);
     void deleteMap();
 
     void addTaxi(Taxi *t);
 
-    void moveAll();
+    void moveAll(Socket* s);
     Taxi* assignTaxi(int vehicle_id);
     void setSocket();
 

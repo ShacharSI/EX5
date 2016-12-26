@@ -15,18 +15,22 @@
  */
 class Management {
 private:
+    unsigned int clock;
     Logic lg;
     TaxiCenter taxiCenter;
     void setLogicAndMap();
     vector<int> getSizes();
+    Socket* sock;
 
 public:
+    void assignTrip();
+    void setClock();
     void getObstacles();
     void getMap();
-    Management();
+    Management(Socket* s);
     void manage();
     Taxi* parseTaxi(string s);
-    Driver* parseDriver(string s);
+    void parseDriver(string s);
     Trip parseTrip(string s);
     Point parseLocation(int id);
     Socket* socket;
