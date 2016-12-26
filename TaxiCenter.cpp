@@ -1,4 +1,5 @@
 #include "TaxiCenter.h"
+#include "Socket.h"
 #include <boost/foreach.hpp>
 
 /**
@@ -20,19 +21,25 @@ bool TaxiCenter::sendTrip(Trip t) {
 }
 
 Driver *TaxiCenter::getClosetTaxi(Trip t) {
+    Driver *closest = NULL;
+    std::list<Searchable *> routh;
     if(this->notActiveDriver.size() == 0){
         return NULL;
     }
+
     Point start = t.getStartP();
-    Driver *closest = this->notActiveDriver.front();
-    std::list<Searchable *> route = closest->calculateBfs(closest->getLocation(), start);
+    if(this->notActiveDriver.size()>0){
+        closest = this->notActiveDriver.front();
+        routh = closest->calculateBfs(closest->getLocation(), start);
+    }
+
     long size = this->notActiveDriver.size();
     for (int i = 0; i < size; i++) {
         Driver *d = this->notActiveDriver.front();
         std::list<Searchable *> tempRoute = d->calculateBfs(d->getLocation(), start);
-        if (tempRoute.size() < route.size()){
+        if (d->getLocation().equals(t.getStartP())){
             closest = d;
-            route = tempRoute;
+            routh = tempRoute;
             break;
         }
         this->notActiveDriver.pop_front();
@@ -40,8 +47,8 @@ Driver *TaxiCenter::getClosetTaxi(Trip t) {
     }
     std::list<Searchable *> route2 = closest->calculateBfs(t.getStartP(),t.getEndP());
     BOOST_FOREACH(auto &listElement, route2) {
-        route.push_back( listElement ); }
-    closest->setRouth(route);
+                    routh.push_back( listElement ); }
+    closest->setRouth(routh);
     return closest;
 }
 
@@ -74,9 +81,9 @@ TaxiCenter::TaxiCenter() {
 /**
  * the constructor
  */
-TaxiCenter::TaxiCenter(Map mp) {
+TaxiCenter::TaxiCenter(Map mp,Socket* soc) {
     this->map = mp;
-    this->setSocket();
+    this->socket = soc;
 }
 
 /**
@@ -252,11 +259,6 @@ TaxiCenter::~TaxiCenter() {
     }
 }
 
-void TaxiCenter::setSocket() {
-    const int portNum = 5006;
-    this->socket = new Udp(true, portNum);
-
-}
 
 //send taxi to driver.setTaxi in the client
 //send route to driver.manage in the client

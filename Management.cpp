@@ -126,7 +126,7 @@ Point Management::parseLocation(int id) {
  */
 Driver * Management::parseDriver(string s) {
     string streamCut;
-    string strArray[5];
+
     std::list<Driver *> list;
     string input = "1";
     //cin >> input;
@@ -139,34 +139,7 @@ Driver * Management::parseDriver(string s) {
             perror("error creating process");
         }
         if (pid == 0) {
-            cin >> input;
-            stringstream tempStr(input);
-            int i = 0;
-            //parse string
-            while (std::getline(tempStr, streamCut, ',')) {
-                string strAfterFirstCut = streamCut;
-                strArray[i] = strAfterFirstCut;
-                i++;
-            }
-            //save the val in an array
-            const char *c = strArray[1].c_str();
-            int age = atoi(c);
-            c = strArray[0].c_str();
-            int id = atoi(c);
-            c = strArray[3].c_str();
-            int exp = atoi(c);
-            c = strArray[4].c_str();
-            int vehicle_id = atoi(c);
-            Driver::martialStatus m = Driver::parseMartialStatus(strArray[2]);
-            //create the driver
-            Driver *d = new Driver(id, age, m, exp, vehicle_id);
-            //make sure the info is good
-            try {
-                d->validate();
-            } catch (const std::invalid_argument &iaExc) {
 
-            }
-            d->manage();
             //todo save the driver in list
         } else if (pid > 0){
             continue;

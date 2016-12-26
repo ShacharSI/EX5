@@ -12,6 +12,7 @@
 #include "Map.h"
 #include "Driver.h"
 #include "Udp.h"
+#include "Socket.h"
 #include <stdexcept>
 
 /**
@@ -26,7 +27,7 @@ public:
 
     TaxiCenter();
     ~TaxiCenter();
-    TaxiCenter(Map m);
+    TaxiCenter(Map m,Socket* s);
 
     bool sendTrip(Trip t) ;
 

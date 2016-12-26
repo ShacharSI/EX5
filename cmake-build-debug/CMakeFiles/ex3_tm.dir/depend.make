@@ -410,9 +410,6 @@ CMakeFiles/ex3_tm.dir/Searchable.cpp.o: ../Searchable.cpp
 CMakeFiles/ex3_tm.dir/Searchable.cpp.o: ../Searchable.h
 CMakeFiles/ex3_tm.dir/Searchable.cpp.o: ../Validate_Interface.h
 
-CMakeFiles/ex3_tm.dir/Socket.cpp.o: ../Socket.cpp
-CMakeFiles/ex3_tm.dir/Socket.cpp.o: ../Socket.h
-
 CMakeFiles/ex3_tm.dir/Square.cpp.o: ../Algorithm.h
 CMakeFiles/ex3_tm.dir/Square.cpp.o: ../Bfs.h
 CMakeFiles/ex3_tm.dir/Square.cpp.o: ../Point.h
