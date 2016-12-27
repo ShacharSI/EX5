@@ -2,6 +2,24 @@
 #include "LuxTaxiFactory.h"
 #include <stdlib.h>
 #include <unistd.h>
+#include <iostream>
+#include "Driver.h"
+#include "Udp.h"
+#include <stdexcept>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/tokenizer.hpp>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/assign/list_of.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <boost/iostreams/stream.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
 
 #define BUFFERSIZE 4096
 
@@ -68,6 +86,7 @@ void Management::manage() {
             default:
                 break;
         }
+
         //checking if the time to release a trip is right now
         this->assignTrip();
         //get the next input
@@ -142,17 +161,18 @@ Point Management::parseLocation(int id) {
  * taxi to him
  */
 void Management::parseDriver(string s) {
+    //set the variavles
     ssize_t n;
     Taxi *t = NULL;
     Driver *d = NULL;
     int vehicle_id;
-    string serilazeData;
-
+    string serial_str;
     char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
     string input = "1";
     //cin >> input;
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
+
     //a loop that gets the drivers and send taxi's
     for (int j = 0; j < numOfDrivers; ++j) {
         n = this->socket->reciveData(buffer, BUFFERSIZE);
@@ -160,17 +180,28 @@ void Management::parseDriver(string s) {
             perror("error receiving");
         }
 
-        //todo serialize vehicle id
-        t = this->taxiCenter.attachTaxiToDriver(vehicle_id);
-        //todo serialize taxi and send back
-        n = this->socket->sendData(serilazeData);
-
+        //getting the driver
+        serial_str = buffer;
+        boost::iostreams::basic_array_source<char> device(serial_str.c_str(), serial_str.size());
+        boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
+        boost::archive::binary_iarchive ia(s2);
+        ia >> d;
+        s2.flush(); //todo need this? + nedd to reset to 0 serial_str
+        //attach a taxi to the driver in our list and return the taxi to send to client
+        t = this->taxiCenter.attachTaxiToDriver(d->getVehicle_id());
+        //serialize the taxi
+        boost::iostreams::back_insert_device<std::string> inserter(serial_str);
+        boost::iostreams::stream<boost::iostreams::back_insert_device<std::string> > s(inserter);
+        boost::archive::binary_oarchive oa(s);
+        oa << t;
+        //send the taxi to client
+        n = this->socket->sendData(serial_str);
+        s.flush();
         d->setTaxi(t);
         this->taxiCenter.addDriverToCenter(d);
     }
 
     free(buffer);
-
 }
 
 /**
@@ -182,20 +213,22 @@ Trip Management::parseTrip(string s) {
     stringstream tempStr(s);
     int tripInfo[7];
     double tarrif = 0;
+    unsigned int time = 0;
     int i = 0;
-    //parse the info
+    //parse the trip info
     while (std::getline(tempStr, streamCut, ',')) {
         const char *c = streamCut.c_str();
-        if (i != 5) {
+        if (i <= 5) {
             tripInfo[i] = atoi(c);
-        } else {
+        } else if (i == 6) {
             tarrif = atof(c);
+        } else if (i == 7) {
+            time = atoi(c) ??atoi??
         }
-
         i++;
     }
     //create the trip
-    Trip t(tripInfo[0], tripInfo[1], tripInfo[2], tripInfo[3], tripInfo[4], tripInfo[5], tarrif,
+    Trip t(tripInfo[0], tripInfo[1], tripInfo[2], tripInfo[3], tripInfo[4], tripInfo[5], tarrif, time);
     //make sure the info is good
     try {
         t.validate();

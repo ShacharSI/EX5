@@ -10,7 +10,6 @@
 #include <sstream>
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
-#include <boost/tokenizer.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/assign/list_of.hpp>
@@ -61,7 +60,7 @@ list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver d) {
         return NULL;
     }
     //calculate the routh
-    routh = closest->calculateBfs(closest->getLocation(), start);
+    //routh = closest->calculateBfs(closest->getLocation(), start); //todo do we need this routh??
     std::list<Searchable *> route2 = closest->calculateBfs(t.getStartP(), t.getEndP());
     BOOST_FOREACH(auto &listElement, route2) {
                     routh.push_back(listElement);
@@ -73,8 +72,8 @@ list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver d) {
 }
 
 /**
-  * if the driver is in the taxi center then send him
-  * and removing from inActive to active
+ * if the driver is in the taxi center then send him
+ * and removing from inActive to active
 */
 void TaxiCenter::sendTaxiToLocation(Driver *d) {
 
@@ -233,14 +232,24 @@ void TaxiCenter::moveAll() {
         Driver *d = this->activeDrivers.front();
         //if he finished moving
         if (d->getTaxi()->getRouth().size() == 0) {
-            d->inactivate(this->notActiveDriver, this->activeDrivers);
+            d->inactivate(this->notActiveDriver, this->activeDrivers);//doto do thus in client!
             //todo inactive in the client!!
             continue;
         }
+        //getting the request to go from the client
         ssize_t n = this->socket->reciveData(buffer, 4096);
+        if (n < 0) {
+            perror("error receive data");
+        }
+        //verify that the request was actually to go
         if (strcmp(buffer, "sendMeGo") == 0) {
+            //move here
             d->move();
+            //send him go
             n = this->socket->sendData("Go");
+            if (n < 0) {
+                perror("error sending data");
+            }
             this->activeDrivers.pop_front();
             this->activeDrivers.push_back(d);
         }
@@ -299,14 +308,14 @@ TaxiCenter::~TaxiCenter() {
 
 /**
  * giving a trip to the matching driver in our list and
- * sending back the trip to the maching client
+ * sending back the trip to the matching client
  */
 void TaxiCenter::assignTrip(unsigned int time) {
     long size = this->trips.size();
     std::list<Searchable *> list;
-    string serializeObj;
+    std::string serial_str;
     char *buffer = (char *) malloc(4096 * sizeof(char));
-    //getiing the trip that is time arrived
+    //getting the trip that is time arrived
     for (int i = 0; i < size; i++) {
         Trip temp = this->trips.back();
         if (temp.getTime() == time) {
@@ -315,24 +324,35 @@ void TaxiCenter::assignTrip(unsigned int time) {
             if (n < 0) {
                 perror("Error in receive");
             }
-            //todo ?????
-            //todo how do i deserialize something i got in a unknown size
-            Driver d;
-            boost::iostreams::basic_array_source<char> device(buffer, 4096);
-            boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
-            boost::archive::binary_iarchive ia(s2);
-            ia >> d;
-            //todo deserialize the driver
-            //getting the list of the trip routh
-            list = this->sendTrip(temp, d);
-            //sending back the list for the client
-            n = this->socket->sendData(serializeObj); //todo serialize and send routh
-            if (n < 0) {
-                perror("Error in Sendto");
-            }
-            //if everything was ok the list would not be empty
-            if (list.size() > 0) {
-                this->trips.pop();
+            serial_str = buffer;
+            if (strcmp(serial_str, "send_me_trip") == 0) {
+                //deserialize the driver
+                Driver d; //todo need Driver* or Driver???
+                boost::iostreams::basic_array_source<char> device(serial_str.c_str(), serial_str.size());
+                boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
+                boost::archive::binary_iarchive ia(s2);
+                ia >> d;
+
+                //getting the list of the trip routh
+                list = this->sendTrip(temp, d);
+
+                //sending back the list for the client
+                boost::iostreams::back_insert_device<std::string> inserter(serial_str);
+                boost::iostreams::stream<boost::iostreams::back_insert_device<std::string> > s(inserter);
+                boost::archive::binary_oarchive oa(s);
+                oa << list; //todo special include for list
+                s.flush();
+                n = this->socket->sendData(serial_str); //todo serialize and send routh
+                if (n < 0) {
+                    perror("Error in Sendto");
+                }
+                //if everything was ok the list would not be empty
+                if (list.size() > 0) {
+                    this->trips.pop();
+                    break;
+                }
+                //the client didnt ask for trip
+            } else {
                 break;
             }
             //continue search for matching trip
