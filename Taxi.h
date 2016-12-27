@@ -20,6 +20,16 @@ public:
         RED, BLUE, GREEN, PINK, WHITE
     } color;
 
+    friend class boost::serialization::access;
+
+    template<class Archive>
+    void serialize(Archive &ar, const unsigned int version) {
+        ar & carId;
+        ar & mnfctr;
+        ar & clr;
+        ar & tarrif;
+    }
+
     void validate();
 
     static manufacturer parseMnfctr(string s);
@@ -27,7 +37,9 @@ public:
     static color parseColor(string s);
 
     Taxi();
+
     ~Taxi();
+
     Taxi(int idNum, manufacturer mnfctr, color clr, int taarif);
 
     Point getLocation();
@@ -70,7 +82,7 @@ protected:
     manufacturer mnfctr;
     Trip trip;
     int tarrif;
-    Algorithm* searchAlgo;
+    Algorithm *searchAlgo;
     color clr;
     Point location;
 

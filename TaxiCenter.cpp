@@ -1,6 +1,24 @@
 #include "TaxiCenter.h"
 #include "Socket.h"
 #include <boost/foreach.hpp>
+#include <iostream>
+#include "Driver.h"
+#include "Udp.h"
+#include <stdexcept>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/tokenizer.hpp>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/assign/list_of.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <boost/iostreams/stream.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
 
 /**
  * getting a trip an a driver from the client
@@ -74,7 +92,7 @@ void TaxiCenter::sendTaxiToLocation(Driver *d) {
 }
 
 /**
- * the constructor
+ * the empty constructor
  */
 TaxiCenter::TaxiCenter() {
 
@@ -297,7 +315,13 @@ void TaxiCenter::assignTrip(unsigned int time) {
             if (n < 0) {
                 perror("Error in receive");
             }
+            //todo ?????
+            //todo how do i deserialize something i got in a unknown size
             Driver d;
+            boost::iostreams::basic_array_source<char> device(buffer, 4096);
+            boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
+            boost::archive::binary_iarchive ia(s2);
+            ia >> d;
             //todo deserialize the driver
             //getting the list of the trip routh
             list = this->sendTrip(temp, d);

@@ -16,13 +16,18 @@ Trip::Trip() {
 /**
  * the constructor
  */
-Trip::Trip(int id, int startX,int startY,int endX, int endY,int psgNum, double tarrif, unsigned int time) {
-    this->endP = Point(endX,endY);
+Trip::Trip(int id, int starX,int starY,int enX, int enY,int psgNum, double tarrif, unsigned int t) {
+    this->endP = Point(enX,enY);
     this->id = id;
     this->passengersNum = psgNum;
-    this->startP = Point(startX,startY);
+    this->startP = Point(starX,starY);
     this->taarif = tarrif;
+    this->startX = starX;
+    this->startY =starY;
+    this->endX = enX;
+    this->endY = enY;
     this->passedMeter = 0;
+    this->time = t;
 }
 
 /**
