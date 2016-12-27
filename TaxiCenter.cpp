@@ -55,9 +55,9 @@ list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver d) {
 }
 
 /**
-     * if the driver is in the taxi center then send him
-     * and removing from inActive to active
-     */
+  * if the driver is in the taxi center then send him
+  * and removing from inActive to active
+*/
 void TaxiCenter::sendTaxiToLocation(Driver *d) {
 
     for (int i = 0; i < notActiveDriver.size(); i++) {
@@ -215,7 +215,7 @@ void TaxiCenter::moveAll() {
         Driver *d = this->activeDrivers.front();
         //if he finished moving
         if (d->getTaxi()->getRouth().size() == 0) {
-            d->inactivate(this->notActiveDriver,this->activeDrivers);
+            d->inactivate(this->notActiveDriver, this->activeDrivers);
             //todo inactive in the client!!
             continue;
         }
@@ -230,7 +230,7 @@ void TaxiCenter::moveAll() {
     free(buffer);
 }
 
-
+//todo shchar??!>!>!?!?!?
 void TaxiCenter::activateClosest(std::list<Driver *> list, Driver *driver) { //todo ??? what it is doing??
     std::list<Driver *> tempList;
     Driver *temp = list.front();
@@ -254,6 +254,9 @@ void TaxiCenter::activateClosest(std::list<Driver *> list, Driver *driver) { //t
     }
 }
 
+/**
+ * the deconstructor
+ */
 TaxiCenter::~TaxiCenter() {
     long size = this->notActiveTaxis.size();
     for (int i = 0; i < size; i++) {
@@ -273,32 +276,42 @@ TaxiCenter::~TaxiCenter() {
         activeDrivers.pop_front();
         delete d;
     }
+    //todo check if there is more thing to free
 }
 
+/**
+ * giving a trip to the matching driver in our list and
+ * sending back the trip to the maching client
+ */
 void TaxiCenter::assignTrip(unsigned int time) {
     long size = this->trips.size();
     std::list<Searchable *> list;
     string serializeObj;
     char *buffer = (char *) malloc(4096 * sizeof(char));
+    //getiing the trip that is time arrived
     for (int i = 0; i < size; i++) {
         Trip temp = this->trips.back();
         if (temp.getTime() == time) {
-            //getting the driver
+            //getting the driver from client
             ssize_t n = this->socket->reciveData(buffer, 4096);
             if (n < 0) {
                 perror("Error in receive");
             }
             Driver d;
             //todo deserialize the driver
-
+            //getting the list of the trip routh
             list = this->sendTrip(temp, d);
-
+            //sending back the list for the client
             n = this->socket->sendData(serializeObj); //todo serialize and send routh
             if (n < 0) {
                 perror("Error in Sendto");
             }
-            this->trips.pop();
-            break;
+            //if everything was ok the list would not be empty
+            if (list.size() > 0) {
+                this->trips.pop();
+                break;
+            }
+            //continue search for matching trip
         } else {
             this->trips.pop();
             this->trips.push(temp);

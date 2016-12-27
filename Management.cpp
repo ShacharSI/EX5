@@ -62,7 +62,7 @@ void Management::manage() {
                 //move all taxi's
             case 9: {
                 this->setClock();
-                this->taxiCenter.moveAll(this->socket);
+                this->taxiCenter.moveAll();
                 break;
             }
             default:
@@ -267,5 +267,12 @@ void Management::setClock() {
  * checking if the time of any trip arrived
  */
 void Management::assignTrip() {
-    taxiCenter.assignTrip();
+    taxiCenter.assignTrip(this->getTime());
+}
+
+/**
+ * @return - the worlds clock
+ */
+unsigned int Management::getTime() {
+    return this->clock;
 }
