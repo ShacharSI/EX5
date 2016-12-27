@@ -68,11 +68,14 @@ void Management::manage() {
             default:
                 break;
         }
+        //checking if the time to release a trip is right now
         this->assignTrip();
+        //get the next input
         cin >> usrChoiceStr;
         c = usrChoiceStr.c_str();
         userChoice = atoi(c);
     }
+    //close the program and delete all memory
     this->taxiCenter.deleteMap();
     this->socket->sendData("EndCommunication");
     this->socket->reciveData(buffer, 4096);
@@ -134,7 +137,9 @@ Point Management::parseLocation(int id) {
 
 
 /**
- * getting the user's string and creating a driver from it
+ * getting the driver from the client
+ * saving the driver to the taxi center and attaching a
+ * taxi to him
  */
 void Management::parseDriver(string s) {
     ssize_t n;
@@ -148,7 +153,7 @@ void Management::parseDriver(string s) {
     //cin >> input;
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
-
+    //a loop that gets the drivers and send taxi's
     for (int j = 0; j < numOfDrivers; ++j) {
         n = this->socket->reciveData(buffer, BUFFERSIZE);
         if (n < 0) {
@@ -251,10 +256,16 @@ vector<int> Management::getSizes() {
     return sizes;
 }
 
+/**
+ * inc the clock by one up
+ */
 void Management::setClock() {
     this->clock += 1;
 }
 
+/**
+ * checking if the time of any trip arrived
+ */
 void Management::assignTrip() {
     taxiCenter.assignTrip();
 }

@@ -78,6 +78,9 @@ Point Trip::getEndP()  {
     return endP;
 }
 
+/**
+ * @return - the time of the trip to activte
+ */
 unsigned int Trip::getTime() {
     return this->time;
 }

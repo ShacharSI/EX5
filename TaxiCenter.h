@@ -49,7 +49,7 @@ public:
 
     void addTaxi(Taxi *t);
 
-    void moveAll(Socket* s);
+    void moveAll();
 
     Taxi* attachTaxiToDriver(int vhecleId);
 
@@ -67,11 +67,6 @@ private:
     queue<Trip> trips;
     Socket* socket;
 
-
-
-    bool checkTaxiAttachment(Driver* driver);
-
-    void setAllTrips();
 
     void activateClosest(list <Driver*> list, Driver* driver);
 };
