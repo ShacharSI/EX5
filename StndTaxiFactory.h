@@ -6,12 +6,19 @@
 #define TM_SSTNDTAXIFACTORY_H
 
 
+#include <boost/serialization/nvp.hpp>
 #include "VirtualTaxiFactory.h"
 #include "Taxi.h"
 
 class StndTaxiFactory: public VirtualTaxiFactory {
 
 public:
+    friend class boost::serialization::access;
+
+    template<class Archive>
+    void serialize(Archive &ar, const unsigned int version) {
+        ar & BOOST_SERIALIZATION_BASE_OBJECT_NVP(Taxi);
+    }
     StndTaxiFactory();
     Taxi* createTaxi(int id, Taxi::manufacturer mntrf, Taxi::color color);
     StndTaxiFactory(int taarif);

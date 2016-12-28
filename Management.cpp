@@ -160,7 +160,7 @@ Point Management::parseLocation(int id) {
  * saving the driver to the taxi center and attaching a
  * taxi to him
  */
-void Management::parseDriver(string s) {
+void Management::parseDriver(string s) { //TODO replece to get num of numbers
     //set the variavles
     ssize_t n;
     Taxi *t = NULL;
@@ -181,8 +181,8 @@ void Management::parseDriver(string s) {
         }
 
         //getting the driver
-        serial_str = buffer;
-        boost::iostreams::basic_array_source<char> device(serial_str.c_str(), serial_str.size());
+        //serial_str = buffer;
+        boost::iostreams::basic_array_source<char> device(buffer, BUFFERSIZE);
         boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
         boost::archive::binary_iarchive ia(s2);
         ia >> d;

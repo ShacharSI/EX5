@@ -41,8 +41,8 @@ list<Searchable *> TaxiCenter::sendTrip(Trip t, Driver driver) {
  */
 list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver d) {
     Driver *closest = NULL;
-    std::list<Searchable *> routh;
     Point start = t.getStartP();
+    std::list<Searchable *> routh;
     //verify that the closet is equal to the driver given by the client
     for (int i = 0; i < this->notActiveDriver.size(); ++i) {
         closest = this->notActiveDriver.front();
@@ -61,11 +61,7 @@ list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver d) {
         return routh;
     }
     //calculate the routh
-    //routh = closest->calculateBfs(closest->getLocation(), start); //todo do we need this routh??
-    std::list<Searchable *> route2 = closest->calculateBfs(t.getStartP(), t.getEndP());
-    BOOST_FOREACH(auto &listElement, route2) {
-                    routh.push_back(listElement);
-                }
+    routh = closest->calculateBfs(t.getStartP(), t.getEndP());
     //set the routh on the server and activate driver on server
     closest->setRouth(routh);
     this->sendTaxiToLocation(closest);
@@ -233,8 +229,7 @@ void TaxiCenter::moveAll() {
         Driver *d = this->activeDrivers.front();
         //if he finished moving
         if (d->getTaxi()->getRouth().size() == 0) {
-            d->inactivate(this->notActiveDriver, this->activeDrivers);//doto do thus in client!
-            //todo inactive in the client!!
+            d->inactivate(this->notActiveDriver, this->activeDrivers); //todo do this in client!
             continue;
         }
         //getting the request to go from the client
@@ -326,7 +321,7 @@ void TaxiCenter::assignTrip(unsigned int time) {
                 perror("Error in receive");
             }
             serial_str = buffer;
-            if (strcmp(buffer, "send_me_trip") == 0) {
+            if (strcmp(buffer, "send_me_trip") == 0) { //todo change send_me_trip to serialize driver in client
                 //deserialize the driver
                 Driver d; //todo need Driver* or Driver???
                 boost::iostreams::basic_array_source<char> device(serial_str.c_str(), serial_str.size());
