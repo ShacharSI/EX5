@@ -82,7 +82,7 @@ TEST_F(Driver_Test,moveTest){
     Searchable* s1 = new Square(2,3);
     list.push_back(s1);
     list.push_back(s);
-    t->setRouthFromClientToDes(list);
+    t->setRouth(list);
     d.move();
     EXPECT_EQ(d.getLocation().equals(Point(2,3)), true);
     delete(s);

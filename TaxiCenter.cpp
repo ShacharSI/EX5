@@ -18,6 +18,7 @@
 #include <boost/iostreams/stream.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/archive/binary_iarchive.hpp>
+#include <boost/serialization/list.hpp>
 
 /**
  * getting a trip an a driver from the client
@@ -53,11 +54,11 @@ list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver d) {
     }
 
     if (this->notActiveDriver.size() == 0) {
-        return NULL;
+        return routh;
     }
     //verify the driver is in start point
     if (!(t.getStartP().equals(d.getLocation()))) {
-        return NULL;
+        return routh;
     }
     //calculate the routh
     //routh = closest->calculateBfs(closest->getLocation(), start); //todo do we need this routh??
@@ -325,7 +326,7 @@ void TaxiCenter::assignTrip(unsigned int time) {
                 perror("Error in receive");
             }
             serial_str = buffer;
-            if (strcmp(serial_str, "send_me_trip") == 0) {
+            if (strcmp(buffer, "send_me_trip") == 0) {
                 //deserialize the driver
                 Driver d; //todo need Driver* or Driver???
                 boost::iostreams::basic_array_source<char> device(serial_str.c_str(), serial_str.size());

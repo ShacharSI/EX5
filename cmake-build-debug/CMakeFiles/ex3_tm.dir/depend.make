@@ -224,6 +224,7 @@ CMakeFiles/ex3_tm.dir/Management.cpp.o: ../StndTaxiFactory.h
 CMakeFiles/ex3_tm.dir/Management.cpp.o: ../Taxi.h
 CMakeFiles/ex3_tm.dir/Management.cpp.o: ../TaxiCenter.h
 CMakeFiles/ex3_tm.dir/Management.cpp.o: ../Trip.h
+CMakeFiles/ex3_tm.dir/Management.cpp.o: ../Udp.h
 CMakeFiles/ex3_tm.dir/Management.cpp.o: ../Validate_Interface.h
 CMakeFiles/ex3_tm.dir/Management.cpp.o: ../VirtualTaxiFactory.h
 
@@ -267,6 +268,7 @@ CMakeFiles/ex3_tm.dir/Management_Test.cpp.o: ../StndTaxiFactory.h
 CMakeFiles/ex3_tm.dir/Management_Test.cpp.o: ../Taxi.h
 CMakeFiles/ex3_tm.dir/Management_Test.cpp.o: ../TaxiCenter.h
 CMakeFiles/ex3_tm.dir/Management_Test.cpp.o: ../Trip.h
+CMakeFiles/ex3_tm.dir/Management_Test.cpp.o: ../Udp.h
 CMakeFiles/ex3_tm.dir/Management_Test.cpp.o: ../Validate_Interface.h
 CMakeFiles/ex3_tm.dir/Management_Test.cpp.o: ../VirtualTaxiFactory.h
 
@@ -410,6 +412,9 @@ CMakeFiles/ex3_tm.dir/Searchable.cpp.o: ../Searchable.cpp
 CMakeFiles/ex3_tm.dir/Searchable.cpp.o: ../Searchable.h
 CMakeFiles/ex3_tm.dir/Searchable.cpp.o: ../Validate_Interface.h
 
+CMakeFiles/ex3_tm.dir/Socket.cpp.o: ../Socket.cpp
+CMakeFiles/ex3_tm.dir/Socket.cpp.o: ../Socket.h
+
 CMakeFiles/ex3_tm.dir/Square.cpp.o: ../Algorithm.h
 CMakeFiles/ex3_tm.dir/Square.cpp.o: ../Bfs.h
 CMakeFiles/ex3_tm.dir/Square.cpp.o: ../Point.h
@@ -500,6 +505,7 @@ CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o: ../Taxi.h
 CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o: ../TaxiCenter.cpp
 CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o: ../TaxiCenter.h
 CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o: ../Trip.h
+CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o: ../Udp.h
 CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o: ../Validate_Interface.h
 
 CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o: ../lib/googletest-master/googletest/include/gtest/gtest-death-test.h
@@ -540,6 +546,7 @@ CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o: ../Taxi.h
 CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o: ../TaxiCenter.h
 CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o: ../Taxi_Center_Test.cpp
 CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o: ../Trip.h
+CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o: ../Udp.h
 CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o: ../Validate_Interface.h
 
 CMakeFiles/ex3_tm.dir/Trip.cpp.o: ../Passenger.h
@@ -583,6 +590,10 @@ CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o: ../Trip.h
 CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o: ../Trip_Test.cpp
 CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o: ../Validate_Interface.h
 
+CMakeFiles/ex3_tm.dir/Udp.cpp.o: ../Socket.h
+CMakeFiles/ex3_tm.dir/Udp.cpp.o: ../Udp.cpp
+CMakeFiles/ex3_tm.dir/Udp.cpp.o: ../Udp.h
+
 CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o: ../Validate_Interface.cpp
 CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o: ../Validate_Interface.h
 
@@ -615,6 +626,7 @@ CMakeFiles/ex3_tm.dir/main.cpp.o: ../StndTaxiFactory.h
 CMakeFiles/ex3_tm.dir/main.cpp.o: ../Taxi.h
 CMakeFiles/ex3_tm.dir/main.cpp.o: ../TaxiCenter.h
 CMakeFiles/ex3_tm.dir/main.cpp.o: ../Trip.h
+CMakeFiles/ex3_tm.dir/main.cpp.o: ../Udp.h
 CMakeFiles/ex3_tm.dir/main.cpp.o: ../Validate_Interface.h
 CMakeFiles/ex3_tm.dir/main.cpp.o: ../VirtualTaxiFactory.h
 CMakeFiles/ex3_tm.dir/main.cpp.o: ../main.cpp

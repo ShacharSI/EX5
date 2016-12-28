@@ -976,6 +976,8 @@ ex3_tm: CMakeFiles/ex3_tm.dir/Udp.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/build.make
 ex3_tm: lib/googletest-master/googlemock/gtest/libgtest.a
 ex3_tm: lib/googletest-master/googlemock/gtest/libgtest_main.a
+ex3_tm: /usr/lib/x86_64-linux-gnu/libboost_serialization.so
+ex3_tm: /usr/lib/x86_64-linux-gnu/libboost_system.so
 ex3_tm: lib/googletest-master/googlemock/gtest/libgtest.a
 ex3_tm: CMakeFiles/ex3_tm.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Linking CXX executable ex3_tm"

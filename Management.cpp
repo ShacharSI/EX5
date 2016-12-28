@@ -186,7 +186,7 @@ void Management::parseDriver(string s) {
         boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
         boost::archive::binary_iarchive ia(s2);
         ia >> d;
-        s2.flush(); //todo need this? + nedd to reset to 0 serial_str
+
         //attach a taxi to the driver in our list and return the taxi to send to client
         t = this->taxiCenter.attachTaxiToDriver(d->getVehicle_id());
         //serialize the taxi
@@ -223,7 +223,7 @@ Trip Management::parseTrip(string s) {
         } else if (i == 6) {
             tarrif = atof(c);
         } else if (i == 7) {
-            time = atoi(c) ??atoi??
+            time = strtol(c,NULL,0); //todo will work??
         }
         i++;
     }

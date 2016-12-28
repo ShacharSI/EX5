@@ -13,6 +13,18 @@ public:
         SINGLE, MARRIED, DIVORCED, WIDOWED
     } martialStatus;
 
+    friend class boost::serialization::access;
+
+    template<class Archive>
+    void serialize(Archive &ar, const unsigned int version)
+    {
+        ar & id;
+        ar & age;
+        ar & martialStat;
+        ar & expYears;
+        ar & vehicle_id;
+    }
+
     Driver(int idNum, int ag, martialStatus martialStatus, int expY, int vehicle_id);
     Taxi *getTaxi() const;
 
