@@ -183,6 +183,7 @@ void Management::parseDriver(string s) { //TODO replece to get num of numbers
 
     //a loop that gets the drivers and send taxi's
     for (int j = 0; j < numOfDrivers; ++j) {
+        memset(buffer,0,BUFFERSIZE);
         n = this->socket->reciveData(buffer, BUFFERSIZE);
         if (n < 0) {
             perror("error receiving");
