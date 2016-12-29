@@ -5,6 +5,8 @@
 #include <iostream>
 #include "Driver.h"
 #include "Udp.h"
+#include "StandardTaxi.h"
+#include "LuxuryTaxi.h"
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
@@ -20,6 +22,10 @@
 #include <boost/iostreams/stream.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/archive/binary_iarchive.hpp>
+#include <boost/serialization/export.hpp>
+BOOST_CLASS_EXPORT_GUID(StandardTaxi,"StandardTaxi");
+BOOST_CLASS_EXPORT_GUID(LuxuryTaxi,"lux_taxi");
+BOOST_CLASS_EXPORT_GUID(Driver,"driver");
 
 #define BUFFERSIZE 4096
 

@@ -5,6 +5,7 @@
 
 
 #include <vector>
+#include <boost/serialization/base_object.hpp>
 #include "Point.h"
 #include "Passenger.h"
 #include "Trip.h"
@@ -24,6 +25,7 @@ public:
 
     template<class Archive>
     void serialize(Archive &ar, const unsigned int version) {
+        ar & boost::serialization::base_object<Vallidate_Interface>(*this);
         ar & carId;
         ar & mnfctr;
         ar & clr;

@@ -401,6 +401,10 @@ Driver.h
 /home/haim/ClionProjects/ex3_tm/Driver.h
 Udp.h
 /home/haim/ClionProjects/ex3_tm/Udp.h
+StandardTaxi.h
+/home/haim/ClionProjects/ex3_tm/StandardTaxi.h
+LuxuryTaxi.h
+/home/haim/ClionProjects/ex3_tm/LuxuryTaxi.h
 stdexcept
 -
 iostream
@@ -430,6 +434,8 @@ boost/iostreams/stream.hpp
 boost/archive/binary_oarchive.hpp
 -
 boost/archive/binary_iarchive.hpp
+-
+boost/serialization/export.hpp
 -
 
 /home/haim/ClionProjects/ex3_tm/Management.h
@@ -601,6 +607,8 @@ StandardTaxi.h
 /home/haim/ClionProjects/ex3_tm/StandardTaxi.h
 
 /home/haim/ClionProjects/ex3_tm/StndTaxiFactory.h
+boost/serialization/nvp.hpp
+-
 VirtualTaxiFactory.h
 /home/haim/ClionProjects/ex3_tm/VirtualTaxiFactory.h
 Taxi.h
@@ -616,6 +624,8 @@ stdexcept
 
 /home/haim/ClionProjects/ex3_tm/Taxi.h
 vector
+-
+boost/serialization/base_object.hpp
 -
 Point.h
 /home/haim/ClionProjects/ex3_tm/Point.h
@@ -741,6 +751,8 @@ Validate_Interface.h
 /home/haim/ClionProjects/ex3_tm/Validate_Interface.h
 
 /home/haim/ClionProjects/ex3_tm/Validate_Interface.h
+boost/serialization/access.hpp
+-
 
 /home/haim/ClionProjects/ex3_tm/VirtualTaxiFactory.cpp
 VirtualTaxiFactory.h

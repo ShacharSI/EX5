@@ -18,6 +18,7 @@ public:
     template<class Archive>
     void serialize(Archive &ar, const unsigned int version)
     {
+        ar & boost::serialization::base_object<Vallidate_Interface>(*this);
         ar & id;
         ar & age;
         ar & martialStat;
