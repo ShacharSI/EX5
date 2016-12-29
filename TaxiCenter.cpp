@@ -321,34 +321,29 @@ void TaxiCenter::assignTrip(unsigned int time) {
                 perror("Error in receive");
             }
             serial_str = buffer;
-            if (strcmp(buffer, "send_me_trip") == 0) { //todo change send_me_trip to serialize driver in client
-                //deserialize the driver
-                Driver d; //todo need Driver* or Driver???
-                boost::iostreams::basic_array_source<char> device(serial_str.c_str(), serial_str.size());
-                boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
-                boost::archive::binary_iarchive ia(s2);
-                ia >> d;
+            //deserialize the driver
+            Driver d; //todo need Driver* or Driver???
+            boost::iostreams::basic_array_source<char> device(buffer, 4096);
+            boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
+            boost::archive::binary_iarchive ia(s2);
+            ia >> d;
 
-                //getting the list of the trip routh
-                list = this->sendTrip(temp, d);
+            //getting the list of the trip routh
+            list = this->sendTrip(temp, d);
 
-                //sending back the list for the client
-                boost::iostreams::back_insert_device<std::string> inserter(serial_str);
-                boost::iostreams::stream<boost::iostreams::back_insert_device<std::string> > s(inserter);
-                boost::archive::binary_oarchive oa(s);
-                oa << list; //todo special include for list
-                s.flush();
-                n = this->socket->sendData(serial_str); //todo serialize and send routh
-                if (n < 0) {
-                    perror("Error in Sendto");
-                }
-                //if everything was ok the list would not be empty
-                if (list.size() > 0) {
-                    this->trips.pop();
-                    break;
-                }
-                //the client didnt ask for trip
-            } else {
+            //sending back the list for the client
+            boost::iostreams::back_insert_device<std::string> inserter(serial_str);
+            boost::iostreams::stream<boost::iostreams::back_insert_device<std::string> > s(inserter);
+            boost::archive::binary_oarchive oa(s);
+            oa << list; //todo special include for list
+            s.flush();
+            n = this->socket->sendData(serial_str); //todo serialize and send routh
+            if (n < 0) {
+                perror("Error in Sendto");
+            }
+            //if everything was ok the list would not be empty
+            if (list.size() > 0) {
+                this->trips.pop();
                 break;
             }
             //continue search for matching trip

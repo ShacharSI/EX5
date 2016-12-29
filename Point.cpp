@@ -1,8 +1,5 @@
-
-
 #include "Point.h"
 #include <stdexcept>
-
 
 /**
  * the constructor.
@@ -57,5 +54,3 @@ int Point::getX() {
 int Point::getY() {
     return this->y;
 }
-
-

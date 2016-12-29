@@ -5,6 +5,8 @@
 #include <iostream>
 #include "Driver.h"
 #include "Udp.h"
+#include "StandardTaxi.h"
+#include "LuxuryTaxi.h"
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
@@ -20,8 +22,14 @@
 #include <boost/iostreams/stream.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/archive/binary_iarchive.hpp>
+#include <boost/serialization/export.hpp>
 
 #define BUFFERSIZE 4096
+
+BOOST_CLASS_EXPORT_GUID(StandardTaxi,"StandardTaxi");
+BOOST_CLASS_EXPORT_GUID(LuxuryTaxi,"lux_taxi");
+BOOST_CLASS_EXPORT_GUID(Taxi,"taxi");
+BOOST_CLASS_EXPORT_GUID(Driver,"driver");
 
 /**
  * the constructor
@@ -181,7 +189,6 @@ void Management::parseDriver(string s) { //TODO replece to get num of numbers
         }
 
         //getting the driver
-        //serial_str = buffer;
         boost::iostreams::basic_array_source<char> device(buffer, BUFFERSIZE);
         boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
         boost::archive::binary_iarchive ia(s2);
@@ -194,9 +201,10 @@ void Management::parseDriver(string s) { //TODO replece to get num of numbers
         boost::iostreams::stream<boost::iostreams::back_insert_device<std::string> > s(inserter);
         boost::archive::binary_oarchive oa(s);
         oa << t;
+        s.flush();
+
         //send the taxi to client
         n = this->socket->sendData(serial_str);
-        s.flush();
         d->setTaxi(t);
         this->taxiCenter.addDriverToCenter(d);
     }

@@ -137,5 +137,3 @@ void Taxi::validate() {
         throw invalid_argument("wrong input");
     }
 }
-
-
