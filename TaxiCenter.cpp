@@ -27,11 +27,11 @@
  */
 list<Searchable *>* TaxiCenter::sendTrip(Trip t, Driver driver) {
     this->currentTrip = t;
-    std::list<Searchable *> list;
+    std::list<Searchable *>* list = new std::list<Searchable*>();;
     if (this->notActiveDriver.size() > 0) {
-        list = this->getClosetTaxi(t, driver);
+        *list = this->getClosetTaxi(t, driver);
     }
-    return new std::list<Searchable*>(list);
+    return list;
 }
 
 /**
