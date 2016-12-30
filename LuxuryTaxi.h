@@ -12,6 +12,12 @@
  */
 class LuxuryTaxi: public Taxi {
 
+    friend class boost::serialization::access;
+
+    template<class Archive>
+    void serialize(Archive &ar, const unsigned int version) {
+        ar & boost::serialization::base_object<Taxi>(*this);
+    }
 public:
     void move();
     LuxuryTaxi();
