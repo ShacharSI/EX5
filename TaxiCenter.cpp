@@ -25,13 +25,13 @@
  * find the driver on the trip's point
  * if there is no free driver or no driver on point return empty list
  */
-list<Searchable *> TaxiCenter::sendTrip(Trip t, Driver driver) {
+list<Searchable *>* TaxiCenter::sendTrip(Trip t, Driver driver) {
     this->currentTrip = t;
     std::list<Searchable *> list;
     if (this->notActiveDriver.size() > 0) {
         list = this->getClosetTaxi(t, driver);
     }
-    return list;
+    return new std::list<Searchable*>(list);
 }
 
 /**
@@ -253,30 +253,6 @@ void TaxiCenter::moveAll() {
     free(buffer);
 }
 
-//todo shchar??!>!>!?!?!?
-void TaxiCenter::activateClosest(std::list<Driver *> list, Driver *driver) { //todo ??? what it is doing??
-    std::list<Driver *> tempList;
-    Driver *temp = list.front();
-    if (list.front() == driver) {
-        list.pop_front();
-        this->setActiveDriver(temp);
-        return;
-    }
-    tempList.push_back(temp);
-    while (!(list.front() == driver)) {
-        temp = list.front();
-        list.pop_front();
-        tempList.push_back(temp);
-    }
-    this->setActiveDriver(list.front());
-    list.pop_front();
-    while (tempList.size() > 0) {
-        temp = tempList.front();
-        tempList.pop_front();
-        list.push_back(temp);
-    }
-}
-
 /**
  * the deconstructor
  */
@@ -308,7 +284,7 @@ TaxiCenter::~TaxiCenter() {
  */
 void TaxiCenter::assignTrip(unsigned int time) {
     long size = this->trips.size();
-    std::list<Searchable *> list;
+    std::list<Searchable *>* list;
     std::string serial_str;
     char *buffer = (char *) malloc(4096 * sizeof(char));
     //getting the trip that is time arrived
@@ -342,7 +318,7 @@ void TaxiCenter::assignTrip(unsigned int time) {
                 perror("Error in Sendto");
             }
             //if everything was ok the list would not be empty
-            if (list.size() > 0) {
+            if (list->size() > 0) {
                 this->trips.pop();
                 break;
             }

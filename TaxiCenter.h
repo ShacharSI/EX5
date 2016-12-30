@@ -29,7 +29,7 @@ public:
     ~TaxiCenter();
     TaxiCenter(Map m,Socket* s);
 
-    list<Searchable*> sendTrip(Trip t,Driver d) ;
+    list<Searchable*>* sendTrip(Trip t,Driver d) ;
 
     Point giveLocation(int id) throw(invalid_argument) ;
 
