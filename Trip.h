@@ -52,7 +52,7 @@ public:
     Trip();
     unsigned int getTime();
     Trip(int id, int startX,int startY,int endX, int endY,int psgNum, double tarrif, unsigned int time);
-
+    ~Trip();
 };
 
 

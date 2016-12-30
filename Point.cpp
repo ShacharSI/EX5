@@ -19,7 +19,7 @@ Point::Point(){
 }
 
 /**
- * the deconstructor
+ * the destructor
  */
 Point::~Point() {
 

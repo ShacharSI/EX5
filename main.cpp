@@ -9,7 +9,6 @@
  * @return 0;
  */
 int main(int argc, char* argv[]) {
-
     Socket* sock = new Udp(true,5006);
     sock->initialize();
     Management management(sock);

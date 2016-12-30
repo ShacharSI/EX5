@@ -89,3 +89,7 @@ Point Trip::getEndP()  {
 unsigned int Trip::getTime() {
     return this->time;
 }
+
+Trip::~Trip() {
+
+}

@@ -33,7 +33,6 @@ private:
     int sizeX;
     int sizeY;
     Searchable* start;
-    list<Searchable*> obstacle;
     std::list<Searchable*> searchables;
 };
 

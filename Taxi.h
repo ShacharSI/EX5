@@ -80,7 +80,6 @@ protected:
     Map map;
     int carId;
     manufacturer mnfctr;
-    Trip trip;
     int tarrif;
     Algorithm *searchAlgo;
     color clr;

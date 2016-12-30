@@ -305,6 +305,7 @@ void TaxiCenter::assignTrip(unsigned int time) {
             ia >> d;
 
             //getting the list of the trip routh
+            d->getTaxi()->setMap(this->map);
             list = this->sendTrip(temp, *d);
 
             //sending back the list for the client
