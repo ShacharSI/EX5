@@ -24,6 +24,7 @@ public:
         ar & martialStat;
         ar & expYears;
         ar & vehicle_id;
+        ar & taxi;
     }
 
     Driver(int idNum, int ag, martialStatus martialStatus, int expY, int vehicle_id);

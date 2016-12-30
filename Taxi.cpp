@@ -36,7 +36,7 @@ Taxi::Taxi(int id, Taxi::manufacturer mntrf, Taxi::color color,int taarif) {
     this->clr = color;
     this->mnfctr = mntrf;
     this->searchAlgo = new Bfs;
-    std::list<Searchable*> l1;
+    std::list<Searchable*> l1;//why don't use NULL???
     this->routh = l1;
     this->searchAlgo =NULL;
 

@@ -1,8 +1,5 @@
-
-
 #ifndef TM_TAXI_H
 #define TM_TAXI_H
-
 
 #include <vector>
 #include <boost/serialization/assume_abstract.hpp>

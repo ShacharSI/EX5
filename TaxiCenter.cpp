@@ -42,7 +42,7 @@ list<Searchable *> TaxiCenter::sendTrip(Trip t, Driver driver) {
 list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver d) {
     Driver *closest = NULL;
     Point start = t.getStartP();
-    std::list<Searchable *> routh;
+    std::list<Searchable *> routh ;
     //verify that the closet is equal to the driver given by the client
     for (int i = 0; i < this->notActiveDriver.size(); ++i) {
         closest = this->notActiveDriver.front();
@@ -322,14 +322,14 @@ void TaxiCenter::assignTrip(unsigned int time) {
             }
             serial_str = buffer;
             //deserialize the driver
-            Driver d; //todo need Driver* or Driver???
+            Driver *d;
             boost::iostreams::basic_array_source<char> device(buffer, 4096);
             boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
             boost::archive::binary_iarchive ia(s2);
             ia >> d;
 
             //getting the list of the trip routh
-            list = this->sendTrip(temp, d);
+            list = this->sendTrip(temp, *d);
 
             //sending back the list for the client
             boost::iostreams::back_insert_device<std::string> inserter(serial_str);
