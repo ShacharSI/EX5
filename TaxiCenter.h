@@ -44,6 +44,7 @@ public:
     void setNotActiveDriver(Driver* d);
 
     list<Taxi *> getNotActiveTaxis();
+
     void assignTrip(unsigned int time);
     void deleteMap();
 
@@ -56,19 +57,17 @@ public:
 private:
     Map map;
     Trip currentTrip;
-
+    Algorithm *searchAlgo;
     void sendTaxiToLocation(Driver* d);
 
     list<Searchable*> getClosetTaxi(Trip p,Driver d);
+    list<Searchable*> calculateDriverRoute(Point startP, Point endP);
 
     list<Taxi *> notActiveTaxis;
     list <Driver*> activeDrivers;
     list <Driver*> notActiveDriver;
     queue<Trip> trips;
     Socket* socket;
-
-
-    void activateClosest(list <Driver*> list, Driver* driver);
 };
 
 

@@ -165,12 +165,5 @@ void Driver::setRouth(std::list<Searchable *> list) {
     this->getTaxi()->setRouth(list);
 }
 
-void Driver::manage() {
-
-}
-
-list <Searchable*> Driver::calculateBfs(Point start,Point end) {
-    return this->taxi->calculateBfs(start,end);
-}
 
 

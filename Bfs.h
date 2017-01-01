@@ -14,9 +14,6 @@ class Bfs: public Algorithm {
 
 public:
     list<Searchable*> findRouth(Searchable* start,Searchable* destiny);
-private:
-
-
 };
 
 

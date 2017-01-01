@@ -25,9 +25,7 @@ Taxi::Taxi() {
 }
 
 Taxi::~Taxi() {
-    if(this->searchAlgo!=NULL){
-        delete this->searchAlgo;
-    }
+
 }
 
 Taxi::Taxi(int id, Taxi::manufacturer mntrf, Taxi::color color,int taarif) {
@@ -35,10 +33,8 @@ Taxi::Taxi(int id, Taxi::manufacturer mntrf, Taxi::color color,int taarif) {
     this->tarrif = taarif;
     this->clr = color;
     this->mnfctr = mntrf;
-    this->searchAlgo = new Bfs;
-    std::list<Searchable*> l1;//why don't use NULL???
+    std::list<Searchable*> l1;
     this->routh = l1;
-    this->searchAlgo =NULL;
 
 }
 
@@ -53,21 +49,6 @@ Taxi::manufacturer Taxi::getMnfctr() const {
 Taxi::color Taxi::getClr() const {
     return this->clr;
 }
-// todo why return empty list??????????????????????????????
-list<Searchable*> Taxi::calculateBfs(Point startP,Point endP) {
-   // Searchable* s = this->getMap().getStart();
-   // Searchable* start = s->findOnGrid(startP);
-   // Searchable* end = s->findOnGrid(endP);
-    std::list<Searchable*> list;
-   // list = this->bfs.findRouth(start,end);
-    /*if(start->getPoint().equals(end->getPoint())){
-        list.push_back(start);
-    } else{
-        list.push_back(start);
-        list.push_back(end);
-    }*/
-    return list;
-}
 
 void Taxi::addPassengers(vector<Passenger> psngrs) {
 
@@ -81,14 +62,6 @@ vector<Passenger> Taxi::getPassengers() {
 void Taxi::setRouth(std::list < Searchable * > routhToLocation) {
     this->routh = routhToLocation;
 
-}
-
-Map Taxi::getMap() {
-    return this->map;
-}
-
-void Taxi::setMap(Map m) {
-    this->map = m;
 }
 
 list<Searchable *> Taxi::getRouth() {

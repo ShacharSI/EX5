@@ -60,12 +60,20 @@ list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver d) {
     if (!(t.getStartP().equals(d.getLocation()))) {
         return routh;
     }
-    //calculate the routh
-    routh = closest->calculateBfs(t.getStartP(), t.getEndP());
+    //calculateRoute the routh
+    routh = calculateDriverRoute(t.getStartP(), t.getEndP());
     //set the routh on the server and activate driver on server
     closest->setRouth(routh);
     this->sendTaxiToLocation(closest);
     return routh;
+}
+
+list<Searchable*> TaxiCenter::calculateDriverRoute(Point startP, Point endP){
+    Searchable* start = this->map.findOnGrid(startP);
+    Searchable* end = this->map.findOnGrid(endP);
+    std::list<Searchable*> list;
+    list = this->searchAlgo->findRouth(start,end);
+    return list;
 }
 
 /**
@@ -100,6 +108,7 @@ TaxiCenter::TaxiCenter() {
 TaxiCenter::TaxiCenter(Map mp, Socket *soc) {
     this->map = mp;
     this->socket = soc;
+    this->searchAlgo = new Bfs();
 }
 
 /**
@@ -214,7 +223,6 @@ list<Taxi *> TaxiCenter::getNotActiveTaxis() {
  * @param t - adding a taxi to the center
  */
 void TaxiCenter::addTaxi(Taxi *t) {
-    t->setMap(this->map);
     this->notActiveTaxis.push_back(t);
 }
 
@@ -304,8 +312,6 @@ void TaxiCenter::assignTrip(unsigned int time) {
             boost::archive::binary_iarchive ia(s2);
             ia >> d;
 
-            //getting the list of the trip routh
-            d->getTaxi()->setMap(this->map);
             list = this->sendTrip(temp, *d);
 
             //sending back the list for the client

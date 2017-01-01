@@ -34,8 +34,6 @@ public:
 
     ~Driver();
 
-    void manage();
-
     void setTaxi(Taxi *t);
 
     int getId();
@@ -53,8 +51,6 @@ public:
     int getAge();
 
     double getSatis();
-
-    list<Searchable*> calculateBfs(Point start,Point end);
 
     void setRouth(std::list<Searchable *> list);
 

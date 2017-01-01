@@ -50,8 +50,6 @@ public:
 
     void addPassengers(vector<Passenger> psngrs);
 
-    list<Searchable *> calculateBfs(Point start, Point end);
-
     int getCarId() const;
 
     manufacturer getMnfctr() const;
@@ -69,22 +67,15 @@ public:
 
     void setRouth(list<Searchable *> routhFromClientToDes);
 
-    Map getMap();
-
-    void setMap(Map m);
-
     list<Searchable *> getRouth();
 
 protected:
     list<Searchable *> routh;
-    Map map;
     int carId;
     manufacturer mnfctr;
     int tarrif;
-    Algorithm *searchAlgo;
     color clr;
     Point location;
-
 };
 
 BOOST_SERIALIZATION_ASSUME_ABSTRACT(Taxi);

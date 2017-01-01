@@ -15,7 +15,7 @@ list<Searchable*> Bfs::findRouth(Searchable* start,Searchable* destiny) {
     std::list<Searchable*> l;
 
     l = destiny->createList();
-    int j = l.size();
+    long j = l.size();
     for(int i = 0; i<j;i++){
         Searchable* s=l.front();
         Point p = s->getPoint();
