@@ -125,7 +125,6 @@ Point TaxiCenter::giveLocation(int id) throw(invalid_argument) {
         this->notActiveDriver.pop_front();
         this->notActiveDriver.push_back(d);
     }
-
     for (int i = 0; i < this->activeDrivers.size(); i++) {
         Driver *d = this->activeDrivers.front();
         if (d->getVehicle_id() == id) {
@@ -133,6 +132,14 @@ Point TaxiCenter::giveLocation(int id) throw(invalid_argument) {
         }
         this->activeDrivers.pop_front();
         this->activeDrivers.push_back(d);
+    }
+    for(int i = 0;i<this->notActiveTaxis.size();i++){
+        Taxi* t = this->notActiveTaxis.front();
+        if(t->getCarId() == id){
+            return t->getLocation();
+        }
+        this->notActiveTaxis.pop_front();
+        this->notActiveTaxis.push_back(t);
     }
     throw invalid_argument("wrong id");
 }
