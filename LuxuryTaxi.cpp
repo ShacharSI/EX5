@@ -27,13 +27,17 @@ void LuxuryTaxi::move() {
         this->routh.pop_front();
         Point p = this->routh.front()->getPoint();
         this->location = p;
+        return;
     } if(this->routh.size() == 1){
         Point p = this->routh.front()->getPoint();
         this->routh.pop_front();
+        return;
     } if(this->routh.size() == 2){
         this->routh.pop_front();
         Point p = this->routh.front()->getPoint();
+        this->location = p;
         this->routh.pop_front();
+        return;
     }
 
 }

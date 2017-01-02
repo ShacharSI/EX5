@@ -149,29 +149,6 @@ Driver::martialStatus Driver::parseMartialStatus(string martialStatus) {
     }
 }
 
-/**
- * getting a trip and setting the routh from client to destination
- */
-void Driver::setTrip(Point start, Point end) {//todo need this func??
-    Searchable *star = NULL;
-    Searchable *en = NULL;
-    std::list<Searchable *> routh;
-    std::list<Searchable *> l = this->taxi->getMap().getL();
-    for (int i = 0; i < l.size(); i++) {
-        Searchable *temp = l.front();
-        if (temp->getPoint().equals(start)) {
-            star = temp;
-        }
-        if (temp->getPoint().equals(end)) {
-            en = temp;
-        }
-        l.pop_front();
-        l.push_back(temp);
-    }
-    routh.push_front(star);
-    routh.push_front(en);
-    //this->taxi->setRouthFromClientToDes(routh);
-}
 
 /**
  * @return - the driver's satisfaction

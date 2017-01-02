@@ -179,10 +179,10 @@
 			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/ManageDriver.cpp">
-			<Option target="main.cpp"/>
+			<Option target="mainDriver.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/ManageDriver.h">
-			<Option target="main.cpp"/>
+			<Option target="mainDriver.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Management.cpp">
 			<Option target="mainDriver.cpp"/>
@@ -313,12 +313,10 @@
 			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/main.cpp">
-			<Option target="mainDriver.cpp"/>
 			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/mainDriver.cpp">
 			<Option target="mainDriver.cpp"/>
-			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

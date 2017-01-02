@@ -38,8 +38,6 @@ public:
 
     void setTaxi(Taxi* t);
 
-    void setTrip(Point start, Point end);
-
     int getId();
 
     void inactivate(list<Driver *> &inActDrivers, list<Driver *> &actDrivers);
