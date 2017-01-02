@@ -1,10 +1,28 @@
 //
 // Created by haim on 11/27/16.
 //
+#define BUUFER_SIZE 4096
 
-#include <sstream>
+#include <iostream>
 #include "Driver.h"
+#include "Udp.h"
 #include <stdexcept>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/tokenizer.hpp>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/lexical_cast.hpp>
+#include <boost/assign/list_of.hpp>
+#include <boost/algorithm/string.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <boost/iostreams/stream.hpp>
+#include "LuxuryTaxi.h"
+#include "StandardTaxi.h"
+#include <stdexcept>
+#include <boost/archive/binary_oarchive.hpp>
 
 
 /**
@@ -48,9 +66,6 @@ int Driver::getId() {
  * assign a taxi to the driver
  * @param t - the taxi
  */
-void Driver::setTaxi(Taxi *t) {
-    this->taxi = t;
-}
 
 /**
  * @param newSatis - the driver satisfaction from client
@@ -107,6 +122,7 @@ void Driver::move() {
     this->taxi->move();
 }
 
+
 /**
  * @return - the drivers vehicle id
  */
@@ -131,6 +147,30 @@ Driver::martialStatus Driver::parseMartialStatus(string martialStatus) {
         default:
             break;
     }
+}
+
+/**
+ * getting a trip and setting the routh from client to destination
+ */
+void Driver::setTrip(Point start, Point end) {//todo need this func??
+    Searchable *star = NULL;
+    Searchable *en = NULL;
+    std::list<Searchable *> routh;
+    std::list<Searchable *> l = this->taxi->getMap().getL();
+    for (int i = 0; i < l.size(); i++) {
+        Searchable *temp = l.front();
+        if (temp->getPoint().equals(start)) {
+            star = temp;
+        }
+        if (temp->getPoint().equals(end)) {
+            en = temp;
+        }
+        l.pop_front();
+        l.push_back(temp);
+    }
+    routh.push_front(star);
+    routh.push_front(en);
+    //this->taxi->setRouthFromClientToDes(routh);
 }
 
 /**
@@ -159,11 +199,44 @@ void Driver::inactivate(std::list<Driver *> &inActDrivers, list<Driver *> &actDr
 }
 
 /**
- * @param list - set the routh
+ * @param list - set the routh of the driver
  */
 void Driver::setRouth(std::list<Searchable *> list) {
     this->getTaxi()->setRouth(list);
 }
 
+/**
+ * the constructor.
+ * getting a string and parsing it
+ */
+Driver::Driver(string input) {
+    stringstream tempStr(input);
+    string streamCut;
+    int i = 0;
+    string strArray[5];
+    //parse string
+    while (std::getline(tempStr, streamCut, ',')) {
+        string strAfterFirstCut = streamCut;
+        strArray[i] = strAfterFirstCut;
+        i++;
+    }
+    //save the val in an array
+    const char *c = strArray[1].c_str();
+    this->age = atoi(c);
+    c = strArray[0].c_str();
+    this->id = atoi(c);
+    c = strArray[3].c_str();
+    this->expYears = atoi(c);
+    c = strArray[4].c_str();
+    this->vehicle_id = atoi(c);
+    this->martialStat = Driver::parseMartialStatus(strArray[2]);
+
+}
+
+
+
+void Driver::setTaxi(Taxi *t) {
+    this->taxi = t;
+}
 
 

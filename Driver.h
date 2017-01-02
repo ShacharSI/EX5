@@ -3,15 +3,14 @@
 #define TM_DRIVER_H
 
 
+#include <boost/serialization/access.hpp>
 #include "Map.h"
 #include "Taxi.h"
+#include "Socket.h"
 
 
 class Driver : public Vallidate_Interface {
 public:
-    typedef enum {
-        SINGLE, MARRIED, DIVORCED, WIDOWED
-    } martialStatus;
 
     friend class boost::serialization::access;
 
@@ -26,15 +25,20 @@ public:
         ar & vehicle_id;
         ar & taxi;
     }
+    void setSocket(Socket* socket);
+    typedef enum {
+        SINGLE, MARRIED, DIVORCED, WIDOWED
+    } martialStatus;
 
     Driver(int idNum, int ag, martialStatus martialStatus, int expY, int vehicle_id);
     Taxi *getTaxi() const;
-
+    Driver(string s);
     Driver();
-
     ~Driver();
 
-    void setTaxi(Taxi *t);
+    void setTaxi(Taxi* t);
+
+    void setTrip(Point start, Point end);
 
     int getId();
 
@@ -65,6 +69,7 @@ public:
     static martialStatus parseMartialStatus(string martialStatus);
 
 private:
+
     int id;
     int age;
     int vehicle_id;
@@ -75,5 +80,6 @@ private:
     Taxi *taxi;
 
 };
+
 
 #endif //TM_DRIVER_H
