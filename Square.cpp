@@ -190,7 +190,7 @@ Square::Square(int x, int y) {
     this->visitLeft = false;
     this->visitRIght = false;
     this->setAllVisted = false;
-    this->obstacleFlag = false;
+
 }
 
 /**
@@ -210,7 +210,7 @@ Square::Square(Point p1) {
     this->visitLeft = false;
     this->visitRIght = false;
     this->setAllVisted = false;
-    this->obstacleFlag = false;
+
 
 }
 
@@ -342,12 +342,6 @@ Square* Square::getBstFather() {
     return this->bfsFather;
 }
 
-/**
- * @return - if the square is an obstacle
- */
-bool Square::isObstacleFlag() const {
-    return obstacleFlag;
-}
 
 /**
  * @return - if we visit the left side in the bfs search
@@ -381,7 +375,8 @@ bool Square::isVisitUp() const {
  * setting the squares to be false so we can initialize their vals before abfs run
  */
 void Square::setBeforeBfs(std::list<Searchable *> l) {
-    for(int i=0;i<l.size();i++){
+    long size = l.size();
+    for(int i=0;i<size;i++){
         Searchable*s = l.front();
         Square* square =(Square*) s;
         square->setAllVisted = false;

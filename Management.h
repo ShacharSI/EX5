@@ -18,9 +18,11 @@ private:
     unsigned int clock;
     Logic lg;
     TaxiCenter taxiCenter;
+
+private:
     void setLogicAndMap();
     vector<int> getSizes();
-    Socket* sock;
+    Socket* socket;
 
 public:
     unsigned int getTime();
@@ -31,10 +33,9 @@ public:
     Management(Socket* s);
     void manage();
     Taxi* parseTaxi(string s);
-    void parseDriver(string s);
+    void parseDriver();
     Trip parseTrip(string s);
     Point parseLocation(int id);
-    Socket* socket;
 };
 
 

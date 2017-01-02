@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string>
 #include <stdexcept>
+#include <limits>
 
 /**
  * the constructor
@@ -15,7 +16,7 @@ Logic::Logic() {
 /**
  * the constructor
  */
-Logic::Logic(vector <int> sizes) {
+Logic::Logic(vector<int> sizes) {
     string input;
     //takes the parameter from the user ant turn it into info
     this->sizeY = sizes.back();
@@ -28,20 +29,16 @@ Logic::Logic(vector <int> sizes) {
  * getting the obstacle list parsing it and creating a list of them
  */
 void Logic::setObstacle(int numObstacle) {
-    string input = "";
-    string streamCut = "";
+    string input;
+    string streamCut;
     int vals[2] = {};
+    cin.ignore();
     for (int j = 0; j < numObstacle; j++) {
-        cin >> input;
-        stringstream tempStr(input);
-        int i = 0;
-        while (std::getline(tempStr, streamCut, ',')) {
-            const char* c = streamCut.c_str();
-            vals[i] = atoi(c);
-            i++;
-
-        }
-        Point p(vals[0],vals[1]);
+        getline(cin, input);
+        string::size_type position = input.find(",");
+        vals[0] = stoi(input.substr(0, position));
+        vals[1] = stoi(input.substr(position + 1, input.size() - 1 - position));
+        Point p(vals[0], vals[1]);
         this->obstacle.push_back(p);
     }
 }
@@ -76,7 +73,7 @@ int Logic::getSizeY() {
  * type(decide by the string) and size
  **/
 Map Logic::createNewMap(string s) {
-    return this->mpFactory.createMapSearchable(s,this->sizeX, this->sizeY,0,0,this->getObstacle());
+    return this->mpFactory.createMapSearchable(s, this->sizeX, this->sizeY, 0, 0, this->getObstacle());
 }
 
 /**

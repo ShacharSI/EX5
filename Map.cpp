@@ -69,7 +69,6 @@ Searchable *Map::findOnGrid(Point p) {
         Searchable* temp = this->searchables.front();
         if(temp->getPoint().equals(p)){
             s = temp;
-            this->searchables.push_back(temp);
             break;
         }
         this->searchables.pop_front();

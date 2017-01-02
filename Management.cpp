@@ -5,10 +5,10 @@
 #include <iostream>
 #include "Driver.h"
 #include "Udp.h"
+#include <cstdlib>
 #include "StandardTaxi.h"
 #include "LuxuryTaxi.h"
 #include <stdexcept>
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <boost/archive/text_oarchive.hpp>
@@ -24,12 +24,13 @@
 #include <boost/archive/binary_iarchive.hpp>
 #include <boost/serialization/export.hpp>
 
+BOOST_CLASS_EXPORT_GUID(StandardTaxi, "StandardTaxi");
+BOOST_CLASS_EXPORT_GUID(LuxuryTaxi, "lux_taxi");
+BOOST_CLASS_EXPORT_GUID(Taxi, "taxi");
+BOOST_CLASS_EXPORT_GUID(Driver, "driver");
+BOOST_CLASS_EXPORT_GUID(Point, "point");
+BOOST_CLASS_EXPORT_GUID(Square, "Square");
 #define BUFFERSIZE 4096
-
-BOOST_CLASS_EXPORT_GUID(StandardTaxi,"StandardTaxi");
-BOOST_CLASS_EXPORT_GUID(LuxuryTaxi,"lux_taxi");
-BOOST_CLASS_EXPORT_GUID(Taxi,"taxi");
-BOOST_CLASS_EXPORT_GUID(Driver,"driver");
 
 /**
  * the constructor
@@ -57,8 +58,7 @@ void Management::manage() {
         switch (userChoice) {
             //create driver
             case 1: {
-                getline(cin, userInput);
-                this->parseDriver(userInput);
+                this->parseDriver();
                 break;
             }
                 //create trip
@@ -104,11 +104,13 @@ void Management::manage() {
     }
     //close the program and delete all memory
     this->taxiCenter.deleteMap();
-    this->socket->sendData("EndCommunication");
+    string end = "EndCommunication";
+    this->socket->sendData(end, end.size());
     this->socket->reciveData(buffer, 4096);
 
     if (strcmp(buffer, "Finished") == 0) {
-        //todo close and delete  all !!
+        close(this->socket->getSocketDescriptor());
+        delete this->socket;
     }
     free(buffer);
     return;
@@ -168,16 +170,15 @@ Point Management::parseLocation(int id) {
  * saving the driver to the taxi center and attaching a
  * taxi to him
  */
-void Management::parseDriver(string s) { //TODO replece to get num of numbers
-    //set the variavles
+void Management::parseDriver() {
+    //set the variables
     ssize_t n;
     Taxi *t = NULL;
     Driver *d = NULL;
-    int vehicle_id;
     string serial_str;
     char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
-    string input = "1";
-    //cin >> input;
+    string input;
+    cin >> input;
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
 
@@ -204,7 +205,7 @@ void Management::parseDriver(string s) { //TODO replece to get num of numbers
         s.flush();
 
         //send the taxi to client
-        n = this->socket->sendData(serial_str);
+        n = this->socket->sendData(serial_str, serial_str.size());
         d->setTaxi(t);
         this->taxiCenter.addDriverToCenter(d);
     }
@@ -216,7 +217,6 @@ void Management::parseDriver(string s) { //TODO replece to get num of numbers
  * getting the user's string and creating a trip from it
  */
 Trip Management::parseTrip(string s) {
-
     string streamCut;
     stringstream tempStr(s);
     int tripInfo[7];
@@ -231,7 +231,7 @@ Trip Management::parseTrip(string s) {
         } else if (i == 6) {
             tarrif = atof(c);
         } else if (i == 7) {
-            time = strtol(c,NULL,0); //todo will work??
+            time = strtol(c, NULL, 0); //todo will work??
         }
         i++;
     }
@@ -276,7 +276,6 @@ void Management::setLogicAndMap() {
 
     }
     getObstacles();
-    Socket *s = new Udp(true, 5006);
     this->taxiCenter = TaxiCenter(this->lg.createNewMap("Square"), this->socket);
 }
 

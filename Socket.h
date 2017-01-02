@@ -36,6 +36,10 @@ protected:
     bool isServer;
     //the socket descriptor return from sock()
     int socketDescriptor;
+public:
+    int getSocketDescriptor() const;
+
+protected:
     //ip address
     string ip_address;
     int backLog;
@@ -71,7 +75,7 @@ public:
     * The Function operation: sending the input data to the socket         *
     * who connect to this socket. pure virtual method					   *
     ***********************************************************************/
-    virtual int sendData(string data) = 0;
+    virtual int sendData(string data, int length) = 0;
     /***********************************************************************
     * function name: recive												   *
     * The Input: none										               *

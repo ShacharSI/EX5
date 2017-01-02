@@ -25,11 +25,11 @@
  * find the driver on the trip's point
  * if there is no free driver or no driver on point return empty list
  */
-list<Searchable *>* TaxiCenter::sendTrip(Trip t, Driver driver) {
+list<Searchable *> TaxiCenter::sendTrip(Trip t, Driver* driver) {
     this->currentTrip = t;
-    std::list<Searchable *>* list = new std::list<Searchable*>();;
+    std::list<Searchable *> list;
     if (this->notActiveDriver.size() > 0) {
-        *list = this->getClosetTaxi(t, driver);
+        list = this->getClosetTaxi(t, driver);
     }
     return list;
 }
@@ -39,14 +39,14 @@ list<Searchable *>* TaxiCenter::sendTrip(Trip t, Driver driver) {
  * and set thr routh on the taxi on the server's
  * drivers list
  */
-list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver d) {
+list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver* d) {
     Driver *closest = NULL;
     Point start = t.getStartP();
     std::list<Searchable *> routh ;
     //verify that the closet is equal to the driver given by the client
     for (int i = 0; i < this->notActiveDriver.size(); ++i) {
         closest = this->notActiveDriver.front();
-        if (closest->getId() == d.getId()) {
+        if (closest->getId() == d->getId()) {
             break;
         }
         this->notActiveDriver.pop_front();
@@ -57,7 +57,7 @@ list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver d) {
         return routh;
     }
     //verify the driver is in start point
-    if (!(t.getStartP().equals(d.getLocation()))) {
+    if (!(t.getStartP().equals(d->getLocation()))) {
         return routh;
     }
     //calculateRoute the routh
@@ -73,6 +73,7 @@ list<Searchable*> TaxiCenter::calculateDriverRoute(Point startP, Point endP){
     Searchable* end = this->map.findOnGrid(endP);
     std::list<Searchable*> list;
     list = this->searchAlgo->findRouth(start,end);
+    this->map.getStart()->setBeforeBfs(this->map.getL());
     return list;
 }
 
@@ -250,7 +251,8 @@ void TaxiCenter::moveAll() {
             //move here
             d->move();
             //send him go
-            n = this->socket->sendData("Go");
+            string go = "Go";
+            n = this->socket->sendData(go, go.size());
             if (n < 0) {
                 perror("error sending data");
             }
@@ -283,6 +285,7 @@ TaxiCenter::~TaxiCenter() {
         activeDrivers.pop_front();
         delete d;
     }
+    delete this->searchAlgo;
     //todo check if there is more thing to free
 }
 
@@ -292,19 +295,20 @@ TaxiCenter::~TaxiCenter() {
  */
 void TaxiCenter::assignTrip(unsigned int time) {
     long size = this->trips.size();
-    std::list<Searchable *>* list;
+    std::list<Searchable *> list;
     std::string serial_str;
     char *buffer = (char *) malloc(4096 * sizeof(char));
     //getting the trip that is time arrived
     for (int i = 0; i < size; i++) {
         Trip temp = this->trips.back();
         if (temp.getTime() == time) {
+            memset(buffer,0,4096);
             //getting the driver from client
             ssize_t n = this->socket->reciveData(buffer, 4096);
             if (n < 0) {
                 perror("Error in receive");
             }
-            serial_str = buffer;
+
             //deserialize the driver
             Driver *d;
             boost::iostreams::basic_array_source<char> device(buffer, 4096);
@@ -312,7 +316,7 @@ void TaxiCenter::assignTrip(unsigned int time) {
             boost::archive::binary_iarchive ia(s2);
             ia >> d;
 
-            list = this->sendTrip(temp, *d);
+            list = this->sendTrip(temp, d);
 
             //sending back the list for the client
             boost::iostreams::back_insert_device<std::string> inserter(serial_str);
@@ -320,12 +324,12 @@ void TaxiCenter::assignTrip(unsigned int time) {
             boost::archive::binary_oarchive oa(s);
             oa << list; //todo special include for list
             s.flush();
-            n = this->socket->sendData(serial_str); //todo serialize and send routh
+            n = this->socket->sendData(serial_str, serial_str.size()); //todo serialize and send routh
             if (n < 0) {
                 perror("Error in Sendto");
             }
             //if everything was ok the list would not be empty
-            if (list->size() > 0) {
+            if (list.size() > 0) {
                 this->trips.pop();
                 break;
             }

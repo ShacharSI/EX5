@@ -5,8 +5,6 @@
 
 #include <gtest/gtest.h>
 #include "TaxiCenter.h"
-#include "MapFactory.h"
-#include "StandardTaxi.h"
 #include "Logic.h"
 
 /**

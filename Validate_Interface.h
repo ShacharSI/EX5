@@ -7,6 +7,7 @@
 
 
 #include <boost/serialization/access.hpp>
+#include <boost/serialization/assume_abstract.hpp>
 
 /**
  * an interface that who ever is implempenting him checks
@@ -24,5 +25,5 @@ public:
 
     virtual  void validate() = 0;
 };
-
+BOOST_SERIALIZATION_ASSUME_ABSTRACT(Vallidate_Interface);
 #endif //TM_VALIDATE_INTERFACE_H

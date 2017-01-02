@@ -16,6 +16,7 @@ protected:
 
     virtual void TearDown(){
         cout<<"tearingDown";
+        delete d;
     }
 
 public:
@@ -32,6 +33,7 @@ TEST_F(Driver_Test,checkTaxiSetter) {
     Taxi* taxi = new StandardTaxi(3,Taxi::TESLA,Taxi::RED,30);
     d.setTaxi(taxi);
     EXPECT_EQ(taxi,d.getTaxi());
+    delete taxi;
 }
 
 TEST_F(Driver_Test,checkSatisUpdate) {
@@ -58,7 +60,7 @@ TEST_F(Driver_Test,checkLocation){
     t->setLocation(Point(0,1));
     d.setTaxi(t);
     EXPECT_EQ(d.getLocation().equals(Point(0,1)), true);
-
+    delete t;
 }
 
 TEST_F(Driver_Test,inactiveTest){
@@ -85,6 +87,7 @@ TEST_F(Driver_Test,moveTest){
     t->setRouth(list);
     d.move();
     EXPECT_EQ(d.getLocation().equals(Point(2,3)), true);
+    delete t;
     delete(s);
     delete(s1);
 }

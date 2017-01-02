@@ -15,6 +15,7 @@
 #include "Socket.h"
 #include <stdexcept>
 
+
 /**
  * a class that represent a taxi center
  * runs all taxi's
@@ -29,7 +30,7 @@ public:
     ~TaxiCenter();
     TaxiCenter(Map m,Socket* s);
 
-    list<Searchable*>* sendTrip(Trip t,Driver d) ;
+    list<Searchable*> sendTrip(Trip t,Driver* d) ;
 
     Point giveLocation(int id) throw(invalid_argument) ;
 
@@ -60,7 +61,7 @@ private:
     Algorithm *searchAlgo;
     void sendTaxiToLocation(Driver* d);
 
-    list<Searchable*> getClosetTaxi(Trip p,Driver d);
+    list<Searchable*> getClosetTaxi(Trip p,Driver* d);
     list<Searchable*> calculateDriverRoute(Point startP, Point endP);
 
     list<Taxi *> notActiveTaxis;

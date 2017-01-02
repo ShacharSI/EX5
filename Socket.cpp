@@ -36,4 +36,8 @@ Socket::~Socket() {
     close(this->socketDescriptor);
 }
 
+int Socket::getSocketDescriptor() const {
+    return socketDescriptor;
+}
+
 

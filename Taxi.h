@@ -28,6 +28,7 @@ public:
         ar & mnfctr;
         ar & clr;
         ar & tarrif;
+        ar & location;
     }
 
     void validate();

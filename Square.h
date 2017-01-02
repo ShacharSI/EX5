@@ -13,10 +13,17 @@ class Square: public Searchable {
 
 public:
 
+    friend class boost::serialization::access;
+
+    template<class Archive>
+    void serialize(Archive &ar, const unsigned int version) {
+        ar & boost::serialization::base_object<Searchable>(*this);
+        ar &point;
+
+    }
     void setBeforeBfs(std::list<Searchable*> l);
     Square(Point p1);
     Square (int x,int y);
-    Square(Square* s1);
     Square();
     ~Square();
     Point getPoint();
@@ -56,7 +63,6 @@ public:
 
     list<Searchable*> createList();
 
-    bool isObstacleFlag() const;
     bool isVisitLeft() const;
     bool isVisitBottom() const;
     bool isVisitRIght() const;
@@ -66,7 +72,6 @@ private:
 
     int numSon;
     Point point;
-    bool obstacleFlag;
     int bfsVal;
     Square* bfsFather;
     bool visitLeft;

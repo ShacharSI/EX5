@@ -40,7 +40,7 @@ public:
     * The Function operation: sending the input data to the socket         *
     * who connect to this socket.										   *
     ***********************************************************************/
-    int sendData(string data);
+    int sendData(string data, int lrngth);
     /***********************************************************************
     * function name: recive	`											   *
     * The Input: none										               *

@@ -17,6 +17,7 @@ class StandardTaxi: public Taxi {
         ar & boost::serialization::base_object<Taxi>(*this);
     }
 public:
+    ~StandardTaxi();
     void move();
     StandardTaxi();
     StandardTaxi(int idNum,manufacturer mnfctr, color clr,int taarif);

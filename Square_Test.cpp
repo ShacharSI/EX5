@@ -39,7 +39,7 @@ TEST_F(Square_Test,checkGetters){
     EXPECT_EQ(this->s1->isVisitRIght(), false);
     EXPECT_EQ(this->s1->getPoint().equals(Point(1,2)), true);
     EXPECT_EQ(this->s1->getBfsVal(),0);
-    EXPECT_EQ(this->s1->isObstacleFlag(), false);
+
 }
 
 /**
