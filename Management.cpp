@@ -65,7 +65,7 @@ void Management::manage() {
             case 2: {
                 getline(cin, userInput);
                 Trip t = this->parseTrip(userInput);
-                this->taxiCenter.addTrip(t);
+                this->taxiCenter->addTrip(t);
                 break;
             }
                 //create taxi
@@ -73,7 +73,7 @@ void Management::manage() {
                 getline(cin, userInput);
                 Taxi *taxi = this->parseTaxi(userInput);
                 taxi->setLocation(Point(0, 0));
-                this->taxiCenter.addTaxi(taxi);
+                this->taxiCenter->addTaxi(taxi);
                 break;
             }
                 //print the wanted taxi's location
@@ -88,7 +88,7 @@ void Management::manage() {
                 //move all taxi's
             case 9: {
                 this->setClock();
-                this->taxiCenter.moveAll();
+                this->taxiCenter->moveAll();
                 break;
             }
             default:
@@ -103,12 +103,12 @@ void Management::manage() {
         userChoice = atoi(c);
     }
     //close the program and delete all memory
-    this->taxiCenter.deleteMap();
+    this->taxiCenter->deleteMap();
     string end = "EndCommunication";
     this->socket->sendData(end, end.size());
     this->socket->reciveData(buffer, 4096);
 
-    if (strcmp(buffer, "Finished") == 0) {
+    if (strcmp(buffer, "Finished") == 0) { //todo notworking!!!
         close(this->socket->getSocketDescriptor());
         delete this->socket;
     }
@@ -161,7 +161,7 @@ Taxi *Management::parseTaxi(string s) {
  * returns the wanted taxi(by id) location
  */
 Point Management::parseLocation(int id) {
-    return this->taxiCenter.giveLocation(id);
+    return this->taxiCenter->giveLocation(id);
 }
 
 
@@ -196,7 +196,7 @@ void Management::parseDriver() {
         ia >> d;
 
         //attach a taxi to the driver in our list and return the taxi to send to client
-        t = this->taxiCenter.attachTaxiToDriver(d->getVehicle_id());
+        t = this->taxiCenter->attachTaxiToDriver(d->getVehicle_id());
         //serialize the taxi
         boost::iostreams::back_insert_device<std::string> inserter(serial_str);
         boost::iostreams::stream<boost::iostreams::back_insert_device<std::string> > s(inserter);
@@ -207,7 +207,7 @@ void Management::parseDriver() {
         //send the taxi to client
         n = this->socket->sendData(serial_str, serial_str.size());
         d->setTaxi(t);
-        this->taxiCenter.addDriverToCenter(d);
+        this->taxiCenter->addDriverToCenter(d);
     }
 
     free(buffer);
@@ -276,7 +276,7 @@ void Management::setLogicAndMap() {
 
     }
     getObstacles();
-    this->taxiCenter = TaxiCenter(this->lg.createNewMap("Square"), this->socket);
+    this->taxiCenter =new TaxiCenter(this->lg.createNewMap("Square"), this->socket);
 }
 
 /**
@@ -307,7 +307,7 @@ void Management::setClock() {
  * checking if the time of any trip arrived
  */
 void Management::assignTrip() {
-    taxiCenter.assignTrip(this->getTime());
+    taxiCenter->assignTrip(this->getTime());
 }
 
 /**

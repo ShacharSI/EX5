@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/haim/Desktop/clion-2016.3/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/haim6678/Desktop/clion-2016.3.2/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/haim/Desktop/clion-2016.3/bin/cmake/bin/cmake -E remove -f
+RM = /home/haim6678/Desktop/clion-2016.3.2/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/haim/ClionProjects/ex3_tm
+CMAKE_SOURCE_DIR = /home/haim6678/CLionProjects/AP4
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/haim/ClionProjects/ex3_tm/cmake-build-debug
+CMAKE_BINARY_DIR = /home/haim6678/CLionProjects/AP4/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/haim/ClionProjects/ex3_tm/cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/haim/Desktop/clion-2016.3/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/haim6678/Desktop/clion-2016.3.2/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -70,7 +70,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/haim/Desktop/clion-2016.3/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/haim6678/Desktop/clion-2016.3.2/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -78,55 +78,11 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/home/haim/Desktop/clion-2016.3/bin/cmake/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/home/haim/Desktop/clion-2016.3/bin/cmake/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/home/haim/Desktop/clion-2016.3/bin/cmake/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/home/haim/Desktop/clion-2016.3/bin/cmake/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles /home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles /home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -166,58 +122,6 @@ ex3_tm: cmake_check_build_system
 ex3_tm/fast:
 	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/build
 .PHONY : ex3_tm/fast
-
-#=============================================================================
-# Target rules for targets named gmock_main
-
-# Build rule for target.
-gmock_main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gmock_main
-.PHONY : gmock_main
-
-# fast build rule for target.
-gmock_main/fast:
-	$(MAKE) -f lib/googletest-master/googlemock/CMakeFiles/gmock_main.dir/build.make lib/googletest-master/googlemock/CMakeFiles/gmock_main.dir/build
-.PHONY : gmock_main/fast
-
-#=============================================================================
-# Target rules for targets named gmock
-
-# Build rule for target.
-gmock: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gmock
-.PHONY : gmock
-
-# fast build rule for target.
-gmock/fast:
-	$(MAKE) -f lib/googletest-master/googlemock/CMakeFiles/gmock.dir/build.make lib/googletest-master/googlemock/CMakeFiles/gmock.dir/build
-.PHONY : gmock/fast
-
-#=============================================================================
-# Target rules for targets named gtest_main
-
-# Build rule for target.
-gtest_main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gtest_main
-.PHONY : gtest_main
-
-# fast build rule for target.
-gtest_main/fast:
-	$(MAKE) -f lib/googletest-master/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make lib/googletest-master/googlemock/gtest/CMakeFiles/gtest_main.dir/build
-.PHONY : gtest_main/fast
-
-#=============================================================================
-# Target rules for targets named gtest
-
-# Build rule for target.
-gtest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 gtest
-.PHONY : gtest
-
-# fast build rule for target.
-gtest/fast:
-	$(MAKE) -f lib/googletest-master/googlemock/gtest/CMakeFiles/gtest.dir/build.make lib/googletest-master/googlemock/gtest/CMakeFiles/gtest.dir/build
-.PHONY : gtest/fast
 
 Algorithm.o: Algorithm.cpp.o
 
@@ -273,33 +177,6 @@ Bfs.cpp.s:
 	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Bfs.cpp.s
 .PHONY : Bfs.cpp.s
 
-Bfs_Test.o: Bfs_Test.cpp.o
-
-.PHONY : Bfs_Test.o
-
-# target to build an object file
-Bfs_Test.cpp.o:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o
-.PHONY : Bfs_Test.cpp.o
-
-Bfs_Test.i: Bfs_Test.cpp.i
-
-.PHONY : Bfs_Test.i
-
-# target to preprocess a source file
-Bfs_Test.cpp.i:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.i
-.PHONY : Bfs_Test.cpp.i
-
-Bfs_Test.s: Bfs_Test.cpp.s
-
-.PHONY : Bfs_Test.s
-
-# target to generate assembly for a file
-Bfs_Test.cpp.s:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.s
-.PHONY : Bfs_Test.cpp.s
-
 Driver.o: Driver.cpp.o
 
 .PHONY : Driver.o
@@ -326,33 +203,6 @@ Driver.s: Driver.cpp.s
 Driver.cpp.s:
 	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Driver.cpp.s
 .PHONY : Driver.cpp.s
-
-Driver_Test.o: Driver_Test.cpp.o
-
-.PHONY : Driver_Test.o
-
-# target to build an object file
-Driver_Test.cpp.o:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o
-.PHONY : Driver_Test.cpp.o
-
-Driver_Test.i: Driver_Test.cpp.i
-
-.PHONY : Driver_Test.i
-
-# target to preprocess a source file
-Driver_Test.cpp.i:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Driver_Test.cpp.i
-.PHONY : Driver_Test.cpp.i
-
-Driver_Test.s: Driver_Test.cpp.s
-
-.PHONY : Driver_Test.s
-
-# target to generate assembly for a file
-Driver_Test.cpp.s:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Driver_Test.cpp.s
-.PHONY : Driver_Test.cpp.s
 
 Logic.o: Logic.cpp.o
 
@@ -381,33 +231,6 @@ Logic.cpp.s:
 	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Logic.cpp.s
 .PHONY : Logic.cpp.s
 
-Logic_Test.o: Logic_Test.cpp.o
-
-.PHONY : Logic_Test.o
-
-# target to build an object file
-Logic_Test.cpp.o:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o
-.PHONY : Logic_Test.cpp.o
-
-Logic_Test.i: Logic_Test.cpp.i
-
-.PHONY : Logic_Test.i
-
-# target to preprocess a source file
-Logic_Test.cpp.i:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Logic_Test.cpp.i
-.PHONY : Logic_Test.cpp.i
-
-Logic_Test.s: Logic_Test.cpp.s
-
-.PHONY : Logic_Test.s
-
-# target to generate assembly for a file
-Logic_Test.cpp.s:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Logic_Test.cpp.s
-.PHONY : Logic_Test.cpp.s
-
 LuxTaxiFactory.o: LuxTaxiFactory.cpp.o
 
 .PHONY : LuxTaxiFactory.o
@@ -434,33 +257,6 @@ LuxTaxiFactory.s: LuxTaxiFactory.cpp.s
 LuxTaxiFactory.cpp.s:
 	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.s
 .PHONY : LuxTaxiFactory.cpp.s
-
-LuxTaxiFactory_Test.o: LuxTaxiFactory_Test.cpp.o
-
-.PHONY : LuxTaxiFactory_Test.o
-
-# target to build an object file
-LuxTaxiFactory_Test.cpp.o:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o
-.PHONY : LuxTaxiFactory_Test.cpp.o
-
-LuxTaxiFactory_Test.i: LuxTaxiFactory_Test.cpp.i
-
-.PHONY : LuxTaxiFactory_Test.i
-
-# target to preprocess a source file
-LuxTaxiFactory_Test.cpp.i:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.i
-.PHONY : LuxTaxiFactory_Test.cpp.i
-
-LuxTaxiFactory_Test.s: LuxTaxiFactory_Test.cpp.s
-
-.PHONY : LuxTaxiFactory_Test.s
-
-# target to generate assembly for a file
-LuxTaxiFactory_Test.cpp.s:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.s
-.PHONY : LuxTaxiFactory_Test.cpp.s
 
 LuxuryTaxi.o: LuxuryTaxi.cpp.o
 
@@ -516,33 +312,6 @@ Management.cpp.s:
 	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Management.cpp.s
 .PHONY : Management.cpp.s
 
-Management_Test.o: Management_Test.cpp.o
-
-.PHONY : Management_Test.o
-
-# target to build an object file
-Management_Test.cpp.o:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Management_Test.cpp.o
-.PHONY : Management_Test.cpp.o
-
-Management_Test.i: Management_Test.cpp.i
-
-.PHONY : Management_Test.i
-
-# target to preprocess a source file
-Management_Test.cpp.i:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Management_Test.cpp.i
-.PHONY : Management_Test.cpp.i
-
-Management_Test.s: Management_Test.cpp.s
-
-.PHONY : Management_Test.s
-
-# target to generate assembly for a file
-Management_Test.cpp.s:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Management_Test.cpp.s
-.PHONY : Management_Test.cpp.s
-
 Map.o: Map.cpp.o
 
 .PHONY : Map.o
@@ -597,60 +366,6 @@ MapFactory.cpp.s:
 	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/MapFactory.cpp.s
 .PHONY : MapFactory.cpp.s
 
-Map_Factory_Test.o: Map_Factory_Test.cpp.o
-
-.PHONY : Map_Factory_Test.o
-
-# target to build an object file
-Map_Factory_Test.cpp.o:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o
-.PHONY : Map_Factory_Test.cpp.o
-
-Map_Factory_Test.i: Map_Factory_Test.cpp.i
-
-.PHONY : Map_Factory_Test.i
-
-# target to preprocess a source file
-Map_Factory_Test.cpp.i:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.i
-.PHONY : Map_Factory_Test.cpp.i
-
-Map_Factory_Test.s: Map_Factory_Test.cpp.s
-
-.PHONY : Map_Factory_Test.s
-
-# target to generate assembly for a file
-Map_Factory_Test.cpp.s:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.s
-.PHONY : Map_Factory_Test.cpp.s
-
-Map_Tesr.o: Map_Tesr.cpp.o
-
-.PHONY : Map_Tesr.o
-
-# target to build an object file
-Map_Tesr.cpp.o:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o
-.PHONY : Map_Tesr.cpp.o
-
-Map_Tesr.i: Map_Tesr.cpp.i
-
-.PHONY : Map_Tesr.i
-
-# target to preprocess a source file
-Map_Tesr.cpp.i:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.i
-.PHONY : Map_Tesr.cpp.i
-
-Map_Tesr.s: Map_Tesr.cpp.s
-
-.PHONY : Map_Tesr.s
-
-# target to generate assembly for a file
-Map_Tesr.cpp.s:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.s
-.PHONY : Map_Tesr.cpp.s
-
 Passenger.o: Passenger.cpp.o
 
 .PHONY : Passenger.o
@@ -678,33 +393,6 @@ Passenger.cpp.s:
 	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Passenger.cpp.s
 .PHONY : Passenger.cpp.s
 
-Passenger_test.o: Passenger_test.cpp.o
-
-.PHONY : Passenger_test.o
-
-# target to build an object file
-Passenger_test.cpp.o:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o
-.PHONY : Passenger_test.cpp.o
-
-Passenger_test.i: Passenger_test.cpp.i
-
-.PHONY : Passenger_test.i
-
-# target to preprocess a source file
-Passenger_test.cpp.i:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Passenger_test.cpp.i
-.PHONY : Passenger_test.cpp.i
-
-Passenger_test.s: Passenger_test.cpp.s
-
-.PHONY : Passenger_test.s
-
-# target to generate assembly for a file
-Passenger_test.cpp.s:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Passenger_test.cpp.s
-.PHONY : Passenger_test.cpp.s
-
 Point.o: Point.cpp.o
 
 .PHONY : Point.o
@@ -731,33 +419,6 @@ Point.s: Point.cpp.s
 Point.cpp.s:
 	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Point.cpp.s
 .PHONY : Point.cpp.s
-
-Point_Test.o: Point_Test.cpp.o
-
-.PHONY : Point_Test.o
-
-# target to build an object file
-Point_Test.cpp.o:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Point_Test.cpp.o
-.PHONY : Point_Test.cpp.o
-
-Point_Test.i: Point_Test.cpp.i
-
-.PHONY : Point_Test.i
-
-# target to preprocess a source file
-Point_Test.cpp.i:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Point_Test.cpp.i
-.PHONY : Point_Test.cpp.i
-
-Point_Test.s: Point_Test.cpp.s
-
-.PHONY : Point_Test.s
-
-# target to generate assembly for a file
-Point_Test.cpp.s:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Point_Test.cpp.s
-.PHONY : Point_Test.cpp.s
 
 Searchable.o: Searchable.cpp.o
 
@@ -839,33 +500,6 @@ Square.s: Square.cpp.s
 Square.cpp.s:
 	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Square.cpp.s
 .PHONY : Square.cpp.s
-
-Square_Test.o: Square_Test.cpp.o
-
-.PHONY : Square_Test.o
-
-# target to build an object file
-Square_Test.cpp.o:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Square_Test.cpp.o
-.PHONY : Square_Test.cpp.o
-
-Square_Test.i: Square_Test.cpp.i
-
-.PHONY : Square_Test.i
-
-# target to preprocess a source file
-Square_Test.cpp.i:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Square_Test.cpp.i
-.PHONY : Square_Test.cpp.i
-
-Square_Test.s: Square_Test.cpp.s
-
-.PHONY : Square_Test.s
-
-# target to generate assembly for a file
-Square_Test.cpp.s:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Square_Test.cpp.s
-.PHONY : Square_Test.cpp.s
 
 StandardTaxi.o: StandardTaxi.cpp.o
 
@@ -975,33 +609,6 @@ TaxiCenter.cpp.s:
 	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.s
 .PHONY : TaxiCenter.cpp.s
 
-Taxi_Center_Test.o: Taxi_Center_Test.cpp.o
-
-.PHONY : Taxi_Center_Test.o
-
-# target to build an object file
-Taxi_Center_Test.cpp.o:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o
-.PHONY : Taxi_Center_Test.cpp.o
-
-Taxi_Center_Test.i: Taxi_Center_Test.cpp.i
-
-.PHONY : Taxi_Center_Test.i
-
-# target to preprocess a source file
-Taxi_Center_Test.cpp.i:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.i
-.PHONY : Taxi_Center_Test.cpp.i
-
-Taxi_Center_Test.s: Taxi_Center_Test.cpp.s
-
-.PHONY : Taxi_Center_Test.s
-
-# target to generate assembly for a file
-Taxi_Center_Test.cpp.s:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.s
-.PHONY : Taxi_Center_Test.cpp.s
-
 Trip.o: Trip.cpp.o
 
 .PHONY : Trip.o
@@ -1028,33 +635,6 @@ Trip.s: Trip.cpp.s
 Trip.cpp.s:
 	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Trip.cpp.s
 .PHONY : Trip.cpp.s
-
-Trip_Test.o: Trip_Test.cpp.o
-
-.PHONY : Trip_Test.o
-
-# target to build an object file
-Trip_Test.cpp.o:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o
-.PHONY : Trip_Test.cpp.o
-
-Trip_Test.i: Trip_Test.cpp.i
-
-.PHONY : Trip_Test.i
-
-# target to preprocess a source file
-Trip_Test.cpp.i:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Trip_Test.cpp.i
-.PHONY : Trip_Test.cpp.i
-
-Trip_Test.s: Trip_Test.cpp.s
-
-.PHONY : Trip_Test.s
-
-# target to generate assembly for a file
-Trip_Test.cpp.s:
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Trip_Test.cpp.s
-.PHONY : Trip_Test.cpp.s
 
 Udp.o: Udp.cpp.o
 
@@ -1172,75 +752,40 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... list_install_components"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
 	@echo "... ex3_tm"
-	@echo "... gmock_main"
-	@echo "... gmock"
-	@echo "... gtest_main"
-	@echo "... gtest"
 	@echo "... Algorithm.o"
 	@echo "... Algorithm.i"
 	@echo "... Algorithm.s"
 	@echo "... Bfs.o"
 	@echo "... Bfs.i"
 	@echo "... Bfs.s"
-	@echo "... Bfs_Test.o"
-	@echo "... Bfs_Test.i"
-	@echo "... Bfs_Test.s"
 	@echo "... Driver.o"
 	@echo "... Driver.i"
 	@echo "... Driver.s"
-	@echo "... Driver_Test.o"
-	@echo "... Driver_Test.i"
-	@echo "... Driver_Test.s"
 	@echo "... Logic.o"
 	@echo "... Logic.i"
 	@echo "... Logic.s"
-	@echo "... Logic_Test.o"
-	@echo "... Logic_Test.i"
-	@echo "... Logic_Test.s"
 	@echo "... LuxTaxiFactory.o"
 	@echo "... LuxTaxiFactory.i"
 	@echo "... LuxTaxiFactory.s"
-	@echo "... LuxTaxiFactory_Test.o"
-	@echo "... LuxTaxiFactory_Test.i"
-	@echo "... LuxTaxiFactory_Test.s"
 	@echo "... LuxuryTaxi.o"
 	@echo "... LuxuryTaxi.i"
 	@echo "... LuxuryTaxi.s"
 	@echo "... Management.o"
 	@echo "... Management.i"
 	@echo "... Management.s"
-	@echo "... Management_Test.o"
-	@echo "... Management_Test.i"
-	@echo "... Management_Test.s"
 	@echo "... Map.o"
 	@echo "... Map.i"
 	@echo "... Map.s"
 	@echo "... MapFactory.o"
 	@echo "... MapFactory.i"
 	@echo "... MapFactory.s"
-	@echo "... Map_Factory_Test.o"
-	@echo "... Map_Factory_Test.i"
-	@echo "... Map_Factory_Test.s"
-	@echo "... Map_Tesr.o"
-	@echo "... Map_Tesr.i"
-	@echo "... Map_Tesr.s"
 	@echo "... Passenger.o"
 	@echo "... Passenger.i"
 	@echo "... Passenger.s"
-	@echo "... Passenger_test.o"
-	@echo "... Passenger_test.i"
-	@echo "... Passenger_test.s"
 	@echo "... Point.o"
 	@echo "... Point.i"
 	@echo "... Point.s"
-	@echo "... Point_Test.o"
-	@echo "... Point_Test.i"
-	@echo "... Point_Test.s"
 	@echo "... Searchable.o"
 	@echo "... Searchable.i"
 	@echo "... Searchable.s"
@@ -1250,9 +795,6 @@ help:
 	@echo "... Square.o"
 	@echo "... Square.i"
 	@echo "... Square.s"
-	@echo "... Square_Test.o"
-	@echo "... Square_Test.i"
-	@echo "... Square_Test.s"
 	@echo "... StandardTaxi.o"
 	@echo "... StandardTaxi.i"
 	@echo "... StandardTaxi.s"
@@ -1265,15 +807,9 @@ help:
 	@echo "... TaxiCenter.o"
 	@echo "... TaxiCenter.i"
 	@echo "... TaxiCenter.s"
-	@echo "... Taxi_Center_Test.o"
-	@echo "... Taxi_Center_Test.i"
-	@echo "... Taxi_Center_Test.s"
 	@echo "... Trip.o"
 	@echo "... Trip.i"
 	@echo "... Trip.s"
-	@echo "... Trip_Test.o"
-	@echo "... Trip_Test.i"
-	@echo "... Trip_Test.s"
 	@echo "... Udp.o"
 	@echo "... Udp.i"
 	@echo "... Udp.s"

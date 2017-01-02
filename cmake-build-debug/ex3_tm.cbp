@@ -5,87 +5,45 @@
 		<Option title="ex3_tm"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\lib\;CMake Files\lib\googletest-master\;CMake Files\lib\googletest-master\googlemock\;CMake Files\lib\googletest-master\googletest\;CMake Files\lib\googletest-master\googletest\cmake\;"/>
+		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="list_install_components">
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_install_components"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="install">
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 install"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="install/local">
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/local"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="install/strip">
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ex3_tm">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/ex3_tm" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug"/>
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/ex3_tm" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -96,21 +54,19 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 ex3_tm"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 ex3_tm"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ex3_tm/fast">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/ex3_tm" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug"/>
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/ex3_tm" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -121,448 +77,150 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 ex3_tm/fast"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="gmock_main">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/libgmock_main.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 gmock_main"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="gmock_main/fast">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/libgmock_main.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 gmock_main/fast"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="gmock">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/libgmock.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 gmock"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="gmock/fast">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/libgmock.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 gmock/fast"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="gtest_main">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/libgtest_main.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest_main"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="gtest_main/fast">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/libgtest_main.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest_main/fast"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="gtest">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/libgtest.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="gtest/fast">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/libgtest.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest"/>
-				<Option object_output="./"/>
-				<Option type="2"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest/fast"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 ex3_tm/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Algorithm.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Algorithm.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Algorithm.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Algorithm.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Bfs.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Bfs.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Bfs.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Bfs.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Bfs_Test.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Driver.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Driver.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Driver.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Driver.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Logic.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Driver_Test.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Logic.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Logic.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/LuxTaxiFactory.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Logic.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/LuxTaxiFactory.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Logic_Test.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/LuxuryTaxi.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/LuxTaxiFactory.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/LuxuryTaxi.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/LuxTaxiFactory.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Management.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/LuxTaxiFactory_Test.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Management.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/LuxuryTaxi.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Map.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/LuxuryTaxi.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Map.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Management.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/MapFactory.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Management.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/MapFactory.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Management_Test.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Passenger.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Map.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Passenger.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Map.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Point.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/MapFactory.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Point.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/MapFactory.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Searchable.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Map_Factory_Test.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Searchable.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Map_Tesr.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Socket.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Passenger.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Socket.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Passenger.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Square.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Passenger_test.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Square.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Point.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/StandardTaxi.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Point.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/StandardTaxi.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Point_Test.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/StndTaxiFactory.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Searchable.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/StndTaxiFactory.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Searchable.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Taxi.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Socket.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Taxi.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Socket.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/TaxiCenter.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Square.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/TaxiCenter.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Square.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Trip.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Square_Test.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Trip.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/StandardTaxi.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Udp.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/StandardTaxi.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Udp.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/StndTaxiFactory.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Validate_Interface.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/StndTaxiFactory.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Validate_Interface.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Taxi.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/VirtualTaxiFactory.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Taxi.h">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/VirtualTaxiFactory.h">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/TaxiCenter.cpp">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/main.cpp">
 			<Option target="ex3_tm"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/TaxiCenter.h">
-			<Option target="ex3_tm"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Taxi_Center_Test.cpp">
-			<Option target="ex3_tm"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Trip.cpp">
-			<Option target="ex3_tm"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Trip.h">
-			<Option target="ex3_tm"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Trip_Test.cpp">
-			<Option target="ex3_tm"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Udp.cpp">
-			<Option target="ex3_tm"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Udp.h">
-			<Option target="ex3_tm"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Validate_Interface.cpp">
-			<Option target="ex3_tm"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/Validate_Interface.h">
-			<Option target="ex3_tm"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/VirtualTaxiFactory.cpp">
-			<Option target="ex3_tm"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/VirtualTaxiFactory.h">
-			<Option target="ex3_tm"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/src/gmock-all.cc">
-			<Option target="gmock_main"/>
-			<Option target="gmock"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/src/gmock_main.cc">
-			<Option target="gmock_main"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/src/gtest-all.cc">
-			<Option target="gmock_main"/>
-			<Option target="gmock"/>
-			<Option target="gtest"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/src/gtest_main.cc">
-			<Option target="gtest_main"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/main.cpp">
-			<Option target="ex3_tm"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/CMakeLists.txt">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\lib\googletest-master\"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\lib\googletest-master\"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\lib\googletest-master\googlemock\"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\lib\googletest-master\googlemock\"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\lib\googletest-master\googlemock\"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/cmake/internal_utils.cmake">
-			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\cmake\"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/cmake/internal_utils.cmake">
-			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\cmake\"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/cmake/internal_utils.cmake">
-			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\cmake\"/>
-		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/cmake/internal_utils.cmake">
-			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\cmake\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

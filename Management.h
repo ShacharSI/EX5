@@ -17,9 +17,7 @@ class Management {
 private:
     unsigned int clock;
     Logic lg;
-    TaxiCenter taxiCenter;
-
-private:
+    TaxiCenter* taxiCenter;
     void setLogicAndMap();
     vector<int> getSizes();
     Socket* socket;

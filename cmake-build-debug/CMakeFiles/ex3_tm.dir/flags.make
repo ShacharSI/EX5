@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11 -pthread -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include -I/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/include 
+CXX_INCLUDES = 
 

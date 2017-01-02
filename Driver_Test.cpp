@@ -16,7 +16,7 @@ protected:
 
     virtual void TearDown(){
         cout<<"tearingDown";
-        delete d;
+        //delete d;
     }
 
 public:

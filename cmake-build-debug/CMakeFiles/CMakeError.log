@@ -1,24 +1,24 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_74a4c/fast"
-/usr/bin/make -f CMakeFiles/cmTC_74a4c.dir/build.make CMakeFiles/cmTC_74a4c.dir/build
-make[1]: Entering directory '/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_74a4c.dir/CheckSymbolExists.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_74a4c.dir/CheckSymbolExists.c.o   -c /home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_74a4c
-/home/haim/Desktop/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_74a4c.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_74a4c.dir/CheckSymbolExists.c.o  -o cmTC_74a4c -rdynamic 
-CMakeFiles/cmTC_74a4c.dir/CheckSymbolExists.c.o: In function `main':
+Run Build Command:"/usr/bin/make" "cmTC_f130b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f130b.dir/build.make CMakeFiles/cmTC_f130b.dir/build
+make[1]: Entering directory '/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f130b.dir/CheckSymbolExists.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_f130b.dir/CheckSymbolExists.c.o   -c /home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_f130b
+/home/haim6678/Desktop/clion-2016.3.2/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f130b.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_f130b.dir/CheckSymbolExists.c.o  -o cmTC_f130b -rdynamic 
+CMakeFiles/cmTC_f130b.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_74a4c.dir/build.make:97: recipe for target 'cmTC_74a4c' failed
-make[1]: *** [cmTC_74a4c] Error 1
-make[1]: Leaving directory '/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_74a4c/fast' failed
-make: *** [cmTC_74a4c/fast] Error 2
+CMakeFiles/cmTC_f130b.dir/build.make:97: recipe for target 'cmTC_f130b' failed
+make[1]: *** [cmTC_f130b] Error 1
+make[1]: Leaving directory '/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_f130b/fast' failed
+make: *** [cmTC_f130b/fast] Error 2
 
-File /home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
@@ -34,22 +34,22 @@ int main(int argc, char** argv)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_f9013/fast"
-/usr/bin/make -f CMakeFiles/cmTC_f9013.dir/build.make CMakeFiles/cmTC_f9013.dir/build
-make[1]: Entering directory '/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_f9013.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_f9013.dir/CheckFunctionExists.c.o   -c /home/haim/Desktop/clion-2016.3/bin/cmake/share/cmake-3.6/Modules/CheckFunctionExists.c
-Linking C executable cmTC_f9013
-/home/haim/Desktop/clion-2016.3/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f9013.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_f9013.dir/CheckFunctionExists.c.o  -o cmTC_f9013 -rdynamic -lpthreads 
+Run Build Command:"/usr/bin/make" "cmTC_f2be5/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f2be5.dir/build.make CMakeFiles/cmTC_f2be5.dir/build
+make[1]: Entering directory '/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f2be5.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_f2be5.dir/CheckFunctionExists.c.o   -c /home/haim6678/Desktop/clion-2016.3.2/bin/cmake/share/cmake-3.6/Modules/CheckFunctionExists.c
+Linking C executable cmTC_f2be5
+/home/haim6678/Desktop/clion-2016.3.2/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f2be5.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_f2be5.dir/CheckFunctionExists.c.o  -o cmTC_f2be5 -rdynamic -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_f9013.dir/build.make:97: recipe for target 'cmTC_f9013' failed
-make[1]: *** [cmTC_f9013] Error 1
-make[1]: Leaving directory '/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_f9013/fast' failed
-make: *** [cmTC_f9013/fast] Error 2
+CMakeFiles/cmTC_f2be5.dir/build.make:97: recipe for target 'cmTC_f2be5' failed
+make[1]: *** [cmTC_f2be5] Error 1
+make[1]: Leaving directory '/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_f2be5/fast' failed
+make: *** [cmTC_f2be5/fast] Error 2
 
 

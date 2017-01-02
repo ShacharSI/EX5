@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/haim/Desktop/clion-2016.3/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/haim6678/Desktop/clion-2016.3.2/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/haim/Desktop/clion-2016.3/bin/cmake/bin/cmake -E remove -f
+RM = /home/haim6678/Desktop/clion-2016.3.2/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/haim/ClionProjects/ex3_tm
+CMAKE_SOURCE_DIR = /home/haim6678/CLionProjects/AP4
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/haim/ClionProjects/ex3_tm/cmake-build-debug
+CMAKE_BINARY_DIR = /home/haim6678/CLionProjects/AP4/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ex3_tm.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/ex3_tm.dir/flags.make
 
 CMakeFiles/ex3_tm.dir/main.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ex3_tm.dir/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/main.cpp.o -c /home/haim/ClionProjects/ex3_tm/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ex3_tm.dir/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/main.cpp.o -c /home/haim6678/CLionProjects/AP4/main.cpp
 
 CMakeFiles/ex3_tm.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/main.cpp > CMakeFiles/ex3_tm.dir/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/main.cpp > CMakeFiles/ex3_tm.dir/main.cpp.i
 
 CMakeFiles/ex3_tm.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/main.cpp -o CMakeFiles/ex3_tm.dir/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/main.cpp -o CMakeFiles/ex3_tm.dir/main.cpp.s
 
 CMakeFiles/ex3_tm.dir/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/ex3_tm.dir/main.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/main.cpp.
 
 CMakeFiles/ex3_tm.dir/Algorithm.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Algorithm.cpp.o: ../Algorithm.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ex3_tm.dir/Algorithm.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Algorithm.cpp.o -c /home/haim/ClionProjects/ex3_tm/Algorithm.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ex3_tm.dir/Algorithm.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Algorithm.cpp.o -c /home/haim6678/CLionProjects/AP4/Algorithm.cpp
 
 CMakeFiles/ex3_tm.dir/Algorithm.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Algorithm.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Algorithm.cpp > CMakeFiles/ex3_tm.dir/Algorithm.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Algorithm.cpp > CMakeFiles/ex3_tm.dir/Algorithm.cpp.i
 
 CMakeFiles/ex3_tm.dir/Algorithm.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Algorithm.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Algorithm.cpp -o CMakeFiles/ex3_tm.dir/Algorithm.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Algorithm.cpp -o CMakeFiles/ex3_tm.dir/Algorithm.cpp.s
 
 CMakeFiles/ex3_tm.dir/Algorithm.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/ex3_tm.dir/Algorithm.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Algo
 
 CMakeFiles/ex3_tm.dir/Bfs.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Bfs.cpp.o: ../Bfs.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ex3_tm.dir/Bfs.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Bfs.cpp.o -c /home/haim/ClionProjects/ex3_tm/Bfs.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ex3_tm.dir/Bfs.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Bfs.cpp.o -c /home/haim6678/CLionProjects/AP4/Bfs.cpp
 
 CMakeFiles/ex3_tm.dir/Bfs.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Bfs.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Bfs.cpp > CMakeFiles/ex3_tm.dir/Bfs.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Bfs.cpp > CMakeFiles/ex3_tm.dir/Bfs.cpp.i
 
 CMakeFiles/ex3_tm.dir/Bfs.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Bfs.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Bfs.cpp -o CMakeFiles/ex3_tm.dir/Bfs.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Bfs.cpp -o CMakeFiles/ex3_tm.dir/Bfs.cpp.s
 
 CMakeFiles/ex3_tm.dir/Bfs.cpp.o.requires:
 
@@ -129,42 +129,18 @@ CMakeFiles/ex3_tm.dir/Bfs.cpp.o.provides: CMakeFiles/ex3_tm.dir/Bfs.cpp.o.requir
 CMakeFiles/ex3_tm.dir/Bfs.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Bfs.cpp.o
 
 
-CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
-CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o: ../Bfs_Test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o -c /home/haim/ClionProjects/ex3_tm/Bfs_Test.cpp
-
-CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Bfs_Test.cpp > CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.i
-
-CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Bfs_Test.cpp -o CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.s
-
-CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o.requires:
-
-.PHONY : CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o.requires
-
-CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o.provides: CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o.provides.build
-.PHONY : CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o.provides
-
-CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o
-
-
 CMakeFiles/ex3_tm.dir/Driver.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Driver.cpp.o: ../Driver.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ex3_tm.dir/Driver.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Driver.cpp.o -c /home/haim/ClionProjects/ex3_tm/Driver.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ex3_tm.dir/Driver.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Driver.cpp.o -c /home/haim6678/CLionProjects/AP4/Driver.cpp
 
 CMakeFiles/ex3_tm.dir/Driver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Driver.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Driver.cpp > CMakeFiles/ex3_tm.dir/Driver.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Driver.cpp > CMakeFiles/ex3_tm.dir/Driver.cpp.i
 
 CMakeFiles/ex3_tm.dir/Driver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Driver.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Driver.cpp -o CMakeFiles/ex3_tm.dir/Driver.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Driver.cpp -o CMakeFiles/ex3_tm.dir/Driver.cpp.s
 
 CMakeFiles/ex3_tm.dir/Driver.cpp.o.requires:
 
@@ -177,42 +153,18 @@ CMakeFiles/ex3_tm.dir/Driver.cpp.o.provides: CMakeFiles/ex3_tm.dir/Driver.cpp.o.
 CMakeFiles/ex3_tm.dir/Driver.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Driver.cpp.o
 
 
-CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
-CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o: ../Driver_Test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o -c /home/haim/ClionProjects/ex3_tm/Driver_Test.cpp
-
-CMakeFiles/ex3_tm.dir/Driver_Test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Driver_Test.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Driver_Test.cpp > CMakeFiles/ex3_tm.dir/Driver_Test.cpp.i
-
-CMakeFiles/ex3_tm.dir/Driver_Test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Driver_Test.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Driver_Test.cpp -o CMakeFiles/ex3_tm.dir/Driver_Test.cpp.s
-
-CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o.requires:
-
-.PHONY : CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o.requires
-
-CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o.provides: CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o.provides.build
-.PHONY : CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o.provides
-
-CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o
-
-
 CMakeFiles/ex3_tm.dir/Logic.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Logic.cpp.o: ../Logic.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ex3_tm.dir/Logic.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Logic.cpp.o -c /home/haim/ClionProjects/ex3_tm/Logic.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ex3_tm.dir/Logic.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Logic.cpp.o -c /home/haim6678/CLionProjects/AP4/Logic.cpp
 
 CMakeFiles/ex3_tm.dir/Logic.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Logic.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Logic.cpp > CMakeFiles/ex3_tm.dir/Logic.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Logic.cpp > CMakeFiles/ex3_tm.dir/Logic.cpp.i
 
 CMakeFiles/ex3_tm.dir/Logic.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Logic.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Logic.cpp -o CMakeFiles/ex3_tm.dir/Logic.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Logic.cpp -o CMakeFiles/ex3_tm.dir/Logic.cpp.s
 
 CMakeFiles/ex3_tm.dir/Logic.cpp.o.requires:
 
@@ -225,42 +177,18 @@ CMakeFiles/ex3_tm.dir/Logic.cpp.o.provides: CMakeFiles/ex3_tm.dir/Logic.cpp.o.re
 CMakeFiles/ex3_tm.dir/Logic.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Logic.cpp.o
 
 
-CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
-CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o: ../Logic_Test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o -c /home/haim/ClionProjects/ex3_tm/Logic_Test.cpp
-
-CMakeFiles/ex3_tm.dir/Logic_Test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Logic_Test.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Logic_Test.cpp > CMakeFiles/ex3_tm.dir/Logic_Test.cpp.i
-
-CMakeFiles/ex3_tm.dir/Logic_Test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Logic_Test.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Logic_Test.cpp -o CMakeFiles/ex3_tm.dir/Logic_Test.cpp.s
-
-CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o.requires:
-
-.PHONY : CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o.requires
-
-CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o.provides: CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o.provides.build
-.PHONY : CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o.provides
-
-CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o
-
-
 CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.o: ../LuxTaxiFactory.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.o -c /home/haim/ClionProjects/ex3_tm/LuxTaxiFactory.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.o -c /home/haim6678/CLionProjects/AP4/LuxTaxiFactory.cpp
 
 CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/LuxTaxiFactory.cpp > CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/LuxTaxiFactory.cpp > CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.i
 
 CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/LuxTaxiFactory.cpp -o CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/LuxTaxiFactory.cpp -o CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.s
 
 CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.o.requires:
 
@@ -273,42 +201,18 @@ CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.o.provides: CMakeFiles/ex3_tm.dir/LuxTa
 CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.o
 
 
-CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
-CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o: ../LuxTaxiFactory_Test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o -c /home/haim/ClionProjects/ex3_tm/LuxTaxiFactory_Test.cpp
-
-CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/LuxTaxiFactory_Test.cpp > CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.i
-
-CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/LuxTaxiFactory_Test.cpp -o CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.s
-
-CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o.requires:
-
-.PHONY : CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o.requires
-
-CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o.provides: CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o.provides.build
-.PHONY : CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o.provides
-
-CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o
-
-
 CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.o: ../LuxuryTaxi.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.o -c /home/haim/ClionProjects/ex3_tm/LuxuryTaxi.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.o -c /home/haim6678/CLionProjects/AP4/LuxuryTaxi.cpp
 
 CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/LuxuryTaxi.cpp > CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/LuxuryTaxi.cpp > CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.i
 
 CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/LuxuryTaxi.cpp -o CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/LuxuryTaxi.cpp -o CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.s
 
 CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.o.requires:
 
@@ -323,16 +227,16 @@ CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Lux
 
 CMakeFiles/ex3_tm.dir/Management.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Management.cpp.o: ../Management.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ex3_tm.dir/Management.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Management.cpp.o -c /home/haim/ClionProjects/ex3_tm/Management.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ex3_tm.dir/Management.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Management.cpp.o -c /home/haim6678/CLionProjects/AP4/Management.cpp
 
 CMakeFiles/ex3_tm.dir/Management.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Management.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Management.cpp > CMakeFiles/ex3_tm.dir/Management.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Management.cpp > CMakeFiles/ex3_tm.dir/Management.cpp.i
 
 CMakeFiles/ex3_tm.dir/Management.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Management.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Management.cpp -o CMakeFiles/ex3_tm.dir/Management.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Management.cpp -o CMakeFiles/ex3_tm.dir/Management.cpp.s
 
 CMakeFiles/ex3_tm.dir/Management.cpp.o.requires:
 
@@ -347,16 +251,16 @@ CMakeFiles/ex3_tm.dir/Management.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Man
 
 CMakeFiles/ex3_tm.dir/Map.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Map.cpp.o: ../Map.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/ex3_tm.dir/Map.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Map.cpp.o -c /home/haim/ClionProjects/ex3_tm/Map.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ex3_tm.dir/Map.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Map.cpp.o -c /home/haim6678/CLionProjects/AP4/Map.cpp
 
 CMakeFiles/ex3_tm.dir/Map.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Map.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Map.cpp > CMakeFiles/ex3_tm.dir/Map.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Map.cpp > CMakeFiles/ex3_tm.dir/Map.cpp.i
 
 CMakeFiles/ex3_tm.dir/Map.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Map.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Map.cpp -o CMakeFiles/ex3_tm.dir/Map.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Map.cpp -o CMakeFiles/ex3_tm.dir/Map.cpp.s
 
 CMakeFiles/ex3_tm.dir/Map.cpp.o.requires:
 
@@ -371,16 +275,16 @@ CMakeFiles/ex3_tm.dir/Map.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Map.cpp.o
 
 CMakeFiles/ex3_tm.dir/MapFactory.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/MapFactory.cpp.o: ../MapFactory.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/ex3_tm.dir/MapFactory.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/MapFactory.cpp.o -c /home/haim/ClionProjects/ex3_tm/MapFactory.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ex3_tm.dir/MapFactory.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/MapFactory.cpp.o -c /home/haim6678/CLionProjects/AP4/MapFactory.cpp
 
 CMakeFiles/ex3_tm.dir/MapFactory.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/MapFactory.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/MapFactory.cpp > CMakeFiles/ex3_tm.dir/MapFactory.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/MapFactory.cpp > CMakeFiles/ex3_tm.dir/MapFactory.cpp.i
 
 CMakeFiles/ex3_tm.dir/MapFactory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/MapFactory.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/MapFactory.cpp -o CMakeFiles/ex3_tm.dir/MapFactory.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/MapFactory.cpp -o CMakeFiles/ex3_tm.dir/MapFactory.cpp.s
 
 CMakeFiles/ex3_tm.dir/MapFactory.cpp.o.requires:
 
@@ -393,66 +297,18 @@ CMakeFiles/ex3_tm.dir/MapFactory.cpp.o.provides: CMakeFiles/ex3_tm.dir/MapFactor
 CMakeFiles/ex3_tm.dir/MapFactory.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/MapFactory.cpp.o
 
 
-CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
-CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o: ../Map_Factory_Test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o -c /home/haim/ClionProjects/ex3_tm/Map_Factory_Test.cpp
-
-CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Map_Factory_Test.cpp > CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.i
-
-CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Map_Factory_Test.cpp -o CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.s
-
-CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o.requires:
-
-.PHONY : CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o.requires
-
-CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o.provides: CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o.provides.build
-.PHONY : CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o.provides
-
-CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o
-
-
-CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
-CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o: ../Map_Tesr.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o -c /home/haim/ClionProjects/ex3_tm/Map_Tesr.cpp
-
-CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Map_Tesr.cpp > CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.i
-
-CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Map_Tesr.cpp -o CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.s
-
-CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o.requires:
-
-.PHONY : CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o.requires
-
-CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o.provides: CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o.provides.build
-.PHONY : CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o.provides
-
-CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o
-
-
 CMakeFiles/ex3_tm.dir/Passenger.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Passenger.cpp.o: ../Passenger.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/ex3_tm.dir/Passenger.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Passenger.cpp.o -c /home/haim/ClionProjects/ex3_tm/Passenger.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ex3_tm.dir/Passenger.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Passenger.cpp.o -c /home/haim6678/CLionProjects/AP4/Passenger.cpp
 
 CMakeFiles/ex3_tm.dir/Passenger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Passenger.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Passenger.cpp > CMakeFiles/ex3_tm.dir/Passenger.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Passenger.cpp > CMakeFiles/ex3_tm.dir/Passenger.cpp.i
 
 CMakeFiles/ex3_tm.dir/Passenger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Passenger.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Passenger.cpp -o CMakeFiles/ex3_tm.dir/Passenger.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Passenger.cpp -o CMakeFiles/ex3_tm.dir/Passenger.cpp.s
 
 CMakeFiles/ex3_tm.dir/Passenger.cpp.o.requires:
 
@@ -465,42 +321,18 @@ CMakeFiles/ex3_tm.dir/Passenger.cpp.o.provides: CMakeFiles/ex3_tm.dir/Passenger.
 CMakeFiles/ex3_tm.dir/Passenger.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Passenger.cpp.o
 
 
-CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
-CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o: ../Passenger_test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o -c /home/haim/ClionProjects/ex3_tm/Passenger_test.cpp
-
-CMakeFiles/ex3_tm.dir/Passenger_test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Passenger_test.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Passenger_test.cpp > CMakeFiles/ex3_tm.dir/Passenger_test.cpp.i
-
-CMakeFiles/ex3_tm.dir/Passenger_test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Passenger_test.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Passenger_test.cpp -o CMakeFiles/ex3_tm.dir/Passenger_test.cpp.s
-
-CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o.requires:
-
-.PHONY : CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o.requires
-
-CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o.provides: CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o.provides.build
-.PHONY : CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o.provides
-
-CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o
-
-
 CMakeFiles/ex3_tm.dir/Point.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Point.cpp.o: ../Point.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/ex3_tm.dir/Point.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Point.cpp.o -c /home/haim/ClionProjects/ex3_tm/Point.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ex3_tm.dir/Point.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Point.cpp.o -c /home/haim6678/CLionProjects/AP4/Point.cpp
 
 CMakeFiles/ex3_tm.dir/Point.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Point.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Point.cpp > CMakeFiles/ex3_tm.dir/Point.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Point.cpp > CMakeFiles/ex3_tm.dir/Point.cpp.i
 
 CMakeFiles/ex3_tm.dir/Point.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Point.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Point.cpp -o CMakeFiles/ex3_tm.dir/Point.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Point.cpp -o CMakeFiles/ex3_tm.dir/Point.cpp.s
 
 CMakeFiles/ex3_tm.dir/Point.cpp.o.requires:
 
@@ -513,42 +345,18 @@ CMakeFiles/ex3_tm.dir/Point.cpp.o.provides: CMakeFiles/ex3_tm.dir/Point.cpp.o.re
 CMakeFiles/ex3_tm.dir/Point.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Point.cpp.o
 
 
-CMakeFiles/ex3_tm.dir/Point_Test.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
-CMakeFiles/ex3_tm.dir/Point_Test.cpp.o: ../Point_Test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/ex3_tm.dir/Point_Test.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Point_Test.cpp.o -c /home/haim/ClionProjects/ex3_tm/Point_Test.cpp
-
-CMakeFiles/ex3_tm.dir/Point_Test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Point_Test.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Point_Test.cpp > CMakeFiles/ex3_tm.dir/Point_Test.cpp.i
-
-CMakeFiles/ex3_tm.dir/Point_Test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Point_Test.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Point_Test.cpp -o CMakeFiles/ex3_tm.dir/Point_Test.cpp.s
-
-CMakeFiles/ex3_tm.dir/Point_Test.cpp.o.requires:
-
-.PHONY : CMakeFiles/ex3_tm.dir/Point_Test.cpp.o.requires
-
-CMakeFiles/ex3_tm.dir/Point_Test.cpp.o.provides: CMakeFiles/ex3_tm.dir/Point_Test.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Point_Test.cpp.o.provides.build
-.PHONY : CMakeFiles/ex3_tm.dir/Point_Test.cpp.o.provides
-
-CMakeFiles/ex3_tm.dir/Point_Test.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Point_Test.cpp.o
-
-
 CMakeFiles/ex3_tm.dir/Searchable.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Searchable.cpp.o: ../Searchable.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/ex3_tm.dir/Searchable.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Searchable.cpp.o -c /home/haim/ClionProjects/ex3_tm/Searchable.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/ex3_tm.dir/Searchable.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Searchable.cpp.o -c /home/haim6678/CLionProjects/AP4/Searchable.cpp
 
 CMakeFiles/ex3_tm.dir/Searchable.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Searchable.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Searchable.cpp > CMakeFiles/ex3_tm.dir/Searchable.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Searchable.cpp > CMakeFiles/ex3_tm.dir/Searchable.cpp.i
 
 CMakeFiles/ex3_tm.dir/Searchable.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Searchable.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Searchable.cpp -o CMakeFiles/ex3_tm.dir/Searchable.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Searchable.cpp -o CMakeFiles/ex3_tm.dir/Searchable.cpp.s
 
 CMakeFiles/ex3_tm.dir/Searchable.cpp.o.requires:
 
@@ -563,16 +371,16 @@ CMakeFiles/ex3_tm.dir/Searchable.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Sea
 
 CMakeFiles/ex3_tm.dir/Square.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Square.cpp.o: ../Square.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/ex3_tm.dir/Square.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Square.cpp.o -c /home/haim/ClionProjects/ex3_tm/Square.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/ex3_tm.dir/Square.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Square.cpp.o -c /home/haim6678/CLionProjects/AP4/Square.cpp
 
 CMakeFiles/ex3_tm.dir/Square.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Square.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Square.cpp > CMakeFiles/ex3_tm.dir/Square.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Square.cpp > CMakeFiles/ex3_tm.dir/Square.cpp.i
 
 CMakeFiles/ex3_tm.dir/Square.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Square.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Square.cpp -o CMakeFiles/ex3_tm.dir/Square.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Square.cpp -o CMakeFiles/ex3_tm.dir/Square.cpp.s
 
 CMakeFiles/ex3_tm.dir/Square.cpp.o.requires:
 
@@ -585,42 +393,18 @@ CMakeFiles/ex3_tm.dir/Square.cpp.o.provides: CMakeFiles/ex3_tm.dir/Square.cpp.o.
 CMakeFiles/ex3_tm.dir/Square.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Square.cpp.o
 
 
-CMakeFiles/ex3_tm.dir/Square_Test.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
-CMakeFiles/ex3_tm.dir/Square_Test.cpp.o: ../Square_Test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/ex3_tm.dir/Square_Test.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Square_Test.cpp.o -c /home/haim/ClionProjects/ex3_tm/Square_Test.cpp
-
-CMakeFiles/ex3_tm.dir/Square_Test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Square_Test.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Square_Test.cpp > CMakeFiles/ex3_tm.dir/Square_Test.cpp.i
-
-CMakeFiles/ex3_tm.dir/Square_Test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Square_Test.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Square_Test.cpp -o CMakeFiles/ex3_tm.dir/Square_Test.cpp.s
-
-CMakeFiles/ex3_tm.dir/Square_Test.cpp.o.requires:
-
-.PHONY : CMakeFiles/ex3_tm.dir/Square_Test.cpp.o.requires
-
-CMakeFiles/ex3_tm.dir/Square_Test.cpp.o.provides: CMakeFiles/ex3_tm.dir/Square_Test.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Square_Test.cpp.o.provides.build
-.PHONY : CMakeFiles/ex3_tm.dir/Square_Test.cpp.o.provides
-
-CMakeFiles/ex3_tm.dir/Square_Test.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Square_Test.cpp.o
-
-
 CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.o: ../StandardTaxi.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.o -c /home/haim/ClionProjects/ex3_tm/StandardTaxi.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.o -c /home/haim6678/CLionProjects/AP4/StandardTaxi.cpp
 
 CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/StandardTaxi.cpp > CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/StandardTaxi.cpp > CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.i
 
 CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/StandardTaxi.cpp -o CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/StandardTaxi.cpp -o CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.s
 
 CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.o.requires:
 
@@ -635,16 +419,16 @@ CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/S
 
 CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.o: ../StndTaxiFactory.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.o -c /home/haim/ClionProjects/ex3_tm/StndTaxiFactory.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.o -c /home/haim6678/CLionProjects/AP4/StndTaxiFactory.cpp
 
 CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/StndTaxiFactory.cpp > CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/StndTaxiFactory.cpp > CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.i
 
 CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/StndTaxiFactory.cpp -o CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/StndTaxiFactory.cpp -o CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.s
 
 CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.o.requires:
 
@@ -659,16 +443,16 @@ CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.o.provides.build: CMakeFiles/ex3_tm.di
 
 CMakeFiles/ex3_tm.dir/Taxi.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Taxi.cpp.o: ../Taxi.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/ex3_tm.dir/Taxi.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Taxi.cpp.o -c /home/haim/ClionProjects/ex3_tm/Taxi.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/ex3_tm.dir/Taxi.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Taxi.cpp.o -c /home/haim6678/CLionProjects/AP4/Taxi.cpp
 
 CMakeFiles/ex3_tm.dir/Taxi.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Taxi.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Taxi.cpp > CMakeFiles/ex3_tm.dir/Taxi.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Taxi.cpp > CMakeFiles/ex3_tm.dir/Taxi.cpp.i
 
 CMakeFiles/ex3_tm.dir/Taxi.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Taxi.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Taxi.cpp -o CMakeFiles/ex3_tm.dir/Taxi.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Taxi.cpp -o CMakeFiles/ex3_tm.dir/Taxi.cpp.s
 
 CMakeFiles/ex3_tm.dir/Taxi.cpp.o.requires:
 
@@ -683,16 +467,16 @@ CMakeFiles/ex3_tm.dir/Taxi.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Taxi.cpp.
 
 CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o: ../TaxiCenter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o -c /home/haim/ClionProjects/ex3_tm/TaxiCenter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o -c /home/haim6678/CLionProjects/AP4/TaxiCenter.cpp
 
 CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/TaxiCenter.cpp > CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/TaxiCenter.cpp > CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.i
 
 CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/TaxiCenter.cpp -o CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/TaxiCenter.cpp -o CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.s
 
 CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o.requires:
 
@@ -705,42 +489,18 @@ CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o.provides: CMakeFiles/ex3_tm.dir/TaxiCente
 CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o
 
 
-CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
-CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o: ../Taxi_Center_Test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o -c /home/haim/ClionProjects/ex3_tm/Taxi_Center_Test.cpp
-
-CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Taxi_Center_Test.cpp > CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.i
-
-CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Taxi_Center_Test.cpp -o CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.s
-
-CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o.requires:
-
-.PHONY : CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o.requires
-
-CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o.provides: CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o.provides.build
-.PHONY : CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o.provides
-
-CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o
-
-
 CMakeFiles/ex3_tm.dir/Trip.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Trip.cpp.o: ../Trip.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/ex3_tm.dir/Trip.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Trip.cpp.o -c /home/haim/ClionProjects/ex3_tm/Trip.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/ex3_tm.dir/Trip.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Trip.cpp.o -c /home/haim6678/CLionProjects/AP4/Trip.cpp
 
 CMakeFiles/ex3_tm.dir/Trip.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Trip.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Trip.cpp > CMakeFiles/ex3_tm.dir/Trip.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Trip.cpp > CMakeFiles/ex3_tm.dir/Trip.cpp.i
 
 CMakeFiles/ex3_tm.dir/Trip.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Trip.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Trip.cpp -o CMakeFiles/ex3_tm.dir/Trip.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Trip.cpp -o CMakeFiles/ex3_tm.dir/Trip.cpp.s
 
 CMakeFiles/ex3_tm.dir/Trip.cpp.o.requires:
 
@@ -753,42 +513,18 @@ CMakeFiles/ex3_tm.dir/Trip.cpp.o.provides: CMakeFiles/ex3_tm.dir/Trip.cpp.o.requ
 CMakeFiles/ex3_tm.dir/Trip.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Trip.cpp.o
 
 
-CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
-CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o: ../Trip_Test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o -c /home/haim/ClionProjects/ex3_tm/Trip_Test.cpp
-
-CMakeFiles/ex3_tm.dir/Trip_Test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Trip_Test.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Trip_Test.cpp > CMakeFiles/ex3_tm.dir/Trip_Test.cpp.i
-
-CMakeFiles/ex3_tm.dir/Trip_Test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Trip_Test.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Trip_Test.cpp -o CMakeFiles/ex3_tm.dir/Trip_Test.cpp.s
-
-CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o.requires:
-
-.PHONY : CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o.requires
-
-CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o.provides: CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o.provides.build
-.PHONY : CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o.provides
-
-CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o
-
-
 CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o: ../Validate_Interface.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o -c /home/haim/ClionProjects/ex3_tm/Validate_Interface.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o -c /home/haim6678/CLionProjects/AP4/Validate_Interface.cpp
 
 CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Validate_Interface.cpp > CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Validate_Interface.cpp > CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.i
 
 CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Validate_Interface.cpp -o CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Validate_Interface.cpp -o CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.s
 
 CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o.requires:
 
@@ -803,16 +539,16 @@ CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o.provides.build: CMakeFiles/ex3_tm
 
 CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o: ../VirtualTaxiFactory.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o -c /home/haim/ClionProjects/ex3_tm/VirtualTaxiFactory.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o -c /home/haim6678/CLionProjects/AP4/VirtualTaxiFactory.cpp
 
 CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/VirtualTaxiFactory.cpp > CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/VirtualTaxiFactory.cpp > CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.i
 
 CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/VirtualTaxiFactory.cpp -o CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/VirtualTaxiFactory.cpp -o CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.s
 
 CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o.requires:
 
@@ -825,42 +561,18 @@ CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o.provides: CMakeFiles/ex3_tm.dir/V
 CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o
 
 
-CMakeFiles/ex3_tm.dir/Management_Test.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
-CMakeFiles/ex3_tm.dir/Management_Test.cpp.o: ../Management_Test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/ex3_tm.dir/Management_Test.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Management_Test.cpp.o -c /home/haim/ClionProjects/ex3_tm/Management_Test.cpp
-
-CMakeFiles/ex3_tm.dir/Management_Test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Management_Test.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Management_Test.cpp > CMakeFiles/ex3_tm.dir/Management_Test.cpp.i
-
-CMakeFiles/ex3_tm.dir/Management_Test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Management_Test.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Management_Test.cpp -o CMakeFiles/ex3_tm.dir/Management_Test.cpp.s
-
-CMakeFiles/ex3_tm.dir/Management_Test.cpp.o.requires:
-
-.PHONY : CMakeFiles/ex3_tm.dir/Management_Test.cpp.o.requires
-
-CMakeFiles/ex3_tm.dir/Management_Test.cpp.o.provides: CMakeFiles/ex3_tm.dir/Management_Test.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ex3_tm.dir/build.make CMakeFiles/ex3_tm.dir/Management_Test.cpp.o.provides.build
-.PHONY : CMakeFiles/ex3_tm.dir/Management_Test.cpp.o.provides
-
-CMakeFiles/ex3_tm.dir/Management_Test.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Management_Test.cpp.o
-
-
 CMakeFiles/ex3_tm.dir/Socket.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Socket.cpp.o: ../Socket.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/ex3_tm.dir/Socket.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Socket.cpp.o -c /home/haim/ClionProjects/ex3_tm/Socket.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/ex3_tm.dir/Socket.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Socket.cpp.o -c /home/haim6678/CLionProjects/AP4/Socket.cpp
 
 CMakeFiles/ex3_tm.dir/Socket.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Socket.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Socket.cpp > CMakeFiles/ex3_tm.dir/Socket.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Socket.cpp > CMakeFiles/ex3_tm.dir/Socket.cpp.i
 
 CMakeFiles/ex3_tm.dir/Socket.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Socket.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Socket.cpp -o CMakeFiles/ex3_tm.dir/Socket.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Socket.cpp -o CMakeFiles/ex3_tm.dir/Socket.cpp.s
 
 CMakeFiles/ex3_tm.dir/Socket.cpp.o.requires:
 
@@ -875,16 +587,16 @@ CMakeFiles/ex3_tm.dir/Socket.cpp.o.provides.build: CMakeFiles/ex3_tm.dir/Socket.
 
 CMakeFiles/ex3_tm.dir/Udp.cpp.o: CMakeFiles/ex3_tm.dir/flags.make
 CMakeFiles/ex3_tm.dir/Udp.cpp.o: ../Udp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/ex3_tm.dir/Udp.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Udp.cpp.o -c /home/haim/ClionProjects/ex3_tm/Udp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/ex3_tm.dir/Udp.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ex3_tm.dir/Udp.cpp.o -c /home/haim6678/CLionProjects/AP4/Udp.cpp
 
 CMakeFiles/ex3_tm.dir/Udp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ex3_tm.dir/Udp.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim/ClionProjects/ex3_tm/Udp.cpp > CMakeFiles/ex3_tm.dir/Udp.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/haim6678/CLionProjects/AP4/Udp.cpp > CMakeFiles/ex3_tm.dir/Udp.cpp.i
 
 CMakeFiles/ex3_tm.dir/Udp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ex3_tm.dir/Udp.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim/ClionProjects/ex3_tm/Udp.cpp -o CMakeFiles/ex3_tm.dir/Udp.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/haim6678/CLionProjects/AP4/Udp.cpp -o CMakeFiles/ex3_tm.dir/Udp.cpp.s
 
 CMakeFiles/ex3_tm.dir/Udp.cpp.o.requires:
 
@@ -902,36 +614,24 @@ ex3_tm_OBJECTS = \
 "CMakeFiles/ex3_tm.dir/main.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Algorithm.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Bfs.cpp.o" \
-"CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Driver.cpp.o" \
-"CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Logic.cpp.o" \
-"CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o" \
 "CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.o" \
-"CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o" \
 "CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Management.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Map.cpp.o" \
 "CMakeFiles/ex3_tm.dir/MapFactory.cpp.o" \
-"CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o" \
-"CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Passenger.cpp.o" \
-"CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Point.cpp.o" \
-"CMakeFiles/ex3_tm.dir/Point_Test.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Searchable.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Square.cpp.o" \
-"CMakeFiles/ex3_tm.dir/Square_Test.cpp.o" \
 "CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.o" \
 "CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Taxi.cpp.o" \
 "CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o" \
-"CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Trip.cpp.o" \
-"CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o" \
 "CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o" \
-"CMakeFiles/ex3_tm.dir/Management_Test.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Socket.cpp.o" \
 "CMakeFiles/ex3_tm.dir/Udp.cpp.o"
 
@@ -941,46 +641,31 @@ ex3_tm_EXTERNAL_OBJECTS =
 ex3_tm: CMakeFiles/ex3_tm.dir/main.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Algorithm.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Bfs.cpp.o
-ex3_tm: CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Driver.cpp.o
-ex3_tm: CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Logic.cpp.o
-ex3_tm: CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.o
-ex3_tm: CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Management.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Map.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/MapFactory.cpp.o
-ex3_tm: CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o
-ex3_tm: CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Passenger.cpp.o
-ex3_tm: CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Point.cpp.o
-ex3_tm: CMakeFiles/ex3_tm.dir/Point_Test.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Searchable.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Square.cpp.o
-ex3_tm: CMakeFiles/ex3_tm.dir/Square_Test.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Taxi.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o
-ex3_tm: CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Trip.cpp.o
-ex3_tm: CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o
-ex3_tm: CMakeFiles/ex3_tm.dir/Management_Test.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Socket.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/Udp.cpp.o
 ex3_tm: CMakeFiles/ex3_tm.dir/build.make
-ex3_tm: lib/googletest-master/googlemock/gtest/libgtest.a
-ex3_tm: lib/googletest-master/googlemock/gtest/libgtest_main.a
 ex3_tm: /usr/lib/x86_64-linux-gnu/libboost_serialization.so
 ex3_tm: /usr/lib/x86_64-linux-gnu/libboost_system.so
-ex3_tm: lib/googletest-master/googlemock/gtest/libgtest.a
 ex3_tm: CMakeFiles/ex3_tm.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Linking CXX executable ex3_tm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX executable ex3_tm"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ex3_tm.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -991,36 +676,24 @@ CMakeFiles/ex3_tm.dir/build: ex3_tm
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/main.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Algorithm.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Bfs.cpp.o.requires
-CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Bfs_Test.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Driver.cpp.o.requires
-CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Driver_Test.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Logic.cpp.o.requires
-CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Logic_Test.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/LuxTaxiFactory.cpp.o.requires
-CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/LuxTaxiFactory_Test.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/LuxuryTaxi.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Management.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Map.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/MapFactory.cpp.o.requires
-CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Map_Factory_Test.cpp.o.requires
-CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Map_Tesr.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Passenger.cpp.o.requires
-CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Passenger_test.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Point.cpp.o.requires
-CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Point_Test.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Searchable.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Square.cpp.o.requires
-CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Square_Test.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/StandardTaxi.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/StndTaxiFactory.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Taxi.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/TaxiCenter.cpp.o.requires
-CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Taxi_Center_Test.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Trip.cpp.o.requires
-CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Trip_Test.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Validate_Interface.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/VirtualTaxiFactory.cpp.o.requires
-CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Management_Test.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Socket.cpp.o.requires
 CMakeFiles/ex3_tm.dir/requires: CMakeFiles/ex3_tm.dir/Udp.cpp.o.requires
 
@@ -1031,6 +704,6 @@ CMakeFiles/ex3_tm.dir/clean:
 .PHONY : CMakeFiles/ex3_tm.dir/clean
 
 CMakeFiles/ex3_tm.dir/depend:
-	cd /home/haim/ClionProjects/ex3_tm/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/haim/ClionProjects/ex3_tm /home/haim/ClionProjects/ex3_tm /home/haim/ClionProjects/ex3_tm/cmake-build-debug /home/haim/ClionProjects/ex3_tm/cmake-build-debug /home/haim/ClionProjects/ex3_tm/cmake-build-debug/CMakeFiles/ex3_tm.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/haim6678/CLionProjects/AP4/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/haim6678/CLionProjects/AP4 /home/haim6678/CLionProjects/AP4 /home/haim6678/CLionProjects/AP4/cmake-build-debug /home/haim6678/CLionProjects/AP4/cmake-build-debug /home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/ex3_tm.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ex3_tm.dir/depend
 

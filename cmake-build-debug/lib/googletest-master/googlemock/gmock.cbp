@@ -8,26 +8,26 @@
 		<Option virtualFolders="CMake Files\;CMake Files\lib\;CMake Files\lib\googletest-master\;CMake Files\lib\googletest-master\googlemock\;CMake Files\lib\googletest-master\googletest\;CMake Files\lib\googletest-master\googletest\cmake\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gmock_main">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/libgmock_main.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock"/>
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/libgmock_main.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googlemock/include"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googlemock"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/include"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -38,23 +38,23 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 gmock_main"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 gmock_main"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gmock_main/fast">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/libgmock_main.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock"/>
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/libgmock_main.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googlemock/include"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googlemock"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/include"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -65,23 +65,23 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 gmock_main/fast"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 gmock_main/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gmock">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/libgmock.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock"/>
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/libgmock.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googlemock/include"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googlemock"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/include"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -92,23 +92,23 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 gmock"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 gmock"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gmock/fast">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/libgmock.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock"/>
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/libgmock.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googlemock/include"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googlemock"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/include"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -119,21 +119,21 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 gmock/fast"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 gmock/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gtest_main">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/libgtest_main.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest"/>
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/libgtest_main.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/include"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -144,21 +144,21 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest_main"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest_main"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gtest_main/fast">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/libgtest_main.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest"/>
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/libgtest_main.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/include"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -169,21 +169,21 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest_main/fast"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest_main/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gtest">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/libgtest.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest"/>
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/libgtest.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/include"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -194,21 +194,21 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gtest/fast">
-				<Option output="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/libgtest.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest"/>
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/libgtest.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/include"/>
-					<Add directory="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/include"/>
+					<Add directory="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -219,68 +219,68 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest/fast"/>
-					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim/ClionProjects/ex3_tm/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 gtest/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/lib/googletest-master/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/src/gmock-all.cc">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googlemock/src/gmock-all.cc">
 			<Option target="gmock_main"/>
 			<Option target="gmock"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/src/gmock_main.cc">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googlemock/src/gmock_main.cc">
 			<Option target="gmock_main"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/src/gtest-all.cc">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/src/gtest-all.cc">
 			<Option target="gmock_main"/>
 			<Option target="gmock"/>
 			<Option target="gtest"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/src/gtest_main.cc">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/src/gtest_main.cc">
 			<Option target="gtest_main"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/CMakeLists.txt">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/CMakeLists.txt">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\lib\googletest-master\"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/CMakeLists.txt">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\lib\googletest-master\"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/CMakeLists.txt">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googlemock/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\lib\googletest-master\googlemock\"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/CMakeLists.txt">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googlemock/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\lib\googletest-master\googlemock\"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googlemock/CMakeLists.txt">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googlemock/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\lib\googletest-master\googlemock\"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/CMakeLists.txt">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/CMakeLists.txt">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/CMakeLists.txt">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/CMakeLists.txt">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/cmake/internal_utils.cmake">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/cmake/internal_utils.cmake">
 			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\cmake\"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/cmake/internal_utils.cmake">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/cmake/internal_utils.cmake">
 			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\cmake\"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/cmake/internal_utils.cmake">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/cmake/internal_utils.cmake">
 			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\cmake\"/>
 		</Unit>
-		<Unit filename="/home/haim/ClionProjects/ex3_tm/lib/googletest-master/googletest/cmake/internal_utils.cmake">
+		<Unit filename="/home/haim6678/CLionProjects/AP4/lib/googletest-master/googletest/cmake/internal_utils.cmake">
 			<Option virtualFolder="CMake Files\lib\googletest-master\googletest\cmake\"/>
 		</Unit>
 	</Project>

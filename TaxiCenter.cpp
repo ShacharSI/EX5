@@ -109,7 +109,7 @@ TaxiCenter::TaxiCenter() {
 TaxiCenter::TaxiCenter(Map mp, Socket *soc) {
     this->map = mp;
     this->socket = soc;
-    this->searchAlgo = new Bfs();
+    this->searchAlgo = new Bfs;
 }
 
 /**
@@ -285,7 +285,7 @@ TaxiCenter::~TaxiCenter() {
         activeDrivers.pop_front();
         delete d;
     }
-    delete this->searchAlgo;
+    delete this->searchAlgo; //todo fixx
     //todo check if there is more thing to free
 }
 
@@ -302,7 +302,7 @@ void TaxiCenter::assignTrip(unsigned int time) {
     for (int i = 0; i < size; i++) {
         Trip temp = this->trips.back();
         if (temp.getTime() == time) {
-            memset(buffer,0,4096);
+            memset(buffer,0,4096); //todo set buffer to 0 before reciving data in udp.cpp
             //getting the driver from client
             ssize_t n = this->socket->reciveData(buffer, 4096);
             if (n < 0) {
