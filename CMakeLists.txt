@@ -11,7 +11,9 @@ include_directories(${Boost_INCLUDE_DIR})
 #include_directories(lib/googletest-master/googlemock/include)
 
 
-set(SOURCE_FILES main.cpp Algorithm.cpp Algorithm.h Bfs.cpp Bfs.h  Driver.cpp Driver.h  Logic.cpp Logic.h  LuxTaxiFactory.cpp LuxTaxiFactory.h LuxuryTaxi.cpp LuxuryTaxi.h Management.cpp Management.h Map.cpp Map.h MapFactory.cpp MapFactory.h   Passenger.cpp Passenger.h  Point.cpp Point.h Searchable.cpp Searchable.h Square.cpp Square.h StandardTaxi.cpp StandardTaxi.h StndTaxiFactory.cpp StndTaxiFactory.h Taxi.cpp Taxi.h TaxiCenter.cpp TaxiCenter.h Trip.cpp Trip.h Validate_Interface.cpp Validate_Interface.h VirtualTaxiFactory.cpp VirtualTaxiFactory.h Socket.cpp Socket.h Udp.cpp Udp.h)
-add_executable(ex3_tm ${SOURCE_FILES})
+set(SOURCE_FILES main.cpp Algorithm.cpp Algorithm.h Bfs.cpp Bfs.h  Driver.cpp Driver.h  Logic.cpp Logic.h  LuxTaxiFactory.cpp LuxTaxiFactory.h LuxuryTaxi.cpp LuxuryTaxi.h Management.cpp Management.h Map.cpp Map.h MapFactory.cpp MapFactory.h   Passenger.cpp Passenger.h  Point.cpp Point.h Searchable.cpp Searchable.h Square.cpp Square.h StandardTaxi.cpp StandardTaxi.h StndTaxiFactory.cpp StndTaxiFactory.h Taxi.cpp Taxi.h TaxiCenter.cpp TaxiCenter.h Trip.cpp Trip.h Validate_Interface.cpp Validate_Interface.h VirtualTaxiFactory.cpp VirtualTaxiFactory.h Socket.cpp Socket.h Udp.cpp Udp.h mainDriver.cpp)
+add_executable(main.cpp ${SOURCE_FILES} ManageDriver.cpp ManageDriver.h)
+add_executable(mainDriver.cpp ${SOURCE_FILES})
 #target_link_libraries(ex3_tm gtest gtest_main)
-target_link_libraries(ex3_tm ${Boost_LIBRARIES})
+target_link_libraries(main.cpp ${Boost_LIBRARIES})
+target_link_libraries(mainDriver.cpp ${Boost_LIBRARIES})

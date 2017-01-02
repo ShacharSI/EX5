@@ -37,8 +37,8 @@
 					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="ex3_tm">
-				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/ex3_tm" prefix_auto="0" extension_auto="0"/>
+			<Target title="mainDriver.cpp">
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/mainDriver.cpp" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -54,14 +54,14 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 ex3_tm"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 mainDriver.cpp"/>
 					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="ex3_tm/fast">
-				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/ex3_tm" prefix_auto="0" extension_auto="0"/>
+			<Target title="mainDriver.cpp/fast">
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/mainDriver.cpp" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -77,7 +77,53 @@
 					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 ex3_tm/fast"/>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 mainDriver.cpp/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="main.cpp">
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/main.cpp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 main.cpp"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="main.cpp/fast">
+				<Option output="/home/haim6678/CLionProjects/AP4/cmake-build-debug/main.cpp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/haim6678/CLionProjects/AP4/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 main.cpp/fast"/>
 					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j2 -f &quot;/home/haim6678/CLionProjects/AP4/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -85,139 +131,194 @@
 			</Target>
 		</Build>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Algorithm.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Algorithm.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Bfs.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Bfs.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Driver.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Driver.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Logic.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Logic.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/LuxTaxiFactory.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/LuxTaxiFactory.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/LuxuryTaxi.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/LuxuryTaxi.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
+		</Unit>
+		<Unit filename="/home/haim6678/CLionProjects/AP4/ManageDriver.cpp">
+			<Option target="main.cpp"/>
+		</Unit>
+		<Unit filename="/home/haim6678/CLionProjects/AP4/ManageDriver.h">
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Management.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Management.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Map.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Map.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/MapFactory.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/MapFactory.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Passenger.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Passenger.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Point.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Point.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Searchable.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Searchable.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Socket.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Socket.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Square.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Square.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/StandardTaxi.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/StandardTaxi.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/StndTaxiFactory.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/StndTaxiFactory.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Taxi.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Taxi.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/TaxiCenter.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/TaxiCenter.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Trip.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Trip.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Udp.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Udp.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Validate_Interface.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Validate_Interface.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/VirtualTaxiFactory.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/VirtualTaxiFactory.h">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/main.cpp">
-			<Option target="ex3_tm"/>
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
+		</Unit>
+		<Unit filename="/home/haim6678/CLionProjects/AP4/mainDriver.cpp">
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

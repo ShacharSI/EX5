@@ -91,14 +91,6 @@ LuxTaxiFactory.h
 /home/haim6678/CLionProjects/AP4/LuxTaxiFactory.h
 stdlib.h
 -
-unistd.h
--
-iostream
--
-Driver.h
-/home/haim6678/CLionProjects/AP4/Driver.h
-Udp.h
-/home/haim6678/CLionProjects/AP4/Udp.h
 cstdlib
 -
 StandardTaxi.h
@@ -114,8 +106,6 @@ sstream
 boost/archive/text_oarchive.hpp
 -
 boost/archive/text_iarchive.hpp
--
-boost/tokenizer.hpp
 -
 boost/algorithm/string/predicate.hpp
 -
