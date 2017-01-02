@@ -1,10 +1,6 @@
 #include "Management.h"
 #include "LuxTaxiFactory.h"
 #include <stdlib.h>
-#include <unistd.h>
-#include <iostream>
-#include "Driver.h"
-#include "Udp.h"
 #include <cstdlib>
 #include "StandardTaxi.h"
 #include "LuxuryTaxi.h"
@@ -13,7 +9,6 @@
 #include <sstream>
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
-#include <boost/tokenizer.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/assign/list_of.hpp>
@@ -38,6 +33,7 @@ BOOST_CLASS_EXPORT_GUID(Square, "Square");
 Management::Management(Socket *s) {
     this->clock = 0;
     this->socket = s;
+    this->taxiCenter = NULL; //todo need this?
 }
 
 /**
@@ -89,28 +85,28 @@ void Management::manage() {
             case 9: {
                 this->setClock();
                 this->taxiCenter->moveAll();
+                //checking if the time to release a trip is right now
+
                 break;
             }
             default:
                 break;
         }
-
-        //checking if the time to release a trip is right now
-        this->assignTrip();
+        this->assignTrip(); //todo before or after the move all
         //get the next input
         cin >> usrChoiceStr;
         c = usrChoiceStr.c_str();
         userChoice = atoi(c);
     }
     //close the program and delete all memory
-    this->taxiCenter->deleteMap();
     string end = "EndCommunication";
     this->socket->sendData(end, end.size());
-    this->socket->reciveData(buffer, 4096);
-
+    ssize_t n = this->socket->reciveData(buffer, 4096);
+    if (n < 0) {
+        perror("failed receiving");
+    }
     if (strcmp(buffer, "Finished") == 0) { //todo notworking!!!
         close(this->socket->getSocketDescriptor());
-        delete this->socket;
     }
     free(buffer);
     return;
@@ -177,11 +173,11 @@ void Management::parseDriver() {
     Driver *d = NULL;
     string serial_str;
     char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
+    //get the number of drivers
     string input;
     cin >> input;
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
-
     //a loop that gets the drivers and send taxi's
     for (int j = 0; j < numOfDrivers; ++j) {
         n = this->socket->reciveData(buffer, BUFFERSIZE);
@@ -203,9 +199,11 @@ void Management::parseDriver() {
         boost::archive::binary_oarchive oa(s);
         oa << t;
         s.flush();
-
         //send the taxi to client
         n = this->socket->sendData(serial_str, serial_str.size());
+        if (n < 0) {
+            perror("error sending");
+        }
         d->setTaxi(t);
         this->taxiCenter->addDriverToCenter(d);
     }
@@ -276,7 +274,7 @@ void Management::setLogicAndMap() {
 
     }
     getObstacles();
-    this->taxiCenter =new TaxiCenter(this->lg.createNewMap("Square"), this->socket);
+    this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"), this->socket);
 }
 
 /**
@@ -315,4 +313,11 @@ void Management::assignTrip() {
  */
 unsigned int Management::getTime() {
     return this->clock;
+}
+
+Management::~Management() {
+    if (this->taxiCenter != NULL) {
+        delete this->taxiCenter;
+    }
+    delete this->socket;
 }

@@ -22,12 +22,19 @@ LuxuryTaxi::LuxuryTaxi(int idNum, manufacturer mnfctr, color clr, int taarif) :
  * move the taxi to location
  */
 void LuxuryTaxi::move() {
-    if (this->routh.size() > 0) {
-        if (this->routh.size() > 1) {
-            this->routh.pop_front();
-        }
-        this->location = this->routh.front()->getPoint();
+    if(this->routh.size() > 2){
+        this->routh.pop_front();
+        this->routh.pop_front();
+        Point p = this->routh.front()->getPoint();
+        this->location = p;
+    } if(this->routh.size() == 1){
+        Point p = this->routh.front()->getPoint();
+        this->routh.pop_front();
+    } if(this->routh.size() == 2){
+        this->routh.pop_front();
+        Point p = this->routh.front()->getPoint();
         this->routh.pop_front();
     }
+
 }
 

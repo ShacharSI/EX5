@@ -23,6 +23,7 @@ private:
     Socket* socket;
 
 public:
+    ~Management();
     unsigned int getTime();
     void assignTrip();
     void setClock();

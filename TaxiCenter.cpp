@@ -43,6 +43,10 @@ list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver* d) {
     Driver *closest = NULL;
     Point start = t.getStartP();
     std::list<Searchable *> routh ;
+    //check that we have free drivers
+    if (this->notActiveDriver.size() == 0) {
+        return routh;
+    }
     //verify that the closet is equal to the driver given by the client
     for (int i = 0; i < this->notActiveDriver.size(); ++i) {
         closest = this->notActiveDriver.front();
@@ -53,9 +57,6 @@ list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver* d) {
         this->notActiveDriver.push_back(closest);
     }
 
-    if (this->notActiveDriver.size() == 0) {
-        return routh;
-    }
     //verify the driver is in start point
     if (!(t.getStartP().equals(d->getLocation()))) {
         return routh;
@@ -236,11 +237,6 @@ void TaxiCenter::moveAll() {
     //iterate over the active drivers
     for (int i = 0; i < this->activeDrivers.size(); i++) {
         Driver *d = this->activeDrivers.front();
-        //if he finished moving
-        if (d->getTaxi()->getRouth().size() == 0) {
-            d->inactivate(this->notActiveDriver, this->activeDrivers); //todo do this in client!
-            continue;
-        }
         //getting the request to go from the client
         ssize_t n = this->socket->reciveData(buffer, 4096);
         if (n < 0) {
@@ -248,9 +244,9 @@ void TaxiCenter::moveAll() {
         }
         //verify that the request was actually to go
         if (strcmp(buffer, "sendMeGo") == 0) {
-            //move here
+            //move the driver here
             d->move();
-            //send him go
+            //send the client go
             string go = "Go";
             n = this->socket->sendData(go, go.size());
             if (n < 0) {
@@ -294,6 +290,14 @@ TaxiCenter::~TaxiCenter() {
  * sending back the trip to the matching client
  */
 void TaxiCenter::assignTrip(unsigned int time) {
+    //checking if any driver finished moving
+    for (int i = 0; i < this->activeDrivers.size(); i++) {
+        Driver *d = this->activeDrivers.front();
+        //if he finished moving
+        if (d->getTaxi()->getRouth().size() == 0) {
+            d->inactivate(this->notActiveDriver, this->activeDrivers);
+        }
+    }
     long size = this->trips.size();
     std::list<Searchable *> list;
     std::string serial_str;
