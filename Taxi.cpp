@@ -102,12 +102,15 @@ void Taxi::setRouth(std::list < Searchable * > routhToLocation) {
 }
 
 /**
- * get the r
+ * get the routh to the destiny
  */
 list<Searchable *> Taxi::getRouth() {
     return this->routh;
 }
 
+/**
+ * get a string and parse a manufactur fom it
+ */
 Taxi::manufacturer Taxi::parseMnfctr(string s) {
     switch (s[0]){
         case 'H':
@@ -125,6 +128,9 @@ Taxi::manufacturer Taxi::parseMnfctr(string s) {
     throw invalid_argument("wrong input");
 }
 
+/**
+ * get a string and parse a color fom it
+ */
 Taxi::color Taxi::parseColor(string s) {
     switch (s[0]){
         case 'R':
@@ -144,6 +150,9 @@ Taxi::color Taxi::parseColor(string s) {
     throw invalid_argument("wrong input");
 }
 
+/**
+ * make sure that the taxi was created from valid input
+ */
 void Taxi::validate() {
 
     if(this->getCarId() < 0||(this->tarrif < 0)){
