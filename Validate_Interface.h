@@ -25,5 +25,5 @@ public:
 
     virtual  void validate() = 0;
 };
-BOOST_SERIALIZATION_ASSUME_ABSTRACT(Vallidate_Interface);
+BOOST_SERIALIZATION_ASSUME_ABSTRACT(Vallidate_Interface)
 #endif //TM_VALIDATE_INTERFACE_H

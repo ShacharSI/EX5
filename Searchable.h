@@ -25,5 +25,5 @@ public:
     virtual void setBeforeBfs(std::list<Searchable*> l) = 0;
 
 };
-BOOST_SERIALIZATION_ASSUME_ABSTRACT(Searchable);
+BOOST_SERIALIZATION_ASSUME_ABSTRACT(Searchable)
 #endif //EX1TM_SERCHABLE_H

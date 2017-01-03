@@ -22,12 +22,12 @@
 #include <boost/serialization/list.hpp>
 #include <boost/serialization/export.hpp>
 
-BOOST_CLASS_EXPORT_GUID(StandardTaxi, "StandardTaxi");
-BOOST_CLASS_EXPORT_GUID(LuxuryTaxi, "lux_taxi");
-BOOST_CLASS_EXPORT_GUID(Taxi, "taxi");
-BOOST_CLASS_EXPORT_GUID(Driver, "driver");
-BOOST_CLASS_EXPORT_GUID(Point, "point");
-BOOST_CLASS_EXPORT_GUID(Square, "Square");
+BOOST_CLASS_EXPORT_GUID(StandardTaxi, "StandardTaxi")
+BOOST_CLASS_EXPORT_GUID(LuxuryTaxi, "lux_taxi")
+BOOST_CLASS_EXPORT_GUID(Taxi, "taxi")
+BOOST_CLASS_EXPORT_GUID(Driver, "driver")
+BOOST_CLASS_EXPORT_GUID(Point, "point")
+BOOST_CLASS_EXPORT_GUID(Square, "Square")
 
 using namespace boost;
 

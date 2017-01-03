@@ -82,6 +82,6 @@ protected:
     Point location;
 };
 
-BOOST_SERIALIZATION_ASSUME_ABSTRACT(Taxi);
+BOOST_SERIALIZATION_ASSUME_ABSTRACT(Taxi)
 
 #endif //TM_TAXI_H
