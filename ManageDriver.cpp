@@ -163,6 +163,9 @@ void ManageDriver::setTaxi() {
     free(buffer);
 }
 
+/**
+ * the constructor
+ */
 ManageDriver::ManageDriver(string s, Socket *soc) {
     this->d = new Driver(s);
     this->socket = soc;

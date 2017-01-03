@@ -114,7 +114,14 @@ int Udp::reciveData(char *buffer, int size) {
     return bytes;
 }
 
+/**
+ * @param ip - set the ip address
+ */
 void Udp::setIp(string ip) {
+    if(strcmp(ip,"localhost")==0){
+        this->ip_address = IP;
+        return;
+    }
     this->ip_address = ip;
 }
 

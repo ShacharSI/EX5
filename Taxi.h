@@ -10,6 +10,9 @@
 #include "Bfs.h"
 #include "Map.h"
 
+/**
+ * a class that represent a taxi
+ */
 class Taxi : public Vallidate_Interface {
 public:
     typedef enum {

@@ -109,7 +109,7 @@ list<Searchable *> Taxi::getRouth() {
 }
 
 /**
- * get a string and parse a manufactur fom it
+ * get a string and parse a manufactur from it
  */
 Taxi::manufacturer Taxi::parseMnfctr(string s) {
     switch (s[0]){

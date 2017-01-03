@@ -6,7 +6,7 @@
 
 /**
  * the main function.
- * recives the grid size and the point to search.
+ * run the server
  * @return 0;
  */
 int main(int argc, char* argv[]) {

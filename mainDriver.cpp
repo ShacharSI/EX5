@@ -5,6 +5,11 @@
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/lexical_cast.hpp>
 
+/**
+ * the main function.
+ * run the client
+ * @return 0;
+ */
 int main(int argc, char *argv[]) {
     //get the port and ip
     if (argc < 3) {
