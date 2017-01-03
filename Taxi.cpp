@@ -150,7 +150,6 @@ Taxi::color Taxi::parseColor(string s) {
     throw invalid_argument("wrong input");
 }
 
-
 /**
  * make sure that the taxi was created from valid input
  */
