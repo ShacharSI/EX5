@@ -7,27 +7,44 @@
 #include "Driver.h"
 #include <stdexcept>
 
+/**
+ * @return - the taxi'x location
+ */
 Point Taxi::getLocation() {
     return this->location;
 }
 
+/**
+ * @return - the taxi'x tarrif
+ */
 int Taxi::getTarrif() {
     return this->tarrif;
 }
 
+/**
+ * update the taxi's location
+ */
 void Taxi::setLocation(Point newLocation) {
     this->location = newLocation;
 }
 
-
+/**
+ * the constructor
+ */
 Taxi::Taxi() {
 
 }
 
+/**
+ * the deconstructor
+ */
 Taxi::~Taxi() {
 
 }
 
+/**
+ * the construtor
+ */
 Taxi::Taxi(int id, Taxi::manufacturer mntrf, Taxi::color color,int taarif) {
     this->carId = id;
     this->tarrif = taarif;
@@ -37,33 +54,56 @@ Taxi::Taxi(int id, Taxi::manufacturer mntrf, Taxi::color color,int taarif) {
     this->routh = l1;
 
 }
-
+/**
+ *
+ * @return - the taxi's id
+ */
 int Taxi::getCarId() const {
     return this->carId;
 }
 
+/**
+ *
+ * @return - the taxi's manufactur
+ */
 Taxi::manufacturer Taxi::getMnfctr() const {
     return this->mnfctr;
 }
 
+/**
+ *
+ * @return - the taxi's color
+ */
 Taxi::color Taxi::getClr() const {
     return this->clr;
 }
 
+/**
+ * add a passenger to the taxi
+ */
 void Taxi::addPassengers(vector<Passenger> psngrs) {
 
 }
 
+/**
+ * 
+ * get the taxi's passenger
+ */
 vector<Passenger> Taxi::getPassengers() {
     return vector<Passenger>();
 }
 
-
+/**
+ * set thr taxi's routh to the next location
+ */
 void Taxi::setRouth(std::list < Searchable * > routhToLocation) {
     this->routh = routhToLocation;
 
 }
 
+/**
+ * get the r
+ */
 list<Searchable *> Taxi::getRouth() {
     return this->routh;
 }

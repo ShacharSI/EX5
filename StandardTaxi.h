@@ -7,7 +7,9 @@
 
 
 #include "Taxi.h"
-
+/**
+ * a class that represent a standard taxi
+ */
 class StandardTaxi: public Taxi {
 
     friend class boost::serialization::access;

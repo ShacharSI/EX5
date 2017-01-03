@@ -10,6 +10,9 @@
 #include "VirtualTaxiFactory.h"
 #include "Taxi.h"
 
+/**
+ * a class that is in charge of creating a stnd taxi
+ */
 class StndTaxiFactory: public VirtualTaxiFactory {
 
 public:

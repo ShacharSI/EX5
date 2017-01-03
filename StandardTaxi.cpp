@@ -4,14 +4,23 @@
 
 #include "StandardTaxi.h"
 
+/**
+ * the constructor
+ */
 StandardTaxi::StandardTaxi() {
 
 }
 
+/**
+ * the constructor
+ */
 StandardTaxi::StandardTaxi(int idNum,manufacturer mnfctr, color clr,int taarif):
         Taxi(idNum,mnfctr,clr,taarif) {
 }
 
+/**
+ * moving the taxi to the next location
+ */
 void StandardTaxi::move() {
     if(this->routh.size() > 1){ //todo fix also in luxury
         this->routh.pop_front();
@@ -23,6 +32,9 @@ void StandardTaxi::move() {
     }
 }
 
+/**
+ * the deconstructor
+ */
 StandardTaxi::~StandardTaxi() {
 
 }

@@ -232,10 +232,6 @@ Square::~Square(){
 
 }
 
-
-
-
-
 /**
  * @param b - seting the set all visited variable
  */
