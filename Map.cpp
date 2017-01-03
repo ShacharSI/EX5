@@ -5,6 +5,7 @@
  * the destructor
  */
 Map::~Map() {
+    this->freeAll();
 }
 
 /**

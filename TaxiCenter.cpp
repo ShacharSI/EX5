@@ -70,11 +70,11 @@ list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver* d) {
 }
 
 list<Searchable*> TaxiCenter::calculateDriverRoute(Point startP, Point endP){
-    Searchable* start = this->map.findOnGrid(startP);
-    Searchable* end = this->map.findOnGrid(endP);
+    Searchable* start = this->map->findOnGrid(startP);
+    Searchable* end = this->map->findOnGrid(endP);
     std::list<Searchable*> list;
     list = this->searchAlgo->findRouth(start,end);
-    this->map.getStart()->setBeforeBfs(this->map.getL());
+    this->map->getStart()->setBeforeBfs(this->map->getL());
     return list;
 }
 
@@ -107,7 +107,7 @@ TaxiCenter::TaxiCenter() {
 /**
  * the constructor
  */
-TaxiCenter::TaxiCenter(Map mp, Socket *soc) {
+TaxiCenter::TaxiCenter(Map* mp, Socket *soc) {
     this->map = mp;
     this->socket = soc;
     this->searchAlgo = new Bfs;
@@ -144,12 +144,7 @@ Point TaxiCenter::giveLocation(int id) throw(invalid_argument) {
     throw invalid_argument("wrong id");
 }
 
-/**
- * delete all the node's
- */
-void TaxiCenter::deleteMap() {
-    this->map.freeAll();
-}
+
 
 /**
  * adding a driver to the taxi center
@@ -194,11 +189,11 @@ void TaxiCenter::setNotActiveDriver(Driver *d) {
 void TaxiCenter::addTrip(Trip t) {
     Trip trip = t;
     Point startP = t.getStartP();
-    if ((startP.getX() > this->map.getSizeX()) || (startP.getY() > this->map.getSizeY())) {
+    if ((startP.getX() > this->map->getSizeX()) || (startP.getY() > this->map->getSizeY())) {
         throw std::invalid_argument("invalid location");
     }
     Point endP = t.getEndP();
-    if ((endP.getX() > this->map.getSizeX()) || (endP.getY() > this->map.getSizeY())) {
+    if ((endP.getX() > this->map->getSizeX()) || (endP.getY() > this->map->getSizeY())) {
         throw std::invalid_argument("invalid location");
     }
     this->trips.push(t);
@@ -288,7 +283,8 @@ TaxiCenter::~TaxiCenter() {
         activeDrivers.pop_front();
         delete d;
     }
-    delete this->searchAlgo; //todo fixx
+    delete this->searchAlgo;
+    delete this->map;
     //todo check if there is more thing to free
 }
 

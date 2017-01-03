@@ -36,8 +36,8 @@ void Logic::setObstacle(int numObstacle) {
     for (int j = 0; j < numObstacle; j++) {
         getline(cin, input);
         string::size_type position = input.find(",");
-        vals[0] = stoi(input.substr(0, position));
-        vals[1] = stoi(input.substr(position + 1, input.size() - 1 - position));
+        vals[0] = atoi(input.substr(0, position).c_str());
+        vals[1] = atoi(input.substr(position + 1, input.size() - 1 - position).c_str());
         Point p(vals[0], vals[1]);
         this->obstacle.push_back(p);
     }
@@ -72,7 +72,7 @@ int Logic::getSizeY() {
  * creating a new map acoording to the wanted
  * type(decide by the string) and size
  **/
-Map Logic::createNewMap(string s) {
+Map* Logic::createNewMap(string s) {
     return this->mpFactory.createMapSearchable(s, this->sizeX, this->sizeY, 0, 0, this->getObstacle());
 }
 

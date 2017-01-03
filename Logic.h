@@ -19,7 +19,7 @@ public:
     Logic(vector<int> sizes);
     int getSizeX();
     int getSizeY();
-    Map createNewMap(string s);
+    Map* createNewMap(string s);
     void validate();
     void setObstacle(int numObstacle);
     list <Point> getObstacle();

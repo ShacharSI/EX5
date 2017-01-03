@@ -17,7 +17,7 @@ private:
     Square* getSquare(int x, int y, list<Searchable *> l);
     bool checkObstacle(int currentX,int currentY,list<Point> obatacle);
 public:
-    Map createMapSearchable(string S,int sizeX, int SizeY,int currentX,int currentY,list<Point> obatacle);
+    Map* createMapSearchable(string S,int sizeX, int SizeY,int currentX,int currentY,list<Point> obatacle);
     MapFactory() {
 
     }

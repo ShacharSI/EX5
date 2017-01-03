@@ -4,11 +4,11 @@
 /**
  *return a map of an implement of Searchable according to a string.
  */
-Map MapFactory::createMapSearchable(string s, int sizeX, int sizeY,int currentX,int currentY,list<Point> obatacle) {
+Map* MapFactory::createMapSearchable(string s, int sizeX, int sizeY,int currentX,int currentY,list<Point> obatacle) {
     //if the string is "Square" retun a map of squares
     if (s.compare("Square") == 0){
         Searchable* start = createMapSquare(sizeX,sizeY, currentX, currentY,obatacle);
-        return Map(sizeX,sizeY,start,this->s);
+        return new Map(sizeX,sizeY,start,this->s);
     }
 }
 

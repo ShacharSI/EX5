@@ -28,7 +28,7 @@ public:
 
     TaxiCenter();
     ~TaxiCenter();
-    TaxiCenter(Map m,Socket* s);
+    TaxiCenter(Map* m,Socket* s);
 
     list<Searchable*> sendTrip(Trip t,Driver* d) ;
 
@@ -47,7 +47,6 @@ public:
     list<Taxi *> getNotActiveTaxis();
 
     void assignTrip(unsigned int time);
-    void deleteMap();
 
     void addTaxi(Taxi *t);
 
@@ -56,7 +55,7 @@ public:
     Taxi* attachTaxiToDriver(int vhecleId);
 
 private:
-    Map map;
+    Map* map;
     Trip currentTrip;
     Algorithm *searchAlgo;
     void sendTaxiToLocation(Driver* d);
