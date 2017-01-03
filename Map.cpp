@@ -15,14 +15,14 @@ Searchable* Map::getStart() {
     return this->start;
 }
 
-/*
+/**
  * c-tor of the map
  */
 Map::Map() {
 
 }
 
-/*
+/**
  * c-tor of the map
  */
 void Map::freeAll() {
@@ -33,7 +33,7 @@ void Map::freeAll() {
     }
 }
 
-/*
+/**
  * c-tor of the map
  */
 Map::Map(int x, int y,Searchable * s , list<Searchable*> l) {
@@ -64,7 +64,11 @@ int Map::getSizeY() const {
     return sizeY;
 }
 
-Searchable *Map::findOnGrid(Point p) {
+/**
+ * a function that getting a point
+ * and finding it on the map
+ */
+Searchable* Map::findOnGrid(Point p) {
     Searchable* s = NULL;
     for (int i = 0; i <this->searchables.size() ; i++) {
         Searchable* temp = this->searchables.front();

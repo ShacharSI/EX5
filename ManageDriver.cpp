@@ -31,6 +31,12 @@ BOOST_CLASS_EXPORT_GUID(Square, "Square");
 
 using namespace boost;
 
+/**
+ * runs the all program
+ * getting a taxi then getting a trio
+ * then moving the driver and again and again
+ * until the sign to stop the program
+ */
 void ManageDriver::manage() {
     //ask and set taxi
     this->setTaxi();
@@ -116,10 +122,17 @@ void ManageDriver::manage() {
     free(buffer);
 }
 
+/**
+ * the deconstructor
+ */
 ManageDriver::~ManageDriver() {
     delete (this->d);
 }
 
+/**
+ * asking for a taxi from the server
+ * then getting the taxi form him and setting the taxi
+ */
 void ManageDriver::setTaxi() {
     char *buffer = (char *) malloc(BUUFER_SIZE * sizeof(char));
     ssize_t n = 0;

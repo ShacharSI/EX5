@@ -29,6 +29,7 @@ Logic::Logic(vector<int> sizes) {
  * getting the obstacle list parsing it and creating a list of them
  */
 void Logic::setObstacle(int numObstacle) {
+    //getting the obstacles
     string input;
     string streamCut;
     int vals[2] = {};
@@ -42,7 +43,6 @@ void Logic::setObstacle(int numObstacle) {
         this->obstacle.push_back(p);
     }
 }
-
 
 /**
  * implements the validation interface

@@ -315,6 +315,9 @@ unsigned int Management::getTime() {
     return this->clock;
 }
 
+/**
+ * the deconstructor
+ */
 Management::~Management() {
     if (this->taxiCenter != NULL) {
         delete this->taxiCenter;

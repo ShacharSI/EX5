@@ -9,6 +9,9 @@
 #include "Driver.h"
 #include "Socket.h"
 
+/**
+ * a class that runs the driver - the client
+ */
 class ManageDriver {
 private:
     Driver* d;

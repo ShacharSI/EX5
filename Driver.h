@@ -8,7 +8,9 @@
 #include "Taxi.h"
 #include "Socket.h"
 
-
+/**
+ * a class that represent a driver
+ */
 class Driver : public Vallidate_Interface {
 public:
 

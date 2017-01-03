@@ -19,7 +19,7 @@ LuxuryTaxi::LuxuryTaxi(int idNum, manufacturer mnfctr, color clr, int taarif) :
 }
 
 /**
- * move the taxi to location
+ * move the taxi to the new location
  */
 void LuxuryTaxi::move() {
     if(this->routh.size() > 2){

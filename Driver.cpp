@@ -34,7 +34,7 @@ Driver::~Driver() {
     }
 }
 
-/*
+/**
  * the empty constructor
  */
 Driver::Driver() {
@@ -210,8 +210,9 @@ Driver::Driver(string input) {
 
 }
 
-
-
+/**
+ * @param t - set the driver's texi
+ */
 void Driver::setTaxi(Taxi *t) {
     this->taxi = t;
 }
