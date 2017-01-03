@@ -14,6 +14,7 @@
 #include <cstring>
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 //return values to each function if error happened
@@ -53,6 +54,7 @@ public:
     * The Function operation: creating new Socket object			       *
     ***********************************************************************/
     Socket();
+
     /***********************************************************************
     * function name: ~Socket											   *
     * The Input: none													   *
@@ -60,6 +62,7 @@ public:
     * The Function operation: default destructor					       *
     ***********************************************************************/
     virtual ~Socket();
+
     /***********************************************************************
     * function name: initialize											   *
     * The Input: none              										   *
@@ -68,6 +71,7 @@ public:
     * socket descriptor. pure virtual method							   *
     ***********************************************************************/
     virtual int initialize() = 0;
+
     /***********************************************************************
     * function name: sendData											   *
     * The Input: string representing the data to send		               *
@@ -76,6 +80,7 @@ public:
     * who connect to this socket. pure virtual method					   *
     ***********************************************************************/
     virtual int sendData(string data, int length) = 0;
+
     /***********************************************************************
     * function name: recive												   *
     * The Input: none										               *
@@ -83,9 +88,14 @@ public:
     * The Function operation: getting data from the other socket and print *
     * the data															   *
     ***********************************************************************/
-    virtual int reciveData(char* buffer, int size) = 0;
+    virtual int reciveData(char *buffer, int size) = 0;
 
-
+    /***********************************************************************
+   * function name: setIp											       *
+   * The Input: ip string										           *
+   * The Function operation: getting data from the       				   *
+   ***********************************************************************/
+    virtual void setIp(string ip) = 0;
 
 
 };

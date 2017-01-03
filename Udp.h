@@ -9,7 +9,7 @@
 #include "Socket.h"
 
 
-class Udp: public Socket {
+class Udp : public Socket {
 public:
     /***********************************************************************
     * function name: Udp												   *
@@ -18,6 +18,7 @@ public:
     * The Function operation: creating new Udp						       *
     ***********************************************************************/
     Udp(bool isServers, int port_num);
+
     /***********************************************************************
     * function name: ~Udp												   *
     * The Input: none													   *
@@ -25,6 +26,7 @@ public:
     * The Function operation: default destructor					       *
     ***********************************************************************/
     virtual ~Udp();
+
     /***********************************************************************
     * function name: initialize											   *
     * The Input: none              										   *
@@ -33,6 +35,7 @@ public:
     * socket descriptor.												   *
     ***********************************************************************/
     int initialize();
+
     /***********************************************************************
     * function name: sendData											   *
     * The Input: string representing the data to send		               *
@@ -41,6 +44,7 @@ public:
     * who connect to this socket.										   *
     ***********************************************************************/
     int sendData(string data, int lrngth);
+
     /***********************************************************************
     * function name: recive	`											   *
     * The Input: none										               *
@@ -48,7 +52,14 @@ public:
     * The Function operation: getting data from the other socket and print *
     * the data															   *
     ***********************************************************************/
-    int reciveData(char* buffer, int size);
+    int reciveData(char *buffer, int size);
+
+    /***********************************************************************
+    * function name: setIp											       *
+    * The Input: ip string										           *
+    * The Function operation: getting data from the       				   *
+    ***********************************************************************/
+    void setIp(string ip);
 };
 
 #endif /* UDP_H_ */
