@@ -17,6 +17,7 @@ void StandardTaxi::move() {
         this->routh.pop_front();
         Point p = this->routh.front()->getPoint();
         this->location = p;
+        return;
     } if(this->routh.size() == 1){
         this->routh.pop_front();
     }

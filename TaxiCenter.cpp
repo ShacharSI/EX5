@@ -305,13 +305,16 @@ void TaxiCenter::assignTrip(unsigned int time) {
             d->inactivate(this->notActiveDriver, this->activeDrivers);
         }
     }
+    if(this->notActiveDriver.size() == 0){
+        return;
+    }
     long size = this->trips.size();
     std::list<Searchable *> list;
     std::string serial_str;
     char *buffer = (char *) malloc(4096 * sizeof(char));
     //getting the trip that is time arrived
     for (int i = 0; i < size; i++) {
-        Trip temp = this->trips.back();
+        Trip temp = this->trips.front();
         if (temp.getTime() == time) {
             memset(buffer,0,4096); //todo set buffer to 0 before reciving data in udp.cpp
             //getting the driver from client

@@ -77,7 +77,7 @@ void Management::manage() {
                 cin >> userInput;
                 c = userInput.c_str();
                 int id = atoi(c);
-                Point p = this->parseLocation(id);
+                Point p = this->parseLocation(id); //todo need to be driver id and not vehicle id !!!!!!!!!!
                 cout << p;
                 break;
             }
