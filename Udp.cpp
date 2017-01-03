@@ -97,7 +97,7 @@ int Udp::sendData(string data, int length) {
 int Udp::reciveData(char *buffer, int size) {
     struct sockaddr_in to;
     unsigned int to_len = sizeof(struct sockaddr_in);
-    memset(buffer,0,sizeof(buffer)); //todo check if it's not disturbing
+    memset(buffer,0,sizeof(buffer));
     //receive
     int bytes = recvfrom(this->socketDescriptor,
                          buffer, size, 0, (struct sockaddr *) &to, &to_len);

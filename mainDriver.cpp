@@ -13,7 +13,7 @@
 int main(int argc, char *argv[]) {
     //get the port and ip
     if (argc < 3) {
-        return 0; //todo 0 or -1 ?
+        return 0;
     }
     int portNum = atoi(argv[1]);
     Socket *sock = new Udp(true, portNum);

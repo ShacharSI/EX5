@@ -33,7 +33,7 @@ BOOST_CLASS_EXPORT_GUID(Square, "Square")
 Management::Management(Socket *s) {
     this->clock = 0;
     this->socket = s;
-    this->taxiCenter = NULL; //todo need this?
+    this->taxiCenter = NULL;
 }
 
 /**
@@ -92,7 +92,7 @@ void Management::manage() {
             default:
                 break;
         }
-        this->assignTrip(); //todo before or after the move all
+        this->assignTrip();
         //get the next input
         cin >> usrChoiceStr;
         c = usrChoiceStr.c_str();
@@ -105,7 +105,7 @@ void Management::manage() {
     if (n < 0) {
         perror("failed receiving");
     }
-    if (strcmp(buffer, "Finished") == 0) { //todo notworking!!!
+    if (strcmp(buffer, "Finished") == 0) {
         close(this->socket->getSocketDescriptor());
     }
     free(buffer);
@@ -229,7 +229,7 @@ Trip Management::parseTrip(string s) {
         } else if (i == 6) {
             tarrif = atof(c);
         } else if (i == 7) {
-            time = strtol(c, NULL, 0); //todo will work??
+            time = strtol(c, NULL, 0);
         }
         i++;
     }

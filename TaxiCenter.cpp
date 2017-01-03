@@ -119,7 +119,7 @@ TaxiCenter::TaxiCenter(Map* mp, Socket *soc) {
 Point TaxiCenter::giveLocation(int id) throw(invalid_argument) {
     for (int i = 0; i < this->notActiveDriver.size(); i++) {
         Driver *d = this->notActiveDriver.front();
-        if (d->getVehicle_id() == id) {
+        if (d->getId() == id) {
             return d->getTaxi()->getLocation();
         }
         this->notActiveDriver.pop_front();
@@ -127,19 +127,11 @@ Point TaxiCenter::giveLocation(int id) throw(invalid_argument) {
     }
     for (int i = 0; i < this->activeDrivers.size(); i++) {
         Driver *d = this->activeDrivers.front();
-        if (d->getVehicle_id() == id) {
+        if (d->getId() == id) {
             return d->getTaxi()->getLocation();
         }
         this->activeDrivers.pop_front();
         this->activeDrivers.push_back(d);
-    }
-    for(int i = 0;i<this->notActiveTaxis.size();i++){
-        Taxi* t = this->notActiveTaxis.front();
-        if(t->getCarId() == id){
-            return t->getLocation();
-        }
-        this->notActiveTaxis.pop_front();
-        this->notActiveTaxis.push_back(t);
     }
     throw invalid_argument("wrong id");
 }
@@ -285,7 +277,7 @@ TaxiCenter::~TaxiCenter() {
     }
     delete this->searchAlgo;
     delete this->map;
-    //todo check if there is more thing to free
+
 }
 
 /**
@@ -312,7 +304,7 @@ void TaxiCenter::assignTrip(unsigned int time) {
     for (int i = 0; i < size; i++) {
         Trip temp = this->trips.front();
         if (temp.getTime() == time) {
-            memset(buffer,0,4096); //todo set buffer to 0 before reciving data in udp.cpp
+            memset(buffer,0,4096);
             //getting the driver from client
             ssize_t n = this->socket->reciveData(buffer, 4096);
             if (n < 0) {
@@ -327,14 +319,14 @@ void TaxiCenter::assignTrip(unsigned int time) {
             ia >> d;
 
             list = this->sendTrip(temp, d);
-
+            delete d;
             //sending back the list for the client
             boost::iostreams::back_insert_device<std::string> inserter(serial_str);
             boost::iostreams::stream<boost::iostreams::back_insert_device<std::string> > s(inserter);
             boost::archive::binary_oarchive oa(s);
-            oa << list; //todo special include for list
+            oa << list;
             s.flush();
-            n = this->socket->sendData(serial_str, serial_str.size()); //todo serialize and send routh
+            n = this->socket->sendData(serial_str, serial_str.size());
             if (n < 0) {
                 perror("Error in Sendto");
             }

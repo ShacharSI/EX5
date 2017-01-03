@@ -152,7 +152,7 @@ void ManageDriver::setTaxi() {
     n = socket->reciveData(buffer, BUUFER_SIZE);
     if (n < 0) {
         perror("Error in ReciveFrom");
-        //todo exit if failed??
+
     }
     //deserialize and set taxi
     iostreams::basic_array_source<char> inserter1(buffer, BUUFER_SIZE);

@@ -22,7 +22,7 @@ StandardTaxi::StandardTaxi(int idNum,manufacturer mnfctr, color clr,int taarif):
  * moving the taxi to the next location
  */
 void StandardTaxi::move() {
-    if(this->routh.size() > 1){ //todo fix also in luxury
+    if(this->routh.size() > 1){
         this->routh.pop_front();
         Point p = this->routh.front()->getPoint();
         this->location = p;
