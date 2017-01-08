@@ -2,6 +2,7 @@
 #include "Point.h"
 #include "Searchable.h"
 #include <queue>
+
 #ifndef EX1TM_SQUARE_H
 #define EX1TM_SQUARE_H
 
@@ -9,7 +10,7 @@
  * a class that "implempents" the searchable interface
  * and represents a point on map that can be searched.
  */
-class Square: public Searchable {
+class Square : public Searchable {
 
 public:
 
@@ -18,69 +19,43 @@ public:
     template<class Archive>
     void serialize(Archive &ar, const unsigned int version) {
         ar & boost::serialization::base_object<Searchable>(*this);
-        ar &point;
+        ar & point;
 
     }
-    void setBeforeBfs(std::list<Searchable*> l);
+
+
     Square(Point p1);
-    Square (int x,int y);
+
+    Square(int x, int y);
+
     Square();
+
     ~Square();
+
     Point getPoint();
-    void setStartVal();
-    void setAll();
-    void SetLeft(Square* s);
-    void SetRight(Square* s);
-    void SetUpper(Square* s);
-    void SetBottom(Square* s);
-    void setBfsVal(int a);
-    void setBfsFather(Square* father);
-    void setVisitR(bool b);
-    void setVisitL(bool b);
-    void setVisitU(bool b);
-    void setVisitB(bool b);
-    void setVisitFind(bool b);
-    void setVisited(bool b);
-    void setSon(int num);
-    int getSon();
 
 
-    bool getVisited();
-    bool checkVal(Square* start,Square* des );
-    queue<Square*> updateNeiboghr(std::queue<Square*> q);
-    void createRout();
-    int getBfsVal();
 
-    Square* getBstFather();
-    Square* getLeft();
-    Square* getRight();
-    Square* getBotoom();
-    Square* getUpper();
-    Square *leftSon;
-    Square *rightSon;
-    Square *upperSon;
-    Square *bottomSon;
+    Searchable *getFather();
 
-    list<Searchable*> createList();
+    bool getBfsVisited();
 
-    bool isVisitLeft() const;
-    bool isVisitBottom() const;
-    bool isVisitRIght() const;
-    bool isVisitUp() const;
+    bool setBfsVisited(bool b);
+
+    void setBfsFather(Searchable *s);
+
+    bool isObstacle();
+
+    void setObstacle(bool b) ;
+
 
 private:
 
-    int numSon;
     Point point;
-    int bfsVal;
-    Square* bfsFather;
-    bool visitLeft;
-    bool visitBottom;
-    bool visitRIght;
-    bool visitUp;
+    Square *bfsFather;
     bool setAllVisted;
-    bool visitToFind;
     bool bfsVisited;
+    bool obstacle;
 
 };
 

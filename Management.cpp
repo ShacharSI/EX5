@@ -273,7 +273,7 @@ void Management::setLogicAndMap() {
     } catch (const std::invalid_argument &iaExc) {
 
     }
-    getObstacles();
+    this->getObstacles();
     this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"), this->socket);
 }
 

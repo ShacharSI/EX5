@@ -13,7 +13,7 @@
 class MapFactory{
 private:
     list<Searchable*> s;
-    Square* createMapSquare(int sizeX, int SizeY,int currentX,int currentY,list<Point> obatacle);
+    Searchable*** createMapSquare(int sizeX, int SizeY,list <Point> obatacle);
     Square* getSquare(int x, int y, list<Searchable *> l);
     bool checkObstacle(int currentX,int currentY,list<Point> obatacle);
 public:

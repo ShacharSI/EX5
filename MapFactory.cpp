@@ -5,12 +5,12 @@
 /**
  *return a map of an implement of Searchable according to a string.
  */
-Map *
-MapFactory::createMapSearchable(string s, int sizeX, int sizeY, int currentX, int currentY, list <Point> obatacle) {
-    //if the string is "Square" retun a map of squares
+Map *MapFactory::createMapSearchable(string s, int sizeX, int sizeY,
+                                int currentX, int currentY, list <Point> obatacle) {
+    //if the string is "Square" return a map of squares
     if (s.compare("Square") == 0) {
-        Searchable *start = createMapSquare(sizeX, sizeY, currentX, currentY, obatacle);
-        return new Map(sizeX, sizeY, start, this->s);
+        Searchable ***grid = createMapSquare(sizeX, sizeY, obatacle);
+        return new Map(sizeX, sizeY, grid);
     }
 }
 
@@ -34,69 +34,36 @@ bool MapFactory::checkObstacle(int currentX, int currentY, list <Point> obatacle
 /**
  * create a map of squares
  */
-Square *MapFactory::createMapSquare(int sizeX, int sizeY, int currentX, int currentY, list <Point> obatacle) {
-    //if the point is out of limits return NULL
-    if ((currentX > sizeX - 1) || (currentY > sizeY - 1) || (currentX < 0) || (currentY < 0) ||
-        (checkObstacle(currentX, currentY, obatacle))) {
-        return NULL;
-    }
-    //create a square and insert it to the list of the squares
-    Point temp = Point(currentX, currentY);
-    Square *start = new Square(temp);
-    Searchable *searchable = start;
-    s.push_back(searchable);
-    //set the upper neighbor of the square
-    if ((start->upperSon == NULL) && (start->getSon() < 4)) {
-        start->setSon(1);
-        //if the square is already exist set the exist neighbor
-        if (this->getSquare(currentX, currentY + 1, s) != NULL) {
-            start->upperSon = this->getSquare(currentX, currentY + 1, s);
-        } else {
-            //create the neighbor and set it as visited
-            start->setVisitU(true);
-            start->SetUpper(this->createMapSquare(sizeX, sizeY, currentX, currentY + 1, obatacle));
+Searchable ***MapFactory::createMapSquare(int sizeX, int sizeY, list <Point> obatacle) {
+
+
+    Searchable ***map = (Searchable***)new Square **[sizeX]; //todo will work?
+    //Searchable*** map = new Searchable** [sizeY];
+
+    //create the map
+    for (int i = 0; i < sizeX; i++) {
+        //create a row
+        map[i] = new Searchable *[sizeY];
+        //create a column
+        for (int j = 0; j < sizeY; j++) {
+            Searchable *s = (Searchable*)new Square(i,j);
+            //initialize vals
+            s->setBfsFather(NULL);
+            s->setBfsVisited(false);
+            s->setObstacle(false);
+            //enter the node to the map
+            map[i][j] = s;
         }
+
     }
-    //set the bottom neighbor of the square
-    if ((start->bottomSon == NULL) && (start->getSon() < 4)) {
-        start->setSon(1);
-        //if the square is already exist set the exist neighbor
-        if (this->getSquare(currentX, currentY - 1, s) != NULL) {
-            start->bottomSon = this->getSquare(currentX, currentY - 1, s);
-        } else {
-            //create the neighbor and set it as visited
-            start->setVisitB(true);
-            start->SetBottom(this->createMapSquare(sizeX, sizeY, currentX, currentY - 1, obatacle));
-        }
+
+    int numObstacles = obatacle.size();
+    for (int i = 0; i < numObstacles; i++) {
+        Point p = obatacle.front();
+        map[p.getX()][p.getY()]->setObstacle(true);
+        obatacle.pop_front();
     }
-    //set the right neighbor of the square
-    if ((start->rightSon == NULL) && (start->getSon() < 4)) {
-        Point p = Point(0, 0);
-        if (p.equals(start->getPoint())) {
-        }
-        //if the square is already exist set the exist neighbor
-        start->setSon(1);
-        if (this->getSquare(currentX + 1, currentY, s) != NULL) {
-            start->rightSon = this->getSquare(currentX + 1, currentY, s);
-        } else {
-            //create the neighbor and set it as visited
-            start->setVisitR(true);
-            start->SetRight(this->createMapSquare(sizeX, sizeY, currentX + 1, currentY, obatacle));
-        }
-    }
-    //set the left neighbor of the square
-    if ((start->leftSon == NULL) && (start->getSon() < 4)) {
-        start->setSon(1);
-        //if the square is already exist set the exist neighbor
-        if (this->getSquare(currentX - 1, currentY, s) != NULL) {
-            start->leftSon = this->getSquare(currentX - 1, currentY, s);
-        } else {
-            //create the neighbor and set it as visited
-            start->setVisitL(true);
-            start->SetLeft(this->createMapSquare(sizeX, sizeY, currentX - 1, currentY, obatacle));
-        }
-    }
-    return start;
+    return map; //todo will work the casting?
 }
 
 /**

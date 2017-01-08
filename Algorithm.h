@@ -7,11 +7,13 @@
 
 
 #include "Searchable.h"
+#include "Map.h"
+
 /**
  * an interface of serching a routh between point on map
  */
 class Algorithm{
 public:
-    virtual list<Searchable*> findRouth(Searchable* start,Searchable* destiny) = 0;
+    virtual list<Searchable*> findRouth(Searchable* start,Searchable* destiny,Map* m) = 0;
 };
 #endif //TM_ALGORITHM_H

@@ -7,6 +7,7 @@
 #include "Point.h"
 #include "Searchable.h"
 #include "list"
+#include <queue>
 
 
 /**
@@ -16,24 +17,38 @@ class Map {
 
 public:
     ~Map();
-    Map();
-    Map(int sizeX, int sizeY, Searchable* start, list<Searchable*> l);
-    void freeAll();
-    Searchable* getStart();
-    bool operator==(const Map &other) const {
-        return this->searchables == other.searchables;
-    }
-    list<Searchable *> getL();
-    int getSizeX() const;
-    int getSizeY() const;
-    Searchable* findOnGrid(Point p);
 
+    Map();
+
+    Map(int sizeX, int sizeY, Searchable ***map);
+
+    void freeAll();
+
+    /* bool operator==(const Map &other) const {
+         return this->searchables == other.searchables;
+     }*/
+    Searchable **getSearchableByCoordinate(int x, int y);
+
+    void setBeforeBfs();
+
+    list<Searchable *> getL();
+
+    int getSizeX() const;
+
+    int getSizeY() const;
+
+    Searchable ***getMap();
+
+    queue<Searchable **> updateNeighbour(int x, int y, std::queue<Searchable **> q);
+
+    Searchable *getFather(Searchable *);
+
+    bool checkVal(int x, int y);
 
 private:
     int sizeX;
     int sizeY;
-    Searchable* start;
-    std::list<Searchable*> searchables;
+    Searchable ***map;
 };
 
 

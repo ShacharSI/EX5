@@ -11,19 +11,28 @@
  */
 class Searchable {
     friend class boost::serialization::access;
+
     template<class Archive>
     void serialize(Archive &ar, const unsigned int version) {
 
     }
-public:
 
-    virtual list <Searchable*> createList()=0;
-    virtual void setAll() =0;
-    virtual void createRout()=0;
+public:
+    virtual Searchable *getFather() =0;
+
+    virtual bool getBfsVisited()=0;
+
+    virtual bool setBfsVisited(bool b)=0;
+
+    virtual void setBfsFather(Searchable *s)=0;
+
+    virtual bool isObstacle() = 0;
+
+    virtual void setObstacle(bool b) = 0;
+
     virtual Point getPoint() = 0;
-    virtual void setStartVal()=0;
-    virtual void setBeforeBfs(std::list<Searchable*> l) = 0;
 
 };
+
 BOOST_SERIALIZATION_ASSUME_ABSTRACT(Searchable)
 #endif //EX1TM_SERCHABLE_H

@@ -73,7 +73,8 @@ int Logic::getSizeY() {
  * type(decide by the string) and size
  **/
 Map* Logic::createNewMap(string s) {
-    return this->mpFactory.createMapSearchable(s, this->sizeX, this->sizeY, 0, 0, this->getObstacle());
+    return this->mpFactory.createMapSearchable(s, this->sizeX, this->sizeY
+                                               , 0, 0, this->getObstacle());
 }
 
 /**

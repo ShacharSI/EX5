@@ -4,6 +4,7 @@
 #include <list>
 #include "Square.h"
 #include "Algorithm.h"
+#include "Map.h"
 
 /**
  * a class that is in charge of finding the
@@ -13,7 +14,7 @@ class Bfs: public Algorithm {
 
 
 public:
-    list<Searchable*> findRouth(Searchable* start,Searchable* destiny);
+    list<Searchable*> findRouth(Searchable* start,Searchable* destiny,Map* m);
 };
 
 

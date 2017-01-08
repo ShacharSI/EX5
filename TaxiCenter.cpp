@@ -70,11 +70,11 @@ list<Searchable *> TaxiCenter::getClosetTaxi(Trip t, Driver* d) {
 }
 
 list<Searchable*> TaxiCenter::calculateDriverRoute(Point startP, Point endP){
-    Searchable* start = this->map->findOnGrid(startP);
-    Searchable* end = this->map->findOnGrid(endP);
+    Searchable* start = *this->map->getSearchableByCoordinate(startP.getX(),startP.getY());
+    Searchable* end = *this->map->getSearchableByCoordinate(endP.getX(),endP.getY());;
     std::list<Searchable*> list;
-    list = this->searchAlgo->findRouth(start,end);
-    this->map->getStart()->setBeforeBfs(this->map->getL());
+    list = this->searchAlgo->findRouth(start,end,this->map);
+    //this->map->getStart()->setBeforeBfs(this->map->getL()); //todo need this?
     return list;
 }
 
