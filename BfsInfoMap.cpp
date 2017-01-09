@@ -8,6 +8,9 @@ BfsInfoMap::BfsInfoMap() {
 
 }
 
+/*
+ * check whether the searchable is visited
+ */
 bool BfsInfoMap::isVisitedSearchable(Searchable *searchable) {
     return this->visitMap[searchable];
 }

@@ -68,7 +68,7 @@ queue<Searchable **> Map::updateNeighbor(int x, int y, std::queue<Searchable **>
     Searchable *curr = this->map[x][y];
     //curr->setBfsVisited(true);
     //curr->setBfsFather(NULL);
-    //todo add obsatcle check!!
+    //todo add obsatcle check!!d
     if ((((x - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x - 1][y]))) {
         Searchable *temp = this->map[x - 1][y];
         infoMap->setVisitedSearchable(temp);

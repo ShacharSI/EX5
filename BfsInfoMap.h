@@ -10,6 +10,9 @@
 
 using namespace std;
 
+/**
+ * class of BfsInfoMap. contain the info that needed for each searchable for the bfs algo.
+ */
 class BfsInfoMap {
 private:
     map<Searchable*,bool > visitMap;

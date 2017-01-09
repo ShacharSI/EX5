@@ -8,7 +8,7 @@
 list<Searchable *> Bfs::findRouth(Searchable *start, Searchable *destiny, Map *m) {
     Point startPoint = start->getPoint();
     Point endPoint = destiny->getPoint();
-    //todo set before bfs
+    //todo set before bfs/
     Point currPoint = startPoint;
     std::list<Searchable *> l;
     m->setBeforeBfs();

@@ -11,7 +11,7 @@
 
 
 /**
- * class that in charge of holding the relevant information and managing a map.
+ * class that in charge of holding the relevant information and managing a map.x
  */
 class Map {
 
