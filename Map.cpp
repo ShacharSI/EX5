@@ -71,29 +71,36 @@ queue<Searchable **> Map::updateNeighbour(int x, int y, std::queue<Searchable **
     //curr->setBfsFather(NULL);
     //todo add obsatcle check!!
     if ((((x - 1) >= 0)) && (!this->map[x - 1][y]->getBfsVisited())) {
-        this->map[x - 1][y]->setBfsFather(curr);
-        this->map[x - 1][y]->setBfsVisited(true);
-        q.push(&this->map[x - 1][y]);
+        if (!this->map[x - 1][y]->isObstacle()) {
+            this->map[x - 1][y]->setBfsFather(curr);
+            this->map[x - 1][y]->setBfsVisited(true);
+            q.push(&this->map[x - 1][y]);
+        }
     }
-
+    //todo check obstacle!!!
     if ((((x + 1) < this->sizeX)) && (!this->map[x + 1][y]->getBfsVisited())) {
-        this->map[x + 1][y]->setBfsFather(curr);
-        this->map[x + 1][y]->setBfsVisited(true);
-        q.push(&this->map[x + 1][y]);
+        if (!this->map[x + 1][y]->isObstacle()) {
+            this->map[x + 1][y]->setBfsFather(curr);
+            this->map[x + 1][y]->setBfsVisited(true);
+            q.push(&this->map[x + 1][y]);
+        }
     }
 
     if ((((y + 1) < this->sizeY)) && (!this->map[x][y + 1]->getBfsVisited())) {
-        this->map[x][y + 1]->setBfsFather(curr);
-        this->map[x][y + 1]->setBfsVisited(true);
-        q.push(&this->map[x][y + 1]);
+        if (!this->map[x][y + 1]->isObstacle()) {
+            this->map[x][y + 1]->setBfsFather(curr);
+            this->map[x][y + 1]->setBfsVisited(true);
+            q.push(&this->map[x][y + 1]);
+        }
     }
 
     if ((((y - 1) >= 0)) && (!this->map[x][y - 1]->getBfsVisited())) {
-        this->map[x][y - 1]->setBfsFather(curr);
-        this->map[x][y - 1]->setBfsVisited(true);
-        q.push(&this->map[x][y - 1]);
+        if (!this->map[x][y - 1]->isObstacle()) {
+            this->map[x][y - 1]->setBfsFather(curr);
+            this->map[x][y - 1]->setBfsVisited(true);
+            q.push(&this->map[x][y - 1]);
+        }
     }
-
 
     return q;
 }

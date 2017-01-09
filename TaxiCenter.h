@@ -34,9 +34,9 @@ public:
 
     Point giveLocation(int id) throw(invalid_argument) ;
 
-    list <Driver*>& getActiveDriver();
+    list <Driver*>* getActiveDriver();
 
-    list <Driver*> getNotActiveDriver();
+    list <Driver*>* getNotActiveDriver();
 
     void addTrip(Trip t);
 
@@ -44,7 +44,7 @@ public:
 
     void setNotActiveDriver(Driver* d);
 
-    list<Taxi *> getNotActiveTaxis();
+    list<Taxi *>* getNotActiveTaxis();
 
     void assignTrip(unsigned int time);
 
@@ -53,6 +53,11 @@ public:
     void moveAll();
 
     Taxi* attachTaxiToDriver(int vhecleId);
+    queue<Trip>* getTrips();
+private:
+    unsigned int time;
+public:
+    unsigned int getTime() const;
 
 private:
     Map* map;
@@ -63,10 +68,8 @@ private:
     list<Searchable*> getClosetTaxi(Trip p,Driver* d);
     list<Searchable*> calculateDriverRoute(Point startP, Point endP);
 
-    list<Taxi *> notActiveTaxis;
-    list <Driver*> activeDrivers;
-    list <Driver*> notActiveDriver;
-    queue<Trip> trips;
+    list<Taxi *>* notActiveTaxis;
+    queue<Trip>* trips;
     Socket* socket;
 };
 

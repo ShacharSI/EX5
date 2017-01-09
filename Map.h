@@ -49,6 +49,7 @@ private:
     int sizeX;
     int sizeY;
     Searchable ***map;
+    list<Searchable*> l; //todo set this list
 };
 
 

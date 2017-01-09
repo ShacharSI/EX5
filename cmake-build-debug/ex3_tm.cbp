@@ -146,6 +146,22 @@
 			<Option target="mainDriver.cpp"/>
 			<Option target="main.cpp"/>
 		</Unit>
+		<Unit filename="/home/haim6678/CLionProjects/AP4/BfsStep.cpp">
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
+		</Unit>
+		<Unit filename="/home/haim6678/CLionProjects/AP4/BfsStep.h">
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
+		</Unit>
+		<Unit filename="/home/haim6678/CLionProjects/AP4/BfsVisitMap.cpp">
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
+		</Unit>
+		<Unit filename="/home/haim6678/CLionProjects/AP4/BfsVisitMap.h">
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
+		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Driver.cpp">
 			<Option target="mainDriver.cpp"/>
 			<Option target="main.cpp"/>
@@ -279,6 +295,20 @@
 		<Unit filename="/home/haim6678/CLionProjects/AP4/TaxiCenter.h">
 			<Option target="mainDriver.cpp"/>
 			<Option target="main.cpp"/>
+		</Unit>
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Tcp.cpp">
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
+		</Unit>
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Tcp.h">
+			<Option target="mainDriver.cpp"/>
+			<Option target="main.cpp"/>
+		</Unit>
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Thread_Runner.cpp">
+			<Option target="mainDriver.cpp"/>
+		</Unit>
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Thread_Runner.h">
+			<Option target="mainDriver.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Trip.cpp">
 			<Option target="mainDriver.cpp"/>

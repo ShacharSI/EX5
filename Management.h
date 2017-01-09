@@ -15,7 +15,7 @@
  */
 class Management {
 private:
-    unsigned int clock;
+    //unsigned int clock;
     Logic lg;
     TaxiCenter* taxiCenter;
     void setLogicAndMap();

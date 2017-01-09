@@ -196,6 +196,66 @@ Bfs.cpp.s:
 	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/Bfs.cpp.s
 .PHONY : Bfs.cpp.s
 
+BfsStep.o: BfsStep.cpp.o
+
+.PHONY : BfsStep.o
+
+# target to build an object file
+BfsStep.cpp.o:
+	$(MAKE) -f CMakeFiles/mainDriver.cpp.dir/build.make CMakeFiles/mainDriver.cpp.dir/BfsStep.cpp.o
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/BfsStep.cpp.o
+.PHONY : BfsStep.cpp.o
+
+BfsStep.i: BfsStep.cpp.i
+
+.PHONY : BfsStep.i
+
+# target to preprocess a source file
+BfsStep.cpp.i:
+	$(MAKE) -f CMakeFiles/mainDriver.cpp.dir/build.make CMakeFiles/mainDriver.cpp.dir/BfsStep.cpp.i
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/BfsStep.cpp.i
+.PHONY : BfsStep.cpp.i
+
+BfsStep.s: BfsStep.cpp.s
+
+.PHONY : BfsStep.s
+
+# target to generate assembly for a file
+BfsStep.cpp.s:
+	$(MAKE) -f CMakeFiles/mainDriver.cpp.dir/build.make CMakeFiles/mainDriver.cpp.dir/BfsStep.cpp.s
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/BfsStep.cpp.s
+.PHONY : BfsStep.cpp.s
+
+BfsVisitMap.o: BfsVisitMap.cpp.o
+
+.PHONY : BfsVisitMap.o
+
+# target to build an object file
+BfsVisitMap.cpp.o:
+	$(MAKE) -f CMakeFiles/mainDriver.cpp.dir/build.make CMakeFiles/mainDriver.cpp.dir/BfsVisitMap.cpp.o
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/BfsVisitMap.cpp.o
+.PHONY : BfsVisitMap.cpp.o
+
+BfsVisitMap.i: BfsVisitMap.cpp.i
+
+.PHONY : BfsVisitMap.i
+
+# target to preprocess a source file
+BfsVisitMap.cpp.i:
+	$(MAKE) -f CMakeFiles/mainDriver.cpp.dir/build.make CMakeFiles/mainDriver.cpp.dir/BfsVisitMap.cpp.i
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/BfsVisitMap.cpp.i
+.PHONY : BfsVisitMap.cpp.i
+
+BfsVisitMap.s: BfsVisitMap.cpp.s
+
+.PHONY : BfsVisitMap.s
+
+# target to generate assembly for a file
+BfsVisitMap.cpp.s:
+	$(MAKE) -f CMakeFiles/mainDriver.cpp.dir/build.make CMakeFiles/mainDriver.cpp.dir/BfsVisitMap.cpp.s
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/BfsVisitMap.cpp.s
+.PHONY : BfsVisitMap.cpp.s
+
 Driver.o: Driver.cpp.o
 
 .PHONY : Driver.o
@@ -703,6 +763,63 @@ TaxiCenter.cpp.s:
 	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/TaxiCenter.cpp.s
 .PHONY : TaxiCenter.cpp.s
 
+Tcp.o: Tcp.cpp.o
+
+.PHONY : Tcp.o
+
+# target to build an object file
+Tcp.cpp.o:
+	$(MAKE) -f CMakeFiles/mainDriver.cpp.dir/build.make CMakeFiles/mainDriver.cpp.dir/Tcp.cpp.o
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/Tcp.cpp.o
+.PHONY : Tcp.cpp.o
+
+Tcp.i: Tcp.cpp.i
+
+.PHONY : Tcp.i
+
+# target to preprocess a source file
+Tcp.cpp.i:
+	$(MAKE) -f CMakeFiles/mainDriver.cpp.dir/build.make CMakeFiles/mainDriver.cpp.dir/Tcp.cpp.i
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/Tcp.cpp.i
+.PHONY : Tcp.cpp.i
+
+Tcp.s: Tcp.cpp.s
+
+.PHONY : Tcp.s
+
+# target to generate assembly for a file
+Tcp.cpp.s:
+	$(MAKE) -f CMakeFiles/mainDriver.cpp.dir/build.make CMakeFiles/mainDriver.cpp.dir/Tcp.cpp.s
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/Tcp.cpp.s
+.PHONY : Tcp.cpp.s
+
+Thread_Runner.o: Thread_Runner.cpp.o
+
+.PHONY : Thread_Runner.o
+
+# target to build an object file
+Thread_Runner.cpp.o:
+	$(MAKE) -f CMakeFiles/mainDriver.cpp.dir/build.make CMakeFiles/mainDriver.cpp.dir/Thread_Runner.cpp.o
+.PHONY : Thread_Runner.cpp.o
+
+Thread_Runner.i: Thread_Runner.cpp.i
+
+.PHONY : Thread_Runner.i
+
+# target to preprocess a source file
+Thread_Runner.cpp.i:
+	$(MAKE) -f CMakeFiles/mainDriver.cpp.dir/build.make CMakeFiles/mainDriver.cpp.dir/Thread_Runner.cpp.i
+.PHONY : Thread_Runner.cpp.i
+
+Thread_Runner.s: Thread_Runner.cpp.s
+
+.PHONY : Thread_Runner.s
+
+# target to generate assembly for a file
+Thread_Runner.cpp.s:
+	$(MAKE) -f CMakeFiles/mainDriver.cpp.dir/build.make CMakeFiles/mainDriver.cpp.dir/Thread_Runner.cpp.s
+.PHONY : Thread_Runner.cpp.s
+
 Trip.o: Trip.cpp.o
 
 .PHONY : Trip.o
@@ -893,6 +1010,12 @@ help:
 	@echo "... Bfs.o"
 	@echo "... Bfs.i"
 	@echo "... Bfs.s"
+	@echo "... BfsStep.o"
+	@echo "... BfsStep.i"
+	@echo "... BfsStep.s"
+	@echo "... BfsVisitMap.o"
+	@echo "... BfsVisitMap.i"
+	@echo "... BfsVisitMap.s"
 	@echo "... Driver.o"
 	@echo "... Driver.i"
 	@echo "... Driver.s"
@@ -944,6 +1067,12 @@ help:
 	@echo "... TaxiCenter.o"
 	@echo "... TaxiCenter.i"
 	@echo "... TaxiCenter.s"
+	@echo "... Tcp.o"
+	@echo "... Tcp.i"
+	@echo "... Tcp.s"
+	@echo "... Thread_Runner.o"
+	@echo "... Thread_Runner.i"
+	@echo "... Thread_Runner.s"
 	@echo "... Trip.o"
 	@echo "... Trip.i"
 	@echo "... Trip.s"

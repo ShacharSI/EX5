@@ -15,7 +15,6 @@ list<Searchable *> Bfs::findRouth(Searchable *start, Searchable *destiny, Map *m
 
     Point startPoint = start->getPoint();
     Point endPoint = destiny->getPoint();
-    //todo set before bfs
     Point currPoint = startPoint;
     std::list<Searchable *> l;
     m->setBeforeBfs();
@@ -27,7 +26,7 @@ list<Searchable *> Bfs::findRouth(Searchable *start, Searchable *destiny, Map *m
     q = m->updateNeighbour(startPoint.getX(), startPoint.getY(), q);
     while ((!q.empty()) && (!currPoint.equals(endPoint))) {
         s = *(q.front());
-        q.pop(); //todo here or down there?
+        q.pop();
         currPoint = s->getPoint();
         q = m->updateNeighbour(currPoint.getX(), currPoint.getY(), q);
     }

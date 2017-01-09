@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include "StandardTaxi.h"
 #include "LuxuryTaxi.h"
+#include "Thread_Runner.h"
 #include <stdexcept>
 #include <fstream>
 #include <sstream>
@@ -178,34 +179,19 @@ void Management::parseDriver() {
     cin >> input;
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
+    pthread_t threadArray[numOfDrivers];
+    open tcp socket
+    for (int i = 0; i < numOfDrivers; i++) {
+        threadArray[i];
+    }
+
+    Thread_Runner *thread_runner = new Thread_Runner(this->taxiCenter);
     //a loop that gets the drivers and send taxi's
     for (int j = 0; j < numOfDrivers; ++j) {
-        n = this->socket->reciveData(buffer, BUFFERSIZE);
-        if (n < 0) {
-            perror("error receiving");
-        }
 
-        //getting the driver
-        boost::iostreams::basic_array_source<char> device(buffer, BUFFERSIZE);
-        boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
-        boost::archive::binary_iarchive ia(s2);
-        ia >> d;
+        int status = pthread_create(&threadArray[j], NULL, thread_runner->run, NULL);
 
-        //attach a taxi to the driver in our list and return the taxi to send to client
-        t = this->taxiCenter->attachTaxiToDriver(d->getVehicle_id());
-        //serialize the taxi
-        boost::iostreams::back_insert_device<std::string> inserter(serial_str);
-        boost::iostreams::stream<boost::iostreams::back_insert_device<std::string> > s(inserter);
-        boost::archive::binary_oarchive oa(s);
-        oa << t;
-        s.flush();
-        //send the taxi to client
-        n = this->socket->sendData(serial_str, serial_str.size());
-        if (n < 0) {
-            perror("error sending");
-        }
-        d->setTaxi(t);
-        this->taxiCenter->addDriverToCenter(d);
+
     }
 
     free(buffer);
