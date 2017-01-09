@@ -14,8 +14,8 @@ Point Square::getPoint() {
 
 /**
  * the constructor.
- * @param x - the square x coordinate
- * @param y -  the square y coordinate
+ * @param x - the square x coordinade
+ * @param y -  the square y coordinade
  */
 Square::Square(int x, int y) {
     Point p(x, y);

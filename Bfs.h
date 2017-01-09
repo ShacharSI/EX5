@@ -8,7 +8,7 @@
 
 /**
  * a class that is in charge of finding the
- * shortest route between 2 pointsx
+ * shortest route between 2 points
  */
 class Bfs: public Algorithm {
 private:
