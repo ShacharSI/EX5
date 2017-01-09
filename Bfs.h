@@ -4,6 +4,7 @@
 #include "Square.h"
 #include "Algorithm.h"
 #include "Map.h"
+#include "BfsInfoMap.h"
 
 /**
  * a class that is in charge of finding the

@@ -2,9 +2,10 @@
 #include "Bfs.h"
 
 /**
- * function that recivecs a start and an and
- * and find the shortest routh between them
+ * function that receives a start and an and
+ * and find the shortest route between them
  */
+
 list<Searchable *> Bfs::findRouth(Searchable *start, Searchable *destiny, Map *m) {
     Point startPoint = start->getPoint();
     Point endPoint = destiny->getPoint();

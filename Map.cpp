@@ -70,31 +70,31 @@ queue<Searchable **> Map::updateNeighbor(int x, int y, std::queue<Searchable **>
     //curr->setBfsFather(NULL);
     //todo add obsatcle check!!d
     if ((((x - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x - 1][y]))) {
-        Searchable *temp = this->map[x - 1][y];
-        infoMap->setVisitedSearchable(temp);
-        infoMap->setSearchableFather(temp, curr);
-        q.push(&temp);
+        Searchable **temp = &this->map[x - 1][y];
+        infoMap->setVisitedSearchable(*temp);
+        infoMap->setSearchableFather(*temp, curr);
+        q.push(temp);
     }
 
     if ((((x + 1) < this->sizeX)) && (!infoMap->isVisitedSearchable(this->map[x + 1][y]))) {
-        Searchable *temp = this->map[x + 1][y];
-        infoMap->setVisitedSearchable(temp);
-        infoMap->setSearchableFather(temp, curr);
-        q.push(&temp);
+        Searchable **temp = &this->map[x + 1][y];
+        infoMap->setVisitedSearchable(*temp);
+        infoMap->setSearchableFather(*temp, curr);
+        q.push(temp);
     }
 
     if ((((y + 1) < this->sizeY)) && (!infoMap->isVisitedSearchable(this->map[x][y + 1]))) {
-        Searchable *temp = this->map[x][y + 1];
-        infoMap->setVisitedSearchable(temp);
-        infoMap->setSearchableFather(temp, curr);
-        q.push(&temp);
+        Searchable **temp = &this->map[x][y + 1];
+        infoMap->setVisitedSearchable(*temp);
+        infoMap->setSearchableFather(*temp, curr);
+        q.push(temp);
     }
 
     if ((((y - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x][y - 1]))) {
-        Searchable *temp = this->map[x][y - 1];
-        infoMap->setVisitedSearchable(temp);
-        infoMap->setSearchableFather(temp, curr);
-        q.push(&temp);
+        Searchable **temp = &this->map[x][y - 1];
+        infoMap->setVisitedSearchable(*temp);
+        infoMap->setSearchableFather(*temp, curr);
+        q.push(temp);
     }
     return q;
 }
