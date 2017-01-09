@@ -54,6 +54,8 @@ public:
 
     Taxi* attachTaxiToDriver(int vhecleId);
 
+
+
 private:
     Map* map;
     Trip currentTrip;

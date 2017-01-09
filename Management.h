@@ -19,6 +19,7 @@ private:
     Logic lg;
     TaxiCenter* taxiCenter;
     void setLogicAndMap();
+
     vector<int> getSizes();
     Socket* socket;
 
