@@ -4,7 +4,6 @@
 #include <queue>
 #include "Point.h"
 #include "Square.h"
-#include "Bfs.h"
 
 /**
  * @return - the square point.
@@ -22,7 +21,6 @@ Square::Square(int x, int y) {
     Point p(x, y);
     this->point = p;
     this->setAllVisted = false;
-
 }
 
 /**

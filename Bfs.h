@@ -1,4 +1,3 @@
-
 #ifndef EX1TM_BFS_H
 #define EX1TM_BFS_H
 #include <list>
@@ -8,10 +7,11 @@
 
 /**
  * a class that is in charge of finding the
- * shrtest rou between 2 points
+ * shortest route between 2 points
  */
 class Bfs: public Algorithm {
-
+private:
+    BfsInfoMap* infoMap;
 
 public:
     list<Searchable*> findRouth(Searchable* start,Searchable* destiny,Map* m);
