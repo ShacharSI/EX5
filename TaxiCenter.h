@@ -59,6 +59,7 @@ private:
 public:
     unsigned int getTime() const;
 
+
 private:
     Map* map;
     Trip currentTrip;

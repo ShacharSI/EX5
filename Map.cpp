@@ -111,6 +111,7 @@ Searchable *Map::getFather(Searchable *s) {
 
 void Map::setBeforeBfs() {
     for (int i = 0; i < sizeX; i++) {
+
         for (int j = 0; j < sizeY; j++) {
             this->map[i][j]->setBfsFather(NULL);
             this->map[i][j]->setBfsVisited(false);

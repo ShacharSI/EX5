@@ -338,6 +338,7 @@ void TaxiCenter::assignTrip(unsigned int time) {
             //continue search for matching trip
         } else {
             this->trips->pop();
+
             this->trips->push(temp);
         }
     }

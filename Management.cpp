@@ -181,6 +181,7 @@ void Management::parseDriver() {
     int numOfDrivers = atoi(ch);
     pthread_t threadArray[numOfDrivers];
     open tcp socket
+
     for (int i = 0; i < numOfDrivers; i++) {
         threadArray[i];
     }

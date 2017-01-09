@@ -27,6 +27,7 @@ list<Searchable *> Bfs::findRouth(Searchable *start, Searchable *destiny, Map *m
     while ((!q.empty()) && (!currPoint.equals(endPoint))) {
         s = *(q.front());
         q.pop();
+
         currPoint = s->getPoint();
         q = m->updateNeighbour(currPoint.getX(), currPoint.getY(), q);
     }
