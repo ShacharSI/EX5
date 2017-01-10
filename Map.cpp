@@ -1,6 +1,7 @@
 
 #include <queue>
 #include "Map.h"
+#include <stdexcept>
 
 #define MAX_SIZE 2000
 
@@ -64,42 +65,43 @@ Searchable ***Map::getMap() {
     return this->map;
 }
 
-queue<Searchable **> Map::updateNeighbor(int x, int y, std::queue<Searchable **> q, BfsInfoMap *infoMap) {
+queue<Searchable **> Map::updateNeighbor(int x, int y,
+                                         std::queue<Searchable **> q, BfsInfoMap infoMap) {
     Searchable *curr = this->map[x][y];
     //curr->setBfsVisited(true);
     //curr->setBfsFather(NULL);
-    //todo add obsatcle check!!d
-    if ((((x - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x - 1][y]))) {
+
+    if ((((x - 1) >= 0)) && (!infoMap.isVisitedSearchable(this->map[x - 1][y]))) {
         Searchable **temp = &this->map[x - 1][y];
-        infoMap->setVisitedSearchable(*temp);
-        infoMap->setSearchableFather(*temp, curr);
+        infoMap.setVisitedSearchable(*temp);
+        infoMap.setSearchableFather(*temp, curr);
         q.push(temp);
     }
 
-    if ((((x + 1) < this->sizeX)) && (!infoMap->isVisitedSearchable(this->map[x + 1][y]))) {
+    if ((((x + 1) < this->sizeX)) && (!infoMap.isVisitedSearchable(this->map[x + 1][y]))) {
         Searchable **temp = &this->map[x + 1][y];
-        infoMap->setVisitedSearchable(*temp);
-        infoMap->setSearchableFather(*temp, curr);
+        infoMap.setVisitedSearchable(*temp);
+        infoMap.setSearchableFather(*temp, curr);
         q.push(temp);
     }
 
-    if ((((y + 1) < this->sizeY)) && (!infoMap->isVisitedSearchable(this->map[x][y + 1]))) {
+    if ((((y + 1) < this->sizeY)) && (!infoMap.isVisitedSearchable(this->map[x][y + 1]))) {
         Searchable **temp = &this->map[x][y + 1];
-        infoMap->setVisitedSearchable(*temp);
-        infoMap->setSearchableFather(*temp, curr);
+        infoMap.setVisitedSearchable(*temp);
+        infoMap.setSearchableFather(*temp, curr);
         q.push(temp);
     }
 
-    if ((((y - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x][y - 1]))) {
+    if ((((y - 1) >= 0)) && (!infoMap.isVisitedSearchable(this->map[x][y - 1]))) {
         Searchable **temp = &this->map[x][y - 1];
-        infoMap->setVisitedSearchable(*temp);
-        infoMap->setSearchableFather(*temp, curr);
+        infoMap.setVisitedSearchable(*temp);
+        infoMap.setSearchableFather(*temp, curr);
         q.push(temp);
     }
     return q;
 }
 
-void Map::setBeforeBfs() { //todo is needed now with the multithreading???
+void Map::setBeforeBfs() {
     for (int i = 0; i < sizeX; i++) {
         for (int j = 0; j < sizeY; j++) {
             this->map[i][j]->setBfsFather(NULL);
@@ -108,7 +110,14 @@ void Map::setBeforeBfs() { //todo is needed now with the multithreading???
     }
 }
 
-Searchable **Map::getSearchableByCoordinate(int x, int y) {
-    //todo validate coordinnate
+Searchable **Map::getSearchableByCoordinate(Point p) {
+    if ((p.getY() < 0) || (p.getX() < 0)
+        || (p.getX() > this->getSizeX())
+        || (p.getY() > this->getSizeY())) {
+        throw invalid_argument("wrong coordinate for point");
+
+    }
+    int x = p.getX();
+    int y = p.getY();
     return &this->map[x][y];
 }

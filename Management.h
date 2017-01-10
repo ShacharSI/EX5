@@ -8,6 +8,7 @@
 #include <sstream>
 #include "Logic.h"
 #include "StndTaxiFactory.h"
+#include "Thread_Runner.h"
 
 /**
  * a class that manage the all program
@@ -19,9 +20,9 @@ private:
     Logic lg;
     TaxiCenter* taxiCenter;
     void setLogicAndMap();
-
     vector<int> getSizes();
     Socket* socket;
+    Thread_Runner* thread_runner;
 
 public:
     ~Management();
@@ -34,7 +35,7 @@ public:
     void manage();
     Taxi* parseTaxi(string s);
     void parseDriver();
-    Trip parseTrip(string s);
+    void parseTrip(string s);
     Point parseLocation(int id);
 };
 

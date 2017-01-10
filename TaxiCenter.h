@@ -24,56 +24,40 @@ class TaxiCenter {
 
 
 public:
-    void addDriverToCenter(Driver* d);
+    void addDriverToCenter(Driver *d);
 
     TaxiCenter();
+
     ~TaxiCenter();
-    TaxiCenter(Map* m,Socket* s);
 
-    list<Searchable*> sendTrip(Trip t,Driver* d) ;
+    TaxiCenter(Map *m, Socket *s);
 
-    Point giveLocation(int id) throw(invalid_argument) ;
+    Point giveLocation(int id) throw(invalid_argument);
 
-    list <Driver*>* getActiveDriver();
-
-    list <Driver*>* getNotActiveDriver();
-
-    void addTrip(Trip t);
-
-    void setActiveDriver(Driver* d);
-
-    void setNotActiveDriver(Driver* d);
-
-    list<Taxi *>* getNotActiveTaxis();
-
-    void assignTrip(unsigned int time);
+    list<Taxi *> &getNotActiveTaxis();
 
     void addTaxi(Taxi *t);
 
     void moveAll();
 
-    Taxi* attachTaxiToDriver(int vhecleId);
-    queue<Trip>* getTrips();
-private:
-    unsigned int time;
-public:
+    void setRout(Driver* d,list<Searchable*> l);
+
+    Taxi *attachTaxiToDriver(int vhecleId);
+
     unsigned int getTime() const;
 
+    list<Driver *> &getDrivers();
 
-
+    Map *getMap() const;
 
 private:
-    Map* map;
-    Trip currentTrip;
+    unsigned int time;
+    Map *map;
     Algorithm *searchAlgo;
-    void sendTaxiToLocation(Driver* d);
-
-    list<Searchable*> getClosetTaxi(Trip p,Driver* d);
-    list<Searchable*> calculateDriverRoute(Point startP, Point endP);
-
-    list<Taxi *>* notActiveTaxis;
-    queue<Trip>* trips;
-    Socket* socket;
+    list<Taxi *> notActiveTaxis;
+    list<Driver *> drivers;
+    queue<Trip> trips;
+    Socket *socket;
 };
 
 

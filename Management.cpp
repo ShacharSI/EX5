@@ -43,6 +43,8 @@ Management::Management(Socket *s) {
  */
 void Management::manage() {
     char *buffer = (char *) malloc(4096 * sizeof(char));
+    Thread_Runner *threader = new Thread_Runner(this->taxiCenter);
+    this->thread_runner = threader;
     string userInput;
     string usrChoiceStr;
     int userChoice;
@@ -61,8 +63,7 @@ void Management::manage() {
                 //create trip
             case 2: {
                 getline(cin, userInput);
-                Trip t = this->parseTrip(userInput);
-                this->taxiCenter->addTrip(t);
+                this->parseTrip(userInput);
                 break;
             }
                 //create taxi
@@ -78,7 +79,7 @@ void Management::manage() {
                 cin >> userInput;
                 c = userInput.c_str();
                 int id = atoi(c);
-                Point p = this->parseLocation(id); //todo need to be driver id and not vehicle id !!!!!!!!!!
+                Point p = this->parseLocation(id);
                 cout << p;
                 break;
             }
@@ -170,7 +171,7 @@ Point Management::parseLocation(int id) {
 void Management::parseDriver() {
     //set the variables
     ssize_t n;
-    map<Driver*,int>* socketDesmap = new map<Driver*,int>();
+    map<Driver *, int> *socketDesmap = new map<Driver *, int>();
     Taxi *t = NULL;
     Driver *d = NULL;
     string serial_str;
@@ -182,11 +183,11 @@ void Management::parseDriver() {
     int numOfDrivers = atoi(ch);
     pthread_t threadArray[numOfDrivers];
     this->socket->initialize();
-    open tcp socket;
-    Thread_Runner *thread_runner = new Thread_Runner(this->taxiCenter);
+
+
     //a loop that gets the drivers and send taxi's
     for (int j = 0; j < numOfDrivers; ++j) {
-        int status = pthread_create(&threadArray[j], NULL, thread_runner->run, NULL);
+        int status = pthread_create(&threadArray[j], NULL, this->thread_runner->run, NULL);
     }
 
     free(buffer);
@@ -195,7 +196,7 @@ void Management::parseDriver() {
 /**
  * getting the user's string and creating a trip from it
  */
-Trip Management::parseTrip(string s) {
+void Management::parseTrip(string s) {
     string streamCut;
     stringstream tempStr(s);
     int tripInfo[7];
@@ -219,10 +220,20 @@ Trip Management::parseTrip(string s) {
     //make sure the info is good
     try {
         t.validate();
+        Map *m = this->taxiCenter->getMap();
+        if ((t.getStartP().getX() > m->getSizeX()) || (t.getStartP().getY() > m->getSizeY())) {
+            throw std::invalid_argument("invalid location");
+        }
+        Point endP = t.getEndP();
+        if ((t.getEndP().getX() > m->getSizeX()) || (t.getEndP().getY() > m->getSizeY())) {
+            throw std::invalid_argument("invalid location");
+        }
     } catch (const std::invalid_argument &iaExc) {
+        pthread_t t;
+        int status = pthread_create(&t, NULL, this->thread_runner->getTrip, (void *) t);//todo int? int status?
     }
-    return t;
 }
+
 
 /**
  * getting the obstacles from the user

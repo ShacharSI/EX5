@@ -12,7 +12,7 @@
  */
 class Bfs: public Algorithm {
 private:
-    BfsInfoMap* infoMap;
+    //BfsInfoMap* infoMap;
 
 public:
     list<Searchable*> findRouth(Searchable* start,Searchable* destiny,Map* m);

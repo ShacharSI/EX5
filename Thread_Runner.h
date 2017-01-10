@@ -10,28 +10,29 @@
 #include "Driver.h"
 #include "TaxiCenter.h"
 #include "Tcp.h"
+#include "Trip_Info.h"
 
 class Thread_Runner {
 
 public:
     Thread_Runner(TaxiCenter *c);
-
     void *run(void *);
-
-
+    Map *getMap() const;
+    std::list<Searchable*> checkTrips(Driver* d);
+    void *getTrip(void *t);
 private:
     Driver *d;
     map<Driver *, int> *socketDesMap;
-    map<int,std::list<Searchable*>> tripsByTime;
-    void getDriver(Tcp* socket);
+    list<Trip_Info *> trips;
+    Driver *getDriver(Tcp *socket);
+    Map *m;
 
-    void getTrip();
 
-    int numLiveThreads;
-    int readByThreads;
     TaxiCenter *taxiCenter;
     string massege;
     Socket sock;
+    int numLiveConnections;
+    int numReadMassage;
 };
 
 

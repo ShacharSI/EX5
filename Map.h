@@ -27,7 +27,7 @@ public:
     /* bool operator==(const Map &other) const {
          return this->searchables == other.searchables;
      }*/
-    Searchable **getSearchableByCoordinate(int x, int y);
+    Searchable **getSearchableByCoordinate(Point p);
 
     void setBeforeBfs();
 
@@ -38,7 +38,7 @@ public:
     Searchable ***getMap();
 
     queue<Searchable **> updateNeighbor(int x, int y, std::queue<Searchable **> q,
-                                         BfsInfoMap* visitMap);
+                                         BfsInfoMap visitMap);
 
     bool checkVal(int x, int y);
 
@@ -46,8 +46,7 @@ private:
     int sizeX;
     int sizeY;
     Searchable ***map;
-
-    list<Searchable*> l; //todo set this list
+    list<Searchable*> l;
 };
 
 

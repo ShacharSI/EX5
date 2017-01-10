@@ -1,4 +1,3 @@
 /home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/edit_cache.dir
 /home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/mainDriver.cpp.dir
 /home/haim6678/CLionProjects/AP4/cmake-build-debug/CMakeFiles/main.cpp.dir

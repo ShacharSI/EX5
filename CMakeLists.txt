@@ -17,10 +17,10 @@ set(SOURCE_FILES Algorithm.cpp Algorithm.h Bfs.cpp Bfs.h Driver.cpp Driver.h Log
         Searchable.h Square.cpp Square.h StandardTaxi.cpp StandardTaxi.h StndTaxiFactory.cpp StndTaxiFactory.h
         Taxi.cpp Taxi.h TaxiCenter.cpp TaxiCenter.h Trip.cpp Trip.h Validate_Interface.cpp Validate_Interface.h
         VirtualTaxiFactory.cpp VirtualTaxiFactory.h Socket.cpp Socket.h Udp.cpp Udp.h Tcp.cpp Tcp.h
-        BfsVisitMap.cpp BfsVisitMap.h BfsStep.cpp BfsStep.h)
+        Thread_Runner.cpp Thread_Runner.h Trip_Info.cpp Trip_Info.h BfsInfoMap.cpp BfsInfoMap.h)
 add_executable(main.cpp ${SOURCE_FILES} main.cpp)
-add_executable(mainDriver.cpp ${SOURCE_FILES} ManageDriver.cpp ManageDriver.h mainDriver.cpp Thread_Runner.cpp Thread_Runner.h)
+#add_executable(mainDriver.cpp ${SOURCE_FILES} ManageDriver.cpp ManageDriver.h mainDriver.cpp )
 #target_link_libraries(ex3_tm gtest gtest_main)
 target_link_libraries(main.cpp ${Boost_LIBRARIES})
-target_link_libraries(mainDriver.cpp ${Boost_LIBRARIES})
+#target_link_libraries(mainDriver.cpp ${Boost_LIBRARIES})
 
