@@ -10,7 +10,7 @@
 
 class Tcp: public Socket {
 private:
-    int descriptorCommunicateClient;
+    int currentClientDescriptor;
 public:
     /***********************************************************************
     * function name: Tcp												   *
@@ -41,7 +41,7 @@ public:
     * The Function operation: sending the input data to the socket         *
     * who connect to this socket. 										   *
     ***********************************************************************/
-    int sendData(string data);
+    int sendData(string data, int length);
     /***********************************************************************
     * function name: recive	`											   *
     * The Input: none										               *
@@ -50,6 +50,12 @@ public:
     * the data															   *
     ***********************************************************************/
     int reciveData(char* buffer, int size);
+
+    int sendDataTo(string data, int length, int descriptorClient);
+
+    int rcvDataFrom(char *buffer, int size, int descriptorClient);
+
+    int acceptClient();
 };
 
 #endif /* TCP_H_ */

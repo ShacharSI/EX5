@@ -14,7 +14,7 @@
 * port_num by the input												   *
 ***********************************************************************/
 Tcp::Tcp(bool isServers, int port_num) {
-    this->descriptorCommunicateClient = 0;
+    this->currentClientDescriptor = 0;
     this->port_number = port_num;
     this->isServer = isServers;
 
@@ -63,15 +63,6 @@ int Tcp::initialize() {
             //return an error represent error at this method
             return ERROR_LISTEN;
         }
-        //accept
-        struct sockaddr_in client_sin;
-        unsigned int addr_len = sizeof(client_sin);
-        this->descriptorCommunicateClient = accept(this->socketDescriptor,
-                                                   (struct sockaddr *) &client_sin, &addr_len);
-        if (this->descriptorCommunicateClient < 0) {
-            //return an error represent error at this method
-            return ERROR_ACCEPT;
-        }
         //if client
     } else {
         struct sockaddr_in sin;
@@ -89,6 +80,7 @@ int Tcp::initialize() {
     return CORRECT;
 }
 
+
 /***********************************************************************
 * function name: sendData											   *
 * The Input: string data to send									   *
@@ -96,10 +88,10 @@ int Tcp::initialize() {
 * The Function operation: sending the required data, using his length  *
 * and the socket descroptor											   *
 ***********************************************************************/
-int Tcp::sendData(string data) {
-    int data_len = data.length();
-    const char * datas = data.c_str();
-    int sent_bytes = send(this->isServer ? this->descriptorCommunicateClient
+int Tcp::sendData(string data, int length) {
+    int data_len = length + 1;
+    const char *datas = data.c_str();
+    int sent_bytes = send(this->isServer ? this->currentClientDescriptor
                                          : this->socketDescriptor, datas, data_len, 0);
     if (sent_bytes < 0) {
         //return an error represent error at this method
@@ -116,14 +108,13 @@ int Tcp::sendData(string data) {
 * The Function operation: getting data from the other socket to,	   *
 * enter it to the buffer and print the data							   *
 ***********************************************************************/
-int Tcp::reciveData(char* buffer, int size) {
-    int read_bytes = recv(this->isServer ? this->descriptorCommunicateClient
+int Tcp::reciveData(char *buffer, int size) {
+    int read_bytes = recv(this->isServer ? this->currentClientDescriptor
                                          : this->socketDescriptor, buffer, size, 0);
     //checking the errors
     if (read_bytes == 0) {
         return CONNECTION_CLOSED;
-    }
-    else if (read_bytes < 0) {
+    } else if (read_bytes < 0) {
         //return an error represent error at this method
         return ERROR_RECIVE;
     } else {
@@ -132,4 +123,27 @@ int Tcp::reciveData(char* buffer, int size) {
     }
     //return correct if there were no problem
     return read_bytes;
+}
+
+int Tcp::sendDataTo(string data, int length, int descriptorClient) {
+    this->currentClientDescriptor = descriptorClient;
+    this->sendData(data,length);
+}
+
+int Tcp::rcvDataFrom(char *buffer, int size, int descriptorClient) {
+    this->currentClientDescriptor = descriptorClient;
+    this->reciveData(buffer, size);
+}
+
+int Tcp::acceptClient() {
+    //accept
+    struct sockaddr_in client_sin;
+    unsigned int addr_len = sizeof(client_sin);
+    int clientDescriptor = accept(this->socketDescriptor,
+                                               (struct sockaddr *) &client_sin, &addr_len);
+    if (clientDescriptor < 0) {
+        //return an error represent error at this method
+        return ERROR_ACCEPT;
+    }
+    return clientDescriptor;
 }

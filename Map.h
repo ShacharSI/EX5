@@ -1,5 +1,4 @@
 
-
 #ifndef EX1TM_MANEGEMANT_H
 #define EX1TM_MANEGEMANT_H
 
@@ -7,11 +6,12 @@
 #include "Point.h"
 #include "Searchable.h"
 #include "list"
+#include "BfsInfoMap.h"
 #include <queue>
 
 
 /**
- * class that in charge of olding the relevant information and managing a map.
+ * class that in charge of holding the relevant information and managing a map.x
  */
 class Map {
 
@@ -31,17 +31,14 @@ public:
 
     void setBeforeBfs();
 
-    list<Searchable *> getL();
-
     int getSizeX() const;
 
     int getSizeY() const;
 
     Searchable ***getMap();
 
-    queue<Searchable **> updateNeighbour(int x, int y, std::queue<Searchable **> q);
-
-    Searchable *getFather(Searchable *);
+    queue<Searchable **> updateNeighbor(int x, int y, std::queue<Searchable **> q,
+                                         BfsInfoMap* visitMap);
 
     bool checkVal(int x, int y);
 

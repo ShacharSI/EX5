@@ -170,6 +170,7 @@ Point Management::parseLocation(int id) {
 void Management::parseDriver() {
     //set the variables
     ssize_t n;
+    map<Driver*,int>* socketDesmap = new map<Driver*,int>();
     Taxi *t = NULL;
     Driver *d = NULL;
     string serial_str;
@@ -180,19 +181,12 @@ void Management::parseDriver() {
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
     pthread_t threadArray[numOfDrivers];
-    open tcp socket
-
-    for (int i = 0; i < numOfDrivers; i++) {
-        threadArray[i];
-    }
-
+    this->socket->initialize();
+    open tcp socket;
     Thread_Runner *thread_runner = new Thread_Runner(this->taxiCenter);
     //a loop that gets the drivers and send taxi's
     for (int j = 0; j < numOfDrivers; ++j) {
-
         int status = pthread_create(&threadArray[j], NULL, thread_runner->run, NULL);
-
-
     }
 
     free(buffer);

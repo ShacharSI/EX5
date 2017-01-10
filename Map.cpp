@@ -28,7 +28,7 @@ void Map::freeAll() {
             //delete colomn searchables
             delete (this->map[i][j]);
         }
-        //delete the row pointe
+        //delete the row pointer
         delete (map[i]);
     }
     //delete all map
@@ -64,54 +64,43 @@ Searchable ***Map::getMap() {
     return this->map;
 }
 
-queue<Searchable **> Map::updateNeighbour(int x, int y, std::queue<Searchable **> q) {
-
+queue<Searchable **> Map::updateNeighbor(int x, int y, std::queue<Searchable **> q, BfsInfoMap *infoMap) {
     Searchable *curr = this->map[x][y];
     //curr->setBfsVisited(true);
     //curr->setBfsFather(NULL);
-    //todo add obsatcle check!!
-    if ((((x - 1) >= 0)) && (!this->map[x - 1][y]->getBfsVisited())) {
-        if (!this->map[x - 1][y]->isObstacle()) {
-            this->map[x - 1][y]->setBfsFather(curr);
-            this->map[x - 1][y]->setBfsVisited(true);
-            q.push(&this->map[x - 1][y]);
-        }
-    }
-    //todo check obstacle!!!
-    if ((((x + 1) < this->sizeX)) && (!this->map[x + 1][y]->getBfsVisited())) {
-        if (!this->map[x + 1][y]->isObstacle()) {
-            this->map[x + 1][y]->setBfsFather(curr);
-            this->map[x + 1][y]->setBfsVisited(true);
-            q.push(&this->map[x + 1][y]);
-        }
+    //todo add obsatcle check!!d
+    if ((((x - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x - 1][y]))) {
+        Searchable **temp = &this->map[x - 1][y];
+        infoMap->setVisitedSearchable(*temp);
+        infoMap->setSearchableFather(*temp, curr);
+        q.push(temp);
     }
 
-    if ((((y + 1) < this->sizeY)) && (!this->map[x][y + 1]->getBfsVisited())) {
-        if (!this->map[x][y + 1]->isObstacle()) {
-            this->map[x][y + 1]->setBfsFather(curr);
-            this->map[x][y + 1]->setBfsVisited(true);
-            q.push(&this->map[x][y + 1]);
-        }
+    if ((((x + 1) < this->sizeX)) && (!infoMap->isVisitedSearchable(this->map[x + 1][y]))) {
+        Searchable **temp = &this->map[x + 1][y];
+        infoMap->setVisitedSearchable(*temp);
+        infoMap->setSearchableFather(*temp, curr);
+        q.push(temp);
     }
 
-    if ((((y - 1) >= 0)) && (!this->map[x][y - 1]->getBfsVisited())) {
-        if (!this->map[x][y - 1]->isObstacle()) {
-            this->map[x][y - 1]->setBfsFather(curr);
-            this->map[x][y - 1]->setBfsVisited(true);
-            q.push(&this->map[x][y - 1]);
-        }
+    if ((((y + 1) < this->sizeY)) && (!infoMap->isVisitedSearchable(this->map[x][y + 1]))) {
+        Searchable **temp = &this->map[x][y + 1];
+        infoMap->setVisitedSearchable(*temp);
+        infoMap->setSearchableFather(*temp, curr);
+        q.push(temp);
     }
 
+    if ((((y - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x][y - 1]))) {
+        Searchable **temp = &this->map[x][y - 1];
+        infoMap->setVisitedSearchable(*temp);
+        infoMap->setSearchableFather(*temp, curr);
+        q.push(temp);
+    }
     return q;
 }
 
-Searchable *Map::getFather(Searchable *s) {
-    return s->getFather();
-}
-
-void Map::setBeforeBfs() {
+void Map::setBeforeBfs() { //todo is needed now with the multithreading???
     for (int i = 0; i < sizeX; i++) {
-
         for (int j = 0; j < sizeY; j++) {
             this->map[i][j]->setBfsFather(NULL);
             this->map[i][j]->setBfsVisited(false);
@@ -123,6 +112,3 @@ Searchable **Map::getSearchableByCoordinate(int x, int y) {
     //todo validate coordinnate
     return &this->map[x][y];
 }
-
-
-

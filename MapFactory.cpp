@@ -54,7 +54,6 @@ Searchable ***MapFactory::createMapSquare(int sizeX, int sizeY, list <Point> oba
             //enter the node to the map
             map[i][j] = s;
         }
-
     }
 
     int numObstacles = obatacle.size();

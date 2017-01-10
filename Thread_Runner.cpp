@@ -32,30 +32,33 @@
 Thread_Runner::Thread_Runner(TaxiCenter *t) {
     this->massege = "";
     this->taxiCenter = t;
+    this->socketDesMap = new map<Driver*,int>();
 }
 
 void *Thread_Runner::run(void *) {
     //todo create communication
     this->getDriver();
-
-
-
 }
 
-void Thread_Runner::getDriver() {
+void Thread_Runner::getDriver(Socket* socket) {
     ssize_t n;
     Taxi *t = NULL;
     Driver *d = NULL;
     string serial_str;
     char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
-    create connection or get working tcp then input it to the map with the druver
+    int connectionDescriptor = socket->acceptClient();
+    ssize_t n = socket->rcvDataFrom(buffer, 4096,connectionDescriptor);
+    if (n < 0) {
+        perror("Error in receive");
+    }
+    create connection or get working tcp then input it to the map with the driver
 
     //getting the driver
     boost::iostreams::basic_array_source<char> device(buffer, BUFFERSIZE);
     boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
     boost::archive::binary_iarchive ia(s2);
     ia >> d;
-    enter the driver and is socket descriptor to the map
+    enter the driver and his socket descriptor to the map
     the map will be here or in the taxi center
 
     //attach a taxi to the driver in our list and return the taxi to send to client
