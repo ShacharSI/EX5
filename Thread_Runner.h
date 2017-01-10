@@ -21,7 +21,7 @@ public:
 private:
     Driver *d;
     map<Driver *, int> *socketDesMap;
-    map<int,std::list<Searchable*>> trips
+    map<int,std::list<Searchable*>> tripsByTime;
     void getDriver(Socket* socket);
 
     void getTrip();
