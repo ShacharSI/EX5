@@ -9,6 +9,7 @@
 #include <map>
 #include "Driver.h"
 #include "TaxiCenter.h"
+#include "Tcp.h"
 
 class Thread_Runner {
 
@@ -21,8 +22,8 @@ public:
 private:
     Driver *d;
     map<Driver *, int> *socketDesMap;
-    map<int,std::list<Searchable*>> trips
-    void getDriver(Socket* socket);
+    map<int,std::list<Searchable*>> tripsByTime;
+    void getDriver(Tcp* socket);
 
     void getTrip();
 

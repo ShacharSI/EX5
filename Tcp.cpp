@@ -102,7 +102,7 @@ int Tcp::sendData(string data, int length) {
 }
 
 /***********************************************************************
-* function name: recive	`											   *
+* function name: receive 											   *
 * The Input: none										               *
 * The output: int number representing the return status	               *
 * The Function operation: getting data from the other socket to,	   *
