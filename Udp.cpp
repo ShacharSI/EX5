@@ -126,3 +126,7 @@ void Udp::setIp(string ip) {
     this->ip_address = ip;
 }
 
+int Udp::acceptClient() {
+    return ERROR_ACCEPT;
+}
+

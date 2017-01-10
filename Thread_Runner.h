@@ -20,9 +20,12 @@ public:
 
 private:
     Driver *d;
-    map* map1<Driver*, int> ;
-    void getDriver();
+    map<Driver *, int> *socketDesMap;
+    map<int,std::list<Searchable*>> trips
+    void getDriver(Socket* socket);
+
     void getTrip();
+
     int numLiveThreads;
     int readByThreads;
     TaxiCenter *taxiCenter;

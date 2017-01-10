@@ -74,7 +74,6 @@ list<Searchable*> TaxiCenter::calculateDriverRoute(Point startP, Point endP){
     Searchable* end = *this->map->getSearchableByCoordinate(endP.getX(),endP.getY());;
     std::list<Searchable*> list;
     list = this->searchAlgo->findRouth(start,end,this->map);
-    //this->map->getStart()->setBeforeBfs(this->map->getL()); //todo need this?
     return list;
 }
 

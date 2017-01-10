@@ -72,6 +72,12 @@ public:
     ***********************************************************************/
     virtual int initialize() = 0;
 
+    /**
+     * create a connection to a client
+     * @return the socketDescriptor for this client
+     */
+    virtual int acceptClient() =0;
+
     /***********************************************************************
     * function name: sendData											   *
     * The Input: string representing the data to send		               *

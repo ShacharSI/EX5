@@ -60,6 +60,12 @@ public:
     * The Function operation: getting data from the       				   *
     ***********************************************************************/
     void setIp(string ip);
+
+    /**
+     * create a connection to a client
+     * @return the socketDescriptor for this client
+     */
+    virtual int acceptClient();
 };
 
 #endif /* UDP_H_ */
