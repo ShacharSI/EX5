@@ -11,7 +11,6 @@
 #include <cstdlib>
 #include "StandardTaxi.h"
 #include "LuxuryTaxi.h"
-#include "Thread_Runner.h"
 #include <stdexcept>
 #include <fstream>
 #include <sstream>
@@ -40,8 +39,7 @@ void *Thread_Runner::run(void * s) {
     this->getDriver((Socket*)s);
 }
 
-void Thread_Runner::getDriver(Socket* socket) {
-    ssize_t n;
+void Thread_Runner::getDriver(Tcp* socket) {
     Taxi *t = NULL;
     Driver *d = NULL;
     string serial_str;
@@ -58,6 +56,7 @@ void Thread_Runner::getDriver(Socket* socket) {
     boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
     boost::archive::binary_iarchive ia(s2);
     ia >> d;
+    this->socketDesMap->insert(std::pair<Driver*,int>(d,connectionDescriptor));
     enter the driver and his socket descriptor to the map
     the map will be here or in the taxi center
 
