@@ -102,15 +102,16 @@ Driver *Thread_Runner::getDriver(Tcp *socket) {
     boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
     boost::archive::binary_iarchive ia(s2);
     ia >> d;
+    pthread_mutex_lock();
     //saving the client's socket descriptor for later communication with him
     this->socketDesMap->insert(std::pair<Driver *, int>(d, connectionDescriptor));
     //note that there is one more client
     this->numLiveConnections += 1;
     //attach a taxi to the driver here and send to client
     t = this->taxiCenter->attachTaxiToDriver(d->getVehicle_id());
-
     //set the driver's taxi
     d->setTaxi(t);
+    pthread_mutex_unlock();
     //serialize the taxi
     boost::iostreams::back_insert_device<std::string> inserter(serial_str);
     boost::iostreams::stream<boost::iostreams::back_insert_device<std::string> > s(inserter);

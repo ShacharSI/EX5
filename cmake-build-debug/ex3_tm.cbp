@@ -204,6 +204,12 @@
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Tcp.h">
 			<Option target="main.cpp"/>
 		</Unit>
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Thread_Class.cpp">
+			<Option target="main.cpp"/>
+		</Unit>
+		<Unit filename="/home/haim6678/CLionProjects/AP4/Thread_Class.h">
+			<Option target="main.cpp"/>
+		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Thread_Runner.cpp">
 			<Option target="main.cpp"/>
 		</Unit>

@@ -181,13 +181,11 @@ void Management::parseDriver() {
     cin >> input;
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
-    pthread_t threadArray[numOfDrivers];
     this->socket->initialize();
-
-
     //a loop that gets the drivers and send taxi's
     for (int j = 0; j < numOfDrivers; ++j) {
-        int status = pthread_create(&threadArray[j], NULL, this->thread_runner->run, NULL);
+        pthread_t t;
+        int status = pthread_create(&t, NULL, this->thread_runner->run, NULL);
     }
 
     free(buffer);

@@ -663,6 +663,33 @@ Tcp.cpp.s:
 	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/Tcp.cpp.s
 .PHONY : Tcp.cpp.s
 
+Thread_Class.o: Thread_Class.cpp.o
+
+.PHONY : Thread_Class.o
+
+# target to build an object file
+Thread_Class.cpp.o:
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/Thread_Class.cpp.o
+.PHONY : Thread_Class.cpp.o
+
+Thread_Class.i: Thread_Class.cpp.i
+
+.PHONY : Thread_Class.i
+
+# target to preprocess a source file
+Thread_Class.cpp.i:
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/Thread_Class.cpp.i
+.PHONY : Thread_Class.cpp.i
+
+Thread_Class.s: Thread_Class.cpp.s
+
+.PHONY : Thread_Class.s
+
+# target to generate assembly for a file
+Thread_Class.cpp.s:
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/Thread_Class.cpp.s
+.PHONY : Thread_Class.cpp.s
+
 Thread_Runner.o: Thread_Runner.cpp.o
 
 .PHONY : Thread_Runner.o
@@ -921,6 +948,9 @@ help:
 	@echo "... Tcp.o"
 	@echo "... Tcp.i"
 	@echo "... Tcp.s"
+	@echo "... Thread_Class.o"
+	@echo "... Thread_Class.i"
+	@echo "... Thread_Class.s"
 	@echo "... Thread_Runner.o"
 	@echo "... Thread_Runner.i"
 	@echo "... Thread_Runner.s"

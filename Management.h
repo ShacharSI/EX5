@@ -23,6 +23,7 @@ private:
     vector<int> getSizes();
     Socket* socket;
     Thread_Runner* thread_runner;
+    int serverPort;
 
 public:
     ~Management();
