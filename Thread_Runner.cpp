@@ -35,6 +35,7 @@ Thread_Runner::Thread_Runner(TaxiCenter *t) {
     this->socketDesMap = new map<Driver*,int>();
 }
 
+
 void *Thread_Runner::run(void *) {
     //todo create communication
     this->getDriver();
