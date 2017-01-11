@@ -11,8 +11,7 @@
 class Thread_Class {
 
 private:
-    pthread_mutex_t* pthreadMutex;
-    int threadsPort;
+    int socketDescriptor;
 public:
     Thread_Class(pthread_mutex_t* t,int port);
     pthread_mutex_t *getPthreadMutex() const;

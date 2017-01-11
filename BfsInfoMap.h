@@ -6,6 +6,7 @@
 #define EX3_TM_BFSVISITMAP_H
 
 #include <map>
+#include <queue>
 #include "Searchable.h"
 
 using namespace std;
@@ -14,6 +15,7 @@ class BfsInfoMap {
 private:
     map<Searchable*,bool > visitMap;
     map<Searchable*,Searchable*> fathersMap;
+
 public:
     BfsInfoMap(int sizeX, int sizeY, Searchable *** map);
     BfsInfoMap();

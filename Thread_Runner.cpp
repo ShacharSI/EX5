@@ -11,6 +11,7 @@
 #include "StandardTaxi.h"
 #include "LuxuryTaxi.h"
 #include "Trip_Info.h"
+#include "Thread_Manage.h"
 #include <stdexcept>
 #include <fstream>
 #include <sstream>
@@ -40,12 +41,14 @@ Thread_Runner::Thread_Runner(TaxiCenter *t) {
 void *Thread_Runner::run(void *s) {
 
     Driver *d;
+    Thread_Manage* thread_manage = Thread_Manage::getInstance();
+    thread_manage.a
     std::list<Searchable *> list;
     char *buffer = (char *) malloc(4906 * sizeof(char));
     //get the driver from the client
     d = this->getDriver((Socket *) s);
     //run the thread
-    while (strcmp(this->massege.c_str(), "End_Communicatipn") != 0) {
+    while (strcmp(this->massege.c_str(), "End_Communication") != 0) {
         //get a trip
         list = this->checkTrips(d);
         //if we did got a valid trip
@@ -136,15 +139,18 @@ void *Thread_Runner::getTrip(void *t) {
     std::list<Searchable *> list;
 
     //get the point on the map
+    pthread_mutex_lock();
     Searchable *start = *this->m->getSearchableByCoordinate(trip->getStartP());
     Searchable *end = *this->m->getSearchableByCoordinate(trip->getEndP());
+    pthread_mutex_unlock();
     //get the rout between points
     list = bfs.findRouth(start, end, this->m);
     //create a trip info class and save it
+    pthread_mutex_lock();
     unsigned int trip_Time = trip->getTime();
     Trip_Info *trip_info = new Trip_Info(trip_Time, list);
     this->trips.push_front(trip_info);
-
+    pthread_mutex_unlock();
     return 0; //todo return 0?
 }
 
@@ -158,6 +164,7 @@ std::list<Searchable *> Thread_Runner::checkTrips(Driver *d) {
     int trip_Time;
     Trip_Info *trip_info;
     //checking if a trip's time is arrived
+    pthread_mutex_lock();
     for (int i = 0; i < size; i++) { //todo what if there are a couple of drivers in the same point
         trip_info = this->trips.front();
         trip_Time = trip_info->getTripTime();
@@ -173,6 +180,7 @@ std::list<Searchable *> Thread_Runner::checkTrips(Driver *d) {
         this->trips.pop_front();
         this->trips.push_back(trip_info);
     }
+    pthread_mutex_unlock();
     //return the rout of the trip that is time arrived
     return list;
 }
