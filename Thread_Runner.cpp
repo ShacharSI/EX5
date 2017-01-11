@@ -77,6 +77,8 @@ void *Thread_Runner::run(void *tcp) {
         while ((d->getTaxi()->getRouth().size() > 0)
                && (strcmp(messageQueue.front().c_str(), "End_Communication")) != 0) {
             if (strcmp(messageQueue.front().c_str(), "GO") == 0) {
+                //todo set Driverlocation[id] as NULL
+                //todo when message is "location" set Driverlocation[id] as d.getLocation
                 d->move();
                 int connectionDescriptor = thread_manage->getThreadClass(pthread_self())
                         ->getThreadsSocketDescriptor();
