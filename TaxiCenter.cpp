@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Driver.h"
 #include "Udp.h"
+#include "Thread_Manage.h"
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
@@ -41,7 +42,14 @@ TaxiCenter::TaxiCenter(Map *mp, Socket *soc) {
  * returns the location of a given taxi
  */
 Point TaxiCenter::giveLocation(int id) throw(invalid_argument) {
-    int size = this->drivers.size();
+    if(!this->driversLocation[id]){
+        Thread_Manage* thread_manage = Thread_Manage::getInstance();
+        thread_manage->addMessage(id,"location");
+        while(!this->driversLocation[id]);
+    }
+    return *(this->driversLocation[id]);
+
+    /*int size = this->drivers.size();
     for (int i = 0; i < size; i++) {
         Driver *d = this->drivers.front();
         if (d->getId() == id) {
@@ -49,9 +57,7 @@ Point TaxiCenter::giveLocation(int id) throw(invalid_argument) {
         }
         this->drivers.pop_front();
         this->drivers.push_back(d);
-    }
-
-    throw invalid_argument("wrong id");
+    }*/
 }
 
 
@@ -161,4 +167,8 @@ void TaxiCenter::setRout(Driver *d, list<Searchable*> l) {
         this->drivers.pop_front();
         this->drivers.push_back(driver);
     }
+}
+
+void TaxiCenter::setLocation(int driverID,Point* p) {
+    this->driversLocation[driverID] = p;
 }

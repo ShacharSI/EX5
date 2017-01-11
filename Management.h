@@ -7,7 +7,6 @@
 #include <stdexcept>
 #include <sstream>
 #include "Logic.h"
-#include "StndTaxiFactory.h"
 #include "Thread_Runner.h"
 
 /**

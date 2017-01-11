@@ -118,7 +118,7 @@ int Tcp::reciveData(char *buffer, int size) {
         //return an error represent error at this method
         return ERROR_RECIVE;
     } else {
-        //prinrting the massege
+        //prinrting the message
 //		cout<<buffer<<endl;
     }
     //return correct if there were no problem

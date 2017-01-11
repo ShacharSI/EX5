@@ -28,11 +28,13 @@ Thread_Manage *Thread_Manage::getInstance() {
     return instance;
 }
 
-void Thread_Manage::addMassage(pthread_t t, std::queue<std::string> q) {
-    this->threadMasseges[t] = q;
+void Thread_Manage::addQueueMessage(int id, std::queue<std::string> q) {
+    this->threadMasseges[id] = q;
 }
 
-void Thread_Manage::addThread(pthread_t t, Thread_Class c) {
+
+
+void Thread_Manage::addThread(pthread_t t, Thread_Class* c) {
     this->threadInfo[t] = c;
 }
 
@@ -40,6 +42,10 @@ map<pthread_t, queue<string>> &Thread_Manage::getThreadMasseges()  {
     return threadMasseges;
 }
 
- map<pthread_t, Thread_Class> &Thread_Manage::getThreadInfo()  {
-    return threadInfo;
+Thread_Class* Thread_Manage::getThreadClass(pthread_t pt)  {
+    return threadInfo[pt];
+}
+
+void Thread_Manage::addMessage(int id, string s) {
+    this->threadMasseges[id].push(s);
 }

@@ -1,11 +1,7 @@
-
-
-
 #include <boost/iostreams/device/array.hpp>
 #include <boost/iostreams/stream.hpp>
 #include "Thread_Runner.h"
 #include "Management.h"
-#include "LuxTaxiFactory.h"
 #include <stdlib.h>
 #include <cstdlib>
 #include "StandardTaxi.h"
@@ -30,8 +26,8 @@
 
 #define BUFFERSIZE 4096
 Mutex_Locker *Thread_Runner::mutex = new Mutex_Locker();
+
 Thread_Runner::Thread_Runner(TaxiCenter *t) {
-    this->massege = "";
     this->taxiCenter = t;
     this->socketDesMap = new map<Driver *, int>();
     this->numLiveConnections = 0;
@@ -39,54 +35,65 @@ Thread_Runner::Thread_Runner(TaxiCenter *t) {
 
 }
 
-void *Thread_Runner::run(void *s) {
-
+void *Thread_Runner::run(void *tcp) {
     Driver *d;
-    Thread_Manage* thread_manage = Thread_Manage::getInstance();
+    Tcp* tcpSock = (Tcp*)tcp;
+    Thread_Manage *thread_manage = Thread_Manage::getInstance();
     Thread_Runner::mutex->lock();
-    std::queue<string> queue1;
-    thread_manage->addMassage(pthread_self(),queue1);
+    std::queue<string> messageQueue;
+    thread_manage->addQueueMessage(pthread_self(), messageQueue);
     Thread_Runner::mutex->unlock();
     std::list<Searchable *> list;
     char *buffer = (char *) malloc(4906 * sizeof(char));
     //get the driver from the client
-    d = this->getDriver((Socket *) s);
+    d = this->getDriver(tcpSock);
     //run the thread
-    while (strcmp(this->massege.c_str(), "End_Communication") != 0) {
+    string serial_str;
+    while(messageQueue.empty()); //todo check stop the thread till queue is not empty
+    while (strcmp(messageQueue.front().c_str(), "End_Communication") != 0) {
+        messageQueue.pop();
         //get a trip
         list = this->checkTrips(d);
         //if we did got a valid trip
         if (list.size() > 0) {
             //set the routh in our driver
             d->setRouth(list);
-            this->taxiCenter->setRout(d,list);
+            this->taxiCenter->setRout(d, list);
             //send the routh to the client
-            boost::iostreams::basic_array_source<char> device(buffer, 4096);
-            boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
-            boost::archive::binary_iarchive ia(s2);
-            ia >> list;
-            //todo send list to client
-
+            boost::iostreams::back_insert_device<std::string> inserter(serial_str);
+            boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> s(inserter);
+            boost::archive::binary_oarchive oa(s);
+            oa << list;
+            s.flush();
+            int connectionDescriptor = thread_manage->getThreadClass(pthread_self())
+                    ->getThreadsSocketDescriptor();
+            int n = tcpSock->sendDataTo(serial_str, serial_str.size(),connectionDescriptor);
+            if (n < 0) {
+                perror("Error in Sendto");
+            }
         }
+        while(messageQueue.empty());
         //if we are still running the program, and we still have a routh to go
         while ((d->getTaxi()->getRouth().size() > 0)
-               && (strcmp(this->massege.c_str(), "End_Communication")) != 0) {
-            if (strcmp(this->massege.c_str(), "GO") == 0) {
+               && (strcmp(messageQueue.front().c_str(), "End_Communication")) != 0) {
+            if (strcmp(messageQueue.front().c_str(), "GO") == 0) {
                 d->move();
-
-                //todo - get socket descriptor form map
-                //todo - send "go" for the client
-                this->numReadMassage += 1;
+                int connectionDescriptor = thread_manage->getThreadClass(pthread_self())
+                        ->getThreadsSocketDescriptor();
+                int n = tcpSock->sendDataTo(messageQueue.front().c_str(), messageQueue.front().size()
+                        ,connectionDescriptor);
+                if (n < 0) {
+                    perror("Error in Sendto");
+                }
+                //this->numReadMassage += 1;
             }
-            //if everyone Already seen the massage the reset it
-            if (this->numLiveConnections == numReadMassage) {
-                this->massege = "";
-            }
-
+            messageQueue.pop();
+            while(messageQueue.empty());
         }
-        if (strcmp(this->massege.c_str(), "End_Communication") == 0) {
+        if (strcmp(messageQueue.front().c_str(), "End_Communication") == 0) {
             break;
         }
+        while(messageQueue.empty());
     }
 
     //todo send end communication to client and close the socket
@@ -100,6 +107,9 @@ Driver *Thread_Runner::getDriver(Tcp *socket) {
     char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
     //initialize connection  //todo to this here?
     int connectionDescriptor = socket->acceptClient();
+    Thread_Manage *thread_manage = Thread_Manage::getInstance();
+    Thread_Class* threadClass = new Thread_Class(connectionDescriptor);
+    thread_manage->addThread(pthread_self(),threadClass);
     ssize_t n = socket->rcvDataFrom(buffer, 4096, connectionDescriptor);
     if (n < 0) {
         perror("Error in receive");
@@ -109,7 +119,7 @@ Driver *Thread_Runner::getDriver(Tcp *socket) {
     boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
     boost::archive::binary_iarchive ia(s2);
     ia >> d;
-    pthread_mutex_lock();
+    this->mutex->lock();
     //saving the client's socket descriptor for later communication with him
     this->socketDesMap->insert(std::pair<Driver *, int>(d, connectionDescriptor));
     //note that there is one more client
@@ -118,16 +128,17 @@ Driver *Thread_Runner::getDriver(Tcp *socket) {
     t = this->taxiCenter->attachTaxiToDriver(d->getVehicle_id());
     //set the driver's taxi
     d->setTaxi(t);
-    pthread_mutex_unlock();
+    this->mutex->unlock();
     //serialize the taxi
     boost::iostreams::back_insert_device<std::string> inserter(serial_str);
     boost::iostreams::stream<boost::iostreams::back_insert_device<std::string> > s(inserter);
     boost::archive::binary_oarchive oa(s);
     oa << t;
     s.flush();
-    //todo send the taxi back to the client
-
-
+    n = socket->sendDataTo(serial_str,serial_str.size(),connectionDescriptor);
+    if (n < 0) {
+        perror("Error in Sendto");
+    }
     this->taxiCenter->addDriverToCenter(d);
 
     free(buffer);
@@ -143,18 +154,16 @@ void *Thread_Runner::getTrip(void *t) {
     std::list<Searchable *> list;
 
     //get the point on the map
-    pthread_mutex_lock();
     Searchable *start = *this->m->getSearchableByCoordinate(trip->getStartP());
     Searchable *end = *this->m->getSearchableByCoordinate(trip->getEndP());
-    pthread_mutex_unlock();
     //get the rout between points
     list = bfs.findRouth(start, end, this->m);
     //create a trip info class and save it
-    pthread_mutex_lock();
+    this->mutex->lock();
     unsigned int trip_Time = trip->getTime();
     Trip_Info *trip_info = new Trip_Info(trip_Time, list);
     this->trips.push_front(trip_info);
-    pthread_mutex_unlock();
+    this->mutex->unlock();
     return 0; //todo return 0?
 }
 
@@ -168,7 +177,7 @@ std::list<Searchable *> Thread_Runner::checkTrips(Driver *d) {
     int trip_Time;
     Trip_Info *trip_info;
     //checking if a trip's time is arrived
-    pthread_mutex_lock();
+    this->mutex->lock();
     for (int i = 0; i < size; i++) { //todo what if there are a couple of drivers in the same point
         trip_info = this->trips.front();
         trip_Time = trip_info->getTripTime();
@@ -184,8 +193,7 @@ std::list<Searchable *> Thread_Runner::checkTrips(Driver *d) {
         this->trips.pop_front();
         this->trips.push_back(trip_info);
     }
-    pthread_mutex_unlock();
+    this->mutex->unlock();
     //return the rout of the trip that is time arrived
     return list;
 }
-

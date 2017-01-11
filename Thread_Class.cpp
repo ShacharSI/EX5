@@ -4,15 +4,10 @@
 
 #include "Thread_Class.h"
 
-pthread_mutex_t *Thread_Class::getPthreadMutex() const {
-    return pthreadMutex;
+int Thread_Class::getThreadsSocketDescriptor() const {
+    return this->socketDescriptor;
 }
 
-int Thread_Class::getThreadsPort() const {
-    return threadsPort;
-}
-
-Thread_Class::Thread_Class(pthread_mutex_t *t, int port) {
-    this->pthreadMutex = t;
-    this->threadsPort = port;
+Thread_Class::Thread_Class(int socketDescriptor) {
+    this->socketDescriptor = socketDescriptor;
 }

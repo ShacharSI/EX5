@@ -161,18 +161,18 @@ double Driver::getSatis() {
  * when the trip ends tive the driver
  * remove from active list and put in not active list
  */
-void Driver::inactivate(std::list<Driver *> &inActDrivers, list<Driver *> &actDrivers) {
+void Driver::inactivate(std::list<Driver *> *inActDrivers, list<Driver *> *actDrivers) {
     Driver *d;
-    for (int i = 0; i < actDrivers.size(); ++i) {
-        d = actDrivers.front();
+    for (int i = 0; i < actDrivers->size(); ++i) {
+        d = actDrivers->front();
         if (d->getId() == this->id) {
-            actDrivers.pop_front();
+            actDrivers->pop_front();
             break;
         }
-        actDrivers.pop_front();
-        actDrivers.push_back(d);
+        actDrivers->pop_front();
+        actDrivers->push_back(d);
     }
-    inActDrivers.push_back(d);
+    inActDrivers->push_back(d);
 }
 
 /**

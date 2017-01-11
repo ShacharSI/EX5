@@ -12,6 +12,7 @@
 #include "Thread_Class.h"
 #include "Searchable.h"
 #include "Mutex_Locker.h"
+using namespace std;
 
 class Thread_Manage {
 
@@ -20,19 +21,21 @@ private:
     static Mutex_Locker* mutex;
     static Thread_Manage* instance;
     static bool created;
-    std::map<pthread_t, std::queue<std::string>> threadMasseges;
+    map<pthread_t, queue<std::string>> threadMasseges;
 public:
     map<pthread_t, queue<string>> &getThreadMasseges() ;
 
-    map<pthread_t, Thread_Class> &getThreadInfo() ;
 
 private:
-    std::map<pthread_t, Thread_Class> threadInfo;
+    std::map<pthread_t, Thread_Class*> threadInfo;
 public:
-    void addMassage(pthread_t t,std::queue<std::string> q);
-    void addThread(pthread_t,Thread_Class );
+    void addQueueMessage(int, std::queue<std::string> q);
+    void addMessage(int,string);
+    void addThread(pthread_t,Thread_Class* );
     static Thread_Manage* getInstance();
     bool Occupy();
+
+    Thread_Class *getThreadClass(pthread_t pt);
 };
 
 

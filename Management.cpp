@@ -1,5 +1,4 @@
 #include "Management.h"
-#include "LuxTaxiFactory.h"
 #include <stdlib.h>
 #include <cstdlib>
 #include "StandardTaxi.h"

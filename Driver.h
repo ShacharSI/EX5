@@ -42,7 +42,7 @@ public:
 
     int getId();
 
-    void inactivate(list<Driver *> &inActDrivers, list<Driver *> &actDrivers);
+    void inactivate(list<Driver *> *inActDrivers, list<Driver *> *actDrivers);
 
     void move();
 

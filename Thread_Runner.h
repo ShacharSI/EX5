@@ -30,8 +30,6 @@ private:
     static Mutex_Locker* mutex;
 
     TaxiCenter *taxiCenter;
-    string massege;
-    Socket sock;
     int numLiveConnections;
     int numReadMassage;
 };

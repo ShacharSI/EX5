@@ -13,10 +13,8 @@ class Thread_Class {
 private:
     int socketDescriptor;
 public:
-    Thread_Class(pthread_mutex_t* t,int port);
-    pthread_mutex_t *getPthreadMutex() const;
-
-    int getThreadsPort() const;
+    Thread_Class(int SocketDescriptor);
+    int getThreadsSocketDescriptor() const;
 };
 
 

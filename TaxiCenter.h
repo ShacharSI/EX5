@@ -34,13 +34,15 @@ public:
 
     Point giveLocation(int id) throw(invalid_argument);
 
+    void TaxiCenter::setLocation(int driverID,Point* p);
+
     list<Taxi *> &getNotActiveTaxis();
 
     void addTaxi(Taxi *t);
 
     void moveAll();
 
-    void setRout(Driver* d,list<Searchable*> l);
+    void setRout(Driver *d, list<Searchable *> l);
 
     Taxi *attachTaxiToDriver(int vhecleId);
 
@@ -50,14 +52,17 @@ public:
 
     Map *getMap() const;
 
+
+
 private:
     unsigned int time;
     Map *map;
     Algorithm *searchAlgo;
     list<Taxi *> notActiveTaxis;
     list<Driver *> drivers;
-    queue<Trip> trips;
     Socket *socket;
+    std::map<int, Point*> driversLocation;
+    std::map<int,pthread_t> driverPthread;
 };
 
 
