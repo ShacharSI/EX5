@@ -21,10 +21,16 @@ private:
     static Thread_Manage* instance;
     static bool created;
     std::map<pthread_t, std::queue<std::string>> threadMasseges;
+public:
+    map<pthread_t, queue<string>> &getThreadMasseges() ;
+
+    map<pthread_t, Thread_Class> &getThreadInfo() ;
+
+private:
     std::map<pthread_t, Thread_Class> threadInfo;
 public:
-    void addMassage(pthread_t,std::queue<std::string>);
-    void addThread(pthread_t,Thread_Class);
+    void addMassage(pthread_t t,std::queue<std::string> q);
+    void addThread(pthread_t,Thread_Class );
     static Thread_Manage* getInstance();
     bool Occupy();
 };

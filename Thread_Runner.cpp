@@ -42,7 +42,7 @@ void *Thread_Runner::run(void *s) {
 
     Driver *d;
     Thread_Manage* thread_manage = Thread_Manage::getInstance();
-    thread_manage.a
+    thread_manage->addMassage()
     std::list<Searchable *> list;
     char *buffer = (char *) malloc(4906 * sizeof(char));
     //get the driver from the client

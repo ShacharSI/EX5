@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <map>
 #include "easyloggingpp-8.91/easylogging++.h"
-
+#include <pthread.h>
 _INITIALIZE_EASYLOGGINGPP
 
 void *checkFunc(void *sock) {
@@ -20,7 +20,7 @@ void *checkFunc(void *sock) {
  */
 int main(int argc, char *argv[]) {
     pthread_t t1;
-
+    int i  = pthread
     //get the port
     if (argc < 2) {
         return 0;
