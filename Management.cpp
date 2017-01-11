@@ -135,14 +135,12 @@ Taxi *Management::parseTaxi(string s) {
     int tarrif = atoi(c);
     //create a matching taxi according to tha taarif
     if (tarrif == 1) {
-        StndTaxiFactory stndFactory = StndTaxiFactory(1);
-        t = stndFactory.createTaxi(id, Taxi::parseMnfctr((strArray[2])),
-                                   Taxi::parseColor((strArray[3])));
+        t = new StandardTaxi(id,Taxi::parseMnfctr((strArray[2])),
+                             Taxi::parseColor((strArray[3])),1);
     }
     if (tarrif == 2) {
-        LuxTaxiFactory stndFactory = LuxTaxiFactory(2);
-        t = stndFactory.createTaxi(id, Taxi::parseMnfctr((strArray[2])),
-                                   Taxi::parseColor((strArray[3])));
+        t = new LuxuryTaxi(id,Taxi::parseMnfctr((strArray[2])),
+                           Taxi::parseColor((strArray[3])),2);
     }
     //make sure the info is good
     try {
