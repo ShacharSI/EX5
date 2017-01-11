@@ -11,6 +11,7 @@
 #include "TaxiCenter.h"
 #include "Tcp.h"
 #include "Trip_Info.h"
+#include "Mutex_Locker.h"
 
 class Thread_Runner {
 
@@ -26,7 +27,7 @@ private:
     list<Trip_Info *> trips;
     Driver *getDriver(Tcp *socket);
     Map *m;
-
+    static Mutex_Locker* mutex;
 
     TaxiCenter *taxiCenter;
     string massege;

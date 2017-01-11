@@ -29,20 +29,24 @@
 #include <bits/valarray_before.h>
 
 #define BUFFERSIZE 4096
-
+Mutex_Locker *Thread_Runner::mutex = new Mutex_Locker();
 Thread_Runner::Thread_Runner(TaxiCenter *t) {
     this->massege = "";
     this->taxiCenter = t;
     this->socketDesMap = new map<Driver *, int>();
     this->numLiveConnections = 0;
     this->numReadMassage = 0; //todo will update for everyone if not on stack?
+
 }
 
 void *Thread_Runner::run(void *s) {
 
     Driver *d;
     Thread_Manage* thread_manage = Thread_Manage::getInstance();
-    thread_manage->addMassage()
+    Thread_Runner::mutex->lock();
+    std::queue<string> queue1;
+    thread_manage->addMassage(pthread_self(),queue1);
+    Thread_Runner::mutex->unlock();
     std::list<Searchable *> list;
     char *buffer = (char *) malloc(4906 * sizeof(char));
     //get the driver from the client

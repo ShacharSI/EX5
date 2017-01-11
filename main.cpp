@@ -20,7 +20,7 @@ void *checkFunc(void *sock) {
  */
 int main(int argc, char *argv[]) {
     pthread_t t1;
-    int i  = pthread
+
     //get the port
     if (argc < 2) {
         return 0;

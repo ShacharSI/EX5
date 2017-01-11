@@ -44,7 +44,6 @@ public:
 
     Taxi *attachTaxiToDriver(int vhecleId);
 
-    //
     unsigned int getTime() const;
 
     list<Driver *> &getDrivers();
