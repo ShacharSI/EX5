@@ -5,7 +5,11 @@
 #include "Thread_Manage.h"
 
 Thread_Manage *Thread_Manage::instance = NULL;
-Mutex_Locker *Thread_Manage::mutex = new Mutex_Locker();
+Mutex_Locker *Thread_Manage::instanceLocker = new Mutex_Locker();
+Mutex_Locker *Thread_Manage::threadInfoLocker = new Mutex_Locker();
+Mutex_Locker *Thread_Manage::threadMassegesLocker = new Mutex_Locker();
+Mutex_Locker *Thread_Manage::descriptorsMapLocker = new Mutex_Locker();
+Mutex_Locker *Thread_Manage::threadListLocker = new Mutex_Locker();
 bool Thread_Manage::created = false;
 
 bool Thread_Manage::Occupy() {
@@ -19,12 +23,12 @@ bool Thread_Manage::Occupy() {
 Thread_Manage *Thread_Manage::getInstance() {
 
     if (!Thread_Manage::created) {
-        Thread_Manage::mutex->lock();
+        Thread_Manage::instanceLocker->lock();
         if (!Thread_Manage::created) {
             Thread_Manage::instance = new Thread_Manage;
             Thread_Manage::created = true;
         }
-        Thread_Manage::mutex->unlock();
+        Thread_Manage::instanceLocker->unlock();
     }
     return instance;
 }
@@ -52,7 +56,7 @@ void Thread_Manage::addMessage(Driver* d, string s) {
 }
 
 void Thread_Manage::addDriver(Driver *d, int sockDes) {
-    this->driversAndDescriptors.insert(std::pair<Driver *, int>(d, sockDes));
+    this->descriptorsMap.insert(std::pair<Driver *, int>(d, sockDes));
 }
 
  list <pthread_t> &Thread_Manage::getThreadList()  {
@@ -65,15 +69,15 @@ void Thread_Manage::addThread(pthread_t t) {
 
 Thread_Manage::~Thread_Manage() {
 
-    delete this->mutex;
+    delete this->instanceLocker;
 
     static Thread_Manage* instance;
     for (std::map<pthread_t , Thread_Class*>::iterator it = threadInfo.begin();
          it != threadInfo.end(); ++it) {
         delete it->second;
     }
-    for (std::map<Driver*, int>::iterator it = driversAndDescriptors.begin();
-         it != driversAndDescriptors.end(); ++it) {
+    for (std::map<Driver*, int>::iterator it = descriptorsMap.begin();
+         it != descriptorsMap.end(); ++it) {
         delete it->first;
     }
 

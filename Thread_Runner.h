@@ -31,7 +31,6 @@ private:
     Tcp *tcpSock;
     bool inUse;
     static bool created;
-    static Mutex_Locker* mutex;
     static Thread_Runner* instance;
     Thread_Runner(TaxiCenter *c,Tcp* t){
         this->taxiCenter = c;
@@ -42,6 +41,8 @@ private:
     Driver *getDriver(Tcp *socket);
     Map *m;
     TaxiCenter *taxiCenter;
+    static Mutex_Locker* instanceLocker;
+    static Mutex_Locker* tripsLocker;
 };
 
 

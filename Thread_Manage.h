@@ -21,15 +21,19 @@ class Thread_Manage {
 
 private:
     bool inUse;
-    static Mutex_Locker* mutex;
     static Thread_Manage* instance;
     static bool created;
     //map<pthread_t, queue<std::string>> threadMasseges;
     map<Driver*, queue<std::string>> threadMasseges;
     std::map<pthread_t, Thread_Class*> threadInfo;
-    map<Driver*, int> driversAndDescriptors;
+    map<Driver*, int> descriptorsMap;
     list<pthread_t> threadList;
 public:
+    static Mutex_Locker* threadInfoLocker;
+    static Mutex_Locker* instanceLocker;
+    static Mutex_Locker* threadMassegesLocker;
+    static Mutex_Locker* descriptorsMapLocker;
+    static Mutex_Locker* threadListLocker;
     ~Thread_Manage();
     list <pthread_t> &getThreadList() ;
     void addThread(pthread_t t);

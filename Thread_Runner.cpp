@@ -11,8 +11,10 @@
 #include <boost/serialization/list.hpp>
 
 #define BUFFERSIZE 4096
-Mutex_Locker *Thread_Runner::mutex = new Mutex_Locker();
 Thread_Runner *Thread_Runner::instance = NULL;
+Mutex_Locker *Thread_Runner::instanceLocker = new Mutex_Locker();
+Mutex_Locker *Thread_Runner::tripsLocker = new Mutex_Locker();
+
 bool Thread_Runner::created = false;
 
 bool Thread_Runner::Occupy() {
@@ -25,12 +27,12 @@ bool Thread_Runner::Occupy() {
 
 Thread_Runner *Thread_Runner::getInstance(TaxiCenter *c,Tcp* t) {
     if (!Thread_Runner::created) {
-        Thread_Runner::mutex->lock();
+        Thread_Runner::instanceLocker->lock();
         if (!Thread_Runner::created) {
             Thread_Runner::instance = new Thread_Runner(c,t);
             Thread_Runner::created = true;
         }
-        Thread_Runner::mutex->unlock();
+        Thread_Runner::instanceLocker->unlock();
     }
     return instance;
 }
@@ -39,18 +41,17 @@ void *Thread_Runner::run(void) {
     Driver *d;
     std::list<Searchable *> list;
     char *buffer = (char *) malloc(4906 * sizeof(char));
+    //get the driver from the client
     d = this->getDriver(tcpSock);
-    //cast the tcp from void*
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
     //create the thread handler
-    Thread_Runner::mutex->lock();
     std::queue<string> messageQueue;
+    Thread_Manage::threadMassegesLocker->lock();
     thread_manage->addQueueMessage(d, messageQueue);
+    Thread_Manage::threadMassegesLocker->unlock();
+    Thread_Manage::threadInfoLocker->lock();
     thread_manage->addThread(pthread_self());
-    Thread_Runner::mutex->unlock();
-
-    //get the driver from the client
-
+    Thread_Manage::threadInfoLocker->unlock();
     //run the thread
     string serial_str;
     while (messageQueue.empty()); //todo check stop the thread till queue is not empty
@@ -115,11 +116,9 @@ Driver *Thread_Runner::getDriver(Tcp *socket) {
     string serial_str;
     char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
-    this->mutex->lock();
     int connectionDescriptor = socket->acceptClient();
     Thread_Class *threadClass = new Thread_Class(connectionDescriptor);
     thread_manage->addThread(pthread_self(), threadClass);
-    this->mutex->unlock();
     ssize_t n = socket->rcvDataFrom(buffer, 4096, connectionDescriptor);
     if (n < 0) {
         perror("Error in receive");
@@ -129,7 +128,7 @@ Driver *Thread_Runner::getDriver(Tcp *socket) {
     boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
     boost::archive::binary_iarchive ia(s2);
     ia >> d;
-    this->mutex->lock();
+    Thread_Manage::instanceLocker->lock();
     //saving the client's socket descriptor for later communication with him
     thread_manage->addDriver(d, connectionDescriptor);
     //note that there is one more client
@@ -137,7 +136,7 @@ Driver *Thread_Runner::getDriver(Tcp *socket) {
     t = this->taxiCenter->attachTaxiToDriver(d->getVehicle_id());
     //set the driver's taxi
     d->setTaxi(t);
-    this->mutex->unlock();
+    Thread_Manage::instanceLocker->unlock();
     //serialize the taxi
     boost::iostreams::back_insert_device<std::string> inserter(serial_str);
     boost::iostreams::stream<boost::iostreams::back_insert_device<std::string> > s(inserter);
@@ -167,11 +166,11 @@ void *Thread_Runner::getTrip(void) {
     //get the rout between points
     list = bfs.findRouth(start, end, this->m);
     //create a trip info class and save it
-    this->mutex->lock();
+    Thread_Runner::tripsLocker->lock();
     unsigned int trip_Time = trip.getTime();
     Trip_Info *trip_info = new Trip_Info(trip_Time, list);
     this->trips.push_front(trip_info);
-    this->mutex->unlock();
+    Thread_Runner::tripsLocker->unlock();
     return 0; //todo return 0?
 }
 
@@ -182,7 +181,7 @@ std::list<Searchable *> Thread_Runner::checkTrips(Driver *d) {
     int trip_Time;
     Trip_Info *trip_info;
     //checking if a trip's time is arrived
-    this->mutex->lock();
+    Thread_Runner::tripsLocker->lock();
     for (int i = 0; i < size; i++) { //todo what if there are a couple of drivers in the same point
         trip_info = this->trips.front();
         trip_Time = trip_info->getTripTime();
@@ -198,7 +197,7 @@ std::list<Searchable *> Thread_Runner::checkTrips(Driver *d) {
         this->trips.pop_front();
         this->trips.push_back(trip_info);
     }
-    this->mutex->unlock();
+    Thread_Runner::tripsLocker->unlock();
     //return the rout of the trip that is time arrived
     return list;
 }
