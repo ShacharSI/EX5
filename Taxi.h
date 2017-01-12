@@ -2,11 +2,9 @@
 #define TM_TAXI_H
 
 #include <vector>
-#include "Point.h"
+#include <list>
+#include "Searchable.h"
 #include "Passenger.h"
-#include "Trip.h"
-#include "Bfs.h"
-#include "Map.h"
 
 /**
  * a class that represent a taxi
@@ -67,7 +65,7 @@ public:
 
     vector<Passenger> getPassengers();
 
-    void setRouth(list<Searchable *> routhFromClientToDes);
+    void setRouth(std::list<Searchable *> routhFromClientToDes);
 
     list<Searchable *> getRouth();
 

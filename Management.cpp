@@ -1,31 +1,12 @@
 #include "Management.h"
-#include <stdlib.h>
-#include <cstdlib>
 #include "StandardTaxi.h"
 #include "LuxuryTaxi.h"
 #include "Thread_Runner.h"
 #include "Thread_Manage.h"
 #include <stdexcept>
-#include <fstream>
-#include <sstream>
-#include <boost/archive/text_oarchive.hpp>
-#include <boost/archive/text_iarchive.hpp>
-#include <boost/algorithm/string/predicate.hpp>
-#include <boost/lexical_cast.hpp>
-#include <boost/assign/list_of.hpp>
-#include <boost/algorithm/string.hpp>
-#include <boost/iostreams/device/back_inserter.hpp>
-#include <boost/iostreams/stream.hpp>
-#include <boost/archive/binary_oarchive.hpp>
-#include <boost/archive/binary_iarchive.hpp>
-#include <boost/serialization/export.hpp>
 
-BOOST_CLASS_EXPORT_GUID(StandardTaxi, "StandardTaxi")
-BOOST_CLASS_EXPORT_GUID(LuxuryTaxi, "lux_taxi")
-BOOST_CLASS_EXPORT_GUID(Taxi, "taxi")
-BOOST_CLASS_EXPORT_GUID(Driver, "driver")
-BOOST_CLASS_EXPORT_GUID(Point, "point")
-BOOST_CLASS_EXPORT_GUID(Square, "Square")
+//BOOST_CLASS_EXPORT_GUID(StandardTaxi, "StandardTaxi")
+
 #define BUFFERSIZE 4096
 
 /**
@@ -83,7 +64,6 @@ void Management::manage() {
             }
                 //move all taxi's
             case 9: {
-                this->setClock();
                 this->taxiCenter->moveAll();
                 //checking if the time to release a trip is right now
 
@@ -92,7 +72,6 @@ void Management::manage() {
             default:
                 break;
         }
-        this->assignTrip();
         //get the next input
         cin >> usrChoiceStr;
         c = usrChoiceStr.c_str();

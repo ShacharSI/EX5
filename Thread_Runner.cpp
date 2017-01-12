@@ -1,7 +1,6 @@
 #include <boost/iostreams/device/array.hpp>
 #include <boost/iostreams/stream.hpp>
 #include "Thread_Runner.h"
-#include "Management.h"
 #include "Thread_Manage.h"
 #include <fstream>
 #include <boost/lexical_cast.hpp>
@@ -9,8 +8,7 @@
 #include <boost/iostreams/device/back_inserter.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/archive/binary_iarchive.hpp>
-
-
+#include <boost/serialization/list.hpp>
 
 #define BUFFERSIZE 4096
 Mutex_Locker *Thread_Runner::mutex = new Mutex_Locker();

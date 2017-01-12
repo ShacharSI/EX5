@@ -11,6 +11,7 @@
 #include "Trip.h"
 #include "Map.h"
 #include "Driver.h"
+#include "Bfs.h"
 #include "Udp.h"
 #include <stdexcept>
 
