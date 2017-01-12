@@ -8,7 +8,7 @@
 #include "BfsInfoMap.h"
 #include <queue>
 
-
+//
 /**
  * class that in charge of holding the relevant information and managing a map.x
  */
