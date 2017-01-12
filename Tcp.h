@@ -49,6 +49,14 @@ public:
     * The Function operation: getting data from the other socket and print *
     * the data															   *
     ***********************************************************************/
+
+    /***********************************************************************
+   * function name: setIp											       *
+   * The Input: ip string										           *
+   * The Function operation: getting data from the       				   *
+   ***********************************************************************/
+    void setIp(string ip);
+
     int reciveData(char* buffer, int size);
 
     int sendDataTo(string data, int length, int descriptorClient);

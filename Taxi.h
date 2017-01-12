@@ -2,8 +2,6 @@
 #define TM_TAXI_H
 
 #include <vector>
-#include <boost/serialization/assume_abstract.hpp>
-#include <boost/serialization/base_object.hpp>
 #include "Point.h"
 #include "Passenger.h"
 #include "Trip.h"

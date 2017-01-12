@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
 
     LINFO << "This is my first log " << "in main func ";
     int portNum = atoi(argv[1]);
-    Socket *sock = new Udp(true, portNum);
+    Tcp*sock = new Tcp(true, portNum);
     int i = pthread_create(&t1, NULL, checkFunc, (void *) sock);
     //sock->initialize();
     //run the program

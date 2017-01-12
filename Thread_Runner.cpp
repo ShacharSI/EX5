@@ -2,53 +2,57 @@
 #include <boost/iostreams/stream.hpp>
 #include "Thread_Runner.h"
 #include "Management.h"
-#include <stdlib.h>
-#include <cstdlib>
-#include "StandardTaxi.h"
-#include "LuxuryTaxi.h"
-#include "Trip_Info.h"
 #include "Thread_Manage.h"
-#include <stdexcept>
 #include <fstream>
-#include <sstream>
-#include <boost/archive/text_oarchive.hpp>
-#include <boost/archive/text_iarchive.hpp>
-#include <boost/algorithm/string/predicate.hpp>
 #include <boost/lexical_cast.hpp>
-#include <boost/assign/list_of.hpp>
 #include <boost/algorithm/string.hpp>
 #include <boost/iostreams/device/back_inserter.hpp>
-#include <boost/iostreams/stream.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/archive/binary_iarchive.hpp>
-#include <boost/serialization/export.hpp>
-#include <bits/valarray_before.h>
+
+
 
 #define BUFFERSIZE 4096
 Mutex_Locker *Thread_Runner::mutex = new Mutex_Locker();
+Thread_Runner *Thread_Runner::instance = NULL;
+bool Thread_Runner::created = false;
 
-Thread_Runner::Thread_Runner(TaxiCenter *t) {
-    this->taxiCenter = t;
-    this->m = t->getMap();
+bool Thread_Runner::Occupy() {
+    if (!inUse) {
+        this->inUse = true;
+        return true;
+    }
+    return false;
+}
+
+Thread_Runner *Thread_Runner::getInstance(TaxiCenter *c,Tcp* t) {
+    if (!Thread_Runner::created) {
+        Thread_Runner::mutex->lock();
+        if (!Thread_Runner::created) {
+            Thread_Runner::instance = new Thread_Runner(c,t);
+            Thread_Runner::created = true;
+        }
+        Thread_Runner::mutex->unlock();
+    }
+    return instance;
 }
 
 void *Thread_Runner::run(void) {
     Driver *d;
     std::list<Searchable *> list;
     char *buffer = (char *) malloc(4906 * sizeof(char));
-
+    d = this->getDriver(tcpSock);
     //cast the tcp from void*
-    Tcp *tcpSock = (Tcp *) tcp;
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
     //create the thread handler
     Thread_Runner::mutex->lock();
     std::queue<string> messageQueue;
-    thread_manage->addQueueMessage(pthread_self(), messageQueue);
+    thread_manage->addQueueMessage(d, messageQueue);
     thread_manage->addThread(pthread_self());
     Thread_Runner::mutex->unlock();
 
     //get the driver from the client
-    d = this->getDriver(tcpSock);
+
     //run the thread
     string serial_str;
     while (messageQueue.empty()); //todo check stop the thread till queue is not empty
@@ -60,7 +64,7 @@ void *Thread_Runner::run(void) {
         if (list.size() > 0) {
             //set the routh in our driver
             d->setRouth(list);
-            this->taxiCenter->setRout(d, list);
+
             //send the routh to the client
             boost::iostreams::back_insert_device<std::string> inserter(serial_str);
             boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> s(inserter);
@@ -146,37 +150,33 @@ Driver *Thread_Runner::getDriver(Tcp *socket) {
     if (n < 0) {
         perror("Error in Sendto");
     }
-    this->taxiCenter->addDriverToCenter(d);
-
     free(buffer);
     //return the driver for the thread here to manage
     return d;
 }
 
-void *Thread_Runner::getTrip(void *t) {
+void *Thread_Runner::getTrip(void) {
 
-    Trip *trip;
-    trip = (Trip *) t;
+    Trip trip;
+    trip = this->tripsToCalcullate.front();
+    this->tripsToCalcullate.pop();
     Bfs bfs;
     std::list<Searchable *> list;
 
     //get the point on the map
-    Searchable *start = *this->m->getSearchableByCoordinate(trip->getStartP());
-    Searchable *end = *this->m->getSearchableByCoordinate(trip->getEndP());
+    Searchable *start = *this->m->getSearchableByCoordinate(trip.getStartP());
+    Searchable *end = *this->m->getSearchableByCoordinate(trip.getEndP());
     //get the rout between points
     list = bfs.findRouth(start, end, this->m);
     //create a trip info class and save it
     this->mutex->lock();
-    unsigned int trip_Time = trip->getTime();
+    unsigned int trip_Time = trip.getTime();
     Trip_Info *trip_info = new Trip_Info(trip_Time, list);
     this->trips.push_front(trip_info);
     this->mutex->unlock();
     return 0; //todo return 0?
 }
 
-Map *Thread_Runner::getMap() const {
-    return m;
-}
 
 std::list<Searchable *> Thread_Runner::checkTrips(Driver *d) {
     std::list<Searchable *> list;
@@ -206,11 +206,15 @@ std::list<Searchable *> Thread_Runner::checkTrips(Driver *d) {
 }
 
 void *Thread_Runner::runHelper(void *v) {
-
+    return ((Thread_Runner*)v)->getTrip();
 }
 
 void *Thread_Runner::tripHelper(void *v) {
     return ((Thread_Runner*)v)->run();
+}
+
+void Thread_Runner::addTripToCalculate(Trip t) {
+    this->tripsToCalcullate.push(t);
 }
 
 

@@ -20,7 +20,7 @@ private:
     TaxiCenter* taxiCenter;
     void setLogicAndMap();
     vector<int> getSizes();
-    Socket* socket;
+    Tcp* socket;
     Thread_Runner* thread_runner;
     int serverPort;
 
@@ -31,7 +31,7 @@ public:
     void setClock();
     void getObstacles();
     void getMap();
-    Management(Socket* s);
+    Management(Tcp* s);
     void manage();
     Taxi* parseTaxi(string s);
     void parseDriver();

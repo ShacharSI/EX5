@@ -80,6 +80,17 @@ int Tcp::initialize() {
     return CORRECT;
 }
 
+/**
+ * @param ip - set the ip address
+ */
+void Tcp::setIp(string ip) {
+    string ipcheck = "localhost";
+    if(strcmp(ip.c_str(),ipcheck.c_str())==0){
+        this->ip_address = IP;
+        return;
+    }
+    this->ip_address = ip;
+}
 
 /***********************************************************************
 * function name: sendData											   *

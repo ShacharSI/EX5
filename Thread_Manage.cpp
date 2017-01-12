@@ -6,7 +6,8 @@
 
 Thread_Manage *Thread_Manage::instance = NULL;
 Mutex_Locker *Thread_Manage::mutex = new Mutex_Locker();
-Thread_Manage::created = false;
+bool Thread_Manage::created = false;
+
 bool Thread_Manage::Occupy() {
     if (!inUse) {
         this->inUse = true;
@@ -28,7 +29,7 @@ Thread_Manage *Thread_Manage::getInstance() {
     return instance;
 }
 
-void Thread_Manage::addQueueMessage(pthread_t id, std::queue<std::string> q) {
+void Thread_Manage::addQueueMessage(Driver* id, std::queue<std::string> q) {
     this->threadMasseges[id] = q;
 }
 

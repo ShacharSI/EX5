@@ -31,7 +31,7 @@ BOOST_CLASS_EXPORT_GUID(Square, "Square")
 /**
  * the constructor
  */
-Management::Management(Socket *s) {
+Management::Management(Tcp *s) {
     this->socket = s;
     this->taxiCenter = NULL;
 }
@@ -42,8 +42,8 @@ Management::Management(Socket *s) {
  */
 void Management::manage() {
     char *buffer = (char *) malloc(4096 * sizeof(char));
-    Thread_Runner *threader = new Thread_Runner(this->taxiCenter);
-    this->thread_runner = threader;
+    Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
+    this->thread_runner = thread_runner1;
     string userInput;
     string usrChoiceStr;
     int userChoice;
@@ -108,14 +108,14 @@ void Management::manage() {
     if (strcmp(buffer, "Finished") == 0) {
         close(this->socket->getSocketDescriptor());
     }
-    Thread_Manage* thread_manage = Thread_Manage::getInstance();
+    Thread_Manage *thread_manage = Thread_Manage::getInstance();
     int size = thread_manage->getThreadList().size();
-    list<pthread_t>& l = thread_manage->getThreadList();
+    list <pthread_t> &l = thread_manage->getThreadList();
     for (int i = 0; i < size; i++) {
         pthread_t t = l.front();
-       pthread_join(t,NULL); //todo like this?
+        pthread_join(t, NULL); //todo like this?
     }
-    delete(thread_manage);
+    delete (thread_manage);
     free(buffer);
     return;
 }
@@ -164,10 +164,10 @@ Taxi *Management::parseTaxi(string s) {
  */
 void Management::parseLocation(int id) {
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
-    map<Driver *, queue<std::string>>& mymap = thread_manage->getThreadMasseges();
+    map<Driver *, queue<std::string>> &mymap = thread_manage->getThreadMasseges();
     for (std::map<Driver *, std::queue<string>>::iterator it = mymap.begin();
          it != mymap.end(); ++it) {
-        if (it->first->getId() == id ){
+        if (it->first->getId() == id) {
             it->second.push("GiveLocation");
             break;
         }
@@ -196,12 +196,12 @@ void Management::parseDriver() {
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
     this->socket->initialize();
+    Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     //a loop that gets the drivers and send taxi's
     for (int j = 0; j < numOfDrivers; ++j) {
         pthread_t t;
-        int status = pthread_create(&t, NULL, this->thread_runner->run, NULL);
+        int status = pthread_create(&t, NULL, &Thread_Runner::runHelper, &thread_runner1);
     }
-
     free(buffer);
 }
 
@@ -228,22 +228,26 @@ void Management::parseTrip(string s) {
         i++;
     }
     //create the trip
-    Trip t(tripInfo[0], tripInfo[1], tripInfo[2], tripInfo[3], tripInfo[4], tripInfo[5], tarrif, time);
+    Trip trip(tripInfo[0], tripInfo[1], tripInfo[2], tripInfo[3], tripInfo[4],
+              tripInfo[5], tarrif, time);
     //make sure the info is good
     try {
-        t.validate();
+        trip.validate();
         Map *m = this->taxiCenter->getMap();
-        if ((t.getStartP().getX() > m->getSizeX()) || (t.getStartP().getY() > m->getSizeY())) {
+        if ((trip.getStartP().getX() > m->getSizeX()) || (trip.getStartP().getY() > m->getSizeY())) {
             throw std::invalid_argument("invalid location");
         }
-        Point endP = t.getEndP();
-        if ((t.getEndP().getX() > m->getSizeX()) || (t.getEndP().getY() > m->getSizeY())) {
+        Point endP = trip.getEndP();
+        if ((trip.getEndP().getX() > m->getSizeX()) || (trip.getEndP().getY() > m->getSizeY())) {
             throw std::invalid_argument("invalid location");
         }
     } catch (const std::invalid_argument &iaExc) {
-        pthread_t t;
-        pthread_create(&t, NULL, this->thread_runner->getTrip, (void *) t);//todo int? int status?
+
     }
+    pthread_t thread;
+    Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
+    thread_runner1->addTripToCalculate(trip);
+    int status = pthread_create(&thread, NULL, &Thread_Runner::tripHelper, &thread_runner1);
 }
 
 
@@ -278,7 +282,7 @@ void Management::setLogicAndMap() {
 
     }
     this->getObstacles();
-    this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"), this->socket);
+    this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"));
 }
 
 /**
@@ -297,8 +301,6 @@ vector<int> Management::getSizes() {
 
     return sizes;
 }
-
-
 
 
 /**

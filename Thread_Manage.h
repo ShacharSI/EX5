@@ -34,7 +34,7 @@ public:
     void addThread(pthread_t t);
     void addDriver(Driver* d,int sockDes);
     map<Driver*, queue<string>> &getThreadMasseges() ;
-    void addQueueMessage(pthread_t t, std::queue<std::string> q);
+    void addQueueMessage(Driver* t, std::queue<std::string> q);
     void addMessage(Driver* d,string s);
     void addThread(pthread_t t,Thread_Class* c);
     static Thread_Manage* getInstance();
