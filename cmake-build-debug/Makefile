@@ -258,33 +258,6 @@ Logic.cpp.s:
 	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/Logic.cpp.s
 .PHONY : Logic.cpp.s
 
-LuxTaxiFactory.o: LuxTaxiFactory.cpp.o
-
-.PHONY : LuxTaxiFactory.o
-
-# target to build an object file
-LuxTaxiFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/LuxTaxiFactory.cpp.o
-.PHONY : LuxTaxiFactory.cpp.o
-
-LuxTaxiFactory.i: LuxTaxiFactory.cpp.i
-
-.PHONY : LuxTaxiFactory.i
-
-# target to preprocess a source file
-LuxTaxiFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/LuxTaxiFactory.cpp.i
-.PHONY : LuxTaxiFactory.cpp.i
-
-LuxTaxiFactory.s: LuxTaxiFactory.cpp.s
-
-.PHONY : LuxTaxiFactory.s
-
-# target to generate assembly for a file
-LuxTaxiFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/LuxTaxiFactory.cpp.s
-.PHONY : LuxTaxiFactory.cpp.s
-
 LuxuryTaxi.o: LuxuryTaxi.cpp.o
 
 .PHONY : LuxuryTaxi.o
@@ -554,60 +527,6 @@ Square.s: Square.cpp.s
 Square.cpp.s:
 	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/Square.cpp.s
 .PHONY : Square.cpp.s
-
-StandardTaxi.o: StandardTaxi.cpp.o
-
-.PHONY : StandardTaxi.o
-
-# target to build an object file
-StandardTaxi.cpp.o:
-	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/StandardTaxi.cpp.o
-.PHONY : StandardTaxi.cpp.o
-
-StandardTaxi.i: StandardTaxi.cpp.i
-
-.PHONY : StandardTaxi.i
-
-# target to preprocess a source file
-StandardTaxi.cpp.i:
-	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/StandardTaxi.cpp.i
-.PHONY : StandardTaxi.cpp.i
-
-StandardTaxi.s: StandardTaxi.cpp.s
-
-.PHONY : StandardTaxi.s
-
-# target to generate assembly for a file
-StandardTaxi.cpp.s:
-	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/StandardTaxi.cpp.s
-.PHONY : StandardTaxi.cpp.s
-
-StndTaxiFactory.o: StndTaxiFactory.cpp.o
-
-.PHONY : StndTaxiFactory.o
-
-# target to build an object file
-StndTaxiFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/StndTaxiFactory.cpp.o
-.PHONY : StndTaxiFactory.cpp.o
-
-StndTaxiFactory.i: StndTaxiFactory.cpp.i
-
-.PHONY : StndTaxiFactory.i
-
-# target to preprocess a source file
-StndTaxiFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/StndTaxiFactory.cpp.i
-.PHONY : StndTaxiFactory.cpp.i
-
-StndTaxiFactory.s: StndTaxiFactory.cpp.s
-
-.PHONY : StndTaxiFactory.s
-
-# target to generate assembly for a file
-StndTaxiFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/StndTaxiFactory.cpp.s
-.PHONY : StndTaxiFactory.cpp.s
 
 Taxi.o: Taxi.cpp.o
 
@@ -879,33 +798,6 @@ Validate_Interface.cpp.s:
 	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/Validate_Interface.cpp.s
 .PHONY : Validate_Interface.cpp.s
 
-VirtualTaxiFactory.o: VirtualTaxiFactory.cpp.o
-
-.PHONY : VirtualTaxiFactory.o
-
-# target to build an object file
-VirtualTaxiFactory.cpp.o:
-	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/VirtualTaxiFactory.cpp.o
-.PHONY : VirtualTaxiFactory.cpp.o
-
-VirtualTaxiFactory.i: VirtualTaxiFactory.cpp.i
-
-.PHONY : VirtualTaxiFactory.i
-
-# target to preprocess a source file
-VirtualTaxiFactory.cpp.i:
-	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/VirtualTaxiFactory.cpp.i
-.PHONY : VirtualTaxiFactory.cpp.i
-
-VirtualTaxiFactory.s: VirtualTaxiFactory.cpp.s
-
-.PHONY : VirtualTaxiFactory.s
-
-# target to generate assembly for a file
-VirtualTaxiFactory.cpp.s:
-	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/VirtualTaxiFactory.cpp.s
-.PHONY : VirtualTaxiFactory.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -957,9 +849,6 @@ help:
 	@echo "... Logic.o"
 	@echo "... Logic.i"
 	@echo "... Logic.s"
-	@echo "... LuxTaxiFactory.o"
-	@echo "... LuxTaxiFactory.i"
-	@echo "... LuxTaxiFactory.s"
 	@echo "... LuxuryTaxi.o"
 	@echo "... LuxuryTaxi.i"
 	@echo "... LuxuryTaxi.s"
@@ -990,12 +879,6 @@ help:
 	@echo "... Square.o"
 	@echo "... Square.i"
 	@echo "... Square.s"
-	@echo "... StandardTaxi.o"
-	@echo "... StandardTaxi.i"
-	@echo "... StandardTaxi.s"
-	@echo "... StndTaxiFactory.o"
-	@echo "... StndTaxiFactory.i"
-	@echo "... StndTaxiFactory.s"
 	@echo "... Taxi.o"
 	@echo "... Taxi.i"
 	@echo "... Taxi.s"
@@ -1026,9 +909,6 @@ help:
 	@echo "... Validate_Interface.o"
 	@echo "... Validate_Interface.i"
 	@echo "... Validate_Interface.s"
-	@echo "... VirtualTaxiFactory.o"
-	@echo "... VirtualTaxiFactory.i"
-	@echo "... VirtualTaxiFactory.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

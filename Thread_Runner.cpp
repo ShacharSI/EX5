@@ -29,27 +29,29 @@ Mutex_Locker *Thread_Runner::mutex = new Mutex_Locker();
 
 Thread_Runner::Thread_Runner(TaxiCenter *t) {
     this->taxiCenter = t;
-    this->socketDesMap = new map<Driver *, int>();
-    this->numLiveConnections = 0;
-    this->numReadMassage = 0; //todo will update for everyone if not on stack?
-
+    this->m =t->getMap();
 }
 
 void *Thread_Runner::run(void *tcp) {
     Driver *d;
-    Tcp* tcpSock = (Tcp*)tcp;
+    std::list<Searchable *> list;
+    char *buffer = (char *) malloc(4906 * sizeof(char));
+
+    //cast the tcp from void*
+    Tcp *tcpSock = (Tcp *) tcp;
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
+    //create the thread handler
     Thread_Runner::mutex->lock();
     std::queue<string> messageQueue;
     thread_manage->addQueueMessage(pthread_self(), messageQueue);
+    thread_manage->addThread(pthread_self());
     Thread_Runner::mutex->unlock();
-    std::list<Searchable *> list;
-    char *buffer = (char *) malloc(4906 * sizeof(char));
+
     //get the driver from the client
     d = this->getDriver(tcpSock);
     //run the thread
     string serial_str;
-    while(messageQueue.empty()); //todo check stop the thread till queue is not empty
+    while (messageQueue.empty()); //todo check stop the thread till queue is not empty
     while (strcmp(messageQueue.front().c_str(), "End_Communication") != 0) {
         messageQueue.pop();
         //get a trip
@@ -67,12 +69,12 @@ void *Thread_Runner::run(void *tcp) {
             s.flush();
             int connectionDescriptor = thread_manage->getThreadClass(pthread_self())
                     ->getThreadsSocketDescriptor();
-            int n = tcpSock->sendDataTo(serial_str, serial_str.size(),connectionDescriptor);
+            int n = tcpSock->sendDataTo(serial_str, serial_str.size(), connectionDescriptor);
             if (n < 0) {
                 perror("Error in Sendto");
             }
         }
-        while(messageQueue.empty());
+        while (messageQueue.empty());//todo ?
         //if we are still running the program, and we still have a routh to go
         while ((d->getTaxi()->getRouth().size() > 0)
                && (strcmp(messageQueue.front().c_str(), "End_Communication")) != 0) {
@@ -82,20 +84,23 @@ void *Thread_Runner::run(void *tcp) {
                 d->move();
                 int connectionDescriptor = thread_manage->getThreadClass(pthread_self())
                         ->getThreadsSocketDescriptor();
-                int n = tcpSock->sendDataTo(messageQueue.front().c_str(), messageQueue.front().size()
-                        ,connectionDescriptor);
+                int n = tcpSock->sendDataTo(messageQueue.front().c_str(), messageQueue.front().size(),
+                                            connectionDescriptor);
                 if (n < 0) {
-                    perror("Error in Sendto");
+                    perror("Error in Send_to");
                 }
-                //this->numReadMassage += 1;
+            }
+            if (strcmp(messageQueue.front().c_str(), "GiveLocation") == 0) {
+                Point p = d->getLocation();
+                cout << p;
             }
             messageQueue.pop();
-            while(messageQueue.empty());
+            while (messageQueue.empty()); //todo ?
         }
         if (strcmp(messageQueue.front().c_str(), "End_Communication") == 0) {
             break;
         }
-        while(messageQueue.empty());
+        while (messageQueue.empty()); //todo ?
     }
 
     //todo send end communication to client and close the socket
@@ -107,11 +112,12 @@ Driver *Thread_Runner::getDriver(Tcp *socket) {
     Driver *d = NULL;
     string serial_str;
     char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
-    //initialize connection  //todo to this here?
-    int connectionDescriptor = socket->acceptClient();
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
-    Thread_Class* threadClass = new Thread_Class(connectionDescriptor);
-    thread_manage->addThread(pthread_self(),threadClass);
+    this->mutex->lock();
+    int connectionDescriptor = socket->acceptClient();
+    Thread_Class *threadClass = new Thread_Class(connectionDescriptor);
+    thread_manage->addThread(pthread_self(), threadClass);
+    this->mutex->unlock();
     ssize_t n = socket->rcvDataFrom(buffer, 4096, connectionDescriptor);
     if (n < 0) {
         perror("Error in receive");
@@ -123,9 +129,8 @@ Driver *Thread_Runner::getDriver(Tcp *socket) {
     ia >> d;
     this->mutex->lock();
     //saving the client's socket descriptor for later communication with him
-    this->socketDesMap->insert(std::pair<Driver *, int>(d, connectionDescriptor));
+    thread_manage->addDriver(d, connectionDescriptor);
     //note that there is one more client
-    this->numLiveConnections += 1;
     //attach a taxi to the driver here and send to client
     t = this->taxiCenter->attachTaxiToDriver(d->getVehicle_id());
     //set the driver's taxi
@@ -137,7 +142,7 @@ Driver *Thread_Runner::getDriver(Tcp *socket) {
     boost::archive::binary_oarchive oa(s);
     oa << t;
     s.flush();
-    n = socket->sendDataTo(serial_str,serial_str.size(),connectionDescriptor);
+    n = socket->sendDataTo(serial_str, serial_str.size(), connectionDescriptor);
     if (n < 0) {
         perror("Error in Sendto");
     }

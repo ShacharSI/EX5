@@ -24,17 +24,12 @@ class TaxiCenter {
 
 
 public:
-    void addDriverToCenter(Driver *d);
 
     TaxiCenter();
 
     ~TaxiCenter();
 
-    TaxiCenter(Map *m, Socket *s);
-
-    Point giveLocation(int id) throw(invalid_argument);
-
-    void TaxiCenter::setLocation(int driverID,Point* p);
+    TaxiCenter(Map *m);
 
     list<Taxi *> &getNotActiveTaxis();
 
@@ -42,13 +37,9 @@ public:
 
     void moveAll();
 
-    void setRout(Driver *d, list<Searchable *> l);
-
     Taxi *attachTaxiToDriver(int vhecleId);
 
     unsigned int getTime() const;
-
-    list<Driver *> &getDrivers();
 
     Map *getMap() const;
 
@@ -59,10 +50,6 @@ private:
     Map *map;
     Algorithm *searchAlgo;
     list<Taxi *> notActiveTaxis;
-    list<Driver *> drivers;
-    Socket *socket;
-    std::map<int, Point*> driversLocation;
-    std::map<int,pthread_t> driverPthread;
 };
 
 

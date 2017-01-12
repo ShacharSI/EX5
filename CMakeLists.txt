@@ -12,11 +12,11 @@ include_directories(${Boost_INCLUDE_DIR})
 
 
 set(SOURCE_FILES Algorithm.cpp Algorithm.h Bfs.cpp Bfs.h Driver.cpp Driver.h Logic.cpp Logic.h
-        LuxTaxiFactory.cpp LuxTaxiFactory.h LuxuryTaxi.cpp LuxuryTaxi.h Management.cpp Management.h
+         LuxuryTaxi.cpp LuxuryTaxi.h Management.cpp Management.h
         Map.cpp Map.h MapFactory.cpp MapFactory.h Passenger.cpp Passenger.h Point.cpp Point.h Searchable.cpp
-        Searchable.h Square.cpp Square.h StandardTaxi.cpp StandardTaxi.h StndTaxiFactory.cpp StndTaxiFactory.h
+        Searchable.h Square.cpp Square.h
         Taxi.cpp Taxi.h TaxiCenter.cpp TaxiCenter.h Trip.cpp Trip.h Validate_Interface.cpp Validate_Interface.h
-        VirtualTaxiFactory.cpp VirtualTaxiFactory.h Socket.cpp Socket.h Udp.cpp Udp.h Tcp.cpp Tcp.h
+        Socket.cpp Socket.h Udp.cpp Udp.h Tcp.cpp Tcp.h
         Thread_Runner.cpp Thread_Runner.h Trip_Info.cpp Trip_Info.h BfsInfoMap.cpp BfsInfoMap.h Thread_Class.cpp Thread_Class.h Thread_Manage.cpp Thread_Manage.h Mutex_Locker.cpp Mutex_Locker.h)
 add_executable(main.cpp ${SOURCE_FILES} main.cpp)
 #add_executable(mainDriver.cpp ${SOURCE_FILES} ManageDriver.cpp ManageDriver.h mainDriver.cpp )

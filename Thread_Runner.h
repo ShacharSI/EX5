@@ -22,16 +22,11 @@ public:
     std::list<Searchable*> checkTrips(Driver* d);
     void *getTrip(void *t);
 private:
-    Driver *d;
-    map<Driver *, int> *socketDesMap;
     list<Trip_Info *> trips;
     Driver *getDriver(Tcp *socket);
     Map *m;
     static Mutex_Locker* mutex;
-
     TaxiCenter *taxiCenter;
-    int numLiveConnections;
-    int numReadMassage;
 };
 
 

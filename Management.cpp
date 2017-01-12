@@ -4,6 +4,7 @@
 #include "StandardTaxi.h"
 #include "LuxuryTaxi.h"
 #include "Thread_Runner.h"
+#include "Thread_Manage.h"
 #include <stdexcept>
 #include <fstream>
 #include <sstream>
@@ -78,8 +79,7 @@ void Management::manage() {
                 cin >> userInput;
                 c = userInput.c_str();
                 int id = atoi(c);
-                Point p = this->parseLocation(id);
-                cout << p;
+                this->parseLocation(id);
                 break;
             }
                 //move all taxi's
@@ -109,6 +109,14 @@ void Management::manage() {
     if (strcmp(buffer, "Finished") == 0) {
         close(this->socket->getSocketDescriptor());
     }
+    Thread_Manage* thread_manage = Thread_Manage::getInstance();
+    int size = thread_manage->getThreadList().size();
+    list<pthread_t>& l = thread_manage->getThreadList();
+    for (int i = 0; i < size; i++) {
+        pthread_t t = l.front();
+       pthread_join(t,NULL); //todo like this?
+    }
+    delete(thread_manage);
     free(buffer);
     return;
 }
@@ -135,12 +143,12 @@ Taxi *Management::parseTaxi(string s) {
     int tarrif = atoi(c);
     //create a matching taxi according to tha taarif
     if (tarrif == 1) {
-        t = new StandardTaxi(id,Taxi::parseMnfctr((strArray[2])),
-                             Taxi::parseColor((strArray[3])),1);
+        t = new StandardTaxi(id, Taxi::parseMnfctr((strArray[2])),
+                             Taxi::parseColor((strArray[3])), 1);
     }
     if (tarrif == 2) {
-        t = new LuxuryTaxi(id,Taxi::parseMnfctr((strArray[2])),
-                           Taxi::parseColor((strArray[3])),2);
+        t = new LuxuryTaxi(id, Taxi::parseMnfctr((strArray[2])),
+                           Taxi::parseColor((strArray[3])), 2);
     }
     //make sure the info is good
     try {
@@ -155,8 +163,18 @@ Taxi *Management::parseTaxi(string s) {
 /**
  * returns the wanted taxi(by id) location
  */
-Point Management::parseLocation(int id) {
-    return this->taxiCenter->giveLocation(id);
+void Management::parseLocation(int id) {
+    Thread_Manage *thread_manage = Thread_Manage::getInstance();
+    map<Driver *, queue<std::string>>& mymap = thread_manage->getThreadMasseges();
+    for (std::map<Driver *, std::queue<string>>::iterator it = mymap.begin();
+         it != mymap.end(); ++it) {
+        if (it->first->getId() == id ){
+            it->second.push("GiveLocation");
+            break;
+        }
+    }
+
+
 }
 
 

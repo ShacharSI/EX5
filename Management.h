@@ -36,7 +36,7 @@ public:
     Taxi* parseTaxi(string s);
     void parseDriver();
     void parseTrip(string s);
-    Point parseLocation(int id);
+    void parseLocation(int id);
 };
 
 

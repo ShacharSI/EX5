@@ -32,41 +32,12 @@ TaxiCenter::TaxiCenter() {
 /**
  * the constructor
  */
-TaxiCenter::TaxiCenter(Map *mp, Socket *soc) {
+TaxiCenter::TaxiCenter(Map *mp) {
     this->map = mp;
-    this->socket = soc;
     this->searchAlgo = new Bfs;
+    this->time = 0;
 }
 
-/**
- * returns the location of a given taxi
- */
-Point TaxiCenter::giveLocation(int id) throw(invalid_argument) {
-    if(!this->driversLocation[id]){
-        Thread_Manage* thread_manage = Thread_Manage::getInstance();
-        thread_manage->addMessage(id,"location");
-        while(!this->driversLocation[id]);
-    }
-    return *(this->driversLocation[id]);
-
-    /*int size = this->drivers.size();
-    for (int i = 0; i < size; i++) {
-        Driver *d = this->drivers.front();
-        if (d->getId() == id) {
-            return d->getTaxi()->getLocation();
-        }
-        this->drivers.pop_front();
-        this->drivers.push_back(d);
-    }*/
-}
-
-
-/**
- * adding a driver to the taxi center
- */
-void TaxiCenter::addDriverToCenter(Driver *d) {
-    this->drivers.push_back(d);
-}
 
 
 /**
@@ -105,22 +76,15 @@ void TaxiCenter::addTaxi(Taxi *t) {
  * moving all the taxis one step
  */
 void TaxiCenter::moveAll() {
-    char *buffer = (char *) malloc(4096 * sizeof(char));
+    this->time += 1;
+    Thread_Manage *thraed_mannage = Thread_Manage::getInstance();
+    std::map<Driver *, std::queue<string>> &mymap = thraed_mannage->getThreadMasseges();
     //iterate over the drivers
-    for (int i = 0; i < this->drivers.size(); i++) {
-        Driver *d = this->drivers.front();
-        //verify that the driver has where to go
-        if (d->getTaxi()->getRouth().size() > 0) {
-            //move the driver here
-            d->move();
-            //send the client go
-            string go = "Go";
-            //todo send all threads "GO"
-        }
-        this->drivers.pop_front();
-        this->drivers.push_back(d);
+    for (std::map<Driver *, std::queue<string>>::iterator it = mymap.begin();
+         it != mymap.end(); ++it) {
+        it->second.push("GO");
+
     }
-    free(buffer);
 }
 
 
@@ -134,12 +98,6 @@ TaxiCenter::~TaxiCenter() {
         notActiveTaxis.pop_front();
         delete t;
     }
-    size = this->drivers.size();
-    for (int i = 0; i < size; i++) {
-        Driver *d = drivers.front();
-        drivers.pop_front();
-        delete d;
-    }
     delete this->searchAlgo;
     delete this->map;
 }
@@ -150,25 +108,4 @@ unsigned int TaxiCenter::getTime() const {
 
 Map *TaxiCenter::getMap() const {
     return map;
-}
-
-list<Driver *> &TaxiCenter::getDrivers() {
-    return drivers;
-}
-
-void TaxiCenter::setRout(Driver *d, list<Searchable*> l) {
-    int size = this->drivers.size();
-    for (int i = 0; i <size ; i++) {
-        Driver* driver = this->drivers.front();
-        if (d->getId()==driver->getId()){
-            driver->setRouth(l);
-            return;
-        }
-        this->drivers.pop_front();
-        this->drivers.push_back(driver);
-    }
-}
-
-void TaxiCenter::setLocation(int driverID,Point* p) {
-    this->driversLocation[driverID] = p;
 }

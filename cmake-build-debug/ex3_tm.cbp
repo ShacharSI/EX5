@@ -114,12 +114,6 @@
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Logic.h">
 			<Option target="main.cpp"/>
 		</Unit>
-		<Unit filename="/home/haim6678/CLionProjects/AP4/LuxTaxiFactory.cpp">
-			<Option target="main.cpp"/>
-		</Unit>
-		<Unit filename="/home/haim6678/CLionProjects/AP4/LuxTaxiFactory.h">
-			<Option target="main.cpp"/>
-		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/LuxuryTaxi.cpp">
 			<Option target="main.cpp"/>
 		</Unit>
@@ -180,18 +174,6 @@
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Square.h">
 			<Option target="main.cpp"/>
 		</Unit>
-		<Unit filename="/home/haim6678/CLionProjects/AP4/StandardTaxi.cpp">
-			<Option target="main.cpp"/>
-		</Unit>
-		<Unit filename="/home/haim6678/CLionProjects/AP4/StandardTaxi.h">
-			<Option target="main.cpp"/>
-		</Unit>
-		<Unit filename="/home/haim6678/CLionProjects/AP4/StndTaxiFactory.cpp">
-			<Option target="main.cpp"/>
-		</Unit>
-		<Unit filename="/home/haim6678/CLionProjects/AP4/StndTaxiFactory.h">
-			<Option target="main.cpp"/>
-		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Taxi.cpp">
 			<Option target="main.cpp"/>
 		</Unit>
@@ -250,12 +232,6 @@
 			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/Validate_Interface.h">
-			<Option target="main.cpp"/>
-		</Unit>
-		<Unit filename="/home/haim6678/CLionProjects/AP4/VirtualTaxiFactory.cpp">
-			<Option target="main.cpp"/>
-		</Unit>
-		<Unit filename="/home/haim6678/CLionProjects/AP4/VirtualTaxiFactory.h">
 			<Option target="main.cpp"/>
 		</Unit>
 		<Unit filename="/home/haim6678/CLionProjects/AP4/main.cpp">
