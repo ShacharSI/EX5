@@ -32,7 +32,6 @@ BOOST_CLASS_EXPORT_GUID(Square, "Square")
  * the constructor
  */
 Management::Management(Socket *s) {
-    this->clock = 0;
     this->socket = s;
     this->taxiCenter = NULL;
 }
@@ -243,7 +242,7 @@ void Management::parseTrip(string s) {
         }
     } catch (const std::invalid_argument &iaExc) {
         pthread_t t;
-        int status = pthread_create(&t, NULL, this->thread_runner->getTrip, (void *) t);//todo int? int status?
+        pthread_create(&t, NULL, this->thread_runner->getTrip, (void *) t);//todo int? int status?
     }
 }
 
@@ -299,26 +298,8 @@ vector<int> Management::getSizes() {
     return sizes;
 }
 
-/**
- * inc the clock by one up
- */
-void Management::setClock() {
-    this->clock += 1;
-}
 
-/**
- * checking if the time of any trip arrived
- */
-void Management::assignTrip() {
-    taxiCenter->assignTrip(this->getTime());
-}
 
-/**
- * @return - the worlds clock
- */
-unsigned int Management::getTime() {
-    return this->clock;
-}
 
 /**
  * the deconstructor

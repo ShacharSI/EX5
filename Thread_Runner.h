@@ -17,7 +17,9 @@ class Thread_Runner {
 
 public:
     Thread_Runner(TaxiCenter *c);
-    void *run(void *);
+    static void* runHelper(void* v);
+    static void* tripHelper(void* v);
+    void *run(void);
     Map *getMap() const;
     std::list<Searchable*> checkTrips(Driver* d);
     void *getTrip(void *t);

@@ -29,10 +29,10 @@ Mutex_Locker *Thread_Runner::mutex = new Mutex_Locker();
 
 Thread_Runner::Thread_Runner(TaxiCenter *t) {
     this->taxiCenter = t;
-    this->m =t->getMap();
+    this->m = t->getMap();
 }
 
-void *Thread_Runner::run(void *tcp) {
+void *Thread_Runner::run(void) {
     Driver *d;
     std::list<Searchable *> list;
     char *buffer = (char *) malloc(4906 * sizeof(char));
@@ -204,3 +204,13 @@ std::list<Searchable *> Thread_Runner::checkTrips(Driver *d) {
     //return the rout of the trip that is time arrived
     return list;
 }
+
+void *Thread_Runner::runHelper(void *v) {
+
+}
+
+void *Thread_Runner::tripHelper(void *v) {
+    return ((Thread_Runner*)v)->run();
+}
+
+
