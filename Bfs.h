@@ -1,6 +1,5 @@
 #ifndef EX1TM_BFS_H
 #define EX1TM_BFS_H
-#include <list>
 #include "Square.h"
 #include "Algorithm.h"
 #include "Map.h"

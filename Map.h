@@ -5,7 +5,6 @@
 #include <list>
 #include "Point.h"
 #include "Searchable.h"
-#include "list"
 #include "BfsInfoMap.h"
 #include <queue>
 

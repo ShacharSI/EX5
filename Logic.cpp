@@ -1,9 +1,8 @@
 #include <sstream>
 #include "Logic.h"
 #include <stdlib.h>
-#include <string>
 #include <stdexcept>
-#include <limits>
+
 
 /**
  * the constructor

@@ -14,7 +14,7 @@ include_directories(${Boost_INCLUDE_DIR})
 set(SOURCE_FILES Algorithm.cpp Algorithm.h Bfs.cpp Bfs.h Driver.cpp Driver.h Logic.cpp Logic.h
          LuxuryTaxi.cpp LuxuryTaxi.h Management.cpp Management.h
         Map.cpp Map.h MapFactory.cpp MapFactory.h Passenger.cpp Passenger.h Point.cpp Point.h Searchable.cpp
-        Searchable.h Square.cpp Square.h
+        Searchable.h Square.cpp Square.h StandardTaxi.h StandardTaxi.cpp
         Taxi.cpp Taxi.h TaxiCenter.cpp TaxiCenter.h Trip.cpp Trip.h Validate_Interface.cpp Validate_Interface.h
         Socket.cpp Socket.h Udp.cpp Udp.h Tcp.cpp Tcp.h
         Thread_Runner.cpp Thread_Runner.h Trip_Info.cpp Trip_Info.h BfsInfoMap.cpp BfsInfoMap.h Thread_Class.cpp Thread_Class.h Thread_Manage.cpp Thread_Manage.h Mutex_Locker.cpp Mutex_Locker.h)

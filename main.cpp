@@ -2,7 +2,6 @@
 //#include <gtest/gtest.h>
 #include "Management.h"
 #include <stdlib.h>
-#include <map>
 #include "easyloggingpp-8.91/easylogging++.h"
 #include <pthread.h>
 _INITIALIZE_EASYLOGGINGPP

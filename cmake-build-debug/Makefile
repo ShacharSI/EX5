@@ -528,6 +528,33 @@ Square.cpp.s:
 	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/Square.cpp.s
 .PHONY : Square.cpp.s
 
+StandardTaxi.o: StandardTaxi.cpp.o
+
+.PHONY : StandardTaxi.o
+
+# target to build an object file
+StandardTaxi.cpp.o:
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/StandardTaxi.cpp.o
+.PHONY : StandardTaxi.cpp.o
+
+StandardTaxi.i: StandardTaxi.cpp.i
+
+.PHONY : StandardTaxi.i
+
+# target to preprocess a source file
+StandardTaxi.cpp.i:
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/StandardTaxi.cpp.i
+.PHONY : StandardTaxi.cpp.i
+
+StandardTaxi.s: StandardTaxi.cpp.s
+
+.PHONY : StandardTaxi.s
+
+# target to generate assembly for a file
+StandardTaxi.cpp.s:
+	$(MAKE) -f CMakeFiles/main.cpp.dir/build.make CMakeFiles/main.cpp.dir/StandardTaxi.cpp.s
+.PHONY : StandardTaxi.cpp.s
+
 Taxi.o: Taxi.cpp.o
 
 .PHONY : Taxi.o
@@ -879,6 +906,9 @@ help:
 	@echo "... Square.o"
 	@echo "... Square.i"
 	@echo "... Square.s"
+	@echo "... StandardTaxi.o"
+	@echo "... StandardTaxi.i"
+	@echo "... StandardTaxi.s"
 	@echo "... Taxi.o"
 	@echo "... Taxi.i"
 	@echo "... Taxi.s"
