@@ -217,7 +217,7 @@ void Management::parseTrip(string s) {
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     thread_runner1->addTripToCalculate(trip);
     int status = pthread_create(&thread, NULL, Thread_Runner::tripHelper, thread_runner1);
-    pthread_join(thread,NULL);
+    pthread_join(thread,NULL); //todo remove this
 }
 
 
@@ -252,7 +252,7 @@ void Management::setLogicAndMap() {
 
     }
     this->getObstacles();
-    LINFO << "creating map in size " << lg.getSizeX() << lg.getSizeY();
+    LINFO << "creating map in size " << lg.getSizeX() << " on "<<lg.getSizeY();
     this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"));
 }
 

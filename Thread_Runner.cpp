@@ -170,6 +170,9 @@ void *Thread_Runner::getTrip(void) {
 
     Trip trip;
     Thread_Runner::tripsLocker->lock();
+    if(this->tripsToCalculate.size() == 0){
+        pthread_exit(NULL);
+    }
     trip = this->tripsToCalculate.front();
     this->tripsToCalculate.pop();
     Thread_Runner::tripsLocker->unlock();
