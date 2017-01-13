@@ -65,12 +65,12 @@ public:
 
     vector<Passenger> getPassengers();
 
-    void setRouth(std::list<Searchable *> routhFromClientToDes);
+    void setRouth(std::list<Searchable *>* routhFromClientToDes);
 
-    list<Searchable *> getRouth();
+    list<Searchable *>* getRouth();
 
 protected:
-    list<Searchable *> routh;
+    list<Searchable *>* routh;
     int carId;
     manufacturer mnfctr;
     int tarrif;

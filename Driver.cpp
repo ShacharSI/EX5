@@ -175,7 +175,7 @@ void Driver::inactivate(std::list<Driver *> *inActDrivers, list<Driver *> *actDr
 /**
  * @param list - set the routh of the driver
  */
-void Driver::setRouth(std::list<Searchable *> list) {
+void Driver::setRouth(std::list<Searchable *>* list) {
     this->getTaxi()->setRouth(list);
 }
 

@@ -14,7 +14,7 @@ private:
     //BfsInfoMap* infoMap;
 
 public:
-    list<Searchable*> findRouth(Searchable* start,Searchable* destiny,Map* m);
+    list<Searchable*>* findRouth(Searchable* start,Searchable* destiny,Map* m);
     static void* findRouthRunner(void*);
 };
 

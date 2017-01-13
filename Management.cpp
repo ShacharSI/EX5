@@ -33,21 +33,25 @@ void Management::manage() {
     userChoice = atoi(c);
     //preform the mission
     while (userChoice != 7) {
+        LINFO << " start of switch case with mission: " << userChoice;
         cin.ignore();
         switch (userChoice) {
             //create driver
             case 1: {
+                LINFO << " create threads ";
                 this->parseDriver();
                 break;
             }
                 //create trip and calculate bfs
             case 2: {
+                LINFO << " create and calculate trip ";
                 getline(cin, userInput);
                 this->parseTrip(userInput);
                 break;
             }
                 //create taxi
             case 3: {
+                LINFO << " create taxi ";
                 getline(cin, userInput);
                 Taxi *taxi = this->parseTaxi(userInput);
                 taxi->setLocation(Point(0, 0));
@@ -59,17 +63,26 @@ void Management::manage() {
                 cin >> userInput;
                 c = userInput.c_str();
                 int id = atoi(c);
+                LINFO << " ask location for id : " << id;
                 this->parseLocation(id);
+
                 break;
             }
                 //move all taxi's
             case 9: {
+                LINFO << " move all ";
                 this->taxiCenter->moveAll();
+                if(this->taxiCenter->getTime() == 2){
+                    while (1){
+
+                    }
+                }
                 break;
             }
             default:
                 break;
         }
+        LINFO << " get next mission ";
         //get the next input
         cin >> usrChoiceStr;
         c = usrChoiceStr.c_str();
@@ -78,14 +91,12 @@ void Management::manage() {
     //close the program and delete all memory
     string end = "EndCommunication";
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
-    Thread_Manage::threadMessagesLocker->lock();
-    map<Driver *, queue<std::string>*> mymap = thread_manage->getThreadMasseges();
-    for (std::map<Driver *, std::queue<string>*>::iterator it = mymap.begin();
+    map<pthread_t, queue<string>*> &mymap = thread_manage->getThreadMasseges();
+    for (std::map<pthread_t, queue<string>*>::iterator it = mymap.begin();
          it != mymap.end(); ++it) {
         it->second->push(end);
     }
-    Thread_Manage::threadMessagesLocker->unlock();
-    long size = thread_manage->getThreadList().size();
+    int size = thread_manage->getThreadList().size();
     list <pthread_t> &l = thread_manage->getThreadList();
     for (int i = 0; i < size; i++) {
         pthread_t t = l.front();
@@ -139,10 +150,20 @@ Taxi *Management::parseTaxi(string s) {
  */
 void Management::parseLocation(int id) {
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
-    map<Driver *, queue<std::string>*> mymap = thread_manage->getThreadMasseges();
-    for (std::map<Driver *, std::queue<string>*>::iterator it = mymap.begin();
+    map<pthread_t, queue<string>*> &mymap = thread_manage->getThreadMasseges();
+    map<pthread_t, Driver *> &mymap2 = thread_manage->getThreadDrivers();
+    pthread_t thread;
+    for (std::map<pthread_t, Driver *>::iterator it = mymap2.begin();
+         it != mymap2.end(); ++it) {
+        if (it->second->getId() == id) {
+            thread = it->first;
+            break;
+        }
+    }
+    //todo what if there is no driver
+    for (std::map<pthread_t, queue<string>*>::iterator it = mymap.begin();
          it != mymap.end(); ++it) {
-        if (it->first->getId() == id) {
+        if (thread == it->first) {
             it->second->push("GiveLocation");
             break;
         }
@@ -165,11 +186,14 @@ void Management::parseDriver() {
     cin >> input;
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
+    Thread_Manage *thread_manage = Thread_Manage::getInstance();
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     //a loop that gets the drivers and send taxi's
     for (int j = 0; j < numOfDrivers; ++j) {
         pthread_t t;
+
         int status = pthread_create(&t, NULL, Thread_Runner::runHelper, thread_runner1);//
+        //pthread_join(t,NULL);
     }
 }
 
@@ -203,12 +227,12 @@ void Management::parseTrip(string s) {
         trip.validate();
         Map *m = this->taxiCenter->getMap();
         if ((trip.getStartP().getX() > m->getSizeX()) ||
-                (trip.getStartP().getY() > m->getSizeY())) {
+            (trip.getStartP().getY() > m->getSizeY())) {
             throw std::invalid_argument("invalid location");
         }
         Point endP = trip.getEndP();
         if ((trip.getEndP().getX() > m->getSizeX()) ||
-                (trip.getEndP().getY() > m->getSizeY())) {
+            (trip.getEndP().getY() > m->getSizeY())) {
             throw std::invalid_argument("invalid location");
         }
     } catch (const std::invalid_argument &iaExc) {
@@ -218,7 +242,7 @@ void Management::parseTrip(string s) {
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     thread_runner1->addTripToCalculate(trip);
     int status = pthread_create(&thread, NULL, Thread_Runner::tripHelper, thread_runner1);
-    pthread_join(thread,NULL); //todo remove this
+    pthread_join(thread, NULL); //todo remove this
 }
 
 
@@ -253,7 +277,7 @@ void Management::setLogicAndMap() {
 
     }
     this->getObstacles();
-    LINFO << "creating map in size " << lg.getSizeX() << " on "<<lg.getSizeY();//
+    LINFO << " creating map in size " << lg.getSizeX() << " on " << lg.getSizeY();//
     this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"));
 }
 

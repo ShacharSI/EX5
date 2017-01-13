@@ -54,7 +54,7 @@ public:
 
     double getSatis();
 
-    void setRouth(std::list<Searchable *> list);
+    void setRouth(std::list<Searchable *>* list);
 
     void validate();
 

@@ -32,10 +32,14 @@ Thread_Manage *Thread_Manage::getInstance() {
     return instance;
 }
 
-void Thread_Manage::addQueueMessage(Driver* d, std::queue<std::string>* q) {
+void Thread_Manage::addQueueMessage(pthread_t d, std::queue<string>* q) {
     Thread_Manage::threadMessagesLocker->lock();
     this->threadMasseges[d] = q;
     Thread_Manage::threadMessagesLocker->unlock();
+}
+void Thread_Manage::addDriverAndPthread(pthread_t t, Driver *d) {
+//todo add locker!!!
+    this->threadDrivers[t] = d;
 }
 
 void Thread_Manage::addThread(pthread_t t, Thread_Class* c) {
@@ -44,9 +48,6 @@ void Thread_Manage::addThread(pthread_t t, Thread_Class* c) {
     Thread_Manage::threadInfoLocker->unlock();
 }
 
-map<Driver*, queue<string>*> Thread_Manage::getThreadMasseges()  {
-    return threadMasseges;
-}
 
 int Thread_Manage::getThreadsSocketDescriptor(pthread_t pt)  {
     Thread_Manage::descriptorsMapLocker->lock();
@@ -55,7 +56,7 @@ int Thread_Manage::getThreadsSocketDescriptor(pthread_t pt)  {
     return descriptor;
 }
 
-void Thread_Manage::addMessage(Driver* d, string s) {
+void Thread_Manage::addMessage(pthread_t d, string s) {
     this->threadMasseges[d]->push(s);
 }
 
@@ -80,10 +81,12 @@ Thread_Manage::~Thread_Manage() {
     delete this->threadListLocker;
     delete this->descriptorsMapLocker;
 
-    for (std::map<Driver*, queue<std::string>*>::iterator it = threadMasseges.begin();
+    delete instance;
+
+    for (std::map<pthread_t , queue<std::string>*>::iterator it = threadMasseges.begin();
          it != threadMasseges.end(); ++it) {
-        delete it->first;
-        delete it->second;
+        //delete it->first;
+//        delete it->second;
     }
     for (std::map<pthread_t , Thread_Class*>::iterator it = threadInfo.begin();
          it != threadInfo.end(); ++it) {
@@ -91,8 +94,28 @@ Thread_Manage::~Thread_Manage() {
     }
 }
 
-void Thread_Manage::popMessage(Driver *d) {
+void Thread_Manage::popMessage(pthread_t d) {
     Thread_Manage::threadMessagesLocker->lock();
     this->threadMasseges[d]->pop();
     Thread_Manage::threadMessagesLocker->unlock();
 }
+
+map<pthread_t, queue<string>*> &Thread_Manage::getThreadMasseges(){
+    return threadMasseges;
+}
+
+map<pthread_t, Driver *> &Thread_Manage::getThreadDrivers()  {
+    return threadDrivers;
+}
+
+queue<string> *Thread_Manage::getThreadsQueue(pthread_t t) {
+    map<pthread_t, queue<string>*> mymap = this->threadMasseges;
+    for (std::map<pthread_t, queue<string>*>::iterator it = mymap.begin();
+         it != mymap.end(); ++it) {
+        if(it->first == t ){
+            return it->second;
+        }
+    }
+    return NULL;
+}
+
