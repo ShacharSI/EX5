@@ -167,7 +167,7 @@ void Management::parseDriver() {
     //a loop that gets the drivers and send taxi's
     for (int j = 0; j < numOfDrivers; ++j) {
         pthread_t t;
-        int status = pthread_create(&t, NULL, Thread_Runner::runHelper, thread_runner1);
+        int status = pthread_create(&t, NULL, Thread_Runner::runHelper, thread_runner1);//
     }
 }
 

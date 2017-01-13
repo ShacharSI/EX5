@@ -113,7 +113,7 @@ void *Thread_Runner::run(void) {
             break;
         }
         //hold the thread till accepting new message
-        while (messageQueue->empty());
+        while (messageQueue->empty());//
     }
     int n = tcpSock->sendDataTo(messageQueue->front().c_str(), messageQueue->front().size(),
                                 connectionDescriptor);
