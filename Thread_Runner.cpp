@@ -246,8 +246,6 @@ Thread_Runner::~Thread_Runner() {
     delete this->driverLocker;
     delete this->tripsLocker;
 
-    delete this->instance;
-
     if(!this->trips.empty()){
         Trip_Info* temp = this->trips.front();
         this->trips.pop_front();

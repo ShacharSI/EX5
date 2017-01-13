@@ -80,8 +80,6 @@ Thread_Manage::~Thread_Manage() {
     delete this->threadListLocker;
     delete this->descriptorsMapLocker;
 
-    delete instance;
-
     for (std::map<Driver*, queue<std::string>*>::iterator it = threadMasseges.begin();
          it != threadMasseges.end(); ++it) {
         delete it->first;

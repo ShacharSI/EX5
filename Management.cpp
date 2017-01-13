@@ -78,12 +78,14 @@ void Management::manage() {
     //close the program and delete all memory
     string end = "EndCommunication";
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
+    Thread_Manage::threadMessagesLocker->lock();
     map<Driver *, queue<std::string>*> mymap = thread_manage->getThreadMasseges();
     for (std::map<Driver *, std::queue<string>*>::iterator it = mymap.begin();
          it != mymap.end(); ++it) {
         it->second->push(end);
     }
-    int size = thread_manage->getThreadList().size();
+    Thread_Manage::threadMessagesLocker->unlock();
+    long size = thread_manage->getThreadList().size();
     list <pthread_t> &l = thread_manage->getThreadList();
     for (int i = 0; i < size; i++) {
         pthread_t t = l.front();

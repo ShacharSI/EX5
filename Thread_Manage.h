@@ -29,11 +29,10 @@ private:
     list<pthread_t> threadList;
     static Mutex_Locker* threadInfoLocker;
     static Mutex_Locker* instanceLocker;
-    static Mutex_Locker* threadMessagesLocker;
     static Mutex_Locker* descriptorsMapLocker;
     static Mutex_Locker* threadListLocker;
 public:
-
+    static Mutex_Locker* threadMessagesLocker;
     ~Thread_Manage();
     list <pthread_t> &getThreadList() ;
     void addThread(pthread_t t);
