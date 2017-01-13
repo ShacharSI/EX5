@@ -20,7 +20,7 @@
 ***********************************************************************/
 Socket::Socket() {
     this->ip_address = IP;
-    this->backLog = NONE;
+    this->backLog = 1; //todo changed
     this->socketDescriptor = NONE;
     this->isServer = true;
     this->port_number = NONE;
