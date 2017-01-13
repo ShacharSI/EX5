@@ -52,7 +52,7 @@ Thread_Runner *Thread_Runner::getInstance(TaxiCenter *c,Tcp* t) {
 void *Thread_Runner::run(void) {
     Driver *d;
     std::list<Searchable *> list;
-    char *buffer = (char *) malloc(4906 * sizeof(char));
+    char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
     //get the driver from the client
     d = this->getDriver();
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
