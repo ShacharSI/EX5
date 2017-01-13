@@ -1,7 +1,3 @@
-//
-// Created by haim6678 on 09/01/17.
-//
-
 #ifndef EX3_TM_THREAD_RUNNER_H
 #define EX3_TM_THREAD_RUNNER_H
 
@@ -21,7 +17,7 @@ public:
     static void* tripHelper(void* v);
     void *run(void);
     Map *getMap() const;
-    std::list<Searchable*> *checkTrips(Driver* d);
+    std::list<Searchable*> checkTrips(Driver* d);
     void *getTrip(void);
     static Thread_Runner* getInstance(TaxiCenter* c,Tcp* t);
     bool Occupy();
@@ -48,4 +44,4 @@ private:
 };
 
 
-#endif //EX3_TM_THREAD_RUNNER_H
+#endif //EX3_TM_THREAD_RUNNER_

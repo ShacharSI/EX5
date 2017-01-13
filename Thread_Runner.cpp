@@ -1,3 +1,4 @@
+
 #include <boost/iostreams/device/array.hpp>
 #include <boost/iostreams/stream.hpp>
 #include "Thread_Runner.h"
@@ -50,7 +51,7 @@ Thread_Runner *Thread_Runner::getInstance(TaxiCenter *c,Tcp* t) {
 
 void *Thread_Runner::run(void) {
     Driver *d;
-    std::list<Searchable *>* list;
+    std::list<Searchable *> list;
     char *buffer = (char *) malloc(4906 * sizeof(char));
     //get the driver from the client
     d = this->getDriver(tcpSock);
@@ -71,15 +72,15 @@ void *Thread_Runner::run(void) {
         //get a trip
         list = this->checkTrips(d);
         //if we did got a valid trip
-        if (list->size() > 0) {
+        if (list.size() > 0) {
             //set the routh in our driver
-            d->setRouth(*list);
+            d->setRouth(list);
 
             //send the routh to the client
             boost::iostreams::back_insert_device<std::string> inserter(serial_str);
             boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> s(inserter);
             boost::archive::binary_oarchive oa(s);
-            oa << *list;
+            oa << list;
             s.flush();
             int n = tcpSock->sendDataTo(serial_str, serial_str.size(), connectionDescriptor);
             if (n < 0) {
@@ -173,21 +174,22 @@ void *Thread_Runner::getTrip(void) {
     this->tripsToCalculate.pop();
     Thread_Runner::tripsLocker->unlock();
     Bfs* bfs = new Bfs();
-    std::list<Searchable *> *list;
+    std::list<Searchable *>list;
 
     //get the point on the map
     Searchable *start = *this->m->getSearchableByCoordinate(trip.getStartP());
     Searchable *end = *this->m->getSearchableByCoordinate(trip.getEndP());
     //get the route between points
-    pthread_t t;
+    /*pthread_t t;
     bfsThreadStruct* threadStruct = new bfsThreadStruct;
     threadStruct->start = start;
     threadStruct->end = end;
     threadStruct->map =this->m;
     threadStruct->bfsPointer = bfs;
     threadStruct->list = list;
-    pthread_create(&t,NULL,Bfs::findRouthRunner,(void*)threadStruct);
+    pthread_create(&t,NULL,Bfs::findRouthRunner,(void*)threadStruct);*/
     //create a trip info class and save it
+    list = bfs->findRouth(start,end,this->m);
     Thread_Runner::tripsLocker->lock();
     unsigned int trip_Time = trip.getTime();
     Trip_Info *trip_info = new Trip_Info(trip_Time, list);
@@ -197,8 +199,8 @@ void *Thread_Runner::getTrip(void) {
 }
 
 
-std::list<Searchable *>* Thread_Runner::checkTrips(Driver *d) {
-    std::list<Searchable *>* list;
+std::list<Searchable *> Thread_Runner::checkTrips(Driver *d) {
+    std::list<Searchable *> list;
     long size = this->trips.size();
     int trip_Time;
     Trip_Info *trip_info;
@@ -209,7 +211,7 @@ std::list<Searchable *>* Thread_Runner::checkTrips(Driver *d) {
         trip_Time = trip_info->getTripTime();
         //checking if a trip's start location is equals to the taxi's location
         if (trip_Time == this->taxiCenter->getTime()) {
-            if (d->getLocation().equals(trip_info->getRouth()->front()->getPoint())) {
+            if (d->getLocation().equals(trip_info->getRouth().front()->getPoint())) {
                 list = trip_info->getRouth();
                 trip_info->setTripTime(-1); //todo need this? also.. pop here? also -1 and unsigned
                 this->trips.pop_front();
@@ -225,11 +227,11 @@ std::list<Searchable *>* Thread_Runner::checkTrips(Driver *d) {
 }
 
 void *Thread_Runner::runHelper(void *v) {
-    return ((Thread_Runner*)v)->getTrip();
+    return ((Thread_Runner*)v)->run();
 }
 
 void *Thread_Runner::tripHelper(void *v) {
-    return ((Thread_Runner*)v)->run();
+    return ((Thread_Runner*)v)->getTrip();
 }
 
 void Thread_Runner::addTripToCalculate(Trip t) {
@@ -249,3 +251,4 @@ Thread_Runner::~Thread_Runner() {
         delete temp;
     }
 }
+

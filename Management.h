@@ -21,7 +21,6 @@ private:
     void setLogicAndMap();
     vector<int> getSizes();
     Tcp* socket;
-    Thread_Runner* thread_runner;
     int serverPort;
 
 public:

@@ -6,18 +6,18 @@
  * function that receives a start and an and
  * and find the shortest route between them
  */
-list<Searchable *>* Bfs::findRouth(Searchable *start, Searchable *destiny, Map *m) {
+list<Searchable *> Bfs::findRouth(Searchable *start, Searchable *destiny, Map *m) {
     //find the point on map
     Point startPoint = start->getPoint();
     Point endPoint = destiny->getPoint();
     Point currPoint = startPoint;
-    std::list<Searchable *>* l = new list<Searchable *>;
+    std::list<Searchable *>l ;
     //create a pair map to store values on
-    BfsInfoMap bfsInfoMap(m->getSizeX(),m->getSizeY(),m->getMap());
+    BfsInfoMap* bfsInfoMap = new BfsInfoMap(m->getSizeX(),m->getSizeY(),m->getMap());
     queue<Searchable **> q;
     Searchable *s = NULL;
     s = *m->getSearchableByCoordinate(startPoint);
-    bfsInfoMap.setVisitedSearchable(s);
+    bfsInfoMap->setVisitedSearchable(s);
     //todo check if working with queue* without sending it is a lot more faster!?!
     //start the bfs process
     q = m->updateNeighbor(startPoint.getX(), startPoint.getY(), q, bfsInfoMap);
@@ -30,12 +30,12 @@ list<Searchable *>* Bfs::findRouth(Searchable *start, Searchable *destiny, Map *
 
     s = *m->getSearchableByCoordinate(endPoint);
     if (s) {
-        l->push_front(s);
+        l.push_front(s);
     }
     while (s != NULL) {
-        Searchable *father = bfsInfoMap.getFather(s);
+        Searchable *father = bfsInfoMap->getFather(s);
         if (father != NULL) {
-            l->push_front(father);
+            l.push_front(father);
         }
         s = father;
     }
@@ -44,6 +44,6 @@ list<Searchable *>* Bfs::findRouth(Searchable *start, Searchable *destiny, Map *
 
 void *Bfs::findRouthRunner(void * bfsStruct) {
     bfsThreadStruct* threadStruct = (bfsThreadStruct*)bfsStruct;
-    threadStruct->list= (threadStruct->bfsPointer->
-            findRouth(threadStruct->start,threadStruct->end,threadStruct->map));
+    //threadStruct->list= (threadStruct->bfsPointer->
+      //      findRouth(threadStruct->start,threadStruct->end,threadStruct->map));
 }

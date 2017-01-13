@@ -23,17 +23,16 @@ private:
     bool inUse;
     static Thread_Manage* instance;
     static bool created;
-    //map<pthread_t, queue<std::string>> threadMasseges;
     map<Driver*, queue<std::string>*> threadMasseges;
     std::map<pthread_t, Thread_Class*> threadInfo;
     map<Driver*, int> descriptorsMap;
     list<pthread_t> threadList;
-public:
     static Mutex_Locker* threadInfoLocker;
     static Mutex_Locker* instanceLocker;
     static Mutex_Locker* threadMessagesLocker;
     static Mutex_Locker* descriptorsMapLocker;
     static Mutex_Locker* threadListLocker;
+public:
 
     ~Thread_Manage();
     list <pthread_t> &getThreadList() ;

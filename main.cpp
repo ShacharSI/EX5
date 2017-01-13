@@ -27,9 +27,9 @@ int main(int argc, char *argv[]) {
 
     LINFO << "This is my first log " << "in main func ";
     int portNum = atoi(argv[1]);
-    Tcp*sock = new Tcp(true, portNum);
-    int i = pthread_create(&t1, NULL, checkFunc, (void *) sock);
-    //sock->initialize();
+    Tcp* sock = new Tcp(true, portNum);
+    //int i = pthread_create(&t1, NULL, checkFunc, (void *) sock);
+    sock->initialize();
     //run the program
     Management management(sock);
     management.getMap();

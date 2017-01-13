@@ -78,11 +78,11 @@ void TaxiCenter::addTaxi(Taxi *t) {
 void TaxiCenter::moveAll() {
     this->time += 1;
     Thread_Manage *thraed_mannage = Thread_Manage::getInstance();
-    std::map<Driver *, std::queue<string>> &mymap = thraed_mannage->getThreadMasseges();
+    std::map<Driver *, std::queue<string>*> mymap = thraed_mannage->getThreadMasseges();
     //iterate over the drivers
-    for (std::map<Driver *, std::queue<string>>::iterator it = mymap.begin();
+    for (std::map<Driver *, std::queue<string>*>::iterator it = mymap.begin();
          it != mymap.end(); ++it) {
-        it->second.push("GO");
+        it->second->push("GO");
 
     }
 }
