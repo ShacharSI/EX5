@@ -117,7 +117,7 @@ void *Thread_Runner::run(void) {
                 Point p = d->getLocation();
                 cout << p;
             }
-            thread_manage->popMessage(pthread_self());
+            thread_manage->popMessage(pthread_self());//
             //hold the thread till accepting new message
             while (messageQueue->empty());
         }

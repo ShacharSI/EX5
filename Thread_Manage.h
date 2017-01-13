@@ -45,7 +45,7 @@ public:
     void addQueueMessage(pthread_t t, std::queue<std::string>* q);
     void addDriverAndPthread(pthread_t t, Driver* d);
     void addMessage(pthread_t ,string s);
-    void addThread(pthread_t t,Thread_Class* c);
+    void addThread(pthread_t t,Thread_Class* c);//
     static Thread_Manage* getInstance();
     bool Occupy();
     void popMessage(pthread_t d);

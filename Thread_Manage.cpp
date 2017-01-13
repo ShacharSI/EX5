@@ -102,7 +102,7 @@ void Thread_Manage::popMessage(pthread_t d) {
 
 map<pthread_t, queue<string>*> &Thread_Manage::getThreadMasseges(){
     return threadMasseges;
-}
+}//
 
 map<pthread_t, Driver *> &Thread_Manage::getThreadDrivers()  {
     return threadDrivers;

@@ -93,7 +93,7 @@ void Management::manage() {
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
     map<pthread_t, queue<string>*> &mymap = thread_manage->getThreadMasseges();
     for (std::map<pthread_t, queue<string>*>::iterator it = mymap.begin();
-         it != mymap.end(); ++it) {
+         it != mymap.end(); ++it) { //
         it->second->push(end);
     }
     int size = thread_manage->getThreadList().size();
