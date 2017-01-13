@@ -1,16 +1,17 @@
 
 #include "Bfs.h"
 
+
 /**
  * function that receives a start and an and
  * and find the shortest route between them
  */
-list<Searchable *> Bfs::findRouth(Searchable *start, Searchable *destiny, Map *m) {
+list<Searchable *>* Bfs::findRouth(Searchable *start, Searchable *destiny, Map *m) {
     //find the point on map
     Point startPoint = start->getPoint();
     Point endPoint = destiny->getPoint();
     Point currPoint = startPoint;
-    std::list<Searchable *> l;
+    std::list<Searchable *>* l = new list<Searchable *>;
     //create a pair map to store values on
     BfsInfoMap bfsInfoMap(m->getSizeX(),m->getSizeY(),m->getMap());
     queue<Searchable **> q;
@@ -29,14 +30,20 @@ list<Searchable *> Bfs::findRouth(Searchable *start, Searchable *destiny, Map *m
 
     s = *m->getSearchableByCoordinate(endPoint);
     if (s) {
-        l.push_front(s);
+        l->push_front(s);
     }
     while (s != NULL) {
         Searchable *father = bfsInfoMap.getFather(s);
         if (father != NULL) {
-            l.push_front(father);
+            l->push_front(father);
         }
         s = father;
     }
     return l;
+}
+
+void *Bfs::findRouthRunner(void * bfsStruct) {
+    bfsThreadStruct* threadStruct = (bfsThreadStruct*)bfsStruct;
+    threadStruct->list= (threadStruct->bfsPointer->
+            findRouth(threadStruct->start,threadStruct->end,threadStruct->map));
 }

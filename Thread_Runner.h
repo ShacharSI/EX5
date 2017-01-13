@@ -16,18 +16,19 @@
 class Thread_Runner {
 
 public:
-
+    ~Thread_Runner();
     static void* runHelper(void* v);
     static void* tripHelper(void* v);
     void *run(void);
     Map *getMap() const;
-    std::list<Searchable*> checkTrips(Driver* d);
+    std::list<Searchable*> *checkTrips(Driver* d);
     void *getTrip(void);
     static Thread_Runner* getInstance(TaxiCenter* c,Tcp* t);
     bool Occupy();
     void addTripToCalculate(Trip t);
+
 private:
-    std::queue<Trip> tripsToCalcullate;
+    std::queue<Trip> tripsToCalculate;
     Tcp *tcpSock;
     bool inUse;
     static bool created;
@@ -43,6 +44,7 @@ private:
     TaxiCenter *taxiCenter;
     static Mutex_Locker* instanceLocker;
     static Mutex_Locker* tripsLocker;
+    static Mutex_Locker* driverLocker;
 };
 
 

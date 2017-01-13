@@ -16,11 +16,12 @@ public:
     void setTripTime(unsigned int tripTime);
 
 private:
-    list<Searchable*> routh;
+    list<Searchable*>* routh;
 public:
     unsigned int getTripTime() ;
-    list<Searchable *> getRouth() ;
-    Trip_Info(unsigned int time,list<Searchable*>);
+    ~Trip_Info();
+    list<Searchable *>* getRouth() ;
+    Trip_Info(unsigned int time,list<Searchable*>*);
 };
 
 

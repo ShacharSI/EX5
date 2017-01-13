@@ -14,8 +14,16 @@ private:
     //BfsInfoMap* infoMap;
 
 public:
-    list<Searchable*> findRouth(Searchable* start,Searchable* destiny,Map* m);
+    list<Searchable*> *findRouth(Searchable* start,Searchable* destiny,Map* m);
+    static void* findRouthRunner(void*);
 };
 
+typedef struct{
+    Searchable * start;
+    Searchable * end;
+    Map* map;
+    Bfs*  bfsPointer;
+    std::list<Searchable *>* list;
+}bfsThreadStruct;
 
 #endif //EX1TM_BFS_H

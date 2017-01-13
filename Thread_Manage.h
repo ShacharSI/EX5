@@ -24,27 +24,29 @@ private:
     static Thread_Manage* instance;
     static bool created;
     //map<pthread_t, queue<std::string>> threadMasseges;
-    map<Driver*, queue<std::string>> threadMasseges;
+    map<Driver*, queue<std::string>*> threadMasseges;
     std::map<pthread_t, Thread_Class*> threadInfo;
     map<Driver*, int> descriptorsMap;
     list<pthread_t> threadList;
 public:
     static Mutex_Locker* threadInfoLocker;
     static Mutex_Locker* instanceLocker;
-    static Mutex_Locker* threadMassegesLocker;
+    static Mutex_Locker* threadMessagesLocker;
     static Mutex_Locker* descriptorsMapLocker;
     static Mutex_Locker* threadListLocker;
+
     ~Thread_Manage();
     list <pthread_t> &getThreadList() ;
     void addThread(pthread_t t);
     void addDriver(Driver* d,int sockDes);
-    map<Driver*, queue<string>> &getThreadMasseges() ;
-    void addQueueMessage(Driver* t, std::queue<std::string> q);
+    map<Driver*, queue<string>*> getThreadMasseges() ;
+    void addQueueMessage(Driver* t, std::queue<std::string>* q);
     void addMessage(Driver* d,string s);
     void addThread(pthread_t t,Thread_Class* c);
     static Thread_Manage* getInstance();
     bool Occupy();
-    Thread_Class *getThreadClass(pthread_t pt);
+    void popMessage(Driver* d);
+    int getThreadsSocketDescriptor(pthread_t pt);
 };
 
 
