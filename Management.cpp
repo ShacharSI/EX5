@@ -252,7 +252,7 @@ void Management::setLogicAndMap() {
 
     }
     this->getObstacles();
-    LINFO << "creating map in size " << lg.getSizeX() << " on "<<lg.getSizeY();
+    LINFO << "creating map in size " << lg.getSizeX() << " on "<<lg.getSizeY();//
     this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"));
 }
 
