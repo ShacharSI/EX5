@@ -35,7 +35,7 @@ private:
         this->tcpSock = t;
     };
     list<Trip_Info *> trips;
-    Driver *getDriver(Tcp *socket);
+    Driver *getDriver();
     Map *m;
     TaxiCenter *taxiCenter;
     static Mutex_Locker* instanceLocker;

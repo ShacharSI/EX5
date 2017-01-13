@@ -54,7 +54,7 @@ void *Thread_Runner::run(void) {
     std::list<Searchable *> list;
     char *buffer = (char *) malloc(4906 * sizeof(char));
     //get the driver from the client
-    d = this->getDriver(tcpSock);
+    d = this->getDriver();
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
     //create the thread handler
     std::queue<string>* messageQueue = new std::queue<string>;
@@ -125,16 +125,16 @@ void *Thread_Runner::run(void) {
     free(buffer);
 }
 
-Driver *Thread_Runner::getDriver(Tcp *socket) {
+Driver *Thread_Runner::getDriver() {
     Taxi *t = NULL;
     Driver *d = NULL;
     string serial_str;
     char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
-    int connectionDescriptor = socket->acceptClient();
+    int connectionDescriptor = this->tcpSock->acceptClient();
     Thread_Class *threadClass = new Thread_Class(connectionDescriptor);
     thread_manage->addThread(pthread_self(), threadClass);
-    ssize_t n = socket->rcvDataFrom(buffer, 4096, connectionDescriptor);
+    ssize_t n = this->tcpSock->rcvDataFrom(buffer, 4096, connectionDescriptor);
     if (n < 0) {
         perror("Error in receive");
     }
@@ -157,7 +157,7 @@ Driver *Thread_Runner::getDriver(Tcp *socket) {
     boost::archive::binary_oarchive oa(s);
     oa << t;
     s.flush();
-    n = socket->sendDataTo(serial_str, serial_str.size(), connectionDescriptor);
+    n = this->tcpSock->sendDataTo(serial_str, serial_str.size(), connectionDescriptor);
     if (n < 0) {
         perror("Error in Sendto");
     }
