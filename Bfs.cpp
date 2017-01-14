@@ -13,17 +13,17 @@ list<Searchable *>* Bfs::findRouth(Searchable *start, Searchable *destiny, Map *
     Point currPoint = startPoint;
     std::list<Searchable *>* l = new list<Searchable*>;
     //create a pair map to store values on
-    BfsInfoMap* bfsInfoMap = new BfsInfoMap(m->getSizeX(),m->getSizeY(),m->getMap());
-    queue<Searchable **> q;
+    BfsInfoMap* bfsInfoMap = new BfsInfoMap(m->getSizeX(),m->getSizeY());
+    queue<Searchable **>* q = new queue<Searchable**>;
     Searchable *s = NULL;
     s = *m->getSearchableByCoordinate(startPoint);
     bfsInfoMap->setVisitedSearchable(s);
     //todo check if working with queue* without sending it is a lot more faster!?!
     //start the bfs process
     q = m->updateNeighbor(startPoint.getX(), startPoint.getY(), q, bfsInfoMap);
-    while ((!q.empty()) && (!currPoint.equals(endPoint))) {
-        s = *(q.front());
-        q.pop();
+    while ((!q->empty()) && (!currPoint.equals(endPoint))) {
+        s = *(q->front());
+        q->pop();
         currPoint = s->getPoint();
         q = m->updateNeighbor(currPoint.getX(), currPoint.getY(), q, bfsInfoMap);
     }
@@ -40,10 +40,4 @@ list<Searchable *>* Bfs::findRouth(Searchable *start, Searchable *destiny, Map *
         s = father;
     }
     return l;
-}
-
-void *Bfs::findRouthRunner(void * bfsStruct) {
-    bfsThreadStruct* threadStruct = (bfsThreadStruct*)bfsStruct;
-    //threadStruct->list= (threadStruct->bfsPointer->
-      //      findRouth(threadStruct->start,threadStruct->end,threadStruct->map));
 }

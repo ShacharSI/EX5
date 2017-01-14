@@ -36,10 +36,7 @@ bool MapFactory::checkObstacle(int currentX, int currentY, list <Point> obatacle
  */
 Searchable ***MapFactory::createMapSquare(int sizeX, int sizeY, list <Point> obatacle) {
 
-
     Searchable ***map = (Searchable***)new Square **[sizeX];
-    //Searchable*** map = new Searchable** [sizeY];
-
     //create the map
     for (int i = 0; i < sizeX; i++) {
         //create a row
