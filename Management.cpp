@@ -91,7 +91,7 @@ void Management::manage() {
     //iterate over the driver*
     for (std::map<pthread_t , std::queue<string>*>::iterator it = mymap.begin();
          it != mymap.end(); ++it) {
-        LINFO << " sending thread no: " << it->first <<" go";
+        LINFO << " sending thread no:    " << it->first <<" End_Communication";
         it->second->push("End_Communication");
     }
     int size = thraed_mannage->getThreadList().size();
@@ -278,6 +278,8 @@ void Management::setLogicAndMap() {
     LINFO << " this is main thread: " << " creating map in size "
           << lg.getSizeX() << " on " << lg.getSizeY();
     this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"));
+    LINFO << " this is main thread: " << " finish creating";
+
 }
 
 /**

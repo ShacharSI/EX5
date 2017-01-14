@@ -83,7 +83,7 @@ void TaxiCenter::moveAll() {
     //iterate over the driver*
     for (std::map<pthread_t , std::queue<string>*>::iterator it = mymap.begin();
          it != mymap.end(); ++it) {
-         LINFO << " sending thread no: " << it->first <<" go";
+         LINFO << " sending thread no:    " << it->first <<" go";
          it->second->push("Go");
 
     }

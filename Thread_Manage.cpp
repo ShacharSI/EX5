@@ -75,13 +75,13 @@ void Thread_Manage::addThread(pthread_t t) {
 }
 
 Thread_Manage::~Thread_Manage() {
-    delete this->instanceLocker;
-    delete this->threadMessagesLocker;
-    delete this->threadInfoLocker;
-    delete this->threadListLocker;
-    delete this->descriptorsMapLocker;
+    //delete this->instanceLocker;
+    //delete this->threadMessagesLocker;
+    //delete this->threadInfoLocker;
+    //delete this->threadListLocker;
+    //delete this->descriptorsMapLocker;
 
-    delete instance;
+   /* delete instance;
 
     for (std::map<pthread_t , queue<std::string>*>::iterator it = threadMasseges.begin();
          it != threadMasseges.end(); ++it) {
@@ -91,7 +91,7 @@ Thread_Manage::~Thread_Manage() {
     for (std::map<pthread_t , Thread_Class*>::iterator it = threadInfo.begin();
          it != threadInfo.end(); ++it) {
         delete it->second;
-    }
+    }*/
 }
 
 void Thread_Manage::popMessage(pthread_t d) {
