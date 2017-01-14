@@ -3,6 +3,7 @@
 #include <boost/iostreams/stream.hpp>
 #include "Thread_Runner.h"
 #include "Thread_Manage.h"
+#include "Searchable.h"
 #include "Bfs.h"
 #include "StandardTaxi.h"
 #include "LuxuryTaxi.h"
@@ -51,101 +52,138 @@ Thread_Runner *Thread_Runner::getInstance(TaxiCenter *c, Tcp *t) {
 }
 
 void *Thread_Runner::run(void) {
+
     LINFO << " this is thread no: " << pthread_self() << " this is the start of the thread";
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
     //create the thread handler
-    std::queue<string>* messageQueue = new queue<string>;
+    std::queue<string> *messageQueue = new queue<string>;
     //set driver's thread's queueMessage
     thread_manage->addQueueMessage(pthread_self(), messageQueue);
     //add the thread to threadList
     thread_manage->addThread(pthread_self());
     Driver *d;
-    std::list<Searchable *>* list;
-    char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
+    std::list<Searchable *> *list;
     //get the driver from the client
     d = this->getDriver();
-    LINFO << " this is thread no: " << pthread_self() << " finish the first connection " ;
-    //queue<string>* messageQueue = thread_manage->getThreadsQueue(pthread_self());
+    char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
+    LINFO << " this is thread no: " << pthread_self() << " finish the first connection ";
+
     //get client's connectionDescriptor
     int connectionDescriptor = thread_manage->getThreadsSocketDescriptor(pthread_self());
-    LINFO << " this is thread no: " << pthread_self() << " got sock descriptor " << connectionDescriptor;
-    //run the thread
+    LINFO << " this thread no: " << pthread_self() << " got sock descriptor " << connectionDescriptor;
     string serial_str;
+
     //hold the thread till accepting new message
-
-
-    while (messageQueue->empty()){};
+    LINFO << " this is thread no: " << pthread_self() << " wait for massage";
+    while (messageQueue->empty()) {};
+    LINFO << " this is thread no: " << pthread_self() << " getting rout";
     list = this->checkTrips(d);
 
-
+    //running the driver until we got 7 from server
     while (strcmp(messageQueue->front().c_str(), "End_Communication") != 0) {
-        //get a trip
-
+        // if we got go and there is no rout yet
+        if (((!messageQueue->empty())
+             && (strcmp(messageQueue->front().c_str(), "Go") == 0)
+             && (list == NULL))) {
+            thread_manage->popMessage(pthread_self());
+        }
+        //if we got give location
+        if (((!messageQueue->empty())
+             && strcmp(messageQueue->front().c_str(), "GiveLocation") == 0)) {
+            LINFO << " this is thread no: " << pthread_self() << " print drivers location";
+            Point p = d->getLocation();
+            cout << p;
+            thread_manage->popMessage(pthread_self());
+        }
         //if we did got a valid trip
-        if (list!= NULL) {
-            LINFO << "this is thread no: " << pthread_self() << " got routh in size " << list->size();
-            //set the routh in our driver
+        if (list != NULL) {
+            LINFO << " this is thread no: " << pthread_self() << " got routh in size " << list->size();
+            //set the rout in our driver
             d->setRouth(list);
-            ssize_t size = this->tcpSock->rcvDataFrom(buffer, 4096, connectionDescriptor);
+            //get request to trip from client
+            ssize_t size = this->tcpSock->rcvDataFrom(buffer, BUFFERSIZE, connectionDescriptor);
+            if ((size == 8) || (size == 6)) {
+                perror("Error in receive");
+            }
             if (strcmp(buffer, "sendMeTrip") == 0) {
-                //send the routh to the client
+                //send the rout also to the client
                 boost::iostreams::back_insert_device<std::string> inserter(serial_str);
                 boost::iostreams::stream<boost::iostreams::back_insert_device<std::string>> s(inserter);
                 boost::archive::binary_oarchive oa(s);
-                oa << list;
+                oa << *list;
                 s.flush();
+                LINFO << " this is thread no: " << pthread_self() << " sending rout to driver ";
                 int n = tcpSock->sendDataTo(serial_str, serial_str.size(), connectionDescriptor);
-                if (n < 0) {
+                if (n == 5) {
                     perror("Error in Sendto");
                 }
             }
-        }else{
-            LINFO << "this is thread no: " << pthread_self() << " there is no rout yet";
+        } else {
+            LINFO << " this is thread no: " << pthread_self() << " there is no rout yet";
         }
         //if we are still running the program, and we still have a routh to go
-        while ((d->getTaxi()->getRouth()!=NULL)&&(d->getTaxi()->getRouth()->size() > 0)
+        while ((!messageQueue->empty())
+               && (d->getTaxi()->getRouth() != NULL)
+               && (d->getTaxi()->getRouth()->size() > 0)
                && (strcmp(messageQueue->front().c_str(), "End_Communication")) != 0) {
-            if (strcmp(messageQueue->front().c_str(), "GO") == 0) {
+            //if we got go
+            if (((!messageQueue->empty())
+                 && (strcmp(messageQueue->front().c_str(), "Go") == 0))) {
+
+                LINFO << " this is thread no: " << pthread_self() << " sending driver go";
+                //move our driver
                 d->move();
-                int n = tcpSock->sendDataTo(messageQueue->front().c_str(), messageQueue->front().size(),
-                                            connectionDescriptor);
-                if (n < 0) {
-                    perror("Error in Send_to");
+                //get request to go
+                ssize_t size = this->tcpSock->rcvDataFrom(buffer, 4096, connectionDescriptor);
+                if ((size == 8) || (size == 6)) {
+                    perror("Error in receive");
+                }
+                //verify the request
+                if (strcmp(buffer, "sendMeGo") == 0) {
+                    //send go
+                    int n = tcpSock->sendDataTo(messageQueue->front().c_str(), messageQueue->front().size(),
+                                                connectionDescriptor);
+                    if (n == 5) {
+                        perror("Error in Send_to");
+                    }
                 }
             }
-            if (strcmp(messageQueue->front().c_str(), "GiveLocation") == 0) {
+            //if we got give location
+            if (((!messageQueue->empty())
+                 && (strcmp(messageQueue->front().c_str(), "GiveLocation") == 0))) {
+
+                LINFO << " this is thread no: " << pthread_self() << " print drivers location";
                 Point p = d->getLocation();
                 cout << p;
             }
-            thread_manage->popMessage(pthread_self());//
+            thread_manage->popMessage(pthread_self());
+            LINFO << " this is thread no: " << pthread_self() << " wait for massage";
             //hold the thread till accepting new message
             while (messageQueue->empty());
         }
 
-        if (strcmp(messageQueue->front().c_str(), "End_Communication") == 0) {
+        if (((!messageQueue->empty())
+             && (strcmp(messageQueue->front().c_str(), "End_Communication") == 0))) {
             break;
         }
 
-        if((strcmp(messageQueue->front().c_str(), "GO") == 0)&&(list == NULL)){
-            thread_manage->popMessage(pthread_self());
-        }
-        if(strcmp(messageQueue->front().c_str(), "GiveLocation") == 0){
-            Point p = d->getLocation();
-            cout<<p;
-            thread_manage->popMessage(pthread_self());
-        }
         //hold the thread till accepting new message
+        LINFO << " this is thread no: " << pthread_self() << " wait for next massage";
         while (messageQueue->empty());
+        LINFO << " this is thread no: " << pthread_self() << " getting rout";
         list = this->checkTrips(d); //todo it's ok here?
     }
+
+    //todo the client need to send something first?
     int n = tcpSock->sendDataTo(messageQueue->front().c_str(), messageQueue->front().size(),
                                 connectionDescriptor);
-    if (n < 0) {
+    if (n ==5 ) {
         perror("Error in Send_to");
     }
     thread_manage->popMessage(pthread_self());
     //todo send end communication to client and close the socket
     free(buffer);
+    //todo crashing when finishing - in deletes
 }
 
 Driver *Thread_Runner::getDriver() {
@@ -161,7 +199,7 @@ Driver *Thread_Runner::getDriver() {
     Thread_Class *threadClass = new Thread_Class(connectionDescriptor);
     thread_manage->addThread(pthread_self(), threadClass);
     ssize_t n = this->tcpSock->rcvDataFrom(buffer, 4096, connectionDescriptor);
-    if (n < 0) {
+    if ((n == 8) || (n == 6)) {
         perror("Error in receive");
     }
     //getting the driver
@@ -169,11 +207,11 @@ Driver *Thread_Runner::getDriver() {
     boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
     boost::archive::binary_iarchive ia(s2);
     ia >> d;
-    LINFO << " this is thread no: " << pthread_self() << " got driver with id " << d->getId();
+    LINFO << " this is thread no: " << pthread_self() << " got a driver with id " << d->getId();
     Thread_Runner::driverLocker->lock();
     //saving the client's socket descriptor for later communication with him
     thread_manage->addDriver(d, connectionDescriptor);
-    thread_manage->addDriverAndPthread(pthread_self(),d);
+    thread_manage->addDriverAndPthread(pthread_self(), d);
     //attach a taxi to the driver here and send to client
     t = this->taxiCenter->attachTaxiToDriver(d->getVehicle_id());
     //set the driver's taxi
@@ -187,7 +225,7 @@ Driver *Thread_Runner::getDriver() {
     LINFO << " this is thread no: " << pthread_self() << " sending back taxi with id " << t->getCarId();
     s.flush();
     n = this->tcpSock->sendDataTo(serial_str, serial_str.size(), connectionDescriptor);
-    if (n < 0) {
+    if (n == 5) {
         perror("Error in Sendto");
     }
     free(buffer);
@@ -206,7 +244,7 @@ void *Thread_Runner::getTrip(void) {
     this->tripsToCalculate.pop();
     Thread_Runner::tripsLocker->unlock();
     Bfs *bfs = new Bfs();
-    std::list<Searchable *>* list;
+    std::list<Searchable *> *list;
 
     //get the point on the map
     Searchable *start = *this->m->getSearchableByCoordinate(trip.getStartP());
@@ -232,8 +270,8 @@ void *Thread_Runner::getTrip(void) {
 }
 
 
-std::list<Searchable *>* Thread_Runner::checkTrips(Driver *d) {
-    std::list<Searchable *>* list = NULL;
+std::list<Searchable *> *Thread_Runner::checkTrips(Driver *d) {
+    std::list<Searchable *> *list = NULL;
     long size = this->trips.size();
     int trip_Time;
     Trip_Info *trip_info;
@@ -246,8 +284,9 @@ std::list<Searchable *>* Thread_Runner::checkTrips(Driver *d) {
         if (trip_Time == this->taxiCenter->getTime()) {
             if (d->getLocation().equals(trip_info->getRouth()->front()->getPoint())) {
                 list = trip_info->getRouth();
-                trip_info->setTripTime(-1); //todo need this? also.. pop here? also -1 and unsigned
                 this->trips.pop_front();
+                //todo delete trip and late delete list
+                Thread_Runner::tripsLocker->unlock();
                 return list;
             }
         }

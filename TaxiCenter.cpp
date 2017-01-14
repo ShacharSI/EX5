@@ -5,6 +5,7 @@
 #include "Driver.h"
 #include "Udp.h"
 #include "Thread_Manage.h"
+#include "easyloggingpp-8.91/easylogging++.h"
 #include <stdexcept>
 #include <iostream>
 #include <fstream>
@@ -82,7 +83,8 @@ void TaxiCenter::moveAll() {
     //iterate over the driver*
     for (std::map<pthread_t , std::queue<string>*>::iterator it = mymap.begin();
          it != mymap.end(); ++it) {
-        it->second->push("GO");
+         LINFO << " sending thread no: " << it->first <<" go";
+         it->second->push("Go");
 
     }
 }
