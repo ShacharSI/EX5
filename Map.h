@@ -36,7 +36,7 @@ public:
 
     Searchable ***getMap();
 
-    queue<Searchable **> updateNeighbor(int x, int y, std::queue<Searchable **> q,
+    queue<Searchable **>* updateNeighbor(int x, int y, std::queue<Searchable **>* q,
                                          BfsInfoMap* visitMap);
 
     bool checkVal(int x, int y);

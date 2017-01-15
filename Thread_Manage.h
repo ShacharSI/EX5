@@ -23,7 +23,7 @@ private:
     bool inUse;
     static Thread_Manage* instance;
     static bool created;
-    map<pthread_t ,std::queue<std::string>*> threadMasseges;
+    map<int ,std::queue<std::string>*> threadMasseges;
     map<pthread_t ,Driver*> threadDrivers;
     map<pthread_t, Thread_Class*> threadInfo;
     map<Driver*, int> descriptorsMap;
@@ -38,19 +38,19 @@ public:
     ~Thread_Manage();
     static Thread_Manage* getInstance();
     map<pthread_t, Driver *> &getThreadDrivers() ;
-    map<pthread_t, queue<string>*> &getThreadMasseges();
+    map<int, queue<string>*> &getThreadMasseges();
     list <pthread_t> &getThreadList() ;
-    queue<string>* getThreadsQueue(pthread_t t);
+    void setInitialMessagesQueues(int numOfDrivers);
+    queue<string>* getThreadsQueue(int t);
     void addThread(pthread_t t);
     void addDriver(Driver* d,int sockDes);
-    void addQueueMessage(pthread_t t, std::queue<std::string>* q);
+    void addQueueMessage(int t, std::queue<std::string>* q);
     void addDriverAndPthread(pthread_t t, Driver* d);
-    void addMessage(pthread_t ,string s);
-    void addThread(pthread_t t,Thread_Class* c);//
-    void popMessage(pthread_t d);
+    void addMessage(int ,string s);
+    void addThread(pthread_t t,Thread_Class* c);
+    void popMessage(int d);
     int getThreadsSocketDescriptor(pthread_t pt);
     bool Occupy();
-    //map<pthread_t,queue<string>> getThreadMasseges() ;
 };
 
 

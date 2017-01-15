@@ -13,11 +13,11 @@ using namespace std;
 
 class BfsInfoMap {
 private:
-    map<Searchable*,bool > visitMap;
-    map<Searchable*,Searchable*> fathersMap;
+    bool** visitMap;
+    Searchable*** fathersMap;
 
 public:
-    BfsInfoMap(int sizeX, int sizeY, Searchable *** map);
+    BfsInfoMap(int sizeX, int sizeY);
     BfsInfoMap();
     bool isVisitedSearchable(Searchable* searchable);
     Searchable* getFather(Searchable *current);

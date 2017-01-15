@@ -15,7 +15,6 @@ private:
 
 public:
     list<Searchable*>* findRouth(Searchable* start,Searchable* destiny,Map* m);
-    static void* findRouthRunner(void*);
 };
 
 typedef struct{

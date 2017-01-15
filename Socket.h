@@ -25,7 +25,7 @@ using namespace std;
 #define ERROR_CONNECT 4
 #define ERROR_SEND 5
 #define ERROR_RECIVE 6
-#define ERROR_ACCEPT 7
+#define ERROR_ACCEPT -7
 #define CONNECTION_CLOSED 8
 
 #define IP "127.0.0.1"
