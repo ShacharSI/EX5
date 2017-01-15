@@ -20,6 +20,7 @@ using namespace std;
 class Thread_Manage {
 
 private:
+    //
     bool inUse;
     static Thread_Manage* instance;
     static bool created;

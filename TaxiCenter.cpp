@@ -85,7 +85,7 @@ void TaxiCenter::moveAll() {
          it != mymap.end(); ++it) {
          LINFO << " sending thread no:    " << it->first <<" go";
          it->second->push("Go");
-
+        //
     }
 }
 

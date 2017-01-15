@@ -24,6 +24,7 @@ public:
     void addTripToCalculate(Trip t);
 
 private:
+    //
     unsigned int time;
     std::queue<Trip> tripsToCalculate;
     Tcp *tcpSock;

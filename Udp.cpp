@@ -96,6 +96,7 @@ int Udp::sendData(string data, int length) {
 ***********************************************************************/
 int Udp::reciveData(char *buffer, int size) {
     memset(buffer,0,sizeof(buffer));
+    //
     struct sockaddr_in to;
     unsigned int to_len = sizeof(struct sockaddr_in);
     memset(buffer,0,sizeof(buffer));

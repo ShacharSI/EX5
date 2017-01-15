@@ -73,6 +73,7 @@ void Thread_Manage::addThread(pthread_t t) {
     this->threadList.push_back(t);
     Thread_Manage::threadInfoLocker->unlock();
 }
+//
 
 Thread_Manage::~Thread_Manage() {
     //delete this->instanceLocker;
