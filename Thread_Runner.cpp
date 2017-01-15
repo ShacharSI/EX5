@@ -83,18 +83,20 @@ void *Thread_Runner::run(void) {
     LINFO << " this is thread no:    " << pthread_self() << " getting in the main loop that manage the driver";
     //running the driver until we got 7 from server
     while (strcmp(messageQueue->front().c_str(), "End_Communication") != 0) {
-        // if we got go and there is no rout yet
-        if (((!messageQueue->empty())
-             && (strcmp(messageQueue->front().c_str(), "Go") == 0)
-             && (list == NULL))) {
-            thread_manage->popMessage(pthread_self());
-        }
         //if we got give location
         if (((!messageQueue->empty())
              && strcmp(messageQueue->front().c_str(), "GiveLocation") == 0)) {
             LINFO << " this is thread no:    " << pthread_self() << " print drivers location";
             Point p = d->getLocation();
             cout << p;
+            thread_manage->popMessage(pthread_self());
+        }
+        // if we got go and there is no rout yet
+        if (((!messageQueue->empty())
+             && (strcmp(messageQueue->front().c_str(), "Go") == 0)
+             && (list == NULL))) {
+            //todo add lock
+            this->time+=1;
             thread_manage->popMessage(pthread_self());
         }
         //if we did got a valid trip
@@ -110,6 +112,7 @@ void *Thread_Runner::run(void) {
             }
 
             if (strcmp(buffer, "sendMeTrip") == 0) {
+                serial_str = "\0"; //todo will help?
                 //send the rout also to the client
                 LINFO << " this is thread no:    " << pthread_self() << " sereialize rout";
                 boost::iostreams::back_insert_device<std::string> inserter(serial_str);
@@ -136,6 +139,8 @@ void *Thread_Runner::run(void) {
             if (((!messageQueue->empty())
                  && (strcmp(messageQueue->front().c_str(), "Go") == 0))) {
 
+                //todo add lock
+                this->time+=1;
                 LINFO << " this is thread no:    " << pthread_self() << " move the driver here";
                 //move our driver
                 d->move();
@@ -170,9 +175,10 @@ void *Thread_Runner::run(void) {
             while (messageQueue->empty());
         }
 
-        if (((!messageQueue->empty())
-             && (strcmp(messageQueue->front().c_str(), "End_Communication") == 0))) {
-            break;
+        if ((!messageQueue->empty())){
+            if((strcmp(messageQueue->front().c_str(), "End_Communication") == 0)){
+                break;
+            }
         }
 
         //hold the thread till accepting new message
@@ -184,6 +190,10 @@ void *Thread_Runner::run(void) {
 
     LINFO << " this is thread no:    " << pthread_self() << " sending the client end communication";
           //todo the client need to send something first?
+    ssize_t size = this->tcpSock->rcvDataFrom(buffer, 4096, connectionDescriptor);
+    if ((size == 8) || (size == 6)) {
+        perror("Error in receive");
+    }
     int n = tcpSock->sendDataTo(messageQueue->front().c_str(), messageQueue->front().size(),
                                 connectionDescriptor);
     if (n == 5) {
@@ -271,6 +281,7 @@ void *Thread_Runner::getTrip(void) {
     LINFO << " this is thread no:    " << pthread_self() << " got a rout in length " << list->size();
     Thread_Runner::tripsLocker->lock();
     unsigned int trip_Time = trip.getTime();
+    LINFO << " this is thread no:    " << pthread_self() << " got a trip for time "<< trip_Time;
     Trip_Info *trip_info = new Trip_Info(trip_Time, list);
     this->trips.push_front(trip_info);
     Thread_Runner::tripsLocker->unlock();
@@ -290,7 +301,7 @@ std::list<Searchable *> *Thread_Runner::checkTrips(Driver *d) {
         trip_info = this->trips.front();
         trip_Time = trip_info->getTripTime();
         //checking if a trip's start location is equals to the taxi's location
-        if (trip_Time == this->taxiCenter->getTime()) {
+        if (trip_Time == this->time) {
             if (d->getLocation().equals(trip_info->getRouth()->front()->getPoint())) {
                 list = trip_info->getRouth();
                 this->trips.pop_front();

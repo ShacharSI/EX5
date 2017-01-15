@@ -71,7 +71,7 @@ queue<Searchable **> Map::updateNeighbor(int x, int y,
     Searchable *curr = this->map[x][y];
     //curr->setBfsVisited(true);
     //curr->setBfsFather(NULL);
-
+    //TODO add obstacle chaeck!!
     if ((((x - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x - 1][y]))) {
         Searchable **temp = &this->map[x - 1][y];
         infoMap->setVisitedSearchable(*temp);
