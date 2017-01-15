@@ -79,9 +79,9 @@ void TaxiCenter::addTaxi(Taxi *t) {
 void TaxiCenter::moveAll() {
     this->time += 1;
     Thread_Manage *thraed_mannage = Thread_Manage::getInstance();
-    std::map<pthread_t , std::queue<string>*>& mymap = thraed_mannage->getThreadMasseges();
+    std::map<int , std::queue<string>*>& mymap = thraed_mannage->getThreadMasseges();
     //iterate over the driver*
-    for (std::map<pthread_t , std::queue<string>*>::iterator it = mymap.begin();
+    for (std::map<int , std::queue<string>*>::iterator it = mymap.begin();
          it != mymap.end(); ++it) {
          LINFO << " sending thread no:    " << it->first <<" go";
          it->second->push("Go");

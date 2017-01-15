@@ -87,14 +87,14 @@ void Management::manage() {
     LINFO << " this is main thread: " << " closing program ";
     //close the program and delete all memory
     Thread_Manage *thraed_mannage = Thread_Manage::getInstance();
-    std::map<pthread_t , std::queue<string>*>& mymap = thraed_mannage->getThreadMasseges();
+    std::map<int , std::queue<string>*>& mymap = thraed_mannage->getThreadMasseges();
     //iterate over the driver*
-    for (std::map<pthread_t , std::queue<string>*>::iterator it = mymap.begin();
+    for (std::map<int , std::queue<string>*>::iterator it = mymap.begin();
          it != mymap.end(); ++it) {
         LINFO << " sending thread no:    " << it->first <<" End_Communication";
         it->second->push("End_Communication");
     }
-    int size = thraed_mannage->getThreadList().size();
+    long size = thraed_mannage->getThreadList().size();
     list <pthread_t> &l = thraed_mannage->getThreadList();
     for (int i = 0; i < size; i++) {
         pthread_t t = l.front();
@@ -148,7 +148,7 @@ Taxi *Management::parseTaxi(string s) {
  */
 void Management::parseLocation(int id) {
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
-    map<pthread_t, queue<string> *> &mymap = thread_manage->getThreadMasseges();
+    map<int, queue<string> *> &mymap = thread_manage->getThreadMasseges();
     map<pthread_t, Driver *> &mymap2 = thread_manage->getThreadDrivers();
     pthread_t thread;
     for (std::map<pthread_t, Driver *>::iterator it = mymap2.begin();
@@ -159,7 +159,7 @@ void Management::parseLocation(int id) {
         }
     }
     //todo what if there is no driver
-    for (std::map<pthread_t, queue<string> *>::iterator it = mymap.begin();
+    for (std::map<int, queue<string> *>::iterator it = mymap.begin();
          it != mymap.end(); ++it) {
         if (thread == it->first) {
             it->second->push("GiveLocation");
@@ -184,6 +184,8 @@ void Management::parseDriver() {
     cin >> input;
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
+    Thread_Manage* thread_manage = Thread_Manage::getInstance();
+    thread_manage->setInitialMessagesQueues(numOfDrivers);
     //Thread_Manage *thread_manage = Thread_Manage::getInstance();
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     //a loop that gets the drivers and send taxi's

@@ -55,10 +55,6 @@ void *Thread_Runner::run(void) {
 
     LINFO << " this is thread no:    " << pthread_self() << " this is the start of the thread";
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
-    //create the thread handler
-    std::queue<string> *messageQueue = new queue<string>;
-    //set driver's thread's queueMessage
-    thread_manage->addQueueMessage(pthread_self(), messageQueue);
     //add the thread to threadList
     thread_manage->addThread(pthread_self());
     Driver *d;
@@ -73,7 +69,8 @@ void *Thread_Runner::run(void) {
     int connectionDescriptor = thread_manage->getThreadsSocketDescriptor(pthread_self());
     LINFO << " this is thread no:    " << pthread_self() << " got sock descriptor " << connectionDescriptor;
     string serial_str;
-
+    Thread_Manage* manage = Thread_Manage::getInstance();
+    std::queue<string> *messageQueue = manage->getThreadsQueue(d->getId());
     //hold the thread till accepting new message
     LINFO << " this is thread no:    " << pthread_self() << " wait for massage";
     while (messageQueue->empty()) {};
