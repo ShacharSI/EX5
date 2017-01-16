@@ -38,7 +38,7 @@ void Management::manage() {
         switch (userChoice) {
             //create driver
             case 1: {
-                LINFO << " this is main thread: "  << " create threads ";
+                LINFO << " this is main thread: " << " create threads ";
                 this->parseDriver();
                 break;
             }
@@ -87,12 +87,13 @@ void Management::manage() {
     LINFO << " this is main thread: " << " closing program ";
     //close the program and delete all memory
     Thread_Manage *thraed_mannage = Thread_Manage::getInstance();
-    queue<string>** mymap = thraed_mannage->getThreadMasseges();
+    queue<string> **mymap = thraed_mannage->getThreadMasseges();
     //iterate over the driver*
-    for (int i =0; thraed_mannage->getNumDrivers();i++) {
-        LINFO << " sending driver no:    " << i <<" End_Communication";
+    for (int i = 0; i < thraed_mannage->getNumDrivers(); i++) {
+        LINFO << " sending driver no:    " << i << " End_Communication";
         mymap[i]->push("End_Communication");
     }
+
     long size = thraed_mannage->getThreadList().size();
     list <pthread_t> &l = thraed_mannage->getThreadList();
     for (int i = 0; i < size; i++) {
@@ -147,18 +148,18 @@ Taxi *Management::parseTaxi(string s) {
  */
 void Management::parseLocation(int id) {
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
-    queue<string>** mymap = thread_manage->getThreadMasseges();
+    queue<string> **mymap = thread_manage->getThreadMasseges();
     //map<pthread_t, Driver *> &mymap2 = thread_manage->getThreadDrivers();
-   /* pthread_t thread;
-    for (std::map<pthread_t, Driver *>::iterator it = mymap2.begin();
-         it != mymap2.end(); ++it) {
-        if (it->second->getId() == id) {
-            thread = it->first;
-            break;
-        }
-    }*/
+    /* pthread_t thread;
+     for (std::map<pthread_t, Driver *>::iterator it = mymap2.begin();
+          it != mymap2.end(); ++it) {
+         if (it->second->getId() == id) {
+             thread = it->first;
+             break;
+         }
+     }*/
     //todo what if there is no driver
-    if((id < 0)||(id >thread_manage->getNumDrivers())){
+    if ((id < 0) || (id > thread_manage->getNumDrivers())) {
         //todo throw exeption?
     }
     mymap[id]->push("GiveLocation");
@@ -180,7 +181,7 @@ void Management::parseDriver() {
     cin >> input;
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
-    Thread_Manage* thread_manage = Thread_Manage::getInstance();
+    Thread_Manage *thread_manage = Thread_Manage::getInstance();
     thread_manage->setInitialMessagesQueues(numOfDrivers);
     //Thread_Manage *thread_manage = Thread_Manage::getInstance();
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
