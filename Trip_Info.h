@@ -12,12 +12,9 @@ class Trip_Info {
 
 private:
     unsigned int tripTime;
-public:
-    void setTripTime(unsigned int tripTime);
-
-private:
     list<Searchable*>* routh;
 public:
+    void setTripTime(unsigned int tripTime);
     unsigned int getTripTime() ;
     ~Trip_Info();
     list<Searchable *>* getRouth() ;

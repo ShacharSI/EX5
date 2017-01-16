@@ -101,8 +101,18 @@ void Management::manage() {
         LINFO << " this is main thread: " << " wait to thread no: " << t;
         pthread_join(*t, NULL); //todo like this?
     }
+    LINFO << " this is main thread: " << " delete all thread ";
+
+    for (int i = 0; i < size; i++) {
+        pthread_t* t = l->front();
+        LINFO << " this is main thread: " << " delete to thread no: " << t;
+        delete t;
+    }
+    delete l;
     LINFO << " this is main thread: " << " finish with all threads";
     delete (thraed_mannage);
+    delete (thread_runner1);
+    delete this->taxiCenter;
     return;
 }
 
@@ -168,8 +178,6 @@ void Management::parseLocation(int id) {
  */
 void Management::parseDriver() {
     //set the variables
-    //map<Driver *, int> *socketDesmap = new map<Driver *, int>();
-    //get the number of drivers
     string input;
     cin >> input;
     const char *ch = input.c_str();

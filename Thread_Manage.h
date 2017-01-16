@@ -25,19 +25,10 @@ private:
     static Thread_Manage* instance;
     static bool created;
     int numDrivers;
-public:
-    int getNumDrivers() const;
-
-private:
     queue<string>** threadMasseges;
     map<pthread_t ,Driver*> threadDrivers;
     map<pthread_t, Thread_Class*> threadInfo;
-    map<Driver*, int> descriptorsMap;
     list<pthread_t*>* threadList;
-public:
-    void setThreadList(list <pthread_t*> *threadList);
-
-private:
     static Mutex_Locker* threadInfoLocker;
     static Mutex_Locker* instanceLocker;
     static Mutex_Locker* threadMessagesLocker;
@@ -45,6 +36,8 @@ private:
     static Mutex_Locker* threadListLocker;
 
 public:
+    void setThreadList(list <pthread_t*> *threadList);
+    int getNumDrivers() const;
     ~Thread_Manage();
     static Thread_Manage* getInstance();
     queue<string> **getThreadMasseges() ;
@@ -53,7 +46,7 @@ public:
     void setInitialMessagesQueues(int numOfDrivers);
     queue<string>* getThreadsQueue(int t);
     void addThread(pthread_t* t);
-    void addDriver(Driver* d,int sockDes);
+    //void addDriver(Driver* d,int sockDes);
     void addQueueMessage(int t, std::queue<std::string>* q);
     void addDriverAndPthread(pthread_t t, Driver* d);
     void addMessage(int ,string s);

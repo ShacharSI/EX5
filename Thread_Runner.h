@@ -16,7 +16,6 @@ public:
     static void* runHelper(void* v);
     static void* tripHelper(void* v);
     void *run(void);
-    Map *getMap() const;
     std::list<Searchable*>* checkTrips(Driver* d);
     void *getTrip(void);
     static Thread_Runner* getInstance(TaxiCenter* c,Tcp* t);
@@ -24,7 +23,6 @@ public:
     void addTripToCalculate(Trip t);
 
 private:
-    //
     unsigned int time;
     std::queue<Trip> tripsToCalculate;
     Tcp *tcpSock;
@@ -44,6 +42,7 @@ private:
     static Mutex_Locker* instanceLocker;
     static Mutex_Locker* tripsLocker;
     static Mutex_Locker* driverLocker;
+    static Mutex_Locker* timeLocker;
 };
 
 

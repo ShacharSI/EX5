@@ -25,9 +25,6 @@ private:
 
 public:
     ~Management();
-    unsigned int getTime();
-    void assignTrip();
-    void setClock();
     void getObstacles();
     void getMap();
     Management(Tcp* s);

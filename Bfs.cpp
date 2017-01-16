@@ -18,7 +18,6 @@ list<Searchable *>* Bfs::findRouth(Searchable *start, Searchable *destiny, Map *
     Searchable *s = NULL;
     s = *m->getSearchableByCoordinate(startPoint);
     bfsInfoMap->setVisitedSearchable(s);
-    //todo check if working with queue* without sending it is a lot more faster!?!
     //start the bfs process
     q = m->updateNeighbor(startPoint.getX(), startPoint.getY(), q, bfsInfoMap);
     while ((!q->empty()) && (!currPoint.equals(endPoint))) {

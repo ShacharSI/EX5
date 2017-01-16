@@ -21,7 +21,6 @@ bool BfsInfoMap::isVisitedSearchable(Searchable *searchable) {
 BfsInfoMap::BfsInfoMap(int sizeX, int sizeY) {
     this->visitMap = new bool *[sizeX];
     this->fathersMap = (Searchable***)new Square **[sizeX];
-    LINFO << "Time before";
     for (int i = 0; i < sizeX; i++) {
         this->fathersMap[i] = new Searchable *[sizeY];
         this->visitMap[i] = new bool [sizeY];
@@ -30,7 +29,6 @@ BfsInfoMap::BfsInfoMap(int sizeX, int sizeY) {
             this->fathersMap[i][j] = NULL;
         }
     }
-    LINFO << "Time after";
 }
     void BfsInfoMap::setVisitedSearchable(Searchable *searchable) {
         Point searchableLocation = searchable->getPoint();

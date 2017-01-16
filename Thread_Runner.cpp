@@ -29,6 +29,7 @@ Thread_Runner *Thread_Runner::instance = NULL;
 Mutex_Locker *Thread_Runner::instanceLocker = new Mutex_Locker();
 Mutex_Locker *Thread_Runner::tripsLocker = new Mutex_Locker();
 Mutex_Locker *Thread_Runner::driverLocker = new Mutex_Locker();
+Mutex_Locker *Thread_Runner::timeLocker = new Mutex_Locker();
 bool Thread_Runner::created = false;
 
 bool Thread_Runner::Occupy() {
@@ -91,8 +92,9 @@ void *Thread_Runner::run(void) {
         if (((!messageQueue->empty())
              && (strcmp(messageQueue->front().c_str(), "Go") == 0)
              && (list == NULL))) {
-            //todo add lock
+            Thread_Runner::timeLocker->lock();
             this->time+=1;
+            Thread_Runner::timeLocker->unlock();
             thread_manage->popMessage(d->getId());
         }
         //if we did got a valid trip
@@ -108,7 +110,7 @@ void *Thread_Runner::run(void) {
             }
 
             if (strcmp(buffer, "sendMeTrip") == 0) {
-                serial_str = "\0"; //todo will help?
+                serial_str = "\0";
                 //send the rout also to the client
                 LINFO << " this is thread no:    " << pthread_self() << " sereialize rout";
                 boost::iostreams::back_insert_device<std::string> inserter(serial_str);
@@ -136,8 +138,9 @@ void *Thread_Runner::run(void) {
             if (((!messageQueue->empty())
                  && (strcmp(messageQueue->front().c_str(), "Go") == 0))) {
 
-                //todo add lock
+                Thread_Runner::timeLocker->lock();
                 this->time+=1;
+                Thread_Runner::timeLocker->unlock();
                 LINFO << " this is thread no:    " << pthread_self() << " move the driver here";
                 //move our driver
                 d->move();
@@ -184,7 +187,7 @@ void *Thread_Runner::run(void) {
         LINFO << " this is thread no:    " << pthread_self() << " wait for next massage";
         while (messageQueue->empty());
         LINFO << " this is thread no:    " << pthread_self() << " getting rout";
-        list = this->checkTrips(d); //todo it's ok here?
+        list = this->checkTrips(d);
     }
 
     LINFO << " this is thread no:    " << pthread_self() << " sending the client end communication";
@@ -201,6 +204,7 @@ void *Thread_Runner::run(void) {
     thread_manage->popMessage(d->getId());
     //todo send end communication to client and close the socket
     free(buffer);
+    delete d;
     //todo crashing when finishing - in deletes
 }
 
@@ -229,7 +233,7 @@ Driver *Thread_Runner::getDriver() {
     LINFO << " this is thread no:    " << pthread_self() << " got a driver with id " << d->getId();
     Thread_Runner::driverLocker->lock();
     //saving the client's socket descriptor for later communication with him
-    thread_manage->addDriver(d, connectionDescriptor);
+    //thread_manage->addDriver(d, connectionDescriptor);
     thread_manage->addDriverAndPthread(pthread_self(), d);
     //attach a taxi to the driver here and send to client
     t = this->taxiCenter->attachTaxiToDriver(d->getVehicle_id());
@@ -284,6 +288,7 @@ void *Thread_Runner::getTrip(void) {
     Trip_Info *trip_info = new Trip_Info(trip_Time, list);
     this->trips.push_front(trip_info);
     Thread_Runner::tripsLocker->unlock();
+    delete bfs;
     LINFO << " this is thread no:    " << pthread_self() << " finishing !";
     return 0;
 }
@@ -333,8 +338,7 @@ Thread_Runner::~Thread_Runner() {
     delete this->instanceLocker;
     delete this->driverLocker;
     delete this->tripsLocker;
-
-    delete this->instance;
+    delete this->timeLocker;
 
     if (!this->trips.empty()) {
         Trip_Info *temp = this->trips.front();

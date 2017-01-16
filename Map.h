@@ -17,7 +17,6 @@ class Map {
 public:
     ~Map();
 
-    Map();
 
     Map(int sizeX, int sizeY, Searchable ***map);
 

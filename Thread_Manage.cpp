@@ -61,9 +61,9 @@ void Thread_Manage::addMessage(int d, string s) {
     this->threadMasseges[d]->push(s);
 }
 
-void Thread_Manage::addDriver(Driver *d, int sockDes) {
+/*void Thread_Manage::addDriver(Driver *d, int sockDes) {
     this->descriptorsMap.insert(std::pair<Driver *, int>(d, sockDes));
-}
+}*/
 
 list <pthread_t*>* Thread_Manage::getThreadList() {
     return threadList;
@@ -77,23 +77,21 @@ void Thread_Manage::addThread(pthread_t* t) {
 //
 
 Thread_Manage::~Thread_Manage() {
-    //delete this->instanceLocker;
-    //delete this->threadMessagesLocker;
-    //delete this->threadInfoLocker;
-    //delete this->threadListLocker;
-    //delete this->descriptorsMapLocker;
+     delete this->instanceLocker;
+     delete this->threadMessagesLocker;
+     delete this->threadInfoLocker;
+     delete this->threadListLocker;
+     delete this->descriptorsMapLocker;
 
-    /* delete instance;
 
-     for (std::map<pthread_t , queue<std::string>*>::iterator it = threadMasseges.begin();
-          it != threadMasseges.end(); ++it) {
-         //delete it->first;
- //        delete it->second;
-     }
-     for (std::map<pthread_t , Thread_Class*>::iterator it = threadInfo.begin();
-          it != threadInfo.end(); ++it) {
-         delete it->second;
-     }*/
+    for (int i = 0; i <this->numDrivers ; ++i) {
+        delete(this->threadMasseges[i]);
+    }
+    delete(threadMasseges);
+    this->threadInfo.clear();
+    this->threadDrivers.clear();
+    //delete(Thread_Manage::instance); //todo how to delete this???
+
 }
 
 void Thread_Manage::popMessage(int d) {
