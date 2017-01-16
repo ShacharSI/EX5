@@ -100,6 +100,7 @@ void Management::manage() {
         pthread_t* t = l->front();
         LINFO << " this is main thread: " << " wait to thread no: " << t;
         pthread_join(*t, NULL); //todo like this?
+        l->pop_front();
     }
     LINFO << " this is main thread: " << " delete all thread ";
 

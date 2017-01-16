@@ -16,14 +16,13 @@ public:
     static void* runHelper(void* v);
     static void* tripHelper(void* v);
     void *run(void);
-    std::list<Searchable*>* checkTrips(Driver* d);
+    std::list<Searchable*>* checkTrips(Driver* d, int time);
     void *getTrip(void);
     static Thread_Runner* getInstance(TaxiCenter* c,Tcp* t);
     bool Occupy();
     void addTripToCalculate(Trip t);
 
 private:
-    unsigned int time;
     std::queue<Trip> tripsToCalculate;
     Tcp *tcpSock;
     bool inUse;
@@ -33,7 +32,6 @@ private:
         this->taxiCenter = c;
         this->m = c->getMap();
         this->tcpSock = t;
-        this->time = 0;
     };
     list<Trip_Info *> trips;
     Driver *getDriver();//

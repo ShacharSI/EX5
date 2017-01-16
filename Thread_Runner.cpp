@@ -29,7 +29,6 @@ Thread_Runner *Thread_Runner::instance = NULL;
 Mutex_Locker *Thread_Runner::instanceLocker = new Mutex_Locker();
 Mutex_Locker *Thread_Runner::tripsLocker = new Mutex_Locker();
 Mutex_Locker *Thread_Runner::driverLocker = new Mutex_Locker();
-Mutex_Locker *Thread_Runner::timeLocker = new Mutex_Locker();
 bool Thread_Runner::created = false;
 
 bool Thread_Runner::Occupy() {
@@ -64,18 +63,18 @@ void *Thread_Runner::run(void) {
     d = this->getDriver();
     char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
     LINFO << " this is thread no:    " << pthread_self() << " finish the first connection ";
-
+    int time = 0;
     //get client's connectionDescriptor
     int connectionDescriptor = thread_manage->getThreadsSocketDescriptor(pthread_self());
     LINFO << " this is thread no:    " << pthread_self() << " got sock descriptor " << connectionDescriptor;
     string serial_str;
-    Thread_Manage* manage = Thread_Manage::getInstance();
+    Thread_Manage *manage = Thread_Manage::getInstance();
     std::queue<string> *messageQueue = manage->getThreadsQueue(d->getId());
     //hold the thread till accepting new message
     LINFO << " this is thread no:    " << pthread_self() << " wait for massage";
     while (messageQueue->empty()) {};
     LINFO << " this is thread no:    " << pthread_self() << " getting rout";
-    list = this->checkTrips(d);
+    list = this->checkTrips(d,time);
 
     LINFO << " this is thread no:    " << pthread_self() << " getting in the main loop that manage the driver";
     //running the driver until we got 7 from server
@@ -92,9 +91,7 @@ void *Thread_Runner::run(void) {
         if (((!messageQueue->empty())
              && (strcmp(messageQueue->front().c_str(), "Go") == 0)
              && (list == NULL))) {
-            Thread_Runner::timeLocker->lock();
-            this->time+=1;
-            Thread_Runner::timeLocker->unlock();
+            time += 1;
             thread_manage->popMessage(d->getId());
         }
         //if we did got a valid trip
@@ -138,9 +135,7 @@ void *Thread_Runner::run(void) {
             if (((!messageQueue->empty())
                  && (strcmp(messageQueue->front().c_str(), "Go") == 0))) {
 
-                Thread_Runner::timeLocker->lock();
-                this->time+=1;
-                Thread_Runner::timeLocker->unlock();
+                time += 1;
                 LINFO << " this is thread no:    " << pthread_self() << " move the driver here";
                 //move our driver
                 d->move();
@@ -172,13 +167,13 @@ void *Thread_Runner::run(void) {
             thread_manage->popMessage(d->getId());
             LINFO << " this is thread no:    " << pthread_self() << " wait for massage";
             //hold the thread till accepting new message
-            while (messageQueue->empty()){
+            while (messageQueue->empty()) {
                 LINFO << " this is thread no:    " << pthread_self() << " wait for massage";
             };
         }
 
-        if ((!messageQueue->empty())){
-            if((strcmp(messageQueue->front().c_str(), "End_Communication") == 0)){
+        if ((!messageQueue->empty())) {
+            if ((strcmp(messageQueue->front().c_str(), "End_Communication") == 0)) {
                 break;
             }
         }
@@ -187,7 +182,7 @@ void *Thread_Runner::run(void) {
         LINFO << " this is thread no:    " << pthread_self() << " wait for next massage";
         while (messageQueue->empty());
         LINFO << " this is thread no:    " << pthread_self() << " getting rout";
-        list = this->checkTrips(d);
+        list = this->checkTrips(d,time);
     }
 
     LINFO << " this is thread no:    " << pthread_self() << " sending the client end communication";
@@ -275,15 +270,15 @@ void *Thread_Runner::getTrip(void) {
     Searchable *end = *this->m->getSearchableByCoordinate(trip.getEndP());
 
     LINFO << " this is thread no:    " << pthread_self() << " calculating bfs from: "
-          << start->getPoint().getX()<< ","<<start->getPoint().getY() <<" to: "
-          << end->getPoint().getX()<<","<<end->getPoint().getY();
+          << start->getPoint().getX() << "," << start->getPoint().getY() << " to: "
+          << end->getPoint().getX() << "," << end->getPoint().getY();
     //create a trip info class and save it
     list = bfs->findRouth(start, end, this->m);
     Point p = list->front()->getPoint();
     LINFO << " this is thread no:    " << pthread_self() << " got a rout in length " << list->size();
     Thread_Runner::tripsLocker->lock();
     unsigned int trip_Time = trip.getTime();
-    LINFO << " this is thread no:    " << pthread_self() << " got a trip for time "<< trip_Time;
+    LINFO << " this is thread no:    " << pthread_self() << " got a trip for time " << trip_Time;
     Trip_Info *trip_info = new Trip_Info(trip_Time, list);
     this->trips.push_front(trip_info);
     Thread_Runner::tripsLocker->unlock();
@@ -292,19 +287,22 @@ void *Thread_Runner::getTrip(void) {
     return 0;
 }
 
-
-std::list<Searchable *> *Thread_Runner::checkTrips(Driver *d) {
+//todo deal with more then onr driver in the same location
+std::list<Searchable *> *Thread_Runner::checkTrips(Driver *d, int time) {
     std::list<Searchable *> *list = NULL;
     long size = this->trips.size();
     int trip_Time;
     Trip_Info *trip_info;
     //checking if a trip's time is arrived
     Thread_Runner::tripsLocker->lock();
+    if (time == 4) {
+        int ihfd;
+    }
     for (int i = 0; i < size; i++) { //todo what if there are a couple of drivers in the same point
         trip_info = this->trips.front();
         trip_Time = trip_info->getTripTime();
         //checking if a trip's start location is equals to the taxi's location
-        if (trip_Time == this->time) {
+        if (trip_Time == time) {
             if (d->getLocation().equals(trip_info->getRouth()->front()->getPoint())) {
                 list = trip_info->getRouth();
                 this->trips.pop_front();
@@ -337,7 +335,6 @@ Thread_Runner::~Thread_Runner() {
     delete this->instanceLocker;
     delete this->driverLocker;
     delete this->tripsLocker;
-    delete this->timeLocker;
 
     if (!this->trips.empty()) {
         Trip_Info *temp = this->trips.front();
