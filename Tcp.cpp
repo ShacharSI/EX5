@@ -158,3 +158,7 @@ int Tcp::acceptClient() {
     }
     return clientDescriptor;
 }
+
+void Tcp::setBackLog(int i) {
+    this->backLog = i;
+}

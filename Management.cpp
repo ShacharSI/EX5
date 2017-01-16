@@ -182,6 +182,7 @@ void Management::parseDriver() {
     cin >> input;
     const char *ch = input.c_str();
     int numOfDrivers = atoi(ch);
+    this->socket->setBackLog(numOfDrivers);
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
     thread_manage->setInitialMessagesQueues(numOfDrivers);
     //Thread_Manage *thread_manage = Thread_Manage::getInstance();

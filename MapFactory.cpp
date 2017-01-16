@@ -59,7 +59,7 @@ Searchable ***MapFactory::createMapSquare(int sizeX, int sizeY, list <Point> oba
         map[p.getX()][p.getY()]->setObstacle(true);
         obatacle.pop_front();
     }
-    return map; //todo will work the casting?
+    return map;
 }
 
 /**

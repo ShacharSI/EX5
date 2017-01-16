@@ -64,6 +64,7 @@ public:
     int rcvDataFrom(char *buffer, int size, int descriptorClient);
 
     int acceptClient();
+    void setBackLog(int i)
 };
 
 #endif /* TCP_H_ */

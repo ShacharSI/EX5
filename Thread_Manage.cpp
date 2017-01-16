@@ -3,7 +3,7 @@
 //
 
 #include "Thread_Manage.h"
-
+#include <stdexcept>
 Thread_Manage *Thread_Manage::instance = NULL;
 Mutex_Locker *Thread_Manage::instanceLocker = new Mutex_Locker();
 Mutex_Locker *Thread_Manage::threadInfoLocker = new Mutex_Locker();
@@ -100,7 +100,7 @@ void Thread_Manage::popMessage(int d) {
 queue<string> *Thread_Manage::getThreadsQueue(int driverId) {
     queue<string> **mymap = this->threadMasseges;
     if ((driverId < 0) || (driverId > this->numDrivers)) {
-        return NULL; //todo null or throw exeption?
+        throw invalid_argument("wrong coordinate");
     }
     return threadMasseges[driverId];
 

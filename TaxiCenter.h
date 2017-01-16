@@ -47,7 +47,6 @@ public:
 private:
     unsigned int time;
     Map *map;
-    Algorithm *searchAlgo;
     list<Taxi *> notActiveTaxis;
 };
 

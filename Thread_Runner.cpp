@@ -287,7 +287,7 @@ void *Thread_Runner::getTrip(void) {
     return 0;
 }
 
-//todo deal with more then onr driver in the same location
+
 std::list<Searchable *> *Thread_Runner::checkTrips(Driver *d, int time) {
     std::list<Searchable *> *list = NULL;
     long size = this->trips.size();

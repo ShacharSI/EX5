@@ -35,7 +35,6 @@ TaxiCenter::TaxiCenter() {
  */
 TaxiCenter::TaxiCenter(Map *mp) {
     this->map = mp;
-    this->searchAlgo = new Bfs;
     this->time = 0;
 }
 
@@ -98,7 +97,6 @@ TaxiCenter::~TaxiCenter() {
         notActiveTaxis.pop_front();
         delete t;
     }
-    //delete this->searchAlgo; //todo ??
     delete this->map;
 }
 

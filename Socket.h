@@ -103,6 +103,7 @@ public:
    ***********************************************************************/
     virtual void setIp(string ip) = 0;
 
+    virtual void setBackLog(int i) =0;
 
 };
 
