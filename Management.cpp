@@ -8,8 +8,6 @@
 
 //BOOST_CLASS_EXPORT_GUID(StandardTaxi, "StandardTaxi")
 
-#define BUFFERSIZE 4096
-
 /**
  * the constructor
  */
@@ -87,19 +85,23 @@ void Management::manage() {
     LINFO << " this is main thread: " << " closing program ";
     //close the program and delete all memory
     Thread_Manage *thraed_mannage = Thread_Manage::getInstance();
-    queue<string> **mymap = thraed_mannage->getThreadMasseges();
+    queue <string> **mymap = thraed_mannage->getThreadMasseges();
     //iterate over the driver*
     for (int i = 0; i < thraed_mannage->getNumDrivers(); i++) {
         LINFO << " sending driver no:    " << i << " End_Communication";
         mymap[i]->push("End_Communication");
     }
 
-    long size = thraed_mannage->getThreadList().size();
-    list <pthread_t> &l = thraed_mannage->getThreadList();
+    long size = thraed_mannage->getThreadList()->size();
+    LINFO << " this is main thread: " << " son thread no: " << size;
+    std::list <pthread_t*> *l = thraed_mannage->getThreadList();
+    //while (1){};
     for (int i = 0; i < size; i++) {
-        pthread_t t = l.front();
-        pthread_join(t, NULL); //todo like this?
+        pthread_t* t = l->front();
+        LINFO << " this is main thread: " << " wait to thread no: " << t;
+        pthread_join(*t, NULL); //todo like this?
     }
+    LINFO << " this is main thread: " << " finish with all threads";
     delete (thraed_mannage);
     return;
 }
@@ -149,16 +151,7 @@ Taxi *Management::parseTaxi(string s) {
 void Management::parseLocation(int id) {
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
     queue<string> **mymap = thread_manage->getThreadMasseges();
-    //map<pthread_t, Driver *> &mymap2 = thread_manage->getThreadDrivers();
-    /* pthread_t thread;
-     for (std::map<pthread_t, Driver *>::iterator it = mymap2.begin();
-          it != mymap2.end(); ++it) {
-         if (it->second->getId() == id) {
-             thread = it->first;
-             break;
-         }
-     }*/
-    //todo what if there is no driver
+
     if ((id < 0) || (id > thread_manage->getNumDrivers())) {
         //todo throw exeption?
     }
@@ -186,11 +179,13 @@ void Management::parseDriver() {
     //Thread_Manage *thread_manage = Thread_Manage::getInstance();
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     //a loop that gets the drivers and send taxi's
+    std::list <pthread_t*> *list1 = new list<pthread_t*>;
+    thread_manage->setThreadList(list1);
     for (int j = 0; j < numOfDrivers; ++j) {
-        pthread_t t;
-
-        int status = pthread_create(&t, NULL, Thread_Runner::runHelper, thread_runner1);//
-        //pthread_join(t,NULL);
+        pthread_t* t = new pthread_t;
+        thread_manage->addThread(t);
+        LINFO << " this is main thread: " << " create threads no:" << t;
+        int status = pthread_create(t, NULL, Thread_Runner::runHelper, thread_runner1);//
     }
 }
 

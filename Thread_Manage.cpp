@@ -65,13 +65,13 @@ void Thread_Manage::addDriver(Driver *d, int sockDes) {
     this->descriptorsMap.insert(std::pair<Driver *, int>(d, sockDes));
 }
 
-list <pthread_t> &Thread_Manage::getThreadList() {
+list <pthread_t*>* Thread_Manage::getThreadList() {
     return threadList;
 }
 
-void Thread_Manage::addThread(pthread_t t) {
+void Thread_Manage::addThread(pthread_t* t) {
     Thread_Manage::threadInfoLocker->lock();
-    this->threadList.push_back(t);
+    this->threadList->push_back(t);
     Thread_Manage::threadInfoLocker->unlock();
 }
 //
@@ -117,6 +117,7 @@ queue<string> *Thread_Manage::getThreadsQueue(int driverId) {
 
 void Thread_Manage::setInitialMessagesQueues(int numDrivers) {
     queue<string> **s = new queue<string> *[numDrivers];
+    this->threadMasseges = s;
     this->numDrivers = numDrivers;
     for (int i = 0; i < numDrivers; i++) {
         std::queue<string> *messageQueue = new queue<string>;
@@ -130,4 +131,8 @@ queue<string> **Thread_Manage::getThreadMasseges() {
 
 int Thread_Manage::getNumDrivers() const {
     return numDrivers;
+}
+
+void Thread_Manage::setThreadList(std::list <pthread_t*> *threadList) {
+    this->threadList = threadList;
 }

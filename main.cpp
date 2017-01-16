@@ -34,6 +34,7 @@ int main(int argc, char *argv[]) {
     Management management(sock);
     management.getMap();
     management.manage();
+    LINFO << " This is my last log " << "in main func ";
     return 0;
 }
 

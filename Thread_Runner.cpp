@@ -24,7 +24,7 @@ BOOST_CLASS_EXPORT_GUID(Driver, "driver")
 BOOST_CLASS_EXPORT_GUID(Point, "point")
 BOOST_CLASS_EXPORT_GUID(Square, "Square")
 
-#define BUFFERSIZE 4096
+#define BUFFERSIZE 200000
 Thread_Runner *Thread_Runner::instance = NULL;
 Mutex_Locker *Thread_Runner::instanceLocker = new Mutex_Locker();
 Mutex_Locker *Thread_Runner::tripsLocker = new Mutex_Locker();
@@ -56,7 +56,6 @@ void *Thread_Runner::run(void) {
     LINFO << " this is thread no:    " << pthread_self() << " this is the start of the thread";
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
     //add the thread to threadList
-    thread_manage->addThread(pthread_self());
     Driver *d;
     std::list<Searchable *> *list;
     LINFO << " this is thread no:    " << pthread_self() << " create contact and get driver";
@@ -144,7 +143,7 @@ void *Thread_Runner::run(void) {
                 d->move();
                 LINFO << " this is thread no:    " << pthread_self() << " got request from client to move";
                 //get request to go
-                ssize_t size = this->tcpSock->rcvDataFrom(buffer, 4096, connectionDescriptor);
+                ssize_t size = this->tcpSock->rcvDataFrom(buffer, BUFFERSIZE, connectionDescriptor);
                 if ((size == 8) || (size == 6)) {
                     perror("Error in receive");
                 }
@@ -170,7 +169,9 @@ void *Thread_Runner::run(void) {
             thread_manage->popMessage(d->getId());
             LINFO << " this is thread no:    " << pthread_self() << " wait for massage";
             //hold the thread till accepting new message
-            while (messageQueue->empty());
+            while (messageQueue->empty()){
+                LINFO << " this is thread no:    " << pthread_self() << " wait for massage";
+            };
         }
 
         if ((!messageQueue->empty())){
@@ -188,7 +189,7 @@ void *Thread_Runner::run(void) {
 
     LINFO << " this is thread no:    " << pthread_self() << " sending the client end communication";
           //todo the client need to send something first?
-    ssize_t size = this->tcpSock->rcvDataFrom(buffer, 4096, connectionDescriptor);
+    ssize_t size = this->tcpSock->rcvDataFrom(buffer, BUFFERSIZE, connectionDescriptor);
     if ((size == 8) || (size == 6)) {
         perror("Error in receive");
     }
@@ -215,7 +216,7 @@ Driver *Thread_Runner::getDriver() {
           " create connection to client in sock descriptor " << connectionDescriptor;
     Thread_Class *threadClass = new Thread_Class(connectionDescriptor);
     thread_manage->addThread(pthread_self(), threadClass);
-    ssize_t n = this->tcpSock->rcvDataFrom(buffer, 4096, connectionDescriptor);
+    ssize_t n = this->tcpSock->rcvDataFrom(buffer, BUFFERSIZE, connectionDescriptor);
     if ((n == 8) || (n == 6)) {
         perror("Error in receive");
     }
