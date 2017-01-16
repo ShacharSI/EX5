@@ -15,8 +15,10 @@ class BfsInfoMap {
 private:
     bool** visitMap;
     Searchable*** fathersMap;
-
+    int xSize;
+    int ySize;
 public:
+    ~BfsInfoMap();
     BfsInfoMap(int sizeX, int sizeY);
     BfsInfoMap();
     bool isVisitedSearchable(Searchable* searchable);

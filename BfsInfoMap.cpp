@@ -19,6 +19,8 @@ bool BfsInfoMap::isVisitedSearchable(Searchable *searchable) {
 }
 
 BfsInfoMap::BfsInfoMap(int sizeX, int sizeY) {
+    this->xSize = sizeX;
+    this->ySize = sizeY;
     this->visitMap = new bool *[sizeX];
     this->fathersMap = (Searchable***)new Square **[sizeX];
     for (int i = 0; i < sizeX; i++) {
@@ -50,3 +52,21 @@ BfsInfoMap::BfsInfoMap(int sizeX, int sizeY) {
         int yCoordinate = searchableLocation.getY();
         this->fathersMap[xCoordinate][yCoordinate] = current;
     }
+
+BfsInfoMap::~BfsInfoMap() {
+
+    for (int i = 0; i < xSize; ++i) {
+        for (int j = 0; j < ySize; ++j) {
+            //delete colomn searchables
+            delete (this->fathersMap[i][j]);
+        }
+        //delete the row pointer
+        delete (fathersMap[i]);
+    }
+    delete this->fathersMap;
+
+    for (int i = 0; i < xSize; ++i) {
+        delete this->visitMap[i];
+    }
+    delete this->visitMap;
+}

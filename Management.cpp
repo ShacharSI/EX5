@@ -110,7 +110,7 @@ void Management::manage() {
         LINFO << " this is main thread: " << " delete to thread no: " << t;
         delete t;
     }
-    delete l;
+   // delete l; //todo not working
     LINFO << " this is main thread: " << " finish with all threads";
     delete (thraed_mannage);
     delete (thread_runner1);
