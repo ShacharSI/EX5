@@ -40,7 +40,6 @@ TaxiCenter::TaxiCenter(Map *mp) {
 }
 
 
-
 /**
  * getting a vheicle id attaching to driver in our list a taxi
  * and return a taxi for the client driver
@@ -79,13 +78,12 @@ void TaxiCenter::addTaxi(Taxi *t) {
 void TaxiCenter::moveAll() {
     //this->time += 1;
     Thread_Manage *thraed_mannage = Thread_Manage::getInstance();
-    std::map<int , std::queue<string>*>& mymap = thraed_mannage->getThreadMasseges();
+    std::queue<string> **mymap = thraed_mannage->getThreadMasseges();
     //iterate over the driver*
-    for (std::map<int , std::queue<string>*>::iterator it = mymap.begin();
-         it != mymap.end(); ++it) {
-         LINFO << " sending thread no:    " << it->first <<" go";
-         it->second->push("Go");
-        //
+    for (int i = 0; i < thraed_mannage->getNumDrivers(); i++) {
+        LINFO << " numDrivers: " << thraed_mannage->getNumDrivers();
+        LINFO << " sending driver no:    " << i << " go";
+        mymap[i]->push("Go");
     }
 }
 

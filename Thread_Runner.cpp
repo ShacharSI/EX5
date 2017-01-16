@@ -86,7 +86,7 @@ void *Thread_Runner::run(void) {
             LINFO << " this is thread no:    " << pthread_self() << " print drivers location";
             Point p = d->getLocation();
             cout << p;
-            thread_manage->popMessage(pthread_self());
+            thread_manage->popMessage(d->getId());
         }
         // if we got go and there is no rout yet
         if (((!messageQueue->empty())
@@ -94,7 +94,7 @@ void *Thread_Runner::run(void) {
              && (list == NULL))) {
             //todo add lock
             this->time+=1;
-            thread_manage->popMessage(pthread_self());
+            thread_manage->popMessage(d->getId());
         }
         //if we did got a valid trip
         if (list != NULL) {
@@ -167,7 +167,7 @@ void *Thread_Runner::run(void) {
                 Point p = d->getLocation();
                 cout << p;
             }
-            thread_manage->popMessage(pthread_self());
+            thread_manage->popMessage(d->getId());
             LINFO << " this is thread no:    " << pthread_self() << " wait for massage";
             //hold the thread till accepting new message
             while (messageQueue->empty());
@@ -197,7 +197,7 @@ void *Thread_Runner::run(void) {
     if (n == 5) {
         perror("Error in Send_to");
     }
-    thread_manage->popMessage(pthread_self());
+    thread_manage->popMessage(d->getId());
     //todo send end communication to client and close the socket
     free(buffer);
     //todo crashing when finishing - in deletes

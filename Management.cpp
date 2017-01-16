@@ -87,12 +87,11 @@ void Management::manage() {
     LINFO << " this is main thread: " << " closing program ";
     //close the program and delete all memory
     Thread_Manage *thraed_mannage = Thread_Manage::getInstance();
-    std::map<int , std::queue<string>*>& mymap = thraed_mannage->getThreadMasseges();
+    queue<string>** mymap = thraed_mannage->getThreadMasseges();
     //iterate over the driver*
-    for (std::map<int , std::queue<string>*>::iterator it = mymap.begin();
-         it != mymap.end(); ++it) {
-        LINFO << " sending thread no:    " << it->first <<" End_Communication";
-        it->second->push("End_Communication");
+    for (int i =0; thraed_mannage->getNumDrivers();i++) {
+        LINFO << " sending driver no:    " << i <<" End_Communication";
+        mymap[i]->push("End_Communication");
     }
     long size = thraed_mannage->getThreadList().size();
     list <pthread_t> &l = thraed_mannage->getThreadList();
@@ -148,24 +147,21 @@ Taxi *Management::parseTaxi(string s) {
  */
 void Management::parseLocation(int id) {
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
-    map<int, queue<string> *> &mymap = thread_manage->getThreadMasseges();
-    map<pthread_t, Driver *> &mymap2 = thread_manage->getThreadDrivers();
-    pthread_t thread;
+    queue<string>** mymap = thread_manage->getThreadMasseges();
+    //map<pthread_t, Driver *> &mymap2 = thread_manage->getThreadDrivers();
+   /* pthread_t thread;
     for (std::map<pthread_t, Driver *>::iterator it = mymap2.begin();
          it != mymap2.end(); ++it) {
         if (it->second->getId() == id) {
             thread = it->first;
             break;
         }
-    }
+    }*/
     //todo what if there is no driver
-    for (std::map<int, queue<string> *>::iterator it = mymap.begin();
-         it != mymap.end(); ++it) {
-        if (thread == it->first) {
-            it->second->push("GiveLocation");
-            break;
-        }
+    if((id < 0)||(id >thread_manage->getNumDrivers())){
+        //todo throw exeption?
     }
+    mymap[id]->push("GiveLocation");
 
 
 }

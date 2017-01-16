@@ -24,7 +24,12 @@ private:
     bool inUse;
     static Thread_Manage* instance;
     static bool created;
-    map<int ,std::queue<std::string>*> threadMasseges;
+    int numDrivers;
+public:
+    int getNumDrivers() const;
+
+private:
+    queue<string>** threadMasseges;
     map<pthread_t ,Driver*> threadDrivers;
     map<pthread_t, Thread_Class*> threadInfo;
     map<Driver*, int> descriptorsMap;
@@ -38,8 +43,8 @@ private:
 public:
     ~Thread_Manage();
     static Thread_Manage* getInstance();
+    queue<string> **getThreadMasseges() ;
     map<pthread_t, Driver *> &getThreadDrivers() ;
-    map<int, queue<string>*> &getThreadMasseges();
     list <pthread_t> &getThreadList() ;
     void setInitialMessagesQueues(int numOfDrivers);
     queue<string>* getThreadsQueue(int t);
