@@ -27,7 +27,7 @@ Tcp::Tcp(bool isServers, int port_num) {
 * The Function operation: default destructor					       *
 ***********************************************************************/
 Tcp::~Tcp() {
-    // TODO Auto-generated destructor stub
+
 }
 
 /***********************************************************************

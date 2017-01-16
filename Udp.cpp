@@ -26,7 +26,7 @@ Udp::Udp(bool isServers, int port_num) {
 * The Function operation: default destructor					       *
 ***********************************************************************/
 Udp::~Udp() {
-    // TODO Auto-generated destructor stub
+
 }
 
 /***********************************************************************

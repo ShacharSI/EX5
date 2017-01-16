@@ -85,7 +85,7 @@ void Management::manage() {
     LINFO << " this is main thread: " << " closing program ";
     //close the program and delete all memory
     Thread_Manage *thraed_mannage = Thread_Manage::getInstance();
-    queue <string> **mymap = thraed_mannage->getThreadMasseges();
+    queue<string> **mymap = thraed_mannage->getThreadMasseges();
     //iterate over the driver*
     for (int i = 0; i < thraed_mannage->getNumDrivers(); i++) {
         LINFO << " sending driver no:    " << i << " End_Communication";
@@ -94,10 +94,10 @@ void Management::manage() {
 
     long size = thraed_mannage->getThreadList()->size();
     LINFO << " this is main thread: " << " son thread no: " << size;
-    std::list <pthread_t*> *l = thraed_mannage->getThreadList();
+    std::list<pthread_t *> *l = thraed_mannage->getThreadList();
     //while (1){};
     for (int i = 0; i < size; i++) {
-        pthread_t* t = l->front();
+        pthread_t *t = l->front();
         LINFO << " this is main thread: " << " wait to thread no: " << t;
         pthread_join(*t, NULL);
         l->pop_front();
@@ -105,7 +105,8 @@ void Management::manage() {
     LINFO << " this is main thread: " << " delete all thread ";
 
     for (int i = 0; i < size; i++) {
-        pthread_t* t = l->front();
+        pthread_t *t = l->front();
+        l->pop_front();
         LINFO << " this is main thread: " << " delete to thread no: " << t;
         delete t;
     }
@@ -188,10 +189,10 @@ void Management::parseDriver() {
     //Thread_Manage *thread_manage = Thread_Manage::getInstance();
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     //a loop that gets the drivers and send taxi's
-    std::list <pthread_t*> *list1 = new list<pthread_t*>;
+    std::list<pthread_t *> *list1 = new list<pthread_t *>;
     thread_manage->setThreadList(list1);
     for (int j = 0; j < numOfDrivers; ++j) {
-        pthread_t* t = new pthread_t;
+        pthread_t *t = new pthread_t;
         thread_manage->addThread(t);
         LINFO << " this is main thread: " << " create threads no:" << t;
         int status = pthread_create(t, NULL, Thread_Runner::runHelper, thread_runner1);//

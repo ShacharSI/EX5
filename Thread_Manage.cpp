@@ -86,8 +86,7 @@ Thread_Manage::~Thread_Manage() {
     }
     delete(threadMasseges);
     this->threadInfo.clear();
-    //delete(Thread_Manage::instance); //todo how to delete this???
-
+    //todo how to delete this???
 }
 
 void Thread_Manage::popMessage(int d) {
