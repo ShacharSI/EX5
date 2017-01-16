@@ -61,9 +61,6 @@ Searchable ***Map::getMap() {
 queue<Searchable **> *Map::updateNeighbor(int x, int y,
                                           std::queue<Searchable **> *q, BfsInfoMap *infoMap) {
     Searchable *curr = this->map[x][y];
-    //curr->setBfsVisited(true);
-    //curr->setBfsFather(NULL);
-    //TODO add obstacle chaeck!!
     if ((((x - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x - 1][y]))) {
         if (!this->map[x - 1][y]->isObstacle()) {
             Searchable **temp = &this->map[x - 1][y];

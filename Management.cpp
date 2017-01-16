@@ -99,7 +99,7 @@ void Management::manage() {
     for (int i = 0; i < size; i++) {
         pthread_t* t = l->front();
         LINFO << " this is main thread: " << " wait to thread no: " << t;
-        pthread_join(*t, NULL); //todo like this?
+        pthread_join(*t, NULL);
         l->pop_front();
     }
     LINFO << " this is main thread: " << " delete all thread ";
@@ -163,7 +163,7 @@ void Management::parseLocation(int id) {
     queue<string> **mymap = thread_manage->getThreadMasseges();
 
     if ((id < 0) || (id > thread_manage->getNumDrivers())) {
-        //todo throw exeption?
+        throw invalid_argument("wrong coordinate");
     }
     mymap[id]->push("GiveLocation");
 
