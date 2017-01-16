@@ -38,5 +38,6 @@ list<Searchable *>* Bfs::findRouth(Searchable *start, Searchable *destiny, Map *
         }
         s = father;
     }
+    Point p = l->front()->getPoint();
     return l;
 }

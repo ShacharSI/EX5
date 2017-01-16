@@ -83,7 +83,7 @@ queue<Searchable **> *Map::updateNeighbor(int x, int y,
     }
 
     if ((((y + 1) < this->sizeY)) && (!infoMap->isVisitedSearchable(this->map[x][y + 1]))) {
-        if (!this->map[x][y + 1]) {
+        if (!this->map[x][y + 1]->isObstacle()) {
             Searchable **temp = &this->map[x][y + 1];
             infoMap->setVisitedSearchable(*temp);
             infoMap->setSearchableFather(*temp, curr);
@@ -92,7 +92,7 @@ queue<Searchable **> *Map::updateNeighbor(int x, int y,
     }
 
     if ((((y - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x][y - 1]))) {
-        if (!this->map[x][y - 1]) {
+        if (!this->map[x][y - 1]->isObstacle()) {
             Searchable **temp = &this->map[x][y - 1];
             infoMap->setVisitedSearchable(*temp);
             infoMap->setSearchableFather(*temp, curr);

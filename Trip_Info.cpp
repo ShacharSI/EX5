@@ -22,5 +22,4 @@ void Trip_Info::setTripTime(unsigned int tripTime) {
 }
 
 Trip_Info::~Trip_Info() {
- //   delete this->routh;
 }

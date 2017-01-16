@@ -38,10 +38,7 @@ void Thread_Manage::addQueueMessage(int d, std::queue<string> *q) {
     Thread_Manage::threadMessagesLocker->unlock();
 }
 
-void Thread_Manage::addDriverAndPthread(pthread_t t, Driver *d) {
-//todo add locker!!!
-    this->threadDrivers[t] = d;
-}
+
 
 void Thread_Manage::addThread(pthread_t t, Thread_Class *c) {
     Thread_Manage::threadInfoLocker->lock();
@@ -89,7 +86,6 @@ Thread_Manage::~Thread_Manage() {
     }
     delete(threadMasseges);
     this->threadInfo.clear();
-    this->threadDrivers.clear();
     //delete(Thread_Manage::instance); //todo how to delete this???
 
 }
@@ -100,9 +96,6 @@ void Thread_Manage::popMessage(int d) {
     Thread_Manage::threadMessagesLocker->unlock();
 }
 
-map<pthread_t, Driver *> &Thread_Manage::getThreadDrivers() {
-    return threadDrivers;
-}
 
 queue<string> *Thread_Manage::getThreadsQueue(int driverId) {
     queue<string> **mymap = this->threadMasseges;

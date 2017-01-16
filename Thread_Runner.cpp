@@ -191,7 +191,6 @@ void *Thread_Runner::run(void) {
     }
 
     LINFO << " this is thread no:    " << pthread_self() << " sending the client end communication";
-          //todo the client need to send something first?
     ssize_t size = this->tcpSock->rcvDataFrom(buffer, BUFFERSIZE, connectionDescriptor);
     if ((size == 8) || (size == 6)) {
         perror("Error in receive");
@@ -202,10 +201,9 @@ void *Thread_Runner::run(void) {
         perror("Error in Send_to");
     }
     thread_manage->popMessage(d->getId());
-    //todo send end communication to client and close the socket
     free(buffer);
     delete d;
-    //todo crashing when finishing - in deletes
+
 }
 
 Driver *Thread_Runner::getDriver() {
@@ -234,7 +232,7 @@ Driver *Thread_Runner::getDriver() {
     Thread_Runner::driverLocker->lock();
     //saving the client's socket descriptor for later communication with him
     //thread_manage->addDriver(d, connectionDescriptor);
-    thread_manage->addDriverAndPthread(pthread_self(), d);
+
     //attach a taxi to the driver here and send to client
     t = this->taxiCenter->attachTaxiToDriver(d->getVehicle_id());
     //set the driver's taxi
@@ -281,6 +279,7 @@ void *Thread_Runner::getTrip(void) {
           << end->getPoint().getX()<<","<<end->getPoint().getY();
     //create a trip info class and save it
     list = bfs->findRouth(start, end, this->m);
+    Point p = list->front()->getPoint();
     LINFO << " this is thread no:    " << pthread_self() << " got a rout in length " << list->size();
     Thread_Runner::tripsLocker->lock();
     unsigned int trip_Time = trip.getTime();
@@ -309,7 +308,7 @@ std::list<Searchable *> *Thread_Runner::checkTrips(Driver *d) {
             if (d->getLocation().equals(trip_info->getRouth()->front()->getPoint())) {
                 list = trip_info->getRouth();
                 this->trips.pop_front();
-                //todo delete trip and late delete list
+                delete trip_info;
                 Thread_Runner::tripsLocker->unlock();
                 return list;
             }

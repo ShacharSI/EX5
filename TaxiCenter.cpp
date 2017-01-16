@@ -98,7 +98,7 @@ TaxiCenter::~TaxiCenter() {
         notActiveTaxis.pop_front();
         delete t;
     }
-    delete this->searchAlgo;
+    //delete this->searchAlgo; //todo ??
     delete this->map;
 }
 

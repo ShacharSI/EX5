@@ -112,7 +112,6 @@ void Management::manage() {
     LINFO << " this is main thread: " << " finish with all threads";
     delete (thraed_mannage);
     delete (thread_runner1);
-    delete this->taxiCenter;
     return;
 }
 
