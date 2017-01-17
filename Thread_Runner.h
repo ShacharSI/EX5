@@ -26,24 +26,23 @@ public:
     void addTripToCalculate(Trip t);
 
 private:
-    std::queue<Trip> tripsToCalculate;
-    Tcp *tcpSock;
-    bool inUse;
-    static bool created;
-    static Thread_Runner* instance;
     Thread_Runner(TaxiCenter *c,Tcp* t){
         this->taxiCenter = c;
         this->m = c->getMap();
         this->tcpSock = t;
     };
+    std::queue<Trip> tripsToCalculate;
+    bool inUse;
+    static bool created;
+    static Thread_Runner* instance;
     list<Trip_Info *> trips;
-    Driver *getDriver();//
+    Driver *getDriver();
     Map *m;
+    Tcp *tcpSock;
     TaxiCenter *taxiCenter;
     static Mutex_Locker* instanceLocker;
     static Mutex_Locker* tripsLocker;
     static Mutex_Locker* driverLocker;
-    static Mutex_Locker* timeLocker;
 };
 
 
