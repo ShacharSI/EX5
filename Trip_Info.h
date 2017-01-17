@@ -7,7 +7,9 @@
 
 
 #include "Searchable.h"
-
+/**
+ * class that contain trip's time and route
+ */
 class Trip_Info {
 
 private:

@@ -248,6 +248,7 @@ void Management::parseTrip(string s) {
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     thread_runner1->addTripToCalculate(trip);
     //create thread for calculate bfs
+
     int status = pthread_create(&thread, NULL, Thread_Runner::tripHelper, thread_runner1);
     pthread_join(thread, NULL); //todo remove this
 }
@@ -310,7 +311,7 @@ vector<int> Management::getSizes() {
 
 
 /**
- * the deconstructor
+ * the destructor
  */
 Management::~Management() {
     if (this->taxiCenter != NULL) {
