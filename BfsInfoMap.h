@@ -10,7 +10,11 @@
 #include "Searchable.h"
 
 using namespace std;
-
+/**
+ * class saving the bfs algo info
+ * mark each searchable as visited when it's needed
+ * save each searchable's father
+ */
 class BfsInfoMap {
 private:
     bool** visitMap;

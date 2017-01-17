@@ -7,7 +7,9 @@
 
 
 #include <sys/types.h>
-
+/**
+ * class holds a pthread_mutex and managing it
+ */
 class Mutex_Locker {
 
 private:

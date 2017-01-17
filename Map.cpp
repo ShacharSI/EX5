@@ -57,10 +57,19 @@ int Map::getSizeY() const {
 Searchable ***Map::getMap() {
     return this->map;
 }
-
+/**
+ *
+ * @param x the x coordinate of the current searchable
+ * @param y the y coordinate of the current searchable
+ * @param q the current bfs algo's queue
+ * @param infoMap a BfsInfoMap object
+ * @return the next bfs algo's queue's state
+ */
 queue<Searchable **> *Map::updateNeighbor(int x, int y,
                                           std::queue<Searchable **> *q, BfsInfoMap *infoMap) {
+    //gets the current searchable by its coordinates
     Searchable *curr = this->map[x][y];
+    //checks whether to insert the current's left neighbor
     if ((((x - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x - 1][y]))) {
         if (!this->map[x - 1][y]->isObstacle()) {
             Searchable **temp = &this->map[x - 1][y];
@@ -69,7 +78,7 @@ queue<Searchable **> *Map::updateNeighbor(int x, int y,
             q->push(temp);
         }
     }
-
+    //checks whether to insert the current's right neighbor
     if ((((x + 1) < this->sizeX)) && (!infoMap->isVisitedSearchable(this->map[x + 1][y]))) {
         if (!this->map[x + 1][y]->isObstacle()) {
             Searchable **temp = &this->map[x + 1][y];
@@ -78,7 +87,7 @@ queue<Searchable **> *Map::updateNeighbor(int x, int y,
             q->push(temp);
         }
     }
-
+    //checks whether to insert the current's upper neighbor
     if ((((y + 1) < this->sizeY)) && (!infoMap->isVisitedSearchable(this->map[x][y + 1]))) {
         if (!this->map[x][y + 1]->isObstacle()) {
             Searchable **temp = &this->map[x][y + 1];
@@ -87,7 +96,7 @@ queue<Searchable **> *Map::updateNeighbor(int x, int y,
             q->push(temp);
         }
     }
-
+    //checks whether to insert the current's lower neighbor
     if ((((y - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x][y - 1]))) {
         if (!this->map[x][y - 1]->isObstacle()) {
             Searchable **temp = &this->map[x][y - 1];
@@ -98,23 +107,19 @@ queue<Searchable **> *Map::updateNeighbor(int x, int y,
     }
     return q;
 }
-
-void Map::setBeforeBfs() {
-    for (int i = 0; i < sizeX; i++) {
-        for (int j = 0; j < sizeY; j++) {
-            this->map[i][j]->setBfsFather(NULL);
-            this->map[i][j]->setBfsVisited(false);
-        }
-    }
-}
-
+/**
+ * @param p point of a searchable
+ * @return the searchable in this point
+ */
 Searchable **Map::getSearchableByCoordinate(Point p) {
+    //check p's validity
     if ((p.getY() < 0) || (p.getX() < 0)
         || (p.getX() > this->getSizeX())
         || (p.getY() > this->getSizeY())) {
         throw invalid_argument("wrong coordinate for point");
 
     }
+    //find and return the searchable
     int x = p.getX();
     int y = p.getY();
     return &this->map[x][y];

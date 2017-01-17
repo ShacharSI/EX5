@@ -7,7 +7,9 @@
 
 
 #include <sys/types.h>
-
+/**
+ * class holds the match socketDescriptor
+ */
 class Thread_Class {
 
 private:

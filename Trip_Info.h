@@ -14,7 +14,6 @@ private:
     unsigned int tripTime;
     list<Searchable*>* routh;
 public:
-    void setTripTime(unsigned int tripTime);
     unsigned int getTripTime() ;
     ~Trip_Info();
     list<Searchable *>* getRouth() ;

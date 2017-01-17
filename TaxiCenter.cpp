@@ -78,7 +78,7 @@ void TaxiCenter::moveAll() {
     //this->time += 1;
     Thread_Manage *thraed_mannage = Thread_Manage::getInstance();
     std::queue<string> **mymap = thraed_mannage->getThreadMasseges();
-    //iterate over the driver*
+    //iterate over the drivers
     for (int i = 0; i < thraed_mannage->getNumDrivers(); i++) {
         LINFO << " numDrivers: " << thraed_mannage->getNumDrivers();
         LINFO << " sending driver no:    " << i << " go";
@@ -88,7 +88,7 @@ void TaxiCenter::moveAll() {
 
 
 /**
- * the deconstructor
+ * the destructor
  */
 TaxiCenter::~TaxiCenter() {
     long size = this->notActiveTaxis.size();

@@ -5,6 +5,7 @@
 #include "Thread_Manage.h"
 #include "Searchable.h"
 #include "Bfs.h"
+#include <stdio.h>
 #include "StandardTaxi.h"
 #include "LuxuryTaxi.h"
 #include "easyloggingpp-8.91/easylogging++.h"
@@ -26,6 +27,7 @@ BOOST_CLASS_EXPORT_GUID(Square, "Square")
 
 #define BUFFERSIZE 200000
 Thread_Runner *Thread_Runner::instance = NULL;
+//initialize the mutex
 Mutex_Locker *Thread_Runner::instanceLocker = new Mutex_Locker();
 Mutex_Locker *Thread_Runner::tripsLocker = new Mutex_Locker();
 Mutex_Locker *Thread_Runner::driverLocker = new Mutex_Locker();
@@ -38,7 +40,9 @@ bool Thread_Runner::Occupy() {
     }
     return false;
 }
-
+/**
+ * @return an instance of the class
+ */
 Thread_Runner *Thread_Runner::getInstance(TaxiCenter *c, Tcp *t) {
     if (!Thread_Runner::created) {
         Thread_Runner::instanceLocker->lock();
@@ -50,7 +54,9 @@ Thread_Runner *Thread_Runner::getInstance(TaxiCenter *c, Tcp *t) {
     }
     return instance;
 }
-
+/**
+ * runs one thread. deal with communication with one client
+ */
 void *Thread_Runner::run(void) {
 
     LINFO << " this is thread no:    " << pthread_self() << " this is the start of the thread";
@@ -184,7 +190,7 @@ void *Thread_Runner::run(void) {
         LINFO << " this is thread no:    " << pthread_self() << " getting rout";
         list = this->checkTrips(d,time);
     }
-
+    // sending the client end communication
     LINFO << " this is thread no:    " << pthread_self() << " sending the client end communication";
     ssize_t size = this->tcpSock->rcvDataFrom(buffer, BUFFERSIZE, connectionDescriptor);
     if ((size == 8) || (size == 6)) {
@@ -200,7 +206,10 @@ void *Thread_Runner::run(void) {
     delete d;
 
 }
-
+/**
+ * connect with the client. gets a driver from him and send him taxi.
+ * @return the driver from the client
+ */
 Driver *Thread_Runner::getDriver() {
     LINFO << " this is thread no:    " << pthread_self() << " getting the driver from client";
     Taxi *t = NULL;
@@ -208,11 +217,14 @@ Driver *Thread_Runner::getDriver() {
     string serial_str;
     char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
+    //accepting new client
     int connectionDescriptor = this->tcpSock->acceptClient();
     LINFO << " this is thread no:    " << pthread_self() <<
           " create connection to client in sock descriptor " << connectionDescriptor;
+    //adds the thread and the connectionDescriptor to the thread_Manage
     Thread_Class *threadClass = new Thread_Class(connectionDescriptor);
     thread_manage->addThread(pthread_self(), threadClass);
+    //receive the driver from the client
     ssize_t n = this->tcpSock->rcvDataFrom(buffer, BUFFERSIZE, connectionDescriptor);
     if ((n == 8) || (n == 6)) {
         perror("Error in receive");
@@ -225,9 +237,6 @@ Driver *Thread_Runner::getDriver() {
     ia >> d;
     LINFO << " this is thread no:    " << pthread_self() << " got a driver with id " << d->getId();
     Thread_Runner::driverLocker->lock();
-    //saving the client's socket descriptor for later communication with him
-    //thread_manage->addDriver(d, connectionDescriptor);
-
     //attach a taxi to the driver here and send to client
     t = this->taxiCenter->attachTaxiToDriver(d->getVehicle_id());
     //set the driver's taxi
@@ -250,7 +259,10 @@ Driver *Thread_Runner::getDriver() {
     //return the driver for the thread here to manage
     return d;
 }
-
+/**
+ * creates a thread for bfs calculation
+ * add the result to the thread_manage
+ */
 void *Thread_Runner::getTrip(void) {
     LINFO << " this is thread no:    " << pthread_self() << " calculating bfs";
     Trip trip;
@@ -258,6 +270,7 @@ void *Thread_Runner::getTrip(void) {
     if (this->tripsToCalculate.size() == 0) {
         pthread_exit(NULL);
     }
+    //get one trip for calculation
     trip = this->tripsToCalculate.front();
     this->tripsToCalculate.pop();
     Thread_Runner::tripsLocker->unlock();
@@ -287,7 +300,11 @@ void *Thread_Runner::getTrip(void) {
     return 0;
 }
 
-
+/**
+ * check for trip that its time arrived
+ * and than checks if it fits to the driver of the specific thread
+ * @return the route of the bfs
+ */
 std::list<Searchable *> *Thread_Runner::checkTrips(Driver *d, int time) {
     std::list<Searchable *> *list = NULL;
     long size = this->trips.size();
@@ -295,9 +312,6 @@ std::list<Searchable *> *Thread_Runner::checkTrips(Driver *d, int time) {
     Trip_Info *trip_info;
     //checking if a trip's time is arrived
     Thread_Runner::tripsLocker->lock();
-    if (time == 4) {
-        int ihfd;
-    }
     for (int i = 0; i < size; i++) { //todo what if there are a couple of drivers in the same point
         trip_info = this->trips.front();
         trip_Time = trip_info->getTripTime();
@@ -318,19 +332,30 @@ std::list<Searchable *> *Thread_Runner::checkTrips(Driver *d, int time) {
     //return the route of the trip that is time arrived
     return list;
 }
-
+/**
+ * static function that runs the run function
+ */
 void *Thread_Runner::runHelper(void *v) {
     return ((Thread_Runner *) v)->run();
 }
-
+/**
+ * static function that runs the getTrip function
+ */
 void *Thread_Runner::tripHelper(void *v) {
     return ((Thread_Runner *) v)->getTrip();
 }
-
+/**
+ * add Trip To the queue for future calculation
+ * @param t a trip
+ */
 void Thread_Runner::addTripToCalculate(Trip t) {
+    Thread_Runner::tripsLocker->lock();
     this->tripsToCalculate.push(t);
+    Thread_Runner::tripsLocker->unlock();
 }
-
+/**
+ * d-tor
+ */
 Thread_Runner::~Thread_Runner() {
     delete this->instanceLocker;
     delete this->driverLocker;

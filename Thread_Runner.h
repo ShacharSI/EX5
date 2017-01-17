@@ -8,7 +8,10 @@
 #include "Tcp.h"
 #include "Trip_Info.h"
 #include "Mutex_Locker.h"
-
+/**
+ * class hold all the  func that the threads use
+ * calculates bfs and communicates with the client
+ */
 class Thread_Runner {
 
 public:

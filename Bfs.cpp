@@ -19,18 +19,21 @@ list<Searchable *>* Bfs::findRouth(Searchable *start, Searchable *destiny, Map *
     s = *m->getSearchableByCoordinate(startPoint);
     bfsInfoMap->setVisitedSearchable(s);
     //start the bfs process
+    //getting initial queue
     q = m->updateNeighbor(startPoint.getX(), startPoint.getY(), q, bfsInfoMap);
     while ((!q->empty()) && (!currPoint.equals(endPoint))) {
         s = *(q->front());
         q->pop();
         currPoint = s->getPoint();
+        //continue the bfs algo
         q = m->updateNeighbor(currPoint.getX(), currPoint.getY(), q, bfsInfoMap);
     }
-
+    //get Searchable of the end point
     s = *m->getSearchableByCoordinate(endPoint);
     if (s) {
         l->push_front(s);
     }
+    //create a route from the start point to the end point by each searchable's father
     while (s != NULL) {
         Searchable *father = bfsInfoMap->getFather(s);
         if (father != NULL) {
@@ -38,6 +41,5 @@ list<Searchable *>* Bfs::findRouth(Searchable *start, Searchable *destiny, Map *
         }
         s = father;
     }
-    Point p = l->front()->getPoint();
     return l;
 }

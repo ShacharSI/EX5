@@ -19,6 +19,7 @@ Management::Management(Tcp *s) {
 /**
  * the function that runs the all game
  * takes the user's input and doing the matching mission
+ * managing the closing of the flow
  */
 void Management::manage() {
 
@@ -92,10 +93,11 @@ void Management::manage() {
         mymap[i]->push("End_Communication");
     }
 
+    //get the pthreadList
     long size = thraed_mannage->getThreadList()->size();
     LINFO << " this is main thread: " << " son thread no: " << size;
     std::list <pthread_t*> *l = thraed_mannage->getThreadList();
-    //while (1){};
+    //waiting for all pthread's ending
     for (int i = 0; i < size; i++) {
         pthread_t* t = l->front();
         LINFO << " this is main thread: " << " wait to thread no: " << t;
@@ -103,7 +105,7 @@ void Management::manage() {
         l->pop_front();
     }
     LINFO << " this is main thread: " << " delete all thread ";
-
+    //deletes all pthread
     for (int i = 0; i < size; i++) {
         pthread_t* t = l->front();
         LINFO << " this is main thread: " << " delete to thread no: " << t;
@@ -111,6 +113,7 @@ void Management::manage() {
     }
     delete l;
     LINFO << " this is main thread: " << " finish with all threads";
+    //delete singeltons
     delete (thraed_mannage);
     delete (thread_runner1);
     return;
@@ -156,7 +159,7 @@ Taxi *Management::parseTaxi(string s) {
 }
 
 /**
- * returns the wanted taxi(by id) location
+ * returns the wanted taxi location(by id)
  */
 void Management::parseLocation(int id) {
     Thread_Manage *thread_manage = Thread_Manage::getInstance();
@@ -188,6 +191,7 @@ void Management::parseDriver() {
     //Thread_Manage *thread_manage = Thread_Manage::getInstance();
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     //a loop that gets the drivers and send taxi's
+    //create new thread for dealing with each driver(client)
     std::list <pthread_t*> *list1 = new list<pthread_t*>;
     thread_manage->setThreadList(list1);
     for (int j = 0; j < numOfDrivers; ++j) {
@@ -240,8 +244,10 @@ void Management::parseTrip(string s) {
 
     }
     pthread_t thread;
+    //adding a trip to the Thread_runner for future calculation
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     thread_runner1->addTripToCalculate(trip);
+    //create thread for calculate bfs
     int status = pthread_create(&thread, NULL, Thread_Runner::tripHelper, thread_runner1);
     pthread_join(thread, NULL); //todo remove this
 }

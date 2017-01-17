@@ -145,7 +145,10 @@ int Tcp::rcvDataFrom(char *buffer, int size, int descriptorClient) {
     this->currentClientDescriptor = descriptorClient;
     this->reciveData(buffer, size);
 }
-
+/**
+ * accepting new client
+ * @return the client's socket Descriptor
+ */
 int Tcp::acceptClient() {
     //accept
     struct sockaddr_in client_sin;
@@ -158,7 +161,10 @@ int Tcp::acceptClient() {
     }
     return clientDescriptor;
 }
-
+/**
+ * setting the tcp's backlog
+ * @param i
+ */
 void Tcp::setBackLog(int i) {
     this->backLog = i;
 }

@@ -27,8 +27,6 @@ public:
      }*/
     Searchable **getSearchableByCoordinate(Point p);
 
-    void setBeforeBfs();
-
     int getSizeX() const;
 
     int getSizeY() const;
@@ -37,8 +35,6 @@ public:
 
     queue<Searchable **>* updateNeighbor(int x, int y, std::queue<Searchable **>* q,
                                          BfsInfoMap* visitMap);
-
-    bool checkVal(int x, int y);
 
 private:
     int sizeX;
