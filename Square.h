@@ -34,8 +34,6 @@ public:
 
     Point getPoint();
 
-
-
     Searchable *getFather();
 
     bool getBfsVisited();

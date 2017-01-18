@@ -5,9 +5,9 @@
 #ifndef EX3_TM_BFSVISITMAP_H
 #define EX3_TM_BFSVISITMAP_H
 
-#include <map>
-#include <queue>
+
 #include "Searchable.h"
+
 
 using namespace std;
 /**
@@ -18,17 +18,19 @@ using namespace std;
 class BfsInfoMap {
 private:
     bool** visitMap;
-    Searchable*** fathersMap;
+    Point** fathersMap;
     int xSize;
     int ySize;
+
 public:
     ~BfsInfoMap();
     BfsInfoMap(int sizeX, int sizeY);
     BfsInfoMap();
     bool isVisitedSearchable(Searchable* searchable);
-    Searchable* getFather(Searchable *current);
-    void setSearchableFather(Searchable* current,Searchable* father);
+    Point getFather(Point current);
+    void setSearchableFather(Point current,Point father);
     void setVisitedSearchable(Searchable* searchable);
+    void setStarstFather(Point p );
 };
 
 

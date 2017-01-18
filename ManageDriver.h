@@ -7,7 +7,7 @@
 
 
 #include "Driver.h"
-#include "Socket.h"
+#include "Tcp.h"
 
 /**
  * a class that runs the driver - the client
@@ -15,9 +15,10 @@
 class ManageDriver {
 private:
     Driver* d;
-    Socket* socket;
+    Tcp* socket;
+    void copyToList(std::list<Searchable*>* list ,std::list<Searchable*>*moveList);
 public:
-    ManageDriver(string s,Socket* soc);
+    ManageDriver(string s,Tcp* soc);
     void manage();
     void setTaxi();
     ~ManageDriver();

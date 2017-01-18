@@ -3,7 +3,6 @@
 #include <iosfwd>
 #include <iostream>
 #include <boost/serialization/base_object.hpp>
-#include "Validate_Interface.h"
 
 using namespace std;
 #ifndef EX1TM_POINT_H
@@ -12,7 +11,7 @@ using namespace std;
 /**
  * a cllas that represent a point on map
  */
-class Point: public Vallidate_Interface{
+class Point{
 
 private:
     int x;
@@ -22,7 +21,6 @@ public:
 
     template<class Archive>
     void serialize(Archive &ar, const unsigned int version) {
-        ar & boost::serialization::base_object<Vallidate_Interface>(*this);
         ar & x;
         ar & y;
     }

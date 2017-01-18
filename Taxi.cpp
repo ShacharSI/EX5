@@ -50,8 +50,7 @@ Taxi::Taxi(int id, Taxi::manufacturer mntrf, Taxi::color color,int taarif) {
     this->tarrif = taarif;
     this->clr = color;
     this->mnfctr = mntrf;
-    std::list<Searchable*>* l1;
-    this->routh = l1;
+    this->routh = NULL;
 
 }
 /**
@@ -86,7 +85,7 @@ void Taxi::addPassengers(vector<Passenger> psngrs) {
 }
 
 /**
- * 
+ *
  * get the taxi's passenger
  */
 vector<Passenger> Taxi::getPassengers() {
@@ -97,6 +96,9 @@ vector<Passenger> Taxi::getPassengers() {
  * set thr taxi's routh to the next location
  */
 void Taxi::setRouth(std::list < Searchable * >* routhToLocation) {
+    if(this->routh != NULL){
+        delete(this->routh);
+    }
     this->routh = routhToLocation;
 
 }

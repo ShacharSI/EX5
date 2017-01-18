@@ -2,9 +2,10 @@
 //#include <gtest/gtest.h>
 #include "Management.h"
 #include <stdlib.h>
-#include "easyloggingpp-8.91/easylogging++.h"
 #include <pthread.h>
-_INITIALIZE_EASYLOGGINGPP
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/iostreams/stream.hpp>
 
 void *checkFunc(void *sock) {
     Socket *s;
@@ -24,8 +25,7 @@ int main(int argc, char *argv[]) {
     if (argc < 2) {
         return 0;
     }
-
-    LINFO << "This is my first log " << "in main func ";
+    //LINFO << "This is my first log " << "in main func ";
     int portNum = atoi(argv[1]);
     Tcp* sock = new Tcp(true, portNum);
     //int i = pthread_create(&t1, NULL, checkFunc, (void *) sock);
@@ -34,7 +34,6 @@ int main(int argc, char *argv[]) {
     Management management(sock);
     management.getMap();
     management.manage();
-    LINFO << " This is my last log " << "in main func ";
+    //LINFO << " This is my last log " << "in main func ";
     return 0;
 }
-

@@ -4,8 +4,9 @@
 
 #include "Thread_Manage.h"
 #include <stdexcept>
+
 Thread_Manage *Thread_Manage::instance = NULL;
-//initializing the mutex
+//initializing the mutexes
 Mutex_Locker *Thread_Manage::instanceLocker = new Mutex_Locker();
 Mutex_Locker *Thread_Manage::threadInfoLocker = new Mutex_Locker();
 Mutex_Locker *Thread_Manage::threadMessagesLocker = new Mutex_Locker();
@@ -35,6 +36,15 @@ Thread_Manage *Thread_Manage::getInstance() {
     return instance;
 }
 /**
+ * add a queueMessage to the Thread_Manage singelton
+ */
+void Thread_Manage::addQueueMessage(int d, std::queue<string> *q) {
+    Thread_Manage::threadMessagesLocker->lock();
+    this->threadMasseges[d] = q;
+    Thread_Manage::threadMessagesLocker->unlock();
+}
+
+/**
  * add thread and Thread_Class to the thier map
  * @param t pthread_t
  * @param c Thread_Class
@@ -56,38 +66,49 @@ int Thread_Manage::getThreadsSocketDescriptor(pthread_t pt) {
     return descriptor;
 }
 /**
+ * adds one message to a match quee
+ */
+void Thread_Manage::addMessage(int d, string s) {
+    this->threadMasseges[d]->push(s);
+}
+
+/**
  * @return the list of the pthread
  */
-list <pthread_t*>* Thread_Manage::getThreadList() {
+list<pthread_t *> *Thread_Manage::getThreadList() {
     return threadList;
 }
 /**
  * add a thread to the list of the pthread
  * @param t pointer to pthread_t
  */
-void Thread_Manage::addThread(pthread_t* t) {
+void Thread_Manage::addThread(pthread_t *t) {
     Thread_Manage::threadInfoLocker->lock();
     this->threadList->push_back(t);
     Thread_Manage::threadInfoLocker->unlock();
 }
-
 /**
  * d-tor
  */
 Thread_Manage::~Thread_Manage() {
-     delete this->instanceLocker;
-     delete this->threadMessagesLocker;
-     delete this->threadInfoLocker;
-     delete this->threadListLocker;
-     delete this->descriptorsMapLocker;
+    delete this->instanceLocker;
+    delete this->threadMessagesLocker;
+    delete this->threadInfoLocker;
+    delete this->threadListLocker;
+    delete this->descriptorsMapLocker;
 
 
-    for (int i = 0; i <this->numDrivers ; ++i) {
-        delete(this->threadMasseges[i]);
+    for (int i = 0; i < this->numDrivers; ++i) {
+        delete this->threadMasseges[i];
     }
-    delete(threadMasseges);
-    this->threadInfo.clear();
-    //todo how to delete this???
+    delete threadMasseges;
+    std::map<pthread_t ,Thread_Class*>::iterator it;
+
+    std::map<pthread_t, Thread_Class *> mymap = this->threadInfo;
+    for (it = mymap.begin(); it != mymap.end(); ++it) {
+        delete it->second;
+    }
+
 }
 /**
  * pop one message from the driver's queueMessage
@@ -95,7 +116,7 @@ Thread_Manage::~Thread_Manage() {
  */
 void Thread_Manage::popMessage(int d) {
     Thread_Manage::threadMessagesLocker->lock();
-    this->threadMasseges[d ]->pop();
+    this->threadMasseges[d]->pop();
     Thread_Manage::threadMessagesLocker->unlock();
 }
 
@@ -104,12 +125,14 @@ void Thread_Manage::popMessage(int d) {
  * @return a queueMessage according to driverId
  */
 queue<string> *Thread_Manage::getThreadsQueue(int driverId) {
+    queue<string> **mymap = this->threadMasseges;
     if ((driverId < 0) || (driverId > this->numDrivers)) {
         throw invalid_argument("wrong coordinate");
     }
     return threadMasseges[driverId];
 
 }
+
 /**
  * set Initial MessagesQueues according to the numDrivers
  * @param numDrivers
@@ -139,6 +162,6 @@ int Thread_Manage::getNumDrivers() const {
  * set the list of the threads
  * @param threadList list of threads
  */
-void Thread_Manage::setThreadList(std::list <pthread_t*> *threadList) {
+void Thread_Manage::setThreadList(std::list<pthread_t *> *threadList) {
     this->threadList = threadList;
 }

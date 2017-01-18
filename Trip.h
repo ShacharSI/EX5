@@ -13,7 +13,7 @@
 /**
  * a class that represent a trip(recived as a request by the user-passenger)
  */
-class Trip: public Vallidate_Interface {
+class Trip{
 private:
     int id;
     int distance;

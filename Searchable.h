@@ -3,6 +3,7 @@
 #define EX1TM_SERCHABLE_H
 
 #include <list>
+#include <boost/serialization/assume_abstract.hpp>
 #include "Point.h"
 
 /**

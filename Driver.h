@@ -9,7 +9,7 @@
 /**
  * a class that represent a driver
  */
-class Driver : public Vallidate_Interface {
+class Driver{
 public:
 
     friend class boost::serialization::access;
@@ -17,7 +17,6 @@ public:
     template<class Archive>
     void serialize(Archive &ar, const unsigned int version)
     {
-        ar & boost::serialization::base_object<Vallidate_Interface>(*this);
         ar & id;
         ar & age;
         ar & martialStat;

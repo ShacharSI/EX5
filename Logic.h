@@ -12,7 +12,7 @@
  * takes the map size as a parameter and old a map
  * and the bfs class.
  */
-class Logic: public Vallidate_Interface {
+class Logic{
 
 public:
     Logic();

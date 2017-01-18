@@ -20,13 +20,13 @@ void Map::freeAll() {
     for (int i = 0; i < sizeX; ++i) {
         for (int j = 0; j < sizeY; ++j) {
             //delete colomn searchables
-            delete (this->map[i][j]);
+            delete this->map[i][j];
         }
         //delete the row pointer
-        delete (map[i]);
+        delete map[i];
     }
     //delete all map
-    delete (this->map);
+    delete this->map;
 
 }
 
@@ -53,12 +53,14 @@ int Map::getSizeX() const {
 int Map::getSizeY() const {
     return sizeY;
 }
-
+/**
+ * @return the actual map of serchables
+ */
 Searchable ***Map::getMap() {
     return this->map;
 }
 /**
- *
+ * upaate one step in the bfs algo
  * @param x the x coordinate of the current searchable
  * @param y the y coordinate of the current searchable
  * @param q the current bfs algo's queue
@@ -67,59 +69,68 @@ Searchable ***Map::getMap() {
  */
 queue<Searchable **> *Map::updateNeighbor(int x, int y,
                                           std::queue<Searchable **> *q, BfsInfoMap *infoMap) {
-    //gets the current searchable by its coordinates
     Searchable *curr = this->map[x][y];
-    //checks whether to insert the current's left neighbor
     if ((((x - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x - 1][y]))) {
         if (!this->map[x - 1][y]->isObstacle()) {
             Searchable **temp = &this->map[x - 1][y];
             infoMap->setVisitedSearchable(*temp);
-            infoMap->setSearchableFather(*temp, curr);
+            infoMap->setSearchableFather((*temp)->getPoint(), curr->getPoint());
+            Point p = infoMap->getFather((*temp)->getPoint());
             q->push(temp);
         }
     }
-    //checks whether to insert the current's right neighbor
-    if ((((x + 1) < this->sizeX)) && (!infoMap->isVisitedSearchable(this->map[x + 1][y]))) {
-        if (!this->map[x + 1][y]->isObstacle()) {
-            Searchable **temp = &this->map[x + 1][y];
-            infoMap->setVisitedSearchable(*temp);
-            infoMap->setSearchableFather(*temp, curr);
-            q->push(temp);
-        }
-    }
-    //checks whether to insert the current's upper neighbor
+
     if ((((y + 1) < this->sizeY)) && (!infoMap->isVisitedSearchable(this->map[x][y + 1]))) {
         if (!this->map[x][y + 1]->isObstacle()) {
             Searchable **temp = &this->map[x][y + 1];
             infoMap->setVisitedSearchable(*temp);
-            infoMap->setSearchableFather(*temp, curr);
+            infoMap->setSearchableFather((*temp)->getPoint(), curr->getPoint());
             q->push(temp);
         }
     }
-    //checks whether to insert the current's lower neighbor
+
+    if ((((x + 1) < this->sizeX)) && (!infoMap->isVisitedSearchable(this->map[x + 1][y]))) {
+        if (!this->map[x + 1][y]->isObstacle()) {
+            Searchable **temp = &this->map[x + 1][y];
+            infoMap->setVisitedSearchable(*temp);
+            infoMap->setSearchableFather((*temp)->getPoint(), curr->getPoint());
+            Point p = infoMap->getFather((*temp)->getPoint());
+            q->push(temp);
+        }
+    }
+
     if ((((y - 1) >= 0)) && (!infoMap->isVisitedSearchable(this->map[x][y - 1]))) {
         if (!this->map[x][y - 1]->isObstacle()) {
             Searchable **temp = &this->map[x][y - 1];
             infoMap->setVisitedSearchable(*temp);
-            infoMap->setSearchableFather(*temp, curr);
+            infoMap->setSearchableFather((*temp)->getPoint(), curr->getPoint());
             q->push(temp);
         }
     }
     return q;
 }
 /**
+ * set the info of each searcable to unused
+ */
+void Map::setBeforeBfs() {
+    for (int i = 0; i < sizeX; i++) {
+        for (int j = 0; j < sizeY; j++) {
+            this->map[i][j]->setBfsFather(NULL);
+            this->map[i][j]->setBfsVisited(false);
+        }
+    }
+}
+/**
  * @param p point of a searchable
  * @return the searchable in this point
  */
 Searchable **Map::getSearchableByCoordinate(Point p) {
-    //check p's validity
     if ((p.getY() < 0) || (p.getX() < 0)
         || (p.getX() > this->getSizeX())
         || (p.getY() > this->getSizeY())) {
         throw invalid_argument("wrong coordinate for point");
 
     }
-    //find and return the searchable
     int x = p.getX();
     int y = p.getY();
     return &this->map[x][y];

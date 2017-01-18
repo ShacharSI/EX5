@@ -9,7 +9,7 @@
 /**
  * a class that represent a taxi
  */
-class Taxi : public Vallidate_Interface {
+class Taxi{
 public:
     typedef enum {
         HONDA, SUBARO, TESLA, FIAT
@@ -22,11 +22,11 @@ public:
 
     template<class Archive>
     void serialize(Archive &ar, const unsigned int version) {
-        ar & boost::serialization::base_object<Vallidate_Interface>(*this);
         ar & carId;
         ar & mnfctr;
         ar & clr;
         ar & tarrif;
+        ar & routh;
         ar & location;
     }
 

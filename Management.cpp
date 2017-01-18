@@ -3,9 +3,8 @@
 #include "LuxuryTaxi.h"
 #include "Thread_Runner.h"
 #include "Thread_Manage.h"
-#include "easyloggingpp-8.91/easylogging++.h"
 #include <stdexcept>
-
+#include "easylogging++.h"
 //BOOST_CLASS_EXPORT_GUID(StandardTaxi, "StandardTaxi")
 
 /**
@@ -31,25 +30,25 @@ void Management::manage() {
     userChoice = atoi(c);
     //preform the mission
     while (userChoice != 7) {
-        LINFO << " this is main thread: " << " start of switch case with mission: " << userChoice;
+        //LINFO << " this is main thread: " << " start of switch case with mission: " << userChoice;
         cin.ignore();
         switch (userChoice) {
             //create driver
             case 1: {
-                LINFO << " this is main thread: " << " create threads ";
+                //LINFO << " this is main thread: " << " create threads ";
                 this->parseDriver();
                 break;
             }
                 //create trip and calculate bfs
             case 2: {
-                LINFO << " this is main thread: " << " create and calculate trip ";
+                //LINFO << " this is main thread: " << " create and calculate trip ";
                 getline(cin, userInput);
                 this->parseTrip(userInput);
                 break;
             }
                 //create taxi
             case 3: {
-                LINFO << " this is main thread: " << " create taxi ";
+                //LINFO << " this is main thread: " << " create taxi ";
                 getline(cin, userInput);
                 Taxi *taxi = this->parseTaxi(userInput);
                 taxi->setLocation(Point(0, 0));
@@ -61,59 +60,53 @@ void Management::manage() {
                 cin >> userInput;
                 c = userInput.c_str();
                 int id = atoi(c);
-                LINFO << " ask location for id : " << id;
+                //LINFO << " ask location for id : " << id;
                 this->parseLocation(id);
 
                 break;
             }
                 //move all taxi's
             case 9: {
-                LINFO << " this is main thread: " << " move all ";
-                LINFO << " this is main thread: " << " send all threads go ";
+                //LINFO << " this is main thread: " << " move all ";
+                //LINFO << " this is main thread: " << " send all threads go ";
                 this->taxiCenter->moveAll();
                 break;
             }
             default:
                 break;
         }
-        LINFO << " this is main thread: " << " get next mission in server ";
+        //LINFO << " this is main thread: " << " get next mission in server ";
         //get the next input
         cin >> usrChoiceStr;
         c = usrChoiceStr.c_str();
         userChoice = atoi(c);
     }
-    LINFO << " this is main thread: " << " closing program ";
+    //LINFO << " this is main thread: " << " closing program ";
     //close the program and delete all memory
     Thread_Manage *thraed_mannage = Thread_Manage::getInstance();
     queue<string> **mymap = thraed_mannage->getThreadMasseges();
     //iterate over the driver*
     for (int i = 0; i < thraed_mannage->getNumDrivers(); i++) {
-        LINFO << " sending driver no:    " << i << " End_Communication";
+        //LINFO << " sending driver no:    " << i << " End_Communication";
         mymap[i]->push("End_Communication");
     }
 
     long size = thraed_mannage->getThreadList()->size();
-    LINFO << " this is main thread: " << " son thread no: " << size;
+    //LINFO << " this is main thread: " << " son thread no: " << size;
     std::list<pthread_t *> *l = thraed_mannage->getThreadList();
     //while (1){};
     for (int i = 0; i < size; i++) {
         pthread_t *t = l->front();
-        LINFO << " this is main thread: " << " wait to thread no: " << t;
+        //LINFO << " this is main thread: " << " wait to thread no: " << t;
         pthread_join(*t, NULL);
         l->pop_front();
-    }
-    LINFO << " this is main thread: " << " delete all thread ";
-
-    for (int i = 0; i < size; i++) {
-        pthread_t *t = l->front();
-        l->pop_front();
-        LINFO << " this is main thread: " << " delete to thread no: " << t;
         delete t;
     }
-   // delete l; //todo not working
-    LINFO << " this is main thread: " << " finish with all threads";
-    delete (thraed_mannage);
-    delete (thread_runner1);
+    delete l;
+
+    //LINFO << " this is main thread: " << " finish with all threads";
+    delete thraed_mannage;
+    delete thread_runner1;
     return;
 }
 
@@ -194,7 +187,7 @@ void Management::parseDriver() {
     for (int j = 0; j < numOfDrivers; ++j) {
         pthread_t *t = new pthread_t;
         thread_manage->addThread(t);
-        LINFO << " this is main thread: " << " create threads no:" << t;
+        //LINFO << " this is main thread: " << " create threads no:" << t;
         int status = pthread_create(t, NULL, Thread_Runner::runHelper, thread_runner1);//
     }
 }
@@ -244,7 +237,7 @@ void Management::parseTrip(string s) {
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     thread_runner1->addTripToCalculate(trip);
     int status = pthread_create(&thread, NULL, Thread_Runner::tripHelper, thread_runner1);
-    pthread_join(thread, NULL); //todo remove this
+    pthread_join(thread, NULL);
 }
 
 
@@ -279,10 +272,10 @@ void Management::setLogicAndMap() {
 
     }
     this->getObstacles();
-    LINFO << " this is main thread: " << " creating map in size "
-          << lg.getSizeX() << " on " << lg.getSizeY();
+    //LINFO << " this is main thread: " << " creating map in size "
+    // << lg.getSizeX() << " on " << lg.getSizeY();
     this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"));
-    LINFO << " this is main thread: " << " finish creating";
+    //LINFO << " this is main thread: " << " finish creating";
 
 }
 

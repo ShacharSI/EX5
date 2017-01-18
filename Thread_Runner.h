@@ -42,6 +42,7 @@ private:
     TaxiCenter *taxiCenter;
     static Mutex_Locker* instanceLocker;
     static Mutex_Locker* tripsLocker;
+    static Mutex_Locker* tripsLocker;
     static Mutex_Locker* driverLocker;
 };
 

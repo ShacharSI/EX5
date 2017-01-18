@@ -16,7 +16,9 @@
 
 
 using namespace std;
-
+/**
+ * a singelton that holds every info that is needed for dealing with the thread
+ */
 class Thread_Manage {
 
 private:
@@ -44,6 +46,10 @@ public:
     void setInitialMessagesQueues(int numOfDrivers);
     queue<string>* getThreadsQueue(int t);
     void addThread(pthread_t* t);
+    //void addDriver(Driver* d,int sockDes);
+    void addQueueMessage(int t, std::queue<std::string>* q);
+    void addDriverAndPthread(pthread_t t, Driver* d);
+    void addMessage(int ,string s);
     void addThread(pthread_t t,Thread_Class* c);
     void popMessage(int d);
     int getThreadsSocketDescriptor(pthread_t pt);
