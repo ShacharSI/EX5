@@ -4,8 +4,14 @@
 #include "Thread_Runner.h"
 #include "Thread_Manage.h"
 #include <stdexcept>
+#include <boost/iostreams/device/array.hpp>
+#include <boost/iostreams/stream.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/iostreams/device/back_inserter.hpp>
+#include <boost/archive/binary_oarchive.hpp>
 #include "easylogging++.h"
 //BOOST_CLASS_EXPORT_GUID(StandardTaxi, "StandardTaxi")
+#define BUFFERSIZE 200000
 
 /**
  * the constructor
@@ -30,25 +36,25 @@ void Management::manage() {
     userChoice = atoi(c);
     //preform the mission
     while (userChoice != 7) {
-        //LINFO << " this is main thread: " << " start of switch case with mission: " << userChoice;
+        LINFO << " this is main thread: " << " start of switch case with mission: " << userChoice;
         cin.ignore();
         switch (userChoice) {
             //create driver
             case 1: {
-                //LINFO << " this is main thread: " << " create threads ";
+                LINFO << " this is main thread: " << " create threads ";
                 this->parseDriver();
                 break;
             }
                 //create trip and calculate bfs
             case 2: {
-                //LINFO << " this is main thread: " << " create and calculate trip ";
+                LINFO << " this is main thread: " << " create and calculate trip ";
                 getline(cin, userInput);
                 this->parseTrip(userInput);
                 break;
             }
                 //create taxi
             case 3: {
-                //LINFO << " this is main thread: " << " create taxi ";
+                LINFO << " this is main thread: " << " create taxi ";
                 getline(cin, userInput);
                 Taxi *taxi = this->parseTaxi(userInput);
                 taxi->setLocation(Point(0, 0));
@@ -60,51 +66,51 @@ void Management::manage() {
                 cin >> userInput;
                 c = userInput.c_str();
                 int id = atoi(c);
-                //LINFO << " ask location for id : " << id;
+                LINFO << " ask location for id : " << id;
                 this->parseLocation(id);
 
                 break;
             }
                 //move all taxi's
             case 9: {
-                //LINFO << " this is main thread: " << " move all ";
-                //LINFO << " this is main thread: " << " send all threads go ";
+                LINFO << " this is main thread: " << " move all ";
+                LINFO << " this is main thread: " << " send all threads go ";
                 this->taxiCenter->moveAll();
                 break;
             }
             default:
                 break;
         }
-        //LINFO << " this is main thread: " << " get next mission in server ";
+        LINFO << " this is main thread: " << " get next mission in server ";
         //get the next input
         cin >> usrChoiceStr;
         c = usrChoiceStr.c_str();
         userChoice = atoi(c);
     }
-    //LINFO << " this is main thread: " << " closing program ";
+    LINFO << " this is main thread: " << " closing program ";
     //close the program and delete all memory
     Thread_Manage *thraed_mannage = Thread_Manage::getInstance();
     queue<string> **mymap = thraed_mannage->getThreadMasseges();
     //iterate over the driver*
     for (int i = 0; i < thraed_mannage->getNumDrivers(); i++) {
-        //LINFO << " sending driver no:    " << i << " End_Communication";
+        LINFO << " sending driver no:    " << i << " End_Communication";
         mymap[i]->push("End_Communication");
     }
 
     long size = thraed_mannage->getThreadList()->size();
-    //LINFO << " this is main thread: " << " son thread no: " << size;
+    LINFO << " this is main thread: " << " son thread no: " << size;
     std::list<pthread_t *> *l = thraed_mannage->getThreadList();
     //while (1){};
     for (int i = 0; i < size; i++) {
         pthread_t *t = l->front();
-        //LINFO << " this is main thread: " << " wait to thread no: " << t;
+        LINFO << " this is main thread: " << " wait to thread no: " << t;
         pthread_join(*t, NULL);
         l->pop_front();
         delete t;
     }
     delete l;
 
-    //LINFO << " this is main thread: " << " finish with all threads";
+    LINFO << " this is main thread: " << " finish with all threads";
     delete thraed_mannage;
     delete thread_runner1;
     return;
@@ -184,10 +190,15 @@ void Management::parseDriver() {
     //a loop that gets the drivers and send taxi's
     std::list<pthread_t *> *list1 = new list<pthread_t *>;
     thread_manage->setThreadList(list1);
+    for(int j = 0; j < numOfDrivers; ++j){
+        Driver* d = this->getDriver();
+        thread_runner1->pushInitialDriver(d);
+        thread_runner1->pushNotActiveDriver(d);
+    }
     for (int j = 0; j < numOfDrivers; ++j) {
         pthread_t *t = new pthread_t;
         thread_manage->addThread(t);
-        //LINFO << " this is main thread: " << " create threads no:" << t;
+        LINFO << " this is main thread: " << " create threads no:" << t;
         int status = pthread_create(t, NULL, Thread_Runner::runHelper, thread_runner1);//
     }
 }
@@ -272,10 +283,10 @@ void Management::setLogicAndMap() {
 
     }
     this->getObstacles();
-    //LINFO << " this is main thread: " << " creating map in size "
+    LINFO << " this is main thread: " << " creating map in size ";
     // << lg.getSizeX() << " on " << lg.getSizeY();
     this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"));
-    //LINFO << " this is main thread: " << " finish creating";
+    LINFO << " this is main thread: " << " finish creating";
 
 }
 
@@ -296,6 +307,55 @@ vector<int> Management::getSizes() {
     return sizes;
 }
 
+/**
+ * connect with the client. gets a driver from him and send him taxi.
+ * @return the driver from the client
+ */
+Driver *Management::getDriver() {
+    LINFO << " this is thread no:    " << pthread_self() << " getting the driver from client";
+    Taxi *t = NULL;
+    Driver *d = NULL;
+    string serial_str;
+    char *buffer = (char *) malloc(BUFFERSIZE * sizeof(char));
+    Thread_Manage *thread_manage = Thread_Manage::getInstance();
+    int connectionDescriptor = this->socket->acceptClient();
+    LINFO << " this is thread no:    " << pthread_self() << "go sock descriptor";
+
+    //Thread_Class *threadClass = new Thread_Class(connectionDescriptor);
+    //thread_manage->addThread(pthread_self(), threadClass);
+    ssize_t n = this->socket->rcvDataFrom(buffer, BUFFERSIZE, connectionDescriptor);
+    if ((n == 8) || (n == 6)) {
+        perror("Error in receive");
+    }
+    LINFO << " this is thread no:    " << pthread_self() << " deserialize the received driver";
+    //getting the driver
+    boost::iostreams::basic_array_source<char> device(buffer, BUFFERSIZE);
+    boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
+    boost::archive::binary_iarchive ia(s2);
+    ia >> d;
+    LINFO << " this is thread no:    " << pthread_self() << " got a driver with id " << d->getId();
+    //attach a taxi to the driver here and send to client
+    t = this->taxiCenter->attachTaxiToDriver(d->getVehicle_id());
+    //set the driver's taxi
+    d->setTaxi(t);
+    thread_manage->addDriverDescriptor(d->getId(),connectionDescriptor);
+    LINFO << " this is thread no:    " << pthread_self() << " serialize the drivers taxi";
+    //serialize the taxi
+    boost::iostreams::back_insert_device<std::string> inserter(serial_str);
+    boost::iostreams::stream<boost::iostreams::back_insert_device<std::string> > s(inserter);
+    boost::archive::binary_oarchive oa(s);
+    oa << t;
+    LINFO << " this is thread no:    " << pthread_self() << " sending back taxi with id " << t->getCarId();
+    s.flush();
+    n = this->socket->sendDataTo(serial_str, serial_str.size(), connectionDescriptor);
+    if (n == 5) {
+        perror("Error in Sendto");
+    }
+    free(buffer);
+    LINFO << " this is thread no:    " << pthread_self() << " finish with getDriver func";
+    //return the driver for the thread here to manage
+    return d;
+}
 
 /**
  * the deconstructor

@@ -96,11 +96,7 @@ vector<Passenger> Taxi::getPassengers() {
  * set thr taxi's routh to the next location
  */
 void Taxi::setRouth(std::list < Searchable * >* routhToLocation) {
-    if(this->routh != NULL){
-        delete(this->routh);
-    }
     this->routh = routhToLocation;
-
 }
 
 /**

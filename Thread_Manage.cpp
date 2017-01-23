@@ -35,41 +35,16 @@ Thread_Manage *Thread_Manage::getInstance() {
     }
     return instance;
 }
-/**
- * add a queueMessage to the Thread_Manage singelton
- */
-void Thread_Manage::addQueueMessage(int d, std::queue<string> *q) {
-    Thread_Manage::threadMessagesLocker->lock();
-    this->threadMasseges[d] = q;
-    Thread_Manage::threadMessagesLocker->unlock();
-}
-
-/**
- * add thread and Thread_Class to the thier map
- * @param t pthread_t
- * @param c Thread_Class
- */
-void Thread_Manage::addThread(pthread_t t, Thread_Class *c) {
-    Thread_Manage::threadInfoLocker->lock();
-    this->threadInfo[t] = c;
-    Thread_Manage::threadInfoLocker->unlock();
-}
 
 /**
  * @param pt pthread_t
  * @return the Thread's Socket Descriptor
  */
-int Thread_Manage::getThreadsSocketDescriptor(pthread_t pt) {
+int Thread_Manage::getThreadsSocketDescriptor(int pt) {
     Thread_Manage::descriptorsMapLocker->lock();
-    int descriptor = threadInfo[pt]->getThreadsSocketDescriptor();
+    int descriptor = threadDes[pt];
     Thread_Manage::descriptorsMapLocker->unlock();
     return descriptor;
-}
-/**
- * adds one message to a match quee
- */
-void Thread_Manage::addMessage(int d, string s) {
-    this->threadMasseges[d]->push(s);
 }
 
 /**
@@ -102,12 +77,11 @@ Thread_Manage::~Thread_Manage() {
         delete this->threadMasseges[i];
     }
     delete threadMasseges;
-    std::map<pthread_t ,Thread_Class*>::iterator it;
 
-    std::map<pthread_t, Thread_Class *> mymap = this->threadInfo;
+    /*std::map<pthread_t, Thread_Class *> mymap = this->threadInfo;
     for (it = mymap.begin(); it != mymap.end(); ++it) {
         delete it->second;
-    }
+    }*/
 
 }
 /**
@@ -164,4 +138,8 @@ int Thread_Manage::getNumDrivers() const {
  */
 void Thread_Manage::setThreadList(std::list<pthread_t *> *threadList) {
     this->threadList = threadList;
+}
+
+void Thread_Manage::addDriverDescriptor(int id, int des) {
+    this->threadDes[id] = des;
 }

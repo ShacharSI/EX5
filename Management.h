@@ -29,6 +29,7 @@ public:
     void getMap();
     Management(Tcp* s);
     void manage();
+    Driver* getDriver();
     Taxi* parseTaxi(string s);
     void parseDriver();
     void parseTrip(string s);

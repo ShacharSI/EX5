@@ -6,12 +6,9 @@
 #include <boost/iostreams/device/back_inserter.hpp>
 #include <boost/archive/binary_oarchive.hpp>
 #include <boost/iostreams/stream.hpp>
+#include "easylogging++.h"
 
-void *checkFunc(void *sock) {
-    Socket *s;
-    s = (Socket *) sock;
-    s->initialize();
-}
+_INITIALIZE_EASYLOGGINGPP
 
 /**
  * the main function.
@@ -20,20 +17,18 @@ void *checkFunc(void *sock) {
  */
 int main(int argc, char *argv[]) {
     pthread_t t1;
-
     //get the port
     if (argc < 2) {
         return 0;
     }
-    //LINFO << "This is my first log " << "in main func ";
+    LINFO << "This is my first log " << "in main func ";
     int portNum = atoi(argv[1]);
     Tcp* sock = new Tcp(true, portNum);
-    //int i = pthread_create(&t1, NULL, checkFunc, (void *) sock);
     sock->initialize();
     //run the program
     Management management(sock);
     management.getMap();
     management.manage();
-    //LINFO << " This is my last log " << "in main func ";
+    LINFO << " This is my last log " << "in main func ";
     return 0;
 }

@@ -46,6 +46,7 @@ void ManageDriver::manage() {
     char *buffer = (char *) malloc(BUUFER_SIZE * sizeof(char));
     int n = 0;
     string serial_str2;
+    std::list<std::list<Searchable*>*> lists;
     //ask for trip - send the driver to confirm location
     string askTrip = "sendMeTrip";
     //send the driver
@@ -70,7 +71,7 @@ void ManageDriver::manage() {
         boost::iostreams::stream<boost::iostreams::basic_array_source<char> > s2(device);
         boost::archive::binary_iarchive ia(s2);
         ia >> *list;
-
+        lists.push_back(list);
         this->copyToList(list,moveList);
         //set the routh
         this->d->setRouth(list);
@@ -100,7 +101,6 @@ void ManageDriver::manage() {
         }
         //if we got the order to stop
         if ((strcmp(buffer, "End_Communication") == 0)) {
-            delete list;
             break;
         }
         //ask for next trip
@@ -116,7 +116,7 @@ void ManageDriver::manage() {
         if (n < 0) {
             perror("Error in receiving");
         }
-        delete list;
+
     };
     //release data
     while(!moveList->empty()){
@@ -125,6 +125,11 @@ void ManageDriver::manage() {
         delete temp;
     }
     delete moveList;
+    while(!lists.empty()){
+        std::list<Searchable*>* l = lists.front();
+        lists.pop_front();
+        delete l;
+    }
     free(buffer);
 }
 
