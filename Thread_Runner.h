@@ -28,6 +28,8 @@ public:
     void addTripToCalculate(Trip t);
     bool checkFirstDriver(Driver* d);
     void pushNotActiveDriver(Driver* d);
+    static Mutex_Locker* tripsLocker;
+    void pushBackTrip(Trip_Info* ti);
 private:
     Thread_Runner(TaxiCenter *c,Tcp* t){
         this->taxiCenter = c;
@@ -49,7 +51,6 @@ private:
     Tcp *tcpSock;
     TaxiCenter *taxiCenter;
     static Mutex_Locker* instanceLocker;
-    static Mutex_Locker* tripsLocker;
     static Mutex_Locker* printLocker;
 };
 
