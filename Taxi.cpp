@@ -123,7 +123,7 @@ Taxi::manufacturer Taxi::parseMnfctr(string s) {
             break;
 
     }
-    throw invalid_argument("wrong input");
+    return WRONGMANUFATURER;
 }
 
 /**
@@ -145,15 +145,16 @@ Taxi::color Taxi::parseColor(string s) {
             break;
 
     }
-    throw invalid_argument("wrong input");
+    return WRONGCOLOR;
 }
 
 /**
  * make sure that the taxi was created from valid input
  */
-void Taxi::validate() {
-
-    if(this->getCarId() < 0||(this->tarrif < 0)){
-        throw invalid_argument("wrong input");
+int Taxi::validate() {
+    if(this->getCarId() < 0||(this->tarrif < 0)||
+            (this->clr == WRONGCOLOR)||(this->mnfctr == WRONGMANUFATURER)){
+        return -1;
     }
+    return 0;
 }

@@ -42,7 +42,7 @@ public:
         ar & taarif;
         ar & time;
     }
-    void validate();
+    int validate();
     int getId();
     double getTaarif() ;
     int getDistance();

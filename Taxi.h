@@ -12,10 +12,10 @@
 class Taxi{
 public:
     typedef enum {
-        HONDA, SUBARO, TESLA, FIAT
+        HONDA, SUBARO, TESLA, FIAT,WRONGMANUFATURER
     } manufacturer;
     typedef enum {
-        RED, BLUE, GREEN, PINK, WHITE
+        RED, BLUE, GREEN, PINK, WHITE,WRONGCOLOR
     } color;
 
     friend class boost::serialization::access;
@@ -30,7 +30,7 @@ public:
         ar & location;
     }
 
-    void validate();
+    int validate();
 
     static manufacturer parseMnfctr(string s);
 

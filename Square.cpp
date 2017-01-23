@@ -66,3 +66,7 @@ bool Square::isObstacle() {
 void Square::setObstacle(bool b) {
     this->obstacle = b;
 }
+
+int Square::validate() {
+    return this->point.validate();
+}

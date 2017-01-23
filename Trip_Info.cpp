@@ -28,3 +28,10 @@ Trip_Info::Trip_Info(unsigned int time, list<Searchable *>* l) {
  */
 Trip_Info::~Trip_Info() {
 }
+
+int Trip_Info::validate() {
+    if((this->tripTime <0)||(this->routh->size() ==0)){
+        return -1;   //todo empty list possible?
+    }
+    return 0;
+}

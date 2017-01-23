@@ -135,3 +135,10 @@ Searchable **Map::getSearchableByCoordinate(Point p) {
     int y = p.getY();
     return &this->map[x][y];
 }
+
+int Map::validate() {
+    if((this->sizeX < 0)||(this->sizeY)){
+        return -1;
+    }
+    return 0;
+}

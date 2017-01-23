@@ -18,6 +18,7 @@ private:
 public:
     unsigned int getTripTime() ;
     ~Trip_Info();
+    int validate();
     list<Searchable *>* getRouth() ;
     Trip_Info(unsigned int time,list<Searchable*>* l);
 };

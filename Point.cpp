@@ -28,10 +28,11 @@ Point::~Point() {
 /**
  * make sure that the point was created from valid input
  */
-void Point::validate() {
+int Point::validate() {
     if ((this->x< 0)||(this->y <0)){
-        throw invalid_argument("wrong coordinate");
+        return -1;
     }
+    return 0;
 }
 
 /**

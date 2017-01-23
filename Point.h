@@ -25,7 +25,7 @@ public:
         ar & y;
     }
     Point(int x,int y);
-    void validate();
+    int validate();
     Point();
     ~Point();
     int getX();

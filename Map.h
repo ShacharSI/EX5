@@ -40,6 +40,7 @@ public:
 
     bool checkVal(int x, int y);
 
+    int validate();
 private:
     int sizeX;
     int sizeY;

@@ -33,11 +33,12 @@ Trip::Trip(int id, int starX,int starY,int enX, int enY,int psgNum, double tarri
 /**
  * checking that the trip' info is good and make sense
  */
-void Trip::validate() {
+int Trip::validate() {
     if((this->getId() < 0)||(this->getStartP().getX() < 0)||(this->getStartP().getY()<0) ||(this->passengersNum < 0)||
        (this->taarif <0)||(this->getEndP().getX() < 0)||(this->getEndP().getY() <0)){
-        throw invalid_argument("wrong trip data");
+        return -1;
     }
+    return 0;
 }
 /**
  * @return - the trip's distance

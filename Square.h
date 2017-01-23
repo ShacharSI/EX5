@@ -32,6 +32,8 @@ public:
 
     ~Square();
 
+    int validate();
+
     Point getPoint();
 
     Searchable *getFather();
