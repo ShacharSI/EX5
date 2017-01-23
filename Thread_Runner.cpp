@@ -89,8 +89,10 @@ void *Thread_Runner::run(void) {
         if (((!messageQueue->empty())
              && strcmp(messageQueue->front().c_str(), "GiveLocation") == 0)) {
             LINFO << " this is thread no:    " << pthread_self() << " print drivers location";
+            Thread_Runner::printLocker->lock();
             Point p = d->getLocation();
             cout << p;
+            Thread_Runner::printLocker->unlock();
             thread_manage->popMessage(d->getId());
         }
         // if we got go and there is no rout yet
@@ -173,8 +175,8 @@ void *Thread_Runner::run(void) {
                 LINFO << " this is thread no:    " << pthread_self() << " print drivers location";
                 Thread_Runner::printLocker->lock();
                 Point p = d->getLocation();
-                Thread_Runner::printLocker->unlock();
                 cout << p;
+                Thread_Runner::printLocker->unlock();
             }
             thread_manage->popMessage(d->getId());
             LINFO << " this is thread no:    " << pthread_self() << " wait for massage";
