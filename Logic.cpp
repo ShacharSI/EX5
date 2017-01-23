@@ -31,19 +31,22 @@ int Logic::setObstacle(int numObstacle) {
     //getting the obstacles
     string input;
     string streamCut;
+    int firstNum;
+    int secondNum;
+    char seperator;
     int vals[2] = {};
     cin.ignore();
     for (int j = 0; j < numObstacle; j++) {
-        getline(cin, input);
-        string::size_type position = input.find(",");
-        if((position == -1)||(position ==0)||(position == input.size())){
+        if(!cin >> firstNum >> seperator >> secondNum){
             return -1;
         }
-        vals[0] = atoi(input.substr(0, position).c_str());
-        vals[1] = atoi(input.substr(position + 1, input.size() - 1 - position).c_str());
-        Point p(vals[0], vals[1]);
+        if(seperator != ','){
+            return -1;
+        }
+        Point p(firstNum, secondNum);
         this->obstacle.push_back(p);
     }
+    return 0;
 }
 
 /**
