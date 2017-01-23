@@ -18,15 +18,16 @@ private:
     //unsigned int clock;
     Logic lg;
     TaxiCenter* taxiCenter;
-    void setLogicAndMap();
+    int setLogicAndMap();
     vector<int> getSizes();
     Tcp* socket;
+    Map* m;
     int serverPort;
 
 public:
     ~Management();
-    void getObstacles();
-    void getMap();
+    int getObstacles();
+    int getMap();
     Management(Tcp* s);
     void manage();
     Driver* getDriver();

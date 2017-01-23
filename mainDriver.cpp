@@ -16,6 +16,8 @@ int main(int argc, char* argv[]) {
     if(argc < 3 ){
         return 0;
     }
+    string in = "@";
+    int num = atoi(in.c_str());
     int portNum = atoi(argv[2]);
     Tcp* sock = new Tcp(false,portNum);
     int check = sock->initialize();

@@ -20,8 +20,8 @@ public:
     int getSizeX();
     int getSizeY();
     Map* createNewMap(string s);
-    void validate();
-    void setObstacle(int numObstacle);
+    int  validate();
+    int setObstacle(int numObstacle);
     list <Point> getObstacle();
 private:
     int sizeX;

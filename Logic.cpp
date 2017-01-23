@@ -27,7 +27,7 @@ Logic::Logic(vector<int> sizes) {
 /**
  * getting the obstacle list parsing it and creating a list of them
  */
-void Logic::setObstacle(int numObstacle) {
+int Logic::setObstacle(int numObstacle) {
     //getting the obstacles
     string input;
     string streamCut;
@@ -36,6 +36,9 @@ void Logic::setObstacle(int numObstacle) {
     for (int j = 0; j < numObstacle; j++) {
         getline(cin, input);
         string::size_type position = input.find(",");
+        if((position == -1)||(position ==0)||(position == input.size())){
+            return -1;
+        }
         vals[0] = atoi(input.substr(0, position).c_str());
         vals[1] = atoi(input.substr(position + 1, input.size() - 1 - position).c_str());
         Point p(vals[0], vals[1]);
@@ -47,10 +50,11 @@ void Logic::setObstacle(int numObstacle) {
  * implements the validation interface
  * checks that the is with correct arguments
  */
-void Logic::validate() {
+int Logic::validate() {
     if ((sizeX < 0) || (sizeY < 0)) {
-        throw invalid_argument("wrong size");
+        return -1;
     }
+    return 0;
 }
 
 /**

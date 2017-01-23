@@ -255,37 +255,48 @@ void Management::parseTrip(string s) {
 /**
  * getting the obstacles from the user
  */
-void Management::getObstacles() {
+int Management::getObstacles() {
     string input;
     cin >> input;
     const char *c = input.c_str();
     int numOfObstacle = atoi(c);
     if (numOfObstacle > 0) {
         this->lg.setObstacle(numOfObstacle);
+    } else{
+        return -1;
     }
 }
 
 /**
  * creating a map
  */
-void Management::getMap() {
+int Management::getMap() {
     this->setLogicAndMap();
 }
 
 /**
  * creating a map and putting it in the taxi center
  */
-void Management::setLogicAndMap() {
+int Management::setLogicAndMap() {
+    int checker =0;
     try {
         this->lg = Logic(getSizes());
-        lg.validate();
+        checker =  lg.validate();
     } catch (const std::invalid_argument &iaExc) {
 
     }
-    this->getObstacles();
+    if(checker == -1){
+        return -1;
+    }
+    checker = this->getObstacles();
     LINFO << " this is main thread: " << " creating map in size ";
     // << lg.getSizeX() << " on " << lg.getSizeY();
-    this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"));
+    if(checker == -1){
+        return -1;
+    }
+    Map* map1= this->lg.createNewMap("Searchable");
+    checker = map1->validate();
+    return checker;
     LINFO << " this is main thread: " << " finish creating";
 
 }

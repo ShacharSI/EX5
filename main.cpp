@@ -23,11 +23,15 @@ int main(int argc, char *argv[]) {
     }
     LINFO << "This is my first log " << "in main func ";
     int portNum = atoi(argv[1]);
-    Tcp* sock = new Tcp(true, portNum);
+    Tcp *sock = new Tcp(true, portNum);
     sock->initialize();
     //run the program
     Management management(sock);
-    management.getMap();
+
+    while (management.getMap() != 0) {
+
+    }
+    //this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"));
     management.manage();
     LINFO << " This is my last log " << "in main func ";
     return 0;
