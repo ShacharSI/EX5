@@ -26,7 +26,7 @@ Management::Management(Tcp *s) {
  * takes the user's input and doing the matching mission
  */
 void Management::manage() {
-
+    this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"));
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     string userInput;
     string usrChoiceStr;
@@ -250,7 +250,7 @@ void Management::parseTrip(string s) {
     unsigned int trip_Time = trip.getTime();
     LINFO << " this is thread no:    " << pthread_self() << " got a trip for time " << trip_Time;
     Trip_Info *trip_info = new Trip_Info(trip_Time, thread);
-    thread_runner1->pushBackTrip(trip_info);
+    thread_runner1->addTripInfo(trip_info);
     int status = pthread_create(thread, NULL, Thread_Runner::tripHelper, thread_runner1);
     pthread_join(*thread, NULL);
 }

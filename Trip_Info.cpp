@@ -39,3 +39,15 @@ int Trip_Info::validate() {
     }
     return 0;
 }
+
+void Trip_Info::setRoute(std::list<Searchable *> *route) {
+    this->routh = route;
+}
+
+pthread_t *Trip_Info::getPthread() {
+    return this->pt;
+}
+
+Point Trip_Info::getStart() {
+    return this->getRouth()->front()->getPoint();
+}

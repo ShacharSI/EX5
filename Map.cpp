@@ -142,7 +142,8 @@ int Map::validate() {
     if((this->sizeX < 0)||(this->sizeY < 0)) {
         retVal = -1;
     }
-    while (!this->obstacles.empty()){
+    long size = this->obstacles.size();
+    for (int i = 0;i<size;i++){
         Point p = this->obstacles.front();
         if((p.getX() > this->getSizeX()) ||(p.getX() < 0)
            ||(p.getY() >this->getSizeY())||(p.getY() <0)) {

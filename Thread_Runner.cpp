@@ -16,6 +16,7 @@
 #include <boost/serialization/list.hpp>
 #include <boost/serialization/export.hpp>
 #include "easylogging++.h"
+
 BOOST_CLASS_EXPORT_GUID(StandardTaxi, "StandardTaxi")
 BOOST_CLASS_EXPORT_GUID(LuxuryTaxi, "lux_taxi")
 BOOST_CLASS_EXPORT_GUID(Taxi, "taxi")
@@ -30,6 +31,7 @@ Mutex_Locker *Thread_Runner::instanceLocker = new Mutex_Locker();
 Mutex_Locker *Thread_Runner::printLocker = new Mutex_Locker();
 Mutex_Locker *Thread_Runner::tripsLocker = new Mutex_Locker();
 Mutex_Locker *Thread_Runner::driverLocker = new Mutex_Locker();
+Mutex_Locker *Thread_Runner::tripsCalLocker = new Mutex_Locker();
 bool Thread_Runner::created = false;
 
 bool Thread_Runner::Occupy() {
@@ -39,6 +41,7 @@ bool Thread_Runner::Occupy() {
     }
     return false;
 }
+
 /**
  * @return an instance of the class
  */
@@ -53,6 +56,7 @@ Thread_Runner *Thread_Runner::getInstance(TaxiCenter *c, Tcp *t) {
     }
     return instance;
 }
+
 /**
  * runs one thread. deal with communication with one client
  */
@@ -78,9 +82,9 @@ void *Thread_Runner::run(void) {
     //hold the thread till accepting new message
     LINFO << " this is thread no:    " << pthread_self() << " wait for massage";
     while (messageQueue->empty()) {};
-    std::list<std::list<Searchable*>*> lists;
+    std::list<std::list<Searchable *> *> lists;
     LINFO << " this is thread no:    " << pthread_self() << " getting rout";
-    list = this->checkTrips(d,time);
+    list = this->checkTrips(d, time);
 
     LINFO << " this is thread no:    " << pthread_self() << " getting in the main loop that manage the driver";
     //running the driver until we got 7 from server
@@ -164,7 +168,7 @@ void *Thread_Runner::run(void) {
                     }
                 }
                 //todo add mutex
-                if(d->getTaxi()->getRouth()->size() == 0){
+                if (d->getTaxi()->getRouth()->size() == 0) {
                     this->pushNotActiveDriver(d);
                 }
             }
@@ -195,7 +199,7 @@ void *Thread_Runner::run(void) {
         LINFO << " this is thread no:    " << pthread_self() << " wait for next massage";
         while (messageQueue->empty());
         LINFO << " this is thread no:    " << pthread_self() << " getting rout";
-        list = this->checkTrips(d,time);
+        list = this->checkTrips(d, time);
     }
 
     LINFO << " this is thread no:    " << pthread_self() << " sending the client end communication";
@@ -210,24 +214,26 @@ void *Thread_Runner::run(void) {
     }
     thread_manage->popMessage(d->getId());
     free(buffer);
-    while(!lists.empty()){
-        std::list<Searchable*>* l = lists.front();
+    while (!lists.empty()) {
+        std::list<Searchable *> *l = lists.front();
         lists.pop_front();
         delete l;
     }
     delete d;
 
 }
+
 /**
  * gets a driver from the initial list of drivers
  * @return the driver from the client
  */
 Driver *Thread_Runner::getDriver() {
     //todo add mutex
-    Driver * temp = this->initialList->front();
+    Driver *temp = this->initialList->front();
     this->initialList->pop_front();
     return temp;
 }
+
 /**
  * creates a thread for bfs calculation
  * add the result to the thread_manage
@@ -235,13 +241,13 @@ Driver *Thread_Runner::getDriver() {
 void *Thread_Runner::getTrip(void) {
     LINFO << " this is thread no:    " << pthread_self() << " calculating bfs";
     Trip trip;
-    Thread_Runner::tripsLocker->lock();
+    Thread_Runner::tripsCalLocker->lock();
     if (this->tripsToCalculate.size() == 0) {
         pthread_exit(NULL);
     }
     trip = this->tripsToCalculate.front();
     this->tripsToCalculate.pop();
-    Thread_Runner::tripsLocker->unlock();
+    Thread_Runner::tripsCalLocker->unlock();
     Bfs bfs;
     std::list<Searchable *> *list;
 
@@ -257,8 +263,8 @@ void *Thread_Runner::getTrip(void) {
     Thread_Runner::tripsLocker->lock();
     unsigned int trip_Time = trip.getTime();
     LINFO << " this is thread no:    " << pthread_self() << " got a trip for time " << trip_Time;
-    Trip_Info *trip_info = new Trip_Info(trip_Time, list);
-    this->trips.push_back(trip_info);
+    Trip_Info *trip_info = getTripInfo(pthread_self());
+    trip_info->setRoute(list);
     Thread_Runner::tripsLocker->unlock();
     LINFO << " this is thread no:    " << pthread_self() << " finishing !";
     return 0;
@@ -269,40 +275,33 @@ void *Thread_Runner::getTrip(void) {
  * and than checks if it fits to the driver of the specific thread
  * @return the route of the bfs
  */
-std::list<Searchable *> *Thread_Runner::checkTrips(Driver *d,int time) {
+std::list<Searchable *> *Thread_Runner::checkTrips(Driver *d, int time) {
     std::list<Searchable *> *list = NULL;
-    Thread_Runner::tripsLocker->lock();
-    long size = this->trips.size();
-    Thread_Runner::tripsLocker->unlock();
     int trip_Time;
     Trip_Info *trip_info;
     //checking if a trip's time is arrived
     Thread_Runner::tripsLocker->lock();
-    for (int i = 0; i < size; i++) {
-        trip_info = this->trips.front();
-        trip_Time = trip_info->getTripTime();
-        //checking if a trip's start location is equals to the taxi's location
-        if (trip_Time == time) {
-            if (d->getLocation().equals(trip_info->getRouth()->front()->getPoint())) {
-                if(this->checkFirstDriver(d)) {
-                    list = trip_info->getRouth();
-                    this->trips.pop_front();
-                    delete trip_info;
-                    Thread_Runner::tripsLocker->unlock();
-                    return list;
-                } else{
-                    Thread_Runner::tripsLocker->unlock();
-                    return NULL;
-                }
+    trip_info = this->getTripInfo(pthread_self());
+    trip_Time = trip_info->getTripTime();
+    //checking if a trip's start location is equals to the taxi's location
+    if (trip_Time == time) {
+        if (d->getLocation().equals(trip_info->getStart())) {
+            if (this->checkFirstDriver(d)) {
+                list = trip_info->getRouth();
+                deleteTripInfo(trip_info);
+                Thread_Runner::tripsLocker->unlock();
+                return list;
+            } else {
+                Thread_Runner::tripsLocker->unlock();
+                return NULL;
             }
         }
-        this->trips.pop_front();
-        this->trips.push_back(trip_info);
     }
     Thread_Runner::tripsLocker->unlock();
     //return the route of the trip that is time arrived
     return list;
 }
+
 /**
  * static function that runs the run function
  */
@@ -310,6 +309,7 @@ std::list<Searchable *> *Thread_Runner::checkTrips(Driver *d,int time) {
 void *Thread_Runner::runHelper(void *v) {
     return ((Thread_Runner *) v)->run();
 }
+
 /**
  * static function that runs the getTrip function
  */
@@ -317,6 +317,7 @@ void *Thread_Runner::runHelper(void *v) {
 void *Thread_Runner::tripHelper(void *v) {
     return ((Thread_Runner *) v)->getTrip();
 }
+
 /**
  * add Trip To the queue for future calculation
  * @param t a trip
@@ -325,6 +326,7 @@ void *Thread_Runner::tripHelper(void *v) {
 void Thread_Runner::addTripToCalculate(Trip t) {
     this->tripsToCalculate.push(t);
 }
+
 /**
  * d-tor
  */
@@ -343,6 +345,7 @@ Thread_Runner::~Thread_Runner() {
         delete temp;
     }
 }
+
 /**
  * adds driver to the not-Active Drivers list
  * @param d
@@ -350,20 +353,21 @@ Thread_Runner::~Thread_Runner() {
 void Thread_Runner::pushNotActiveDriver(Driver *d) {
     this->notActiveDrivers->push_back(d);
 }
+
 /**
  * check whether the driver is the first driver that arrived to this location
  */
 bool Thread_Runner::checkFirstDriver(Driver *d) {
-    std::list<Driver*> l;
+    std::list<Driver *> l;
     bool returnBool = false;
     long size = this->notActiveDrivers->size();
-    for (int i = 0; i < size ; ++i) {
-        Driver* checkDriver = this->notActiveDrivers->front();
-        if((checkDriver->getLocation().equals(d->getLocation()))
-           &&(checkDriver->getId() != d->getId())){
+    for (int i = 0; i < size; ++i) {
+        Driver *checkDriver = this->notActiveDrivers->front();
+        if ((checkDriver->getLocation().equals(d->getLocation()))
+            && (checkDriver->getId() != d->getId())) {
             break;
         }
-        if(checkDriver->getId() == d->getId()) {
+        if (checkDriver->getId() == d->getId()) {
             returnBool = true;
             this->notActiveDrivers->pop_front();
             break;
@@ -371,13 +375,14 @@ bool Thread_Runner::checkFirstDriver(Driver *d) {
         this->notActiveDrivers->pop_front();
         l.push_back(d);
     }
-    while (!l.empty()){
-        Driver* d = l.back();
-        this->notActiveDrivers->push_front(d);
+    while (!l.empty()) {
+        Driver *d1 = l.back();
+        this->notActiveDrivers->push_front(d1);
         l.pop_back();
     }
     return returnBool;
 }
+
 /**
  * add one driver to the initial list of drivers
  */
@@ -385,8 +390,55 @@ void Thread_Runner::pushInitialDriver(Driver *d) {
     this->initialList->push_back(d);
 }
 
-void Thread_Runner::pushBackTrip(Trip_Info* ti) {
+/**
+ * add Trip_info object to the singelton's info
+ * @param ti a Trip_info object
+ */
+void Thread_Runner::addTripInfo(Trip_Info *ti) {
     Thread_Runner::tripsLocker->lock();
     this->trips.push_back(ti);
     Thread_Runner::tripsLocker->unlock();
+}
+
+Trip_Info *Thread_Runner::getTripInfo(pthread_t t) {
+    std::list<Trip_Info *> l;
+    Trip_Info *ti;
+    long size = this->trips.size();
+    for (int i = 0; i < size; ++i) {
+        Trip_Info *temp = this->trips.front();
+        if (*(temp->getPthread()) == t) {
+            ti = this->trips.front();
+            break;
+        }
+        this->trips.pop_front();
+        l.push_back(ti);
+    }
+    while (!l.empty()) {
+        Trip_Info *ti2 = l.back();
+        this->trips.push_front(ti2);
+        l.pop_back();
+    }
+    return ti;
+}
+
+void Thread_Runner::deleteTripInfo(Trip_Info *ti) {
+    std::list<Trip_Info *> l;
+    long size = this->trips.size();
+    Trip_Info *temp = NULL;
+    for (int i = 0; i < size; ++i) {
+        temp = this->trips.front();
+        if (*(temp->getPthread()) == *(ti->getPthread())) {
+            break;
+        }
+        this->trips.pop_front();
+        l.push_back(ti);
+    }
+    while (!l.empty()) {
+        Trip_Info *ti2 = l.back();
+        this->trips.push_front(ti2);
+        l.pop_back();
+    }
+    if (temp) {
+        delete temp;
+    }
 }

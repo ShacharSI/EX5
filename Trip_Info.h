@@ -22,6 +22,9 @@ public:
     int validate();
     list<Searchable *>* getRouth() ;
     Trip_Info(unsigned int time, pthread_t* pt);
+    void setRoute(std::list<Searchable *> *route);
+    pthread_t* getPthread();
+    Point getStart();
 };
 
 
