@@ -384,3 +384,9 @@ bool Thread_Runner::checkFirstDriver(Driver *d) {
 void Thread_Runner::pushInitialDriver(Driver *d) {
     this->initialList->push_back(d);
 }
+
+void Thread_Runner::pushBackTrip(Trip_Info* ti) {
+    Thread_Runner::tripsLocker->lock();
+    this->trips.push_back(ti);
+    Thread_Runner::tripsLocker->unlock();
+}

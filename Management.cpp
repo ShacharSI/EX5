@@ -244,11 +244,15 @@ void Management::parseTrip(string s) {
     } catch (const std::invalid_argument &iaExc) {
 
     }
-    pthread_t thread;
+    pthread_t* thread = new pthread_t;
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     thread_runner1->addTripToCalculate(trip);
-    int status = pthread_create(&thread, NULL, Thread_Runner::tripHelper, thread_runner1);
-    pthread_join(thread, NULL);
+    unsigned int trip_Time = trip.getTime();
+    LINFO << " this is thread no:    " << pthread_self() << " got a trip for time " << trip_Time;
+    Trip_Info *trip_info = new Trip_Info(trip_Time, thread);
+    thread_runner1->pushBackTrip(trip_info);
+    int status = pthread_create(thread, NULL, Thread_Runner::tripHelper, thread_runner1);
+    pthread_join(*thread, NULL);
 }
 
 

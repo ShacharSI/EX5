@@ -14,13 +14,14 @@ class Trip_Info {
 
 private:
     unsigned int tripTime;
+    pthread_t* pt;
     list<Searchable*>* routh;
 public:
     unsigned int getTripTime() ;
     ~Trip_Info();
     int validate();
     list<Searchable *>* getRouth() ;
-    Trip_Info(unsigned int time,list<Searchable*>* l);
+    Trip_Info(unsigned int time, pthread_t* pt);
 };
 
 
