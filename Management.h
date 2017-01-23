@@ -21,7 +21,11 @@ private:
     int setLogicAndMap();
     vector<int> getSizes();
     Tcp* socket;
-    Map* m;
+    Map* m = NULL;
+public:
+    Map *getM() const;
+
+private:
     int serverPort;
 
 public:

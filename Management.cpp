@@ -190,8 +190,8 @@ void Management::parseDriver() {
     //a loop that gets the drivers and send taxi's
     std::list<pthread_t *> *list1 = new list<pthread_t *>;
     thread_manage->setThreadList(list1);
-    for(int j = 0; j < numOfDrivers; ++j){
-        Driver* d = this->getDriver();
+    for (int j = 0; j < numOfDrivers; ++j) {
+        Driver *d = this->getDriver();
         thread_runner1->pushInitialDriver(d);
         thread_runner1->pushNotActiveDriver(d);
     }
@@ -244,7 +244,7 @@ void Management::parseTrip(string s) {
     } catch (const std::invalid_argument &iaExc) {
 
     }
-    pthread_t* thread = new pthread_t;
+    pthread_t *thread = new pthread_t;
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
     thread_runner1->addTripToCalculate(trip);
     unsigned int trip_Time = trip.getTime();
@@ -260,45 +260,49 @@ void Management::parseTrip(string s) {
  * getting the obstacles from the user
  */
 int Management::getObstacles() {
-    string input;
-    cin >> input;
-    const char *c = input.c_str();
-    int numOfObstacle = atoi(c);
-    if (numOfObstacle > 0) {
-        this->lg.setObstacle(numOfObstacle);
-    } else{
-        return -1;
+    int numOfObstacle;
+    int checker = 0;
+    if (cin >> numOfObstacle) {
+        if (numOfObstacle >= 0) {
+            checker = this->lg.setObstacle(numOfObstacle);
+        } else {
+            checker = -1;
+        }
+    } else {
+        checker = -1;
     }
+
+    return checker;
+
 }
 
 /**
  * creating a map
  */
 int Management::getMap() {
-    this->setLogicAndMap();
+    int check = this->setLogicAndMap();
+    return check;
 }
 
 /**
  * creating a map and putting it in the taxi center
  */
 int Management::setLogicAndMap() {
-    int checker =0;
-    try {
-        this->lg = Logic(getSizes());
-        checker =  lg.validate();
-    } catch (const std::invalid_argument &iaExc) {
+    int checker = 0;
 
-    }
-    if(checker == -1){
+    this->lg = Logic(getSizes());
+    checker = lg.validate();
+
+    if (checker == -1) {
         return -1;
     }
     checker = this->getObstacles();
     LINFO << " this is main thread: " << " creating map in size ";
     // << lg.getSizeX() << " on " << lg.getSizeY();
-    if(checker == -1){
+    if (checker == -1) {
         return -1;
     }
-    Map* map1= this->lg.createNewMap("Searchable");
+    Map *map1 = this->lg.createNewMap("Square");
     checker = map1->validate();
     return checker;
     LINFO << " this is main thread: " << " finish creating";
@@ -309,15 +313,29 @@ int Management::setLogicAndMap() {
  * @return - a vector with the map sizes given by the user
  */
 vector<int> Management::getSizes() {
-    string input;
-    getline(cin, input);
-    string streamCut;
-    stringstream tempStr(input);
     vector<int> sizes;
-    while (std::getline(tempStr, streamCut, ' ')) {
-        const char *c = streamCut.c_str();
-        sizes.push_back(atoi(c));
+    int firstNum;
+    int secondNum;
+    //char seperator;
+    //cin.ignore();
+
+    if (cin >> firstNum) {
+        sizes.push_back(firstNum);
+    }else{
+        cin.clear();
+        cin.ignore();
     }
+
+
+    if (cin >> secondNum) {
+        sizes.push_back(secondNum);
+    }else{
+        cin.clear();
+        cin.ignore();
+    }
+
+
+
 
     return sizes;
 }
@@ -353,7 +371,7 @@ Driver *Management::getDriver() {
     t = this->taxiCenter->attachTaxiToDriver(d->getVehicle_id());
     //set the driver's taxi
     d->setTaxi(t);
-    thread_manage->addDriverDescriptor(d->getId(),connectionDescriptor);
+    thread_manage->addDriverDescriptor(d->getId(), connectionDescriptor);
     LINFO << " this is thread no:    " << pthread_self() << " serialize the drivers taxi";
     //serialize the taxi
     boost::iostreams::back_insert_device<std::string> inserter(serial_str);
@@ -380,4 +398,8 @@ Management::~Management() {
         delete this->taxiCenter;
     }
     delete this->socket;
+}
+
+Map *Management::getM() const {
+    return m;
 }

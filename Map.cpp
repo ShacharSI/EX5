@@ -139,7 +139,7 @@ Searchable **Map::getSearchableByCoordinate(Point p) {
 
 int Map::validate() {
     int retVal=0;
-    if((this->sizeX < 0)||(this->sizeY)) {
+    if((this->sizeX < 0)||(this->sizeY < 0)) {
         retVal = -1;
     }
     while (!this->obstacles.empty()){

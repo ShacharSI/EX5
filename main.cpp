@@ -10,6 +10,7 @@
 
 _INITIALIZE_EASYLOGGINGPP
 
+
 /**
  * the main function.
  * run the server
@@ -29,7 +30,9 @@ int main(int argc, char *argv[]) {
     Management management(sock);
 
     while (management.getMap() != 0) {
-
+        if (management.getM() != NULL) {
+            delete management.getM();
+        }
     }
     //this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"));
     management.manage();
