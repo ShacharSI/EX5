@@ -98,10 +98,13 @@ Taxi *Driver::getTaxi() const {
 /**
  * make shure that the drivers info are logical ang correct
  */
-void Driver::validate() {
-    if ((this->getAge() < 0) || (this->getExpYears() < 0) || (this->getId() < 0)) {
-        throw invalid_argument(" wrong driver input");
+int Driver::validate() {
+    if ((this->getAge() < 0) || (this->getExpYears() < 0) ||
+        (this->getId() < 0) || (this->martialStat == WRONGSTATUS)
+        || (this->getVehicle_id() < 0)) {
+        return -1;
     }
+    return 0;
 }
 
 /**
@@ -144,6 +147,7 @@ Driver::martialStatus Driver::parseMartialStatus(string martialStatus) {
         default:
             break;
     }
+    return WRONGSTATUS;
 }
 
 
@@ -175,7 +179,7 @@ void Driver::inactivate(std::list<Driver *> *inActDrivers, list<Driver *> *actDr
 /**
  * @param list - set the routh of the driver
  */
-void Driver::setRouth(std::list<Searchable *>* list) {
+void Driver::setRouth(std::list<Searchable *> *list) {
     this->getTaxi()->setRouth(list);
 }
 

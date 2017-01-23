@@ -26,7 +26,7 @@ public:
     }
     void setSocket(Socket* socket);
     typedef enum {
-        SINGLE, MARRIED, DIVORCED, WIDOWED
+        SINGLE, MARRIED, DIVORCED, WIDOWED,WRONGSTATUS
     } martialStatus;
 
     Driver(int idNum, int ag, martialStatus martialStatus, int expY, int vehicle_id);
@@ -55,7 +55,7 @@ public:
 
     void setRouth(std::list<Searchable *>* list);
 
-    void validate();
+    int validate();
 
     int getVehicle_id();
 

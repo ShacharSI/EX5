@@ -18,7 +18,7 @@ public:
     ~Map();
 
 
-    Map(int sizeX, int sizeY, Searchable ***map);
+    Map(int sizeX, int sizeY, Searchable ***map,list<Point> obst);
 
     void freeAll();
 
@@ -45,7 +45,7 @@ private:
     int sizeX;
     int sizeY;
     Searchable ***map;
-    list<Searchable*> l;
+    list<Point> obstacles;
 };
 
 

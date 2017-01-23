@@ -10,7 +10,7 @@ Map *MapFactory::createMapSearchable(string s, int sizeX, int sizeY,
     //if the string is "Square" return a map of squares
     if (s.compare("Square") == 0) {
         Searchable ***grid = createMapSquare(sizeX, sizeY, obatacle);
-        return new Map(sizeX, sizeY, grid);
+        return new Map(sizeX, sizeY, grid,obatacle);
     }
 }
 
@@ -53,12 +53,7 @@ Searchable ***MapFactory::createMapSquare(int sizeX, int sizeY, list <Point> oba
         }
     }
 
-    int numObstacles = obatacle.size();
-    for (int i = 0; i < numObstacles; i++) {
-        Point p = obatacle.front();
-        map[p.getX()][p.getY()]->setObstacle(true);
-        obatacle.pop_front();
-    }
+
     return map;
 }
 

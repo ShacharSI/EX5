@@ -33,10 +33,11 @@ void Map::freeAll() {
 /**
  * c-tor of the map
  */
-Map::Map(int x, int y, Searchable ***m) {
+Map::Map(int x, int y, Searchable ***m,list<Point> obst) {
     this->sizeX = x;
     this->sizeY = y;
     this->map = m;
+    this->obstacles = obst;
     //create the map
 }
 
@@ -137,8 +138,28 @@ Searchable **Map::getSearchableByCoordinate(Point p) {
 }
 
 int Map::validate() {
-    if((this->sizeX < 0)||(this->sizeY)){
-        return -1;
+    int retVal=0;
+    if((this->sizeX < 0)||(this->sizeY)) {
+        retVal = -1;
     }
-    return 0;
+    while (!this->obstacles.empty()){
+        Point p = this->obstacles.front();
+        if((p.getX() > this->getSizeX()) ||(p.getX() < 0)
+           ||(p.getY() >this->getSizeY())||(p.getY() <0)) {
+            retVal = -1;
+            break;
+        }
+        this->obstacles.pop_front();
+        this->obstacles.push_back(p);
+    }
+
+    if(retVal == 0){
+        int numObstacles = obstacles.size();
+        for (int i = 0; i < numObstacles; i++) {
+            Point p = obstacles.front();
+            map[p.getX()][p.getY()]->setObstacle(true);
+            obstacles.pop_front();
+        }
+    }
+    return retVal;
 }
