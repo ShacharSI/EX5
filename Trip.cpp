@@ -35,7 +35,7 @@ Trip::Trip(int id, int starX,int starY,int enX, int enY,int psgNum, double tarri
  */
 int Trip::validate() {
     if((this->getId() < 0)||(this->getStartP().getX() < 0)||(this->getStartP().getY()<0) ||(this->passengersNum < 0)||
-       (this->taarif <0)||(this->getEndP().getX() < 0)||(this->getEndP().getY() <0)){
+       (this->taarif <0)||(this->getEndP().getX() < 0)||(this->getEndP().getY() <0)||(this->time<=0)){
         return -1;
     }
     return 0;

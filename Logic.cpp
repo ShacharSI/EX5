@@ -2,6 +2,7 @@
 #include "Logic.h"
 #include <stdlib.h>
 #include <stdexcept>
+#include <limits>
 
 
 /**
@@ -38,8 +39,8 @@ int Logic::setObstacle(int numObstacle) {
     int firstNum;
     int secondNum;
     char seperator;
-    int vals[2] = {};
-    cin.ignore();
+
+    //cin.ignore();
     for (int j = 0; j < numObstacle; j++) {
         if(cin >> firstNum >> seperator >> secondNum){
             if(seperator != ','){
@@ -47,7 +48,7 @@ int Logic::setObstacle(int numObstacle) {
             }
         } else{
             cin.clear();
-            cin.ignore(); //todo need this??
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); //todo need this??
             return -1;
         }
 

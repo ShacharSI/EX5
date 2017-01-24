@@ -27,7 +27,8 @@ public:
 
 private:
     int serverPort;
-
+     int getUserChoise();
+    int parseNumOfDrivers();
 public:
     ~Management();
     int getObstacles();
@@ -37,7 +38,7 @@ public:
     Driver* getDriver();
     Taxi* parseTaxi(string s);
     void parseDriver();
-    void parseTrip(string s);
+    void parseTrip();
     void parseLocation(int id);
 };
 
