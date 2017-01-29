@@ -28,9 +28,6 @@ int main(int argc, char *argv[]) {
     sock->initialize();
     //run the program
     Management management(sock);
-
-    while (management.getMap() != 0) {
-    }
     //this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"));
     management.manage();
     LINFO << " This is my last log " << "in main func ";
