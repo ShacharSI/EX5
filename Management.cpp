@@ -29,7 +29,7 @@ void Management::manage() {
     //this->taxiCenter = new TaxiCenter(this->lg.createNewMap("Square"));
     Thread_Runner *thread_runner1 = Thread_Runner::getInstance(this->taxiCenter, this->socket);
 
-    int userChoice = this->getUserChoise();
+   
     //preform the mission
     while (userChoice != 7) {
         LINFO << " this is main thread: " << " start of switch case with mission: " << userChoice;
@@ -79,7 +79,7 @@ void Management::manage() {
         }
         LINFO << " this is main thread: " << " get next mission in server ";
         //get the next input
-        userChoice = this->getUserChoise();
+        
     }
     LINFO << " this is main thread: " << " closing program ";
     //close the program and delete all memory
@@ -276,18 +276,14 @@ int Management::getObstacles() {
 /**
  * creating a map
  */
-int Management::getMap() {
-    int check = this->setLogicAndMap();
-    if (check == -1) {
-        cout << -1 << endl;
-    }
-    return check;
+void Management::getMap() {
+    this->setLogicAndMap();
 }
 
 /**
  * creating a map and putting it in the taxi center
  */
-int Management::setLogicAndMap() {
+void Management::setLogicAndMap() {
     int checker = 0;
 
     this->lg = Logic(getSizes());
@@ -408,54 +404,3 @@ Map *Management::getM() const {
     return m;
 }
 
-int Management::getUserChoise() {
-    int userChoice;
-    bool check = false;
-    if (cin >> userChoice) {
-        if ((userChoice >= 0) && (userChoice <= 7) && (userChoice != 5)) {
-            check = true;
-        } else {
-            cout << -1 << endl;
-        }
-    } else {
-        cout << -1 << endl;
-    }
-    if (!check) {
-        while (check != true) {
-            if (userChoice == 0) {
-                cin.clear();
-                cin.ignore();
-            }
-            if (cin >> userChoice) {
-                if ((userChoice >= 0) && (userChoice <= 7) && (userChoice != 5)) {
-                    check = true;
-                } else {
-                    cout << -1 << endl;
-                }
-
-            } else {
-                cout << -1 << endl;
-            }
-        }
-    }
-    return userChoice;
-}
-
-int Management::parseNumOfDrivers() {
-    int userChoice;
-    bool check = false;
-    if (cin >> userChoice) {
-        if ((userChoice >= 0)) { //todo check 0 drivers is wrong?? if it is not good this func will need chanch
-            //todo check why 0 time for trip is wrong
-            check = true;
-        } else {
-            cout << -1 << endl;
-        }
-    } else {
-        cout << -1 << endl;
-    }
-    if (check == true) {
-        return userChoice;
-    }
-    return -1;
-}
